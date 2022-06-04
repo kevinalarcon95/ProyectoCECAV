@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.template')
 
 @section('content')
-<div class="container">
+<div class="container my-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <!--<div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,7 +15,8 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                </div>
+                </div>-->
+                <h1>Hola desde el home</h1>
             </div>
         </div>
     </div>
