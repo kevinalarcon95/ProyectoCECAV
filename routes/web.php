@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OfertaController;
+use App\Http\Controllers\RegisterController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,21 +16,11 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
-
 Auth::routes();
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//Auth::routes(['register' => false, 'reset' => false]);
 
 Route::get('/registro', [RegisterController::class, 'index'])->name('/registro');
 
 Route::post('/registrousuario', [RegisterController::class, 'newuser'])->name('/registrousuario');
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/homePrincipal', function () {
     return view('home');
@@ -40,3 +33,7 @@ Route::get('/', function () {
 //Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+//Rutas para ofertas
+Route::get('/ofertas',[OfertaController::class, 'index'])->name('/ofertas');
+Route::post('/createOfertas',[OfertaController::class, 'create'])->name('/createOfertas');
