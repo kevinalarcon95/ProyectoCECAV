@@ -17,11 +17,11 @@ use App\Http\Controllers\HomeController;
     return view('welcome');
 });*/
 
-//Auth::routes();
+Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes(['register' => false, 'reset' => false]);
+//Auth::routes(['register' => false, 'reset' => false]);
 
 Route::get('/registro', [RegisterController::class, 'index'])->name('/registro');
 
