@@ -43,31 +43,31 @@
     @include('header')
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark" style="background-color: #6E9E39 !important;  ">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark" style="background-color: #0B1439 !important;  ">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
 
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <li class="nav-item">
-                            <a href="{{ route('/admin/listarEventos') }}" class="nav-link align-middle px-0">
-                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Eventos</span>
+                            <a href="#" class="nav-link align-middle px-0">
+                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">OFERTA E INSCRIPCIONES</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="{{ route('/admin/listarInversionistas') }}" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Inversionistas</span></a>
+                            <a href="#" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">PREICFES</span></a>
                         </li>
                         <li>
-                            <a href="{{ route('/admin/listarProductos') }}" class="nav-link px-0 align-middle ">
-                                <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">productos</span></a>
+                            <a href="#" class="nav-link px-0 align-middle ">
+                                <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">CERTIFICADOS</span></a>
                         </li>
                         <li>
-                            <a href="{{ route('/admin/listarOfertas') }}" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Ofertas</span> </a>
+                            <a href="#" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">ACERCA DE CECAV</span> </a>
                         </li>
                         <li>
-                            <a href="{{ route('/admin/listaEmprendimientos') }}" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Emprendimientos</span> </a>
+                            <a href="{{ route('/admin/listOferta') }}" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">ADMINISTRACION ff</span> </a>
                         </li>
                     </ul>
                     <hr>

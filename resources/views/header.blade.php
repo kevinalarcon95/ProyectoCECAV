@@ -22,7 +22,7 @@
             <!-- Left links -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('/ofertas')}}">OFERTA E INSCRIPCIONES</a>
+                    <a class="nav-link active" aria-current="page" href="#">OFERTA E INSCRIPCIONES</a>
                 </li>
 
                 <li class="nav-item">
@@ -33,9 +33,6 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">ACERCA DE CECAV</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">ADMINISTRACIÓN</a>
                 </li>
                 <li>
                     <!-- Right Side Of Navbar -->
@@ -48,17 +45,24 @@
                         </li>
                         @endif
 
-                        <!--@if (Route::has('register'))
+                        @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
-                        @endif-->
+                        @endif
 
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @role('admin')
+                                    <a class="dropdown-item" href="{{ route('/admin/home') }}">
+                                          Dashboard
+                                    </a>
+                                    @endrole
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

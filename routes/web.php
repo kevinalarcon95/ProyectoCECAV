@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OfertaController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +18,6 @@ use App\Http\Controllers\RegisterController;
 
 Auth::routes();
 
-Route::get('/registro', [RegisterController::class, 'index'])->name('/registro');
-
-Route::post('/registrousuario', [RegisterController::class, 'newuser'])->name('/registrousuario');
 
 Route::get('/homePrincipal', function () {
     return view('home');
@@ -30,10 +27,24 @@ Route::get('/', function () {
     return view('home');
 });
 
-//Route::get('/', [HomeController::class, 'index'])->name('home');
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //Rutas para ofertas
-Route::get('/ofertas',[OfertaController::class, 'index'])->name('/ofertas');
-Route::post('/createOfertas',[OfertaController::class, 'create'])->name('/createOfertas');
+Route::get('/ofertas', [OfertaController::class, 'index'])->name('/ofertas');
+//Route::post('/createOferta', [OfertaController::class, 'create'])->name('/createOferta');
+
+Route::group(['middleware' => ['auth']], function () {
+    //Route::resource('/admin/ofertas',OfertaController::class);
+    Route::get('/admin/home', [AdminController::class, 'index'])->name('/admin/home');
+
+    Route::get('/admin/listOferta', [OfertaController::class, 'list'])->name('/admin/listOferta');
+    Route::post('/admin/createOferta', [OfertaController::class, 'create'])->name('/admin/createOferta');
+
+    Route::get('/admin/createOferta', function () {
+        return view('ofertas.create');
+    })->name('/admin/createOferta');
+
+    Route::get('/admin/editOferta/{idOfer?}', [OfertaController::class, 'vistaEditar'])->name('/admin/editOferta/{idOfer?}');
+        Route::post('/admin/editOferta', [OfertaController::class, 'edit'])->name('/admin/editOferta');
+        Route::post('/admin/deleteOferta', [OfertaController::class, 'delete'])->name('/admin/deleteOferta');
+});

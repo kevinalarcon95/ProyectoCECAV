@@ -4,16 +4,16 @@
 
 <div class="conteiner m-5">
     <div class="row ">
-        <form action="{{route('/createOfertas')}}" method="post">
+        <form action="{{route('/admin/createOferta')}}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                <input type="text" class="form-control" name="nombre" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" class="form-control" name="nombreOferta" id="exampleInputEmail1" aria-describedby="emailHelp">
                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Correo</label>
-                <input type="email" name="correo" class="form-control" id="exampleInputPassword1">
+                <label for="exampleInputPassword1" class="form-label">Descripcion</label>
+                <input type="text" name="descripcionOferta" class="form-control" id="exampleInputPassword1">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
