@@ -17,10 +17,18 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
+        //Creamos admin y user
+        //admin => all
+        // user => ver el listado de ofertas
         $roleAdmin = Role::create(['name' => 'admin']);
         $roleUser = Role::create(['name' => 'user']);
 
-        Permission::create(['name' => 'admin.home'])->assignRole($roleAdmin);
-
+        //Asignamos los permisos
+        Permission::create(['name' => 'admin/home'])->assignRole($roleAdmin);
+        Permission::create(['name' => 'admin/listOferta'])->assignRole($roleAdmin);
+        Permission::create(['name' => 'admin/createOferta'])->assignRole($roleAdmin);
+        Permission::create(['name' => 'admin/editOferta'])->assignRole($roleAdmin);
+        Permission::create(['name' => 'admin/updateOferta'])->assignRole($roleAdmin);
+        Permission::create(['name' => 'admin/deleteOferta'])->assignRole($roleAdmin);
     }
 }

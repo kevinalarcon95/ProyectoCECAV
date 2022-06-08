@@ -1,12 +1,11 @@
-<input type="text" class="form-control" name="nombreOferta" id="exampleInputEmail1" aria-describedby="emailHelp">
-@extends('layouts.dashboard')
+@extends('layouts.template')
 
 @section('content')
 
 
 <div class="container">
 
-    <div class="row">
+    <div class="row m-5">
         <div class="col-sm-6" style="text-align: left;">
             <h2>Ofertas</h2><br>
         </div>

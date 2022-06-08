@@ -45,29 +45,28 @@
                         </li>
                         @endif
 
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                        @endif
-
                         @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        @role('admin')
+                        <li class="nav-item">
+                            <a class=" nav-link" href="{{ route('/admin/listOferta') }}">
+                                ADMINISTRACIÓN
+                            </a>
+                        </li>
+                        
+
+                        <li  class="nav-item dropdown">
+                            <a id=" navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @role('admin')
-                                    <a class="dropdown-item" href="{{ route('/admin/home') }}">
-                                          Dashboard
-                                    </a>
-                                    @endrole
+                            <div id="menuDropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">
+                                    PERFIL
+                                </a>
 
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Salir') }}
+                                    {{ __('CERRAR SESIÓN') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -75,35 +74,10 @@
                                 </form>
                             </div>
                         </li>
+                        @endrole
                         @endguest
                     </ul>
                 </li>
-                <!--
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-mdb-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li>
-              <a class="dropdown-item" href="#">Action</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Another action</a>
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </li>
-          </ul>
-        </li>-->
-
             </ul>
             <!-- Left links -->
         </div>

@@ -5,7 +5,7 @@ use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Role;
 use Illuminate\Http\Request;
-use Brian2694\Toastr\Toastr;
+use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Oferta;
 use Throwable;
 
@@ -38,16 +38,23 @@ class OfertaController extends Controller
         $descripcionOferta = $request->input('descripcionOferta');
 
         try{
+            /*
+            $oferta = new Oferta();
+            $oferta->nombreOferta = $nombreOferta;
+            $oferta->descripcionOferta = $descripcionOferta;
+            $oferta->save();
+            */
             Oferta::create([
                'nombreOferta' => $nombreOferta,
                'descripcionOferta' => $descripcionOferta,
             ]);
 
-            Toastr::success('¡Su registro fue exitoso!','', ["positionClass" => "toast-top-center"]);
-            return redirect('/admin/listOfertas');
+            Toastr::success('¡Su registro fue exitoso!','', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/createOferta');
         }catch (Throwable $e) {
-            Toastr::error('¡Error al crear su registro!','');
-            return redirect('/admin/listOfertas');
+            Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
+            //Toastr::error('¡Error al crear su registro!','');
+            return redirect('/admin/createOferta');
         }
     }
 

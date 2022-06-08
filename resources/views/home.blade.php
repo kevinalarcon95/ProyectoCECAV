@@ -17,7 +17,6 @@
                     {{ __('You are logged in!') }}
                 </div>-->
                 <h1>Hola desde el home</h1>
-                <h2>nfinoifnrifnir</h2>
             </div>
         </div>
     </div>
