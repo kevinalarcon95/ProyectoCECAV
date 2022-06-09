@@ -27,9 +27,11 @@
     <link href="{{ asset('css/body.css') }}" rel="stylesheet">
     <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
     <link href="{{ asset('css/table.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/administracion.css') }}" rel="stylesheet">
     <!-- cdn Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 
 <body onload="initialize();">

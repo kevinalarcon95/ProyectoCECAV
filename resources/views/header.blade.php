@@ -94,25 +94,3 @@
     </div>
     <!-- Container wrapper -->
 </nav>
-
-<style>
-    a.nav-link {
-        font-size: 9pt !important;
-    }
-
-    .navbar-brand {
-        font-size: 9pt !important;
-        margin-right: 0px !important;
-        color: #DED8D5 !important;
-    }
-
-    a.navbar-brand {
-        font-size: 9pt !important;
-        margin-right: 0px !important;
-    }
-
-    .navbar-dark .navbar-brand {
-        font-size: 9pt !important;
-        margin-right: 0px !important;
-    }
-</style>

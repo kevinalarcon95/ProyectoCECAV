@@ -63,12 +63,3 @@
   </div>
 
 </footer>
-
-<style>
-  p {
-    font-size: 14px !important;
-  }
-  li{
-    font-size: 14px;
-  }
-</style>

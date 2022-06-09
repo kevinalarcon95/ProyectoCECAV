@@ -1,0 +1,8 @@
+label, option {
+    font-size: 14px ;
+    color: #3E4C60;
+}
+
+input, select {
+    font-size: 14px !important;
+}

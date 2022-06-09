@@ -2,6 +2,27 @@ ul,li,a,p{
   font-family: 'DM Sans', sans-serif;
   
 }
+
+a.nav-link {
+  font-size: 12px !important;
+}
+
+.navbar-brand {
+  font-size: 12px !important;
+  margin-right: 0px !important;
+  color: #DED8D5 !important;
+}
+
+a.navbar-brand {
+  font-size: 9pt !important;
+  margin-right: 0px !important;
+}
+
+.navbar-dark .navbar-brand {
+  font-size: 12px !important;
+  margin-right: 0px !important;
+}
+
 .gradient-custom {
   background: rgb(195,11,11);
   background: linear-gradient(90deg, rgba(8,21,58,1) 9%, rgba(109,16,32,1) 65%, rgb(196, 10, 10) 100%);
