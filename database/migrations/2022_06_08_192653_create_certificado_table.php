@@ -16,7 +16,6 @@ class CreateCertificadoTable extends Migration
         Schema::create('certificado', function (Blueprint $table) {
             $table->id();
             $table->text('tipo_certificado'); 
-            $table->text('nombre'); 
 
             $table->timestamps();
             $table->index('tipo_certificado');
