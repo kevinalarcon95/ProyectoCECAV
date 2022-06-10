@@ -48,6 +48,7 @@ class OfertaController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'nombreOferta' => 'required',
             'descripcionOferta' => 'required',
@@ -65,6 +66,7 @@ class OfertaController extends Controller
             'tipoCursoOferta' => 'required',
             'fechaCierreOferta' => 'required'
         ]);
+        //dd("hola desde store",$request->input('categoriaOferta'));
 
         $nombreOferta = $request->input('nombreOferta');
         $descripcionOferta = $request->input('descripcionOferta');
@@ -81,8 +83,7 @@ class OfertaController extends Controller
         $costoOferta = $request->input('costoOferta');
         $tipoCursoOferta = $request->input('tipoCursoOferta');
         $fechaCierreOferta = $request->input('fechaCierreOferta');
-
-
+ 
         try {
             /*
                 $oferta = new Oferta();
@@ -97,7 +98,7 @@ class OfertaController extends Controller
                 'unidad_academica' => $unidadAcademicaOferta,
                 'imagen' => $imagenOferta,
                 'poblacion_objetivo' => $poblacionOferta,
-                'id_categoria' => 1,
+                'id_categoria' => $categoriaOferta,
                 'costo' => $costoOferta,
                 'fecha_inicio' => $fechaInicioOferta,
                 'resolucion' => $resolucionOferta,
@@ -112,7 +113,7 @@ class OfertaController extends Controller
             Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/createOferta');
         } catch (Throwable $e) {
-            dd($e);
+            dd($e,$intensidadHorarioOferta);
             Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
             //Toastr::error('¡Error al crear su registro!','');
             return redirect('/admin/createOferta');
