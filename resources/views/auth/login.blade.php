@@ -102,16 +102,6 @@
             </div>
         </div>
     </div>
-
-    <!--<div class="col-6 text-white bg" style="justify-content: center !important;align-items: center; display: flex; flex-wrap: wrap; background-color: #04153B;">
-
-        <img src="{{ asset('img/logo.png') }}" alt="logoUnicauca" width="180" height="180" style="margin-top: -11%; opacity:0.8;">
-
-
-
-        
-
-    </div>-->
 </div>
 
 <style>
