@@ -52,11 +52,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Intensidad horaria</label>
-                        <input type="text" class="form-control" name="nombreOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        <input type="text" class="form-control" name="intensidadHorarioOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Limite de cupos</label>
-                        <input type="text" class="form-control" name="nombreOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        <input type="text" class="form-control" name="cuposOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
                     </div>
 
                 </div>
