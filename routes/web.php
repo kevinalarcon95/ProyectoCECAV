@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/admin/createOferta', [OfertaController::class, 'create'])->name('/admin/createOferta');
     Route::post('/admin/saveOferta', [OfertaController::class, 'store'])->name('/admin/saveOferta');
-   
+
     Route::post('/admin/editOferta', [OfertaController::class, 'edit'])->name('/admin/editOferta');
     //Route::put('/admin/updateOferta', [OfertaController::class, 'update'])->name('/admin/updateOferta');
     Route::post('/admin/deleteOferta', [OfertaController::class, 'destroy'])->name('/admin/deleteOferta');
