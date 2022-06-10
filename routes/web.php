@@ -38,10 +38,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/home', [AdminController::class, 'index'])->name('/admin/home');//->dashboard
     Route::get('/admin/listOferta', [OfertaController::class, 'list'])->name('/admin/listOferta');
     //Route::get('/admin/editOferta/{idOfer?}', [OfertaController::class, 'vistaEditar'])->name('/admin/editOferta/{idOfer?}');
-    Route::post('/admin/createOferta', [OfertaController::class, 'create'])->name('/admin/createOferta');
-    Route::get('/admin/createOferta', function () {
-        return view('ofertas.create');
-    })->name('/admin/crearoferta');
+
+    Route::get('/admin/createOferta', [OfertaController::class, 'create'])->name('/admin/createOferta');
+    Route::post('/admin/saveOferta', [OfertaController::class, 'store'])->name('/admin/saveOferta');
+   
     Route::post('/admin/editOferta', [OfertaController::class, 'edit'])->name('/admin/editOferta');
     //Route::put('/admin/updateOferta', [OfertaController::class, 'update'])->name('/admin/updateOferta');
     Route::post('/admin/deleteOferta', [OfertaController::class, 'destroy'])->name('/admin/deleteOferta');

@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Role;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Oferta;
@@ -11,7 +13,7 @@ use Throwable;
 
 class OfertaController extends Controller
 {
-  
+
     /**
      * Display a listing of the resource.
      *
@@ -23,39 +25,19 @@ class OfertaController extends Controller
         return view('ofertas.index');
     }
 
-    public function list(){
-        $objOferta = Oferta::all();
-        return view('ofertas.list')->with('oferta',$objOferta);
+    public function list()
+    {
+        return view('ofertas.list');
     }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $nombreOferta = $request->input('nombreOferta');
-        $descripcionOferta = $request->input('descripcionOferta');
-
-        try{
-            /*
-            $oferta = new Oferta();
-            $oferta->nombreOferta = $nombreOferta;
-            $oferta->descripcionOferta = $descripcionOferta;
-            $oferta->save();
-            */
-            Oferta::create([
-               'nombreOferta' => $nombreOferta,
-               'descripcionOferta' => $descripcionOferta,
-            ]);
-
-            Toastr::success('¡Su registro fue exitoso!','', ["positionClass" => "toast-top-right"]);
-            return redirect('/admin/createOferta');
-        }catch (Throwable $e) {
-            Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
-            //Toastr::error('¡Error al crear su registro!','');
-            return redirect('/admin/createOferta');
-        }
+        $categoria = Categoria::pluck('nombre', 'id');
+        return view('ofertas.create')->with('categoria', $categoria);
     }
 
     /**
@@ -66,8 +48,75 @@ class OfertaController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'nombreOferta' => 'required',
+            'descripcionOferta' => 'required',
+            'tipoPagoOferta' => 'required',
+            'unidadAcademicaOferta' => 'required',
+            'fechaInicioOferta' => 'required',
+            'resolucionOferta' => 'required',
+            'intensidadHorarioOferta' => 'required',
+            'cuposOferta' => 'required',
+            'imagenOferta' => 'required',
+            'poblacionOferta' => 'required',
+            'categoriaOferta' => 'required',
+            'costoOferta' => 'required',
+            'fechaFinOferta' => 'required',
+            'tipoCursoOferta' => 'required',
+            'fechaCierreOferta' => 'required'
+        ]);
 
+        $nombreOferta = $request->input('nombreOferta');
+        $descripcionOferta = $request->input('descripcionOferta');
+        $tipoPagoOferta = $request->input('tipoPagoOferta');
+        $unidadAcademicaOferta = $request->input('unidadAcademicaOferta');
+        $fechaInicioOferta = $request->input('fechaInicioOferta');
+        $resolucionOferta = $request->input('resolucionOferta');
+        $intensidadHorarioOferta = $request->input('intensidadHorarioOferta');
+        $cuposOferta = $request->input('cuposOferta');
+        $imagenOferta = $request->input('imagenOferta');
+        $poblacionOferta = $request->input('poblacionOferta');
+        $categoriaOferta = $request->input('categoriaOferta');
+        $fechaFinOferta = $request->input('fechaFinOferta');
+        $costoOferta = $request->input('costoOferta');
+        $tipoCursoOferta = $request->input('tipoCursoOferta');
+        $fechaCierreOferta = $request->input('fechaCierreOferta');
+
+
+        try {
+            /*
+                $oferta = new Oferta();
+                $oferta->nombreOferta = $nombreOferta;
+                $oferta->descripcionOferta = $descripcionOferta;
+                $oferta->save();
+                */
+            Oferta::create([
+                'nombre' => $nombreOferta,
+                'descripcion' => $descripcionOferta,
+                'tipo_pago' => $tipoPagoOferta,
+                'unidad_academica' => $unidadAcademicaOferta,
+                'imagen' => $imagenOferta,
+                'poblacion_objetivo' => $poblacionOferta,
+                'id_categoria' => 1,
+                'costo' => $costoOferta,
+                'fecha_inicio' => $fechaInicioOferta,
+                'resolucion' => $resolucionOferta,
+                'intensidad_horario' => $intensidadHorarioOferta,
+                'limite_cupos' => $cuposOferta,
+                'fecha_fin' => $fechaFinOferta,
+                'tipo_curso' => $tipoCursoOferta,
+                'fecha_cierre_inscripcion' => $fechaCierreOferta,
+                'id_certificado' => 1,
+            ]);
+
+            Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/createOferta');
+        } catch (Throwable $e) {
+            dd($e);
+            Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
+            //Toastr::error('¡Error al crear su registro!','');
+            return redirect('/admin/createOferta');
+        }
     }
 
     /**

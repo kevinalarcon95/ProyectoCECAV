@@ -8,7 +8,7 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="mb-4 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Usuario o correo electronico" required autocomplete="email" autofocus style="background-color: #ececec;border-radius: 20px;border: none;">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Usuario o correo electronico" required autocomplete="email" autofocus style="background-color: #ececec;">
                 @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -18,7 +18,7 @@
 
             <div class="mb-4 mx-5" style="padding-left: 15%; padding-right: 15%;">
                 <div class="col-md-12">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" style="background-color: #ececec;border-radius: 20px;border: none;">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" style="background-color: #ececec;">
 
                     @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
             </div>
 
             <div class="mb-4 mx-5 d-grid btnEntrar" style="padding-left: 15%; padding-right: 15%;">
-                <button type="submit" class="btn btn-primary" style="color: white; background-color: #04153B; border: none;border-radius: 20px; padding-left: 60px; padding-right: 60px;font-size: 12pt;">
+                <button type="submit" class="btn btn-primary" style="color: white; background-color: #04153B; border: none;padding-left: 60px; padding-right: 60px;font-size: 12pt;">
                     {{ __('Entrar') }}
                 </button>
 
@@ -41,7 +41,7 @@
             </div>
 
             <div class="mb-4 mx-5 d-grid btnGoogle" style="padding-left: 15%; padding-right: 15%;">
-                <button type="submit" class="btn btn-outline-light" style="color:#04153B;border-color: black;border-radius: 20px; padding-left: 60px; padding-right: 60px;font-size: 12pt;">
+                <button type="submit" class="btn btn-outline-light" style="color:#04153B;border-color: black; padding-left: 60px; padding-right: 60px;font-size: 12pt;">
                     <div class="row align-item-center">
                         <div class="col-2 text-end">
                         <img src="{{ asset('img/iconGoogle.png') }}" alt="" width="20" height="20" class="d-inline-block align-text-top">
@@ -54,7 +54,7 @@
                 </button>
             </div>
 
-            <!--<div class="mb-4">
+           <!-- <div class="mb-4">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                     <label class="form-check-label" for="remember" style="color: #cfcfcf;">
@@ -86,6 +86,7 @@
             </div>
         </form>
     </div>
+    
     <div class="col-6 text-white bg" style="justify-content: center !important;align-items: center; display: flex; flex-wrap: wrap; background-color: #04153B;">
         <div class="row mt-5">
             <img src="{{ asset('img/logo.png') }}" alt="logoUnicauca" width="180" height="180" style="margin-top: -11%; opacity:0.8;">

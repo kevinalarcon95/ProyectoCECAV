@@ -9,7 +9,7 @@
             <h2>Gestión de cursos</h2>
         </div>
         <div class="col-sm-6" style="text-align: right;">
-            <a href="{{ route('/admin/createOferta') }}" class="btn btn-primary" style="color: white; ; border: none;border-radius: 20px; padding-left: 20px; padding-right: 20px;font-size: 12pt;">
+            <a href="{{(route('/admin/createOferta'))}}" class="btn btn-primary" style="color: white; ; border: none;border-radius: 20px; padding-left: 20px; padding-right: 20px;font-size: 12pt;">
                 + Añadir
             </a>
         </div>
@@ -22,7 +22,7 @@
         <input type="search" name="Buscar: " id="form1" class="form-control" placeholder="Buscar" aria-label="Search" style="text-align: right;border-radius: 20px; padding-left: 100px; padding-right: 20px;font-size: 12pt;" />
     </div>
     <div class="table-responsive">
-        <table class="table table-striped table-hover mt-5">
+        <table id="" class="table table-striped table-hover mt-5">
             <thead>
                 <tr ALIGN=left>
                     <th scope="col" class="text-nowrap"> No.</th>
@@ -94,42 +94,4 @@
 </div>
 <!-- fin -->
 
-
-<script>
-    function launchModal(nameuser,idinver){
-        //seteamos el nombre del usuario a eliminar
-        $('#nameOfer').text(nameuser);
-        $('#idOfer').val(idinver);
-        $('#exampleModal').modal('show');
-    }
-
-    function hidemodal(){
-        $('#exampleModal').modal('hide');
-    }
-    function deleteOfert(){
-
-        var idOfer = $('#idOfer').val();
-
-        $.ajax({
-               type:'POST',
-               url:'<?php echo(route('/admin/deleteOferta')); ?>',
-               data:{"_token": "{{ csrf_token() }}",
-                     "id":idOfer,
-                    },
-               success:function(data) {
-                   if(data==1){
-                       //agregar mensaje
-                    location.reload(true);
-                   }else{
-                       //agregar mensaje
-                    location.reload(true);
-                   }
-                  //$("#msg").html(data.msg);
-               }
-            });
-    }
-
-
-
-</script>
 @endsection

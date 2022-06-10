@@ -4,7 +4,7 @@
 
 <div class="conteiner m-5">
     <div class="row">
-        <form action="{{route('/admin/createOferta')}}" method="POST">
+        <form action="{{route('/admin/saveOferta')}}" method="POST">
             @csrf
             <div class="row mx-3">
                 <div class="col-sm-1 mr-0" style="text-align: left;">
@@ -72,9 +72,9 @@
                     <div class="mb-3">
                         <label class="form-label fw-bold">Categoria</label>
                         <select class="form-select" name="categoriaOferta" aria-label="Default select example" style="background-color: #ececec;">
-                            <option selected>Elige</option>
-                            <option>Pago</option>
-                            <option>No pago</option>
+                            @foreach($categoria as $key => $value)
+                            <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">
