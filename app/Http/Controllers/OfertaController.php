@@ -9,6 +9,8 @@ use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Oferta;
+use Illuminate\Support\Facades\Storage;
+
 use Throwable;
 
 class OfertaController extends Controller
@@ -58,7 +60,7 @@ class OfertaController extends Controller
             'resolucionOferta' => 'required',
             'intensidadHorarioOferta' => 'required',
             'cuposOferta' => 'required',
-            'imagenOferta' => 'required',
+            'imagenOferta' => 'required|image|max:2048',
             'poblacionOferta' => 'required',
             'categoriaOferta' => 'required',
             'costoOferta' => 'required',
@@ -66,7 +68,12 @@ class OfertaController extends Controller
             'tipoCursoOferta' => 'required',
             'fechaCierreOferta' => 'required'
         ]);
-        //dd("hola desde store",$request->input('categoriaOferta'));
+        
+        $imagen = $request->file('imagenOferta')->store('public/ofertas');
+        $url = Storage::url($imagen);
+        $imagen = $url;
+
+        //dd("hola desde store",$imagen);
 
         $nombreOferta = $request->input('nombreOferta');
         $descripcionOferta = $request->input('descripcionOferta');
@@ -76,7 +83,6 @@ class OfertaController extends Controller
         $resolucionOferta = $request->input('resolucionOferta');
         $intensidadHorarioOferta = $request->input('intensidadHorarioOferta');
         $cuposOferta = $request->input('cuposOferta');
-        $imagenOferta = $request->input('imagenOferta');
         $poblacionOferta = $request->input('poblacionOferta');
         $categoriaOferta = $request->input('categoriaOferta');
         $fechaFinOferta = $request->input('fechaFinOferta');
@@ -96,7 +102,7 @@ class OfertaController extends Controller
                 'descripcion' => $descripcionOferta,
                 'tipo_pago' => $tipoPagoOferta,
                 'unidad_academica' => $unidadAcademicaOferta,
-                'imagen' => $imagenOferta,
+                'imagen' => $imagen,
                 'poblacion_objetivo' => $poblacionOferta,
                 'id_categoria' => $categoriaOferta,
                 'costo' => $costoOferta,
