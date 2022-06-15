@@ -47,7 +47,23 @@
     <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('#example').DataTable({
+                scrollX: true,
+                "info": false,
+                "lengthChange": false,
+                pagingType: 'first_last_numbers',
+
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
+                    paginate: {
+                        first: 'Atras',
+                        last: 'Siguiente',
+                    }
+                },
+                pageLength: 4,
+                pagingType: "simple_numbers",
+                
+            });
         });
     </script>
     {!! Toastr::message() !!}
