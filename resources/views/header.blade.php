@@ -22,7 +22,7 @@
             <!-- Left links -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('home') }}">OFERTA E INSCRIPCIONES</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('/ofertasInscripciones') }}">OFERTA E INSCRIPCIONES</a>
                 </li>
 
                 <li class="nav-item">
@@ -51,7 +51,7 @@
                             <a id=" navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 ADMINISTRACIÓN
                             </a>
-                            <div id="menuDropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{(route('/admin/listOferta'))}}">
                                     GESTION DE CURSOS
                                 </a>
@@ -68,7 +68,7 @@
                                 {{ Auth::user()->name }}
                             </a>
 
-                            <div id="menuDropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">
                                     PERFIL
                                 </a>
@@ -94,3 +94,4 @@
     </div>
     <!-- Container wrapper -->
 </nav>
+

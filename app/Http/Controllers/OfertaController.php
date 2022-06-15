@@ -23,8 +23,9 @@ class OfertaController extends Controller
      */
     public function index()
     {
-        //$objOferta = Oferta::all();
-        return view('ofertas.index');
+        $objOferta = Oferta::all();
+        //dd($objOferta);
+        return view('ofertas.index')->with('objOferta',$objOferta);;
     }
 
     public function list()

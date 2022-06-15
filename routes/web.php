@@ -29,13 +29,12 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/ofertasInscripciones', [OfertaController::class, 'index'])->name('/ofertasInscripciones');
 
 //Rutas para ofertas
 Route::get('/ofertas', [OfertaController::class, 'create'])->name('/ofertas');
 
 Route::group(['middleware' => ['auth']], function () {
-
-    Route::get('/admin/home', [AdminController::class, 'index'])->name('/admin/home');//->dashboard
     Route::get('/admin/listOferta', [OfertaController::class, 'list'])->name('/admin/listOferta');
     //Route::get('/admin/editOferta/{idOfer?}', [OfertaController::class, 'vistaEditar'])->name('/admin/editOferta/{idOfer?}');
 
