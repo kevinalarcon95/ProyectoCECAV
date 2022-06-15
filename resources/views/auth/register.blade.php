@@ -31,9 +31,9 @@
                 @enderror
             </div>
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="apellido" value="" required autocomplete="name" placeholder="Apellido (s)" autofocus style="background-color: #ececec;">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lastname" value="" required autocomplete="name" placeholder="Apellido (s)" autofocus style="background-color: #ececec;">
 
-                @error('apellido')
+                @error('lastname')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
