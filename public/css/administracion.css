@@ -6,3 +6,11 @@ label, option {
 input, select {
     font-size: 14px !important;
 }
+
+#search{
+
+    width: 50% !important;
+    display: flex;
+    position: relative;
+    top: 100px;
+}
