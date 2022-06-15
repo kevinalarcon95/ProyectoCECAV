@@ -1,97 +1,83 @@
 @extends('layouts.template')
 @section('css')
-    
+
 @endsection
 @section('content')
+
 <div class="contenedor mt-5">
     <div class="row mx-3">
-        <div class="col-sm-6" style="text-align: left;">
-            <h2>Gestión de cursos</h2>
-        </div>
-        <div class="col-sm-6" style="text-align: right;">
-            <a href="{{(route('/admin/createOferta'))}}" class="btn btn-primary" style="color: white; ; border: none;border-radius: 20px; padding-left: 20px; padding-right: 20px;font-size: 12pt;">
-                + Añadir
+        <div class="d-flex justify-content-between align-baseline">
+            <h4>Gestión de cursos</h4>
+            <a href="{{ route('/admin/createOferta') }}">
+                <button type="button" class="botones btn btn-añadir me-1"><i class="bi bi-plus me-1"></i>Añadir</button>
             </a>
         </div>
     </div>
     <hr />
-    <div class="input-group md-form form-sm form-1 pl-0">
-        <div class="input-group-prepend ">
-            <h2>Buscador: </h2>
-        </div>
-        <input type="search" name="Buscar: " id="form1" class="form-control" placeholder="Buscar" aria-label="Search" style="text-align: right;border-radius: 20px; padding-left: 100px; padding-right: 20px;font-size: 12pt;" />
-    </div>
-    <div class="table-responsive">
-        <table id="" class="table table-striped table-hover mt-5">
-            <thead>
-                <tr ALIGN=left>
-                    <th scope="col" class="text-nowrap"> No.</th>
-                    <th scope="col" class="text-nowrap"> Nombre <i class="bi bi-arrow-down-up"></i> </th>
-                    <th scope="col" class="text-nowrap"> Imagen</th>
-                    <th scope="col" class="text-nowrap"> Descripción</th>
-                    <th scope="col" class="text-nowrap"> Población Objetivo</th>
-                    <th scope="col" class="text-nowrap"> Categoría</th>
-                    <th scope="col" class="text-nowrap"> Tipo Pago</th>
-                    <th scope="col" class="text-nowrap"> Costo</th>
-                    <th scope="col" class="text-nowrap"> Unidad Académica</th>
-                    <th scope="col" class="text-nowrap"> Fecha Inicio</th>
-                    <th scope="col" class="text-nowrap"> Fecha Fin</th>
-                    <th scope="col" class="text-nowrap"> Resolución</th>
-                    <th scope="col" class="text-nowrap"> Tipo Curso</th>
-                    <th scope="col" class="text-nowrap"> Intensidad Horaria</th>
-                    <th scope="col" class="text-nowrap"> Fecha Cierre Inscripción</th>
-                    <th scope="col" class="text-nowrap"> Limite cupos</th>
-                    <th scope="col" class="text-nowrap"> Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td class="text-nowrap">Diplomado en Rehabilitación Vestibular, Una Mirada desde</td>
-                    <td class="text-nowrap">diplomadoVestibular.jpg</td>
-                    <td class="text-nowrap">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book.</td>
-                    <td class="text-nowrap">Profesionales y estudiantes de últimos semestres</td>
-                    <td class="text-nowrap">Diplomado</td>
-                    <td class="text-nowrap">No pago</td>
-                    <td class="text-nowrap">No aplica</td>
-                    <td class="text-nowrap">Facultad de Ciencias de la Salud</td>
-                    <td class="text-nowrap">08/05/2022</td>
-                    <td class="text-nowrap">08/05/2022</td>
-                    <td class="text-nowrap">VRA-0722</td>
-                    <td class="text-nowrap">Presencial</td>
-                    <td class="text-nowrap">80 H</td>
-                    <td class="text-nowrap">08/05/2022</td>
-                    <td class="text-nowrap">150</td>
-                    <td>eliminar</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <hr />
-</div>
-<!-- modal delete user -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="border: none;">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hidemodal();">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="text-align: center; font-size: 14pt;">
-        Esta seguro que desea eliminar la oferta
-        <p id="nameOfer"></p>
-        <input id="idOfer" type="hidden" value="">
-      </div>
-      <div class="modal-footer" style="border: none;">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="hidemodal();">Cancelar</button>
-        <button type="button" class="btn btn-danger" onclick="deleteOfert();">Eliminar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- fin -->
 
+    <table id="example" class="display nowrap " style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col" class="celda"> No. </th>
+                <th scope="col" class="celda"> Imagen</th>
+                <th scope="col" class="celda"> Nombre </th>
+                <th scope="col" class="celda"> Descripción</th>
+                <th scope="col" class="celda"> Población Objetivo</th>
+                <th scope="col" class="celda"> Categoría</th>
+                <th scope="col" class="celda"> Tipo Pago</th>
+                <th scope="col" class="celda"> Costo</th>
+                <th scope="col" class="celda"> Unidad Académica</th>
+                <th scope="col" class="celda"> Fecha Inicio</th>
+                <th scope="col" class="celda"> Fecha Fin</th>
+                <th scope="col" class="celda"> Resolución</th>
+                <th scope="col" class="celda"> Tipo Curso</th>
+                <th scope="col" class="celda"> Intensidad Horaria</th>
+                <th scope="col" class="celda"> Fecha Cierre Inscripción</th>
+                <th scope="col" class="celda"> Limite cupos</th>
+                <th scope="col" class="celda"> Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach( $ofertas as $varOferta)
+            <tr>
+                <td class="celda">{{$varOferta->id}}</td>
+                <td  class="celda"><img class="img-thumbnail" src="{{ asset($varOferta->imagen) }}" width="100" alt=""></td>
+                <td  class="celda">{{$varOferta->nombre}}</td>
+
+                <td  class="celda">{{$varOferta->descripcion}}</td>
+                <td  class="celda">{{$varOferta->poblacion_objetivo}}</td>
+                <td  class="celda">{{$varOferta->nombreCategoria}}</td>
+                <td  class="celda">{{$varOferta->tipo_pago}}</td>
+                <td  class="celda">{{$varOferta->costo}}</td>
+                <td  class="celda">{{$varOferta->unidad_academica}}</td>
+                <td  class="celda">{{$varOferta->fecha_inicio}}</td>
+                <td  class="celda">{{$varOferta->fecha_fin}}</td>
+                <td  class="celda">{{$varOferta->resolucion}}</td>
+                <td  class="celda">{{$varOferta->tipo_curso}}</td>
+                <td  class="celda">{{$varOferta->intensidad_horario}}</td>
+                <td  class="celda">{{$varOferta->fecha_cierre_inscripcion}}</td>
+                <td  class="celda">{{$varOferta->limite_cupos}}</td>
+                <td>
+                    <div class="d-flex flex-row">
+
+                        <button type="button" class="botones btn btn-editar me-1"><i class="bi bi-pencil-square me-1"></i>Editar</button>
+
+                        <button type="button" class="botones btn btn-eliminar" data-bs-toggle="modal" data-bs-target="#exampleModal{{$varOferta->id}}"><i class="bi bi-trash3 me-1"></i>Borrar</button>
+
+                    </div>
+                </td>
+                @include('ofertas.modalEliminar')
+            </tr>
+            @endforeach
+        </tbody>
+
+    </table>
+    <hr />
+
+</div>
+
+@section ('js')
+
+
+@endsection
 @endsection

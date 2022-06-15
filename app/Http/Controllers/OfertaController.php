@@ -30,7 +30,29 @@ class OfertaController extends Controller
 
     public function list()
     {
-        return view('ofertas.list');
+        $datos['ofertas'] = Oferta::select(
+            'oferta.id',
+            'oferta.nombre',
+            'oferta.descripcion',
+            'oferta.tipo_pago',
+            'oferta.unidad_academica',
+            'oferta.imagen',
+            'oferta.poblacion_objetivo',
+            'categoria.nombre as nombreCategoria',
+            'oferta.costo',
+            'oferta.fecha_inicio',
+            'oferta.resolucion',
+            'oferta.intensidad_horario',
+            'oferta.limite_cupos',
+            'oferta.fecha_fin',
+            'oferta.tipo_curso',
+            'oferta.fecha_cierre_inscripcion'
+        )
+            ->from('oferta')
+            ->join('categoria', 'oferta.id_categoria', '=', 'categoria.id')
+            ->where('categoria.nombre', '!=', 'Diplomados')
+            ->get();
+        return view('ofertas.list', $datos);
     }
     /**
      * Show the form for creating a new resource.
@@ -169,6 +191,22 @@ class OfertaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $oferta=Oferta::findOrFail($id);
+
+        $url = str_replace('storage','public',$oferta->imagen);
+        Storage::delete($url);
+        DB :: delete('DELETE FROM oferta WHERE id = ?',[$id]);   
+        return redirect('/admin/listOferta');
+        
+    
+    }
+
+    public static function existeInscritos($id)
+    {
+        $numInscritos = DB::table('Oferta')
+            ->join('aspi_oferta', 'id', '=', 'id_oferta')
+            ->where('oferta.id', '=', $id)
+            ->get();
+        return (count($numInscritos));
     }
 }

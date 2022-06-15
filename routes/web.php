@@ -43,5 +43,5 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/admin/editOferta', [OfertaController::class, 'edit'])->name('/admin/editOferta');
     //Route::put('/admin/updateOferta', [OfertaController::class, 'update'])->name('/admin/updateOferta');
-    Route::post('/admin/deleteOferta', [OfertaController::class, 'destroy'])->name('/admin/deleteOferta');
+    Route::delete('/admin/deleteOferta/{id}', [OfertaController::class, 'destroy'])->name('/admin/deleteOferta');
 });

@@ -2,3 +2,56 @@
     margin: 4rem;
 }
 
+.input-md{
+    width: 25%!important;
+}
+.botones{
+    display: flex!important;
+}
+
+.celda{
+    padding-right: 2rem!important;
+}
+
+.linea{
+    margin: 0rem 0!important;
+}
+.modal-body{
+    padding: 0rem!important;
+}
+.btn-editar{
+    color: #fff!important;
+    background-color: #34a853!important;
+    border-color: #34a853!important;
+}
+.btn-eliminar, .modal-header{
+    color: #fff!important;
+    background-color: #c50b0a!important;
+    border-color: #c50b0a!important;
+}
+.btn-añadir{
+    color: #fff!important;
+    background-color: #4285f4!important;
+    border-color: #4285f4!important;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+    margin-left: 2.5em!important;
+}
+.form-control{
+    background-color: #ececec!important;
+    font-family: inherit!important;
+}
+.pagination {
+    justify-content: flex-start!important;
+    margin-top: 3rem!important;
+}
+
+.pagination > li > a, .pagination > li > span{
+    background-color: #d9d9d9 !important;
+    color: #022135 !important;
+}
+.pagination > li.active > a, .pagination > li.active > span{
+    background-color:#022135 !important;
+    color: #d9d9d9 !important;
+}
