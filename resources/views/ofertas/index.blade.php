@@ -26,12 +26,15 @@
         @foreach ($objOferta as $objOferta)
         <div class="col-lg-4 col-sm-12 p-3">
             <div class="card">
-                <img class="card-img-top" src="{{ asset($objOferta->imagen) }}" alt="Card image cap" width="">
+                <div class="box img">
+                    <img class="card-img-top" src="{{ asset($objOferta->imagen) }}" alt="Card image cap"" >
+                </div>
+
                 <div class="card-body">
 
                     <h5 class="card-text">{{$objOferta->nombre}}</h5>
 
-                    <p>Costo: {{$objOferta->costo}}</p>
+                    <p>Costo: $ {{$objOferta->costo}}</p>
                     <p>Fecha de inicio: {{$objOferta->fecha_inicio}}</p>
                     <p>Fecha de finalizacion: {{$objOferta->fecha_fin}}</p>
 
@@ -52,3 +55,18 @@
     <!-- fin cards -->
 </section>
 @endsection
+
+<style>
+    .box img {
+        width: 100%;
+        height: auto;
+    }
+
+    @supports(object-fit: cover) {
+        .box img {
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+    }
+</style>
