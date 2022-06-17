@@ -8,12 +8,12 @@
     <div class="row mx-3">
         <div class="d-flex justify-content-between align-baseline">
             <h4>Gestión de cursos</h4>
-            <a href="{{ route('/admin/createOferta') }}">
-                <button type="button" class="botones btn btn-añadir me-1"><i class="bi bi-plus me-1"></i>Añadir</button>
+            <a href="{{ route('/admin/createOferta') }}" class="botones btn btn-añadir me-1">
+                <i class="bi bi-plus me-1"></i>Añadir
             </a>
         </div>
     </div>
-    <hr />
+    <hr>
 
     <table id="example" class="display nowrap " style="width:100%">
         <thead>
@@ -60,7 +60,7 @@
                 <td>
                     <div class="d-flex flex-row">
 
-                        <button type="button" class="botones btn btn-editar me-1"><i class="bi bi-pencil-square me-1"></i>Editar</button>
+                        <a type="button" href="{{ route('/admin/editOferta')}}/{{$varOferta->id}}" class="botones btn btn-editar me-1"><i class="bi bi-pencil-square me-1"></i>Editar</a>
 
                         <button type="button" class="botones btn btn-eliminar" data-bs-toggle="modal" data-bs-target="#exampleModal{{$varOferta->id}}"><i class="bi bi-trash3 me-1"></i>Borrar</button>
 

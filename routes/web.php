@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OfertaController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\InfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,11 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/ofertasInscripciones', [OfertaController::class, 'index'])->name('/ofertasInscripciones');
 
+//Rutas informacion cecav
+Route::get('/homeInfo', [InfoController::class, 'index'])->name('/homeInfo');
+Route::get('/homeInfo/quienesSomos', [InfoController::class, 'info'])->name('/homeInfo/quienesSomos');
+Route::get('/homeInfo/funcionesCecav', [InfoController::class, 'funciones'])->name('/homeInfo/funcionesCecav');
+
 //Rutas para ofertas
 Route::get('/ofertas', [OfertaController::class, 'create'])->name('/ofertas');
 
@@ -41,7 +47,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/createOferta', [OfertaController::class, 'create'])->name('/admin/createOferta');
     Route::post('/admin/saveOferta', [OfertaController::class, 'store'])->name('/admin/saveOferta');
 
+    Route::get('/admin/editOferta/{idOfer?}', [OfertaController::class, 'edit'])->name('/admin/editOferta/{idOfer?}');
     Route::post('/admin/editOferta', [OfertaController::class, 'edit'])->name('/admin/editOferta');
-    //Route::put('/admin/updateOferta', [OfertaController::class, 'update'])->name('/admin/updateOferta');
+    Route::put('/admin/update/{id}', [OfertaController::class, 'update'] )->name('ofertas.update');
+
     Route::delete('/admin/deleteOferta/{id}', [OfertaController::class, 'destroy'])->name('/admin/deleteOferta');
 });

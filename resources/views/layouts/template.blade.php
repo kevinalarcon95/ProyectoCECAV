@@ -66,7 +66,6 @@
             });
         });
     </script>
-    {!! Toastr::message() !!}
 </body>
 @include('footer')
 <script src="{{ asset('js/toastr.min.js') }}"></script>

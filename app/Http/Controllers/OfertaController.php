@@ -25,7 +25,7 @@ class OfertaController extends Controller
     {
         $objOferta = Oferta::all();
         //dd($objOferta);
-        return view('ofertas.index')->with('objOferta',$objOferta);;
+        return view('ofertas.index')->with('objOferta', $objOferta);;
     }
 
     public function list()
@@ -50,7 +50,7 @@ class OfertaController extends Controller
         )
             ->from('oferta')
             ->join('categoria', 'oferta.id_categoria', '=', 'categoria.id')
-            ->where('categoria.nombre', '!=', 'Diplomados')
+            //->where('categoria.nombre', '!=', 'Diplomados')
             ->get();
         return view('ofertas.list', $datos);
     }
@@ -73,7 +73,7 @@ class OfertaController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'nombreOferta' => 'required',
             'descripcionOferta' => 'required',
@@ -91,7 +91,7 @@ class OfertaController extends Controller
             'tipoCursoOferta' => 'required',
             'fechaCierreOferta' => 'required'
         ]);
-        
+
         $imagen = $request->file('imagenOferta')->store('public/ofertas');
         $url = Storage::url($imagen);
         $imagen = $url;
@@ -112,7 +112,7 @@ class OfertaController extends Controller
         $costoOferta = $request->input('costoOferta');
         $tipoCursoOferta = $request->input('tipoCursoOferta');
         $fechaCierreOferta = $request->input('fechaCierreOferta');
- 
+
         try {
             /*
                 $oferta = new Oferta();
@@ -142,7 +142,7 @@ class OfertaController extends Controller
             Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/createOferta');
         } catch (Throwable $e) {
-            dd($e,$intensidadHorarioOferta);
+            //dd($e);
             Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
             //Toastr::error('¡Error al crear su registro!','');
             return redirect('/admin/createOferta');
@@ -168,7 +168,9 @@ class OfertaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $oferta = Oferta::findOrFail($id);        
+        $categoria = Categoria::pluck('nombre', 'id');        
+        return view('ofertas.editar',compact('oferta'))->with('categoria', $categoria);
     }
 
     /**
@@ -180,7 +182,74 @@ class OfertaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateData = Oferta::findOrFail($id);
+
+        $request->validate([
+            'nombreOferta' => 'required|string|max:200',
+            'descripcionOferta' => 'required|string|max:200',
+            'tipoPagoOferta' => 'required',
+            'unidadAcademicaOferta' => 'required|string|max:200',
+            'fechaInicioOferta' => 'required|date|after_or_equal:today',
+            'resolucionOferta' => 'required|numeric',
+            'intensidadHorarioOferta' => 'required|numeric',
+            'cuposOferta' => 'required|numeric',
+            //'imagenOferta' => 'required',
+            'poblacionOferta' => 'required|string|max:200',
+            'categoriaOferta' => 'required',
+            'costoOferta' => 'required|numeric',
+            'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
+            'tipoCursoOferta' => 'required',
+            'fechaCierreOferta' => 'required|date|after:fechaInicioOferta|before:fechaFinOferta'
+        ]);
+
+
+        //Obteniendo los datos de la vista
+        $nombreOferta = $request->input('nombreOferta');
+        $descripcionOferta = $request->input('descripcionOferta');
+        $tipoPagoOferta = $request->input('tipoPagoOferta');
+        $unidadAcademicaOferta = $request->input('unidadAcademicaOferta');
+        $fechaInicioOferta = $request->input('fechaInicioOferta');
+        $resolucionOferta = $request->input('resolucionOferta');
+        $intensidadHorarioOferta = $request->input('intensidadHorarioOferta');
+        $cuposOferta = $request->input('cuposOferta');
+        //$imagenOferta = $request->input('imagenOferta');
+        $poblacionOferta = $request->input('poblacionOferta');
+        $categoriaOferta = $request->input('categoriaOferta');
+        $fechaFinOferta = $request->input('fechaFinOferta');
+        $costoOferta = $request->input('costoOferta');
+        $tipoCursoOferta = $request->input('tipoCursoOferta');
+        $fechaCierreOferta = $request->input('fechaCierreOferta');
+
+
+        $updateData->nombre = $nombreOferta;
+        $updateData->descripcion = $descripcionOferta;
+        $updateData->tipo_pago =  $tipoPagoOferta;
+        $updateData->unidad_academica = $unidadAcademicaOferta;
+        //$updateData->imagen =  $imagenOferta;
+        $updateData->poblacion_objetivo = $poblacionOferta;
+        $updateData->id_categoria = $categoriaOferta;
+        $updateData->costo = $costoOferta;
+        $updateData->fecha_inicio = $fechaInicioOferta;
+        $updateData->resolucion = $resolucionOferta;
+        $updateData->intensidad_horario = $intensidadHorarioOferta;
+        $updateData->limite_cupos = $cuposOferta;
+        $updateData->fecha_fin = $fechaFinOferta;
+        $updateData->tipo_curso = $tipoCursoOferta;
+        $updateData->fecha_cierre_inscripcion = $fechaCierreOferta;
+        $updateData->id_certificado = 1;
+        try {
+            if ($request->hasFile('imagenOferta')) {
+                $updateData = Oferta::findOrFail($id);
+                $updateData['imagen'] = $request->file('imagenOferta');
+            }
+
+            $updateData->save();
+            Toastr::success('¡Su registro fue actualizado exitosamente!', '', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/listOferta');
+        } catch (Throwable $e) {
+            Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/listOferta');
+        }
     }
 
     /**
@@ -191,14 +260,12 @@ class OfertaController extends Controller
      */
     public function destroy($id)
     {
-        $oferta=Oferta::findOrFail($id);
+        $oferta = Oferta::findOrFail($id);
 
-        $url = str_replace('storage','public',$oferta->imagen);
+        $url = str_replace('storage', 'public', $oferta->imagen);
         Storage::delete($url);
-        DB :: delete('DELETE FROM oferta WHERE id = ?',[$id]);   
+        DB::delete('DELETE FROM oferta WHERE id = ?', [$id]);
         return redirect('/admin/listOferta');
-        
-    
     }
 
     public static function existeInscritos($id)
