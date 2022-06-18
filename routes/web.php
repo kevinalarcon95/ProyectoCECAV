@@ -31,6 +31,8 @@ Route::get('/', function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/ofertasInscripciones', [OfertaController::class, 'index'])->name('/ofertasInscripciones');
+Route::get('/detalleOferta/{idOfer?}', [OfertaController::class, 'show'])->name('/detalleOferta/{idOfer?}');
+
 
 //Rutas informacion cecav
 Route::get('/homeInfo', [InfoController::class, 'index'])->name('/homeInfo');

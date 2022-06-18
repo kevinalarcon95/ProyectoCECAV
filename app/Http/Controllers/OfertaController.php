@@ -24,7 +24,6 @@ class OfertaController extends Controller
     public function index()
     {
         $objOferta = Oferta::all();
-        //dd($objOferta);
         return view('ofertas.index')->with('objOferta', $objOferta);;
     }
 
@@ -157,7 +156,9 @@ class OfertaController extends Controller
      */
     public function show($id)
     {
-        //
+        $objOferta = Oferta::findOrFail($id);        
+        $categoria = Categoria::pluck('nombre', 'id');        
+        return view('ofertas.detalleOferta',compact('objOferta'))->with('categoria', $categoria);
     }
 
     /**
