@@ -57,6 +57,7 @@
 @endsection
 
 <style>
+    
     .box img {
         width: 100%;
         height: auto;

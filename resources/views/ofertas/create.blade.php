@@ -22,6 +22,11 @@
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Nombre (Diplomado, curso, charla, etc)</label>
                         <input type="text" class="form-control" name="nombreOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        @error('nombreOferta')
+                            <br>
+                            <small style="color: red;">*{{$message}}</small>
+                            <br>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label fw-bold">Descripcion</label>
