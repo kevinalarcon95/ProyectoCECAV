@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Brian2694\Toastr\ToastrServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Yoeunes\Toastr\ToastrServiceProvider::class
     ],
 
     /*
