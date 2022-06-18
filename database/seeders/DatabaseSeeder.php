@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoriaSeeder::class);
         //Certificado
         $this->call(CertificadoSeeder::class);
+        //oferta
+        $this->call(OfertaSeeder::class);
     }
 }

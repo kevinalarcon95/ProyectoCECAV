@@ -19,7 +19,7 @@ class CreateOfertaTable extends Migration
             $table->text('descripcion');
             $table->text('tipo_pago');
             $table->text('unidad_academica');
-            $table->text('imagen')->unique();
+            $table->text('imagen');
             $table->text('poblacion_objetivo');
             $table->unsignedBigInteger('id_categoria');
             $table->double('costo');        
