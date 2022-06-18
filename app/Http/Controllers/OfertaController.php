@@ -190,8 +190,8 @@ class OfertaController extends Controller
             'tipoPagoOferta' => 'required',
             'unidadAcademicaOferta' => 'required|string|max:200',
             'fechaInicioOferta' => 'required|date|after_or_equal:today',
-            'resolucionOferta' => 'required|numeric',
-            'intensidadHorarioOferta' => 'required|numeric',
+            'resolucionOferta' => 'required|string',
+            'intensidadHorarioOferta' => 'required|string',
             'cuposOferta' => 'required|numeric',
             //'imagenOferta' => 'required',
             'poblacionOferta' => 'required|string|max:200',
@@ -199,7 +199,7 @@ class OfertaController extends Controller
             'costoOferta' => 'required|numeric',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
-            'fechaCierreOferta' => 'required|date|after:fechaInicioOferta|before:fechaFinOferta'
+            'fechaCierreOferta' => 'required|date|after:fechaInicioOferta'
         ]);
 
 
@@ -212,7 +212,7 @@ class OfertaController extends Controller
         $resolucionOferta = $request->input('resolucionOferta');
         $intensidadHorarioOferta = $request->input('intensidadHorarioOferta');
         $cuposOferta = $request->input('cuposOferta');
-        //$imagenOferta = $request->input('imagenOferta');
+        
         $poblacionOferta = $request->input('poblacionOferta');
         $categoriaOferta = $request->input('categoriaOferta');
         $fechaFinOferta = $request->input('fechaFinOferta');
@@ -225,7 +225,6 @@ class OfertaController extends Controller
         $updateData->descripcion = $descripcionOferta;
         $updateData->tipo_pago =  $tipoPagoOferta;
         $updateData->unidad_academica = $unidadAcademicaOferta;
-        //$updateData->imagen =  $imagenOferta;
         $updateData->poblacion_objetivo = $poblacionOferta;
         $updateData->id_categoria = $categoriaOferta;
         $updateData->costo = $costoOferta;
@@ -237,16 +236,27 @@ class OfertaController extends Controller
         $updateData->tipo_curso = $tipoCursoOferta;
         $updateData->fecha_cierre_inscripcion = $fechaCierreOferta;
         $updateData->id_certificado = 1;
-        try {
-            if ($request->hasFile('imagenOferta')) {
-                $updateData = Oferta::findOrFail($id);
-                $updateData['imagen'] = $request->file('imagenOferta');
+
+        try{    
+            if( $request->file('imagenOferta') == null){
+            
+            }else{
+                $image_path = public_path().$updateData->imagen;
+            unlink($image_path);
+            
+            $imagen = $request->file('imagenOferta')->store('public/ofertas');
+            $url = Storage::url($imagen);
+            $imagen = $url;
+            $updateData ->imagen = $imagen;
             }
+            
 
             $updateData->save();
             Toastr::success('¡Su registro fue actualizado exitosamente!', '', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listOferta');
+
         } catch (Throwable $e) {
+            dd($e);
             Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listOferta');
         }
