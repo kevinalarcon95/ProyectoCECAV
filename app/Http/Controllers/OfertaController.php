@@ -74,21 +74,21 @@ class OfertaController extends Controller
     {
 
         $request->validate([
-            'nombreOferta' => 'required',
-            'descripcionOferta' => 'required',
+            'nombreOferta' => 'required|string',
+            'descripcionOferta' => 'required|string',
             'tipoPagoOferta' => 'required',
-            'unidadAcademicaOferta' => 'required',
-            'fechaInicioOferta' => 'required',
-            'resolucionOferta' => 'required',
-            'intensidadHorarioOferta' => 'required',
-            'cuposOferta' => 'required',
-            'imagenOferta' => 'required|image|max:2048',
-            'poblacionOferta' => 'required',
+            'unidadAcademicaOferta' => 'required|string',
+            'fechaInicioOferta' => 'required|date|after_or_equal:today',
+            'resolucionOferta' => 'required|string',
+            'intensidadHorarioOferta' => 'required|string',
+            'cuposOferta' => 'required|numeric',
+            'imagenOferta' => 'required',
+            'poblacionOferta' => 'required|string|max:200',
             'categoriaOferta' => 'required',
-            'costoOferta' => 'required',
-            'fechaFinOferta' => 'required',
+            'costoOferta' => 'required|numeric',
+            'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
-            'fechaCierreOferta' => 'required'
+            'fechaCierreOferta' => 'required|date|after:fechaInicioOferta'
         ]);
 
         $imagen = $request->file('imagenOferta')->store('public/ofertas');
@@ -143,7 +143,6 @@ class OfertaController extends Controller
         } catch (Throwable $e) {
             //dd($e);
             Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
-            //Toastr::error('¡Error al crear su registro!','');
             return redirect('/admin/createOferta');
         }
     }

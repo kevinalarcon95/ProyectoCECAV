@@ -21,16 +21,21 @@
                 <div class="col">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Nombre (Diplomado, curso, charla, etc)</label>
-                        <input type="text" class="form-control" name="nombreOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        <input type="text" class="form-control" name="nombreOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;" required>
                         @error('nombreOferta')
-                            <br>
-                            <small style="color: red;">*{{$message}}</small>
-                            <br>
+                        <br>
+                        <small class="text-danger">*{{$message}}</small>
+                        <br>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label fw-bold">Descripcion</label>
                         <textarea type="text" name="descripcionOferta" class="form-control" id="exampleInputPassword1" placeholder="Tu respuesta" style="background-color: #ececec;"></textarea>
+                        @error('descripcionOferta')
+                        <br>
+                        <small class="text-danger">*{{$message}}</small>
+                        <br>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Tipo de pago</label>
@@ -39,10 +44,20 @@
                             <option>Pago</option>
                             <option>No pago</option>
                         </select>
+                        @error('tipoPagoOferta')
+                        <br>
+                        <small class="text-danger"> *{{$message}}</small>
+                        <br>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Unidad académica</label>
                         <input type="text" class="form-control" name="unidadAcademicaOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        @error('unidadAcademicaOferta')
+                        <br>
+                        <small class="text-danger">*{{$message}}</small>
+                        <br>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio</strong></label>
@@ -50,44 +65,80 @@
                         $date = date('Y-m-d');
                         ?>
                         <input type="date" class="form-control" name="fechaInicioOferta" id="exampleInputEmail1" style="background-color: #ececec;">
+                        @error('fechaInicioOferta')
+                        <br>
+                        <small class="text-danger">*{{$message}}</small>
+                        <br>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Resolución</label>
                         <input type="text" class="form-control" name="resolucionOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        @error('resolucionOferta')
+                        <br>
+                        <small class="text-danger">*{{$message}}</small>
+                        <br>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Intensidad horaria</label>
                         <input type="text" class="form-control" name="intensidadHorarioOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        @error('intensidadHorarioOferta')
+                        <br>
+                        <small class="text-danger">*{{$message}}</small>
+                        <br>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Limite de cupos</label>
                         <input type="text" class="form-control" name="cuposOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        @error('cuposOferta')
+                        <br>
+                        <small class="text-danger">*{{$message}}</small>
+                        <br>
+                        @enderror
                     </div>
 
                 </div>
                 <div class="col">
                     <div class="mb-3">
                         <label for="formFile" class="form-label fw-bold">Seleccione una imagen</label>
-                        <input class="form-control" type="file" name="imagenOferta" id="" accept= "image/*" style="background-color: #ececec;">
+                        <input class="form-control" type="file" name="imagenOferta" id="" accept="image/*" style="background-color: #ececec;">
                         @error('imagenOferta')
-                            <small class="text-danger">{{$message}}</small>
+                        <small class="text-danger">{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Población objetivo</label>
                         <input type="text" class="form-control" name="poblacionOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        @error('poblacionOferta')
+                        <br>
+                        <small class="text-danger">*{{$message}}</small>
+                        <br>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Categoria</label>
                         <select class="form-select" name="categoriaOferta" aria-label="Default select example" style="background-color: #ececec;">
+                            <option selected>Elige</option>
                             @foreach($categoria as $key => $value)
                             <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach
                         </select>
+                        @error('categoriaOferta')
+                        <br>
+                        <small class="text-danger">*{{$message}}</small>
+                        <br>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label fw-bold">Costo o inversión</label>
                         <textarea type="text" name="costoOferta" class="form-control" id="exampleInputPassword1" placeholder="Valor de inversión" style="background-color: #ececec;"></textarea>
+                        @error('costoOferta')
+                        <br>
+                        <small class="text-danger">*{{$message}}</small>
+                        <br>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin</strong></label>
@@ -95,6 +146,11 @@
                         $date = date('Y-m-d');
                         ?>
                         <input type="date" class="form-control" name="fechaFinOferta" id="exampleInputEmail1" style="background-color: #ececec;">
+                        @error('fechaFinOferta')
+                        <br>
+                        <small class="text-danger">*{{$message}}</small>
+                        <br>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Tipo de curso</label>
@@ -103,6 +159,11 @@
                             <option>Virtual</option>
                             <option>Presencial</option>
                         </select>
+                        @error('tipoCursoOferta')
+                        <br>
+                        <small class="text-danger">*{{$message}}</small>
+                        <br>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"><strong>Fecha cierre de inscripciones</strong></label>
@@ -110,6 +171,11 @@
                         $date = date('Y-m-d');
                         ?>
                         <input type="date" class="form-control" name="fechaCierreOferta" id="exampleInputEmail1" style="background-color: #ececec;">
+                        @error('fechaCierreOferta')
+                        <br>
+                        <small class="text-danger">*{{$message}}</small>
+                        <br>
+                        @enderror
                     </div>
                 </div>
 
