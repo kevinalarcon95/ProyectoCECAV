@@ -44,6 +44,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="{{ asset('js/validaciones.js')}}"></script>
     <script>
         $(document).ready(function() {
             $('#example').DataTable({
@@ -64,27 +65,6 @@
 
             });
         });
-    </script>
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (() => {
-            'use strict'
-
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            const forms = document.querySelectorAll('.needs-validation')
-
-            // Loop over them and prevent submission
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        })()
     </script>
 </body>
 @include('footer')

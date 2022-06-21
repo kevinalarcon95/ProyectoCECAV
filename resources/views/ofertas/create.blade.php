@@ -4,7 +4,7 @@
 
 <div class="conteiner m-5">
     <div class="row">
-        <form action="{{route('/admin/saveOferta')}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <form action="{{route('/admin/saveOferta')}}" method="POST" enctype="multipart/form-data" novalidate>
             @csrf
             <div class="row mx-3">
                 <div class="col-sm-1 mr-0" style="text-align: left;">
@@ -21,65 +21,62 @@
                 <div class="col">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Nombre (Diplomado, curso, charla, etc)</label>
-                        <input type="text" class="form-control" name="nombreOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;" required>
-                        <div class="valid-feedback">Bien, Valido!</div>
-                        <div class="invalid-feedback">Campo obligatorio!</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label fw-bold">Descripción</label>
-                        <textarea type="text" name="descripcionOferta" class="form-control" id="exampleInputPassword1" placeholder="Tu respuesta" style="background-color: #ececec;"></textarea>
-                        @error('descripcionOferta')
-                        <small class="text-danger">*El campo Descripción es obligatorio</small>
-                        <br>
+                        <input type="text" class="form-control @error('nombreOferta') is-invalid @enderror" name="nombreOferta" placeholder="Tu respuesta" style="background-color: #ececec;" value="{{old('nombreOferta')}}" required>
+                        @error('nombreOferta')
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">Tipo de pago</label>
-                        <select class="form-select" name="tipoPagoOferta" aria-label="Default select example" style="background-color: #ececec;">
-                            <option selected>Elige</option>
+                        <label for="exampleInputPassword1" class="form-label fw-bold">Descripción</label>
+                        <textarea type="text" class="form-control  @error('descripcionOferta') is-invalid @enderror" name="descripcionOferta" placeholder="Tu respuesta" style="background-color: #ececec;" value="{{old('descripcionOferta')}}" required></textarea>
+                        @error('descripcionOferta')
+                        <small class="invalid-feedback">*{{$message}}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold ">Tipo de pago</label>
+                        <select class="form-select  @error('tipoPagoOferta') is-invalid @enderror" name="tipoPagoOferta" style="background-color: #ececec;" value="{{old('tipoPagoOferta')}}"  required>
+                            <option selected disabled>Elige</option>
                             <option>Pago</option>
                             <option>No pago</option>
                         </select>
                         @error('tipoPagoOferta')
-                        <small class="text-danger">*{{$message}}</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Unidad académica</label>
-                        <input type="text" class="form-control" name="unidadAcademicaOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        <input type="text" class="form-control @error('unidadAcademicaOferta') is-invalid @enderror" name="unidadAcademicaOferta" placeholder="Tu respuesta" value="{{old('unidadAcademicaOferta')}}" style="background-color: #ececec;" required>
                         @error('unidadAcademicaOferta')
-                        <small class="text-danger">*El campo Unidad académica es obligatorio.</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio</strong></label>
-                        <?php
-                        $date = date('Y-m-d');
-                        ?>
-                        <input type="date" class="form-control" name="fechaInicioOferta" id="exampleInputEmail1" style="background-color: #ececec;">
+                        <label for="exampleInputEmail1" class="form-label "><strong>Fecha inicio</strong></label>
+                        <input type="date" class="form-control @error('fechaInicioOferta') is-invalid @enderror" name="fechaInicioOferta" value="{{old('fechaInicioOferta')}}" style="background-color: #ececec;" required>
                         @error('fechaInicioOferta')
-                        <small class="text-danger">*{{$message}}</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Resolución</label>
-                        <input type="text" class="form-control" name="resolucionOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        <input type="text" class="form-control  @error('resolucionOferta') is-invalid @enderror" name="resolucionOferta" placeholder="Tu respuesta" value="{{old('resolucionOferta')}}" style="background-color: #ececec;" required>
                         @error('resolucionOferta')
-                        <small class="text-danger">*{{$message}}</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Intensidad horaria</label>
-                        <input type="text" class="form-control" name="intensidadHorarioOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        <input type="text" class="form-control @error('intensidadHorarioOferta') is-invalid @enderror" name="intensidadHorarioOferta" placeholder="Tu respuesta" value="{{old('intensidadHorarioOferta')}}" style="background-color: #ececec;" required>
                         @error('intensidadHorarioOferta')
-                        <small class="text-danger">*{{$message}}</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Limite de cupos</label>
-                        <input type="text" class="form-control" name="cuposOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        <input type="number" class="form-control @error('cuposOferta') is-invalid @enderror" name="cuposOferta" placeholder="Tu respuesta" value="{{old('cuposOferta')}}" min="0" style="background-color: #ececec;" required>
                         @error('cuposOferta')
-                        <small class="text-danger">*{{$message}}</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
 
@@ -87,66 +84,60 @@
                 <div class="col">
                     <div class="mb-3">
                         <label for="formFile" class="form-label fw-bold">Seleccione una imagen</label>
-                        <input class="form-control" type="file" name="imagenOferta" id="" accept="image/*" style="background-color: #ececec;">
+                        <input class="form-control @error('imagenOferta') is-invalid @enderror" type="file" name="imagenOferta" accept="image/*" value="{{old('imagenOferta')}}" style="background-color: #ececec;" required>
                         @error('imagenOferta')
-                        <small class="text-danger">*{{$message}}</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Población objetivo</label>
-                        <input type="text" class="form-control" name="poblacionOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        <input type="text" class="form-control @error('poblacionOferta') is-invalid @enderror" name="poblacionOferta" placeholder="Tu respuesta" value="{{old('poblacionOferta')}}" style="background-color: #ececec;" required>
                         @error('poblacionOferta')
-                        <small class="text-danger">*{{$message}}</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Categoria</label>
-                        <select class="form-select" name="categoriaOferta" aria-label="Default select example" style="background-color: #ececec;">
-                            <option selected>Elige</option>
+                        <select class="form-select @error('categoriaOferta') is-invalid @enderror" name="categoriaOferta" value="{{old('categoriaOferta')}}" style="background-color: #ececec;" required>
+                            <option selected disabled>Elige</option>
                             @foreach($categoria as $key => $value)
                             <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach
                         </select>
                         @error('categoriaOferta')
-                        <small class="text-danger">*{{$message}}</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label fw-bold">Costo o inversión</label>
-                        <textarea type="text" name="costoOferta" class="form-control" id="exampleInputPassword1" placeholder="Valor de inversión" style="background-color: #ececec;"></textarea>
+                        <textarea type="text" class="form-control @error('costoOferta') is-invalid @enderror" name="costoOferta" placeholder="Valor de inversión" value="{{old('costoOferta')}}" style="background-color: #ececec;" required></textarea>
                         @error('costoOferta')
-                        <small class="text-danger">*{{$message}}</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin</strong></label>
-                        <?php
-                        $date = date('Y-m-d');
-                        ?>
-                        <input type="date" class="form-control" name="fechaFinOferta" id="exampleInputEmail1" style="background-color: #ececec;">
+                        <input type="date" class="form-control @error('fechaFinOferta') is-invalid @enderror"" name="fechaFinOferta" value="{{old('fechaFinOferta')}}" style="background-color: #ececec;" required>
                         @error('fechaFinOferta')
-                        <small class="text-danger">*{{$message}}</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Tipo de curso</label>
-                        <select class="form-select" name="tipoCursoOferta" aria-label="Default select example" style="background-color: #ececec;">
-                            <option selected>Elige</option>
+                        <select class="form-select @error('tipoCursoOferta') is-invalid @enderror" name="tipoCursoOferta " value="{{old('tipoCursoOferta')}}" style="background-color: #ececec;" required>
+                            <option selected disabled>Elige</option>
                             <option>Virtual</option>
                             <option>Presencial</option>
                         </select>
                         @error('tipoCursoOferta')
-                        <small class="text-danger">*{{$message}}</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"><strong>Fecha cierre de inscripciones</strong></label>
-                        <?php
-                        $date = date('Y-m-d');
-                        ?>
-                        <input type="date" class="form-control" name="fechaCierreOferta" id="exampleInputEmail1" style="background-color: #ececec;">
+                        <input type="date" class="form-control @error('fechaCierreOferta') is-invalid @enderror" name="fechaCierreOferta" value="{{old('fechaCierreOferta')}}" style="background-color: #ececec;" required>
                         @error('fechaCierreOferta')
-                        <small class="text-danger">*{{$message}}</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                 </div>
@@ -166,38 +157,5 @@
             </div>
         </form>
     </div>
-    <!--<div class="row">
-        
-        <div class="col bg-success">
-            <div class="card my-5" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card my-5" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-    </div>-->
 </div>
 @endsection
