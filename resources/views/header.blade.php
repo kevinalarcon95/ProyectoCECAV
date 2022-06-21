@@ -26,7 +26,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">PREICFES</a>
+                    <a class="nav-link" href="{{ route('/preIcfes') }}">PREICFES</a>
                 </li>
                 
                 <li class="nav-item">

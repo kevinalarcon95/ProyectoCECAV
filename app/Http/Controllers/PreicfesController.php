@@ -14,7 +14,7 @@ class PreicfesController extends Controller
      */
     public function index()
     {
-        //
+        return view('preIcfes.formInscripcion');
     }
 
     /**

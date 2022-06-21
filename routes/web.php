@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OfertaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\PreicfesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::get('/', function () {
     return view('home');
 });
 
+//Rutas ofertas e inscripciones
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/ofertasInscripciones', [OfertaController::class, 'index'])->name('/ofertasInscripciones');
 Route::get('/detalleOferta/{idOfer?}', [OfertaController::class, 'show'])->name('/detalleOferta/{idOfer?}');
@@ -38,6 +40,10 @@ Route::get('/detalleOferta/{idOfer?}', [OfertaController::class, 'show'])->name(
 Route::get('/homeInfo', [InfoController::class, 'index'])->name('/homeInfo');
 Route::get('/homeInfo/quienesSomos', [InfoController::class, 'info'])->name('/homeInfo/quienesSomos');
 Route::get('/homeInfo/funcionesCecav', [InfoController::class, 'funciones'])->name('/homeInfo/funcionesCecav');
+
+//Rutas preicfes
+Route::get('/preIcfes', [PreicfesController::class, 'index'])->name('/preIcfes');
+
 
 //Rutas para ofertas
 Route::get('/ofertas', [OfertaController::class, 'create'])->name('/ofertas');
