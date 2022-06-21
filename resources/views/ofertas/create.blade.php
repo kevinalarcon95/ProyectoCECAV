@@ -4,7 +4,7 @@
 
 <div class="conteiner m-5">
     <div class="row">
-        <form action="{{route('/admin/saveOferta')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('/admin/saveOferta')}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
             @csrf
             <div class="row mx-3">
                 <div class="col-sm-1 mr-0" style="text-align: left;">
@@ -22,18 +22,14 @@
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Nombre (Diplomado, curso, charla, etc)</label>
                         <input type="text" class="form-control" name="nombreOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;" required>
-                        @error('nombreOferta')
-                        <br>
-                        <small class="text-danger">*{{$message}}</small>
-                        <br>
-                        @enderror
+                        <div class="valid-feedback">Bien, Valido!</div>
+                        <div class="invalid-feedback">Campo obligatorio!</div>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label fw-bold">Descripcion</label>
+                        <label for="exampleInputPassword1" class="form-label fw-bold">Descripción</label>
                         <textarea type="text" name="descripcionOferta" class="form-control" id="exampleInputPassword1" placeholder="Tu respuesta" style="background-color: #ececec;"></textarea>
                         @error('descripcionOferta')
-                        <br>
-                        <small class="text-danger">*{{$message}}</small>
+                        <small class="text-danger">*El campo Descripción es obligatorio</small>
                         <br>
                         @enderror
                     </div>
@@ -45,18 +41,14 @@
                             <option>No pago</option>
                         </select>
                         @error('tipoPagoOferta')
-                        <br>
-                        <small class="text-danger"> *{{$message}}</small>
-                        <br>
+                        <small class="text-danger">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Unidad académica</label>
                         <input type="text" class="form-control" name="unidadAcademicaOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
                         @error('unidadAcademicaOferta')
-                        <br>
-                        <small class="text-danger">*{{$message}}</small>
-                        <br>
+                        <small class="text-danger">*El campo Unidad académica es obligatorio.</small>
                         @enderror
                     </div>
                     <div class="mb-3">
@@ -66,36 +58,28 @@
                         ?>
                         <input type="date" class="form-control" name="fechaInicioOferta" id="exampleInputEmail1" style="background-color: #ececec;">
                         @error('fechaInicioOferta')
-                        <br>
                         <small class="text-danger">*{{$message}}</small>
-                        <br>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Resolución</label>
                         <input type="text" class="form-control" name="resolucionOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
                         @error('resolucionOferta')
-                        <br>
                         <small class="text-danger">*{{$message}}</small>
-                        <br>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Intensidad horaria</label>
                         <input type="text" class="form-control" name="intensidadHorarioOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
                         @error('intensidadHorarioOferta')
-                        <br>
                         <small class="text-danger">*{{$message}}</small>
-                        <br>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Limite de cupos</label>
                         <input type="text" class="form-control" name="cuposOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
                         @error('cuposOferta')
-                        <br>
                         <small class="text-danger">*{{$message}}</small>
-                        <br>
                         @enderror
                     </div>
 
@@ -105,16 +89,14 @@
                         <label for="formFile" class="form-label fw-bold">Seleccione una imagen</label>
                         <input class="form-control" type="file" name="imagenOferta" id="" accept="image/*" style="background-color: #ececec;">
                         @error('imagenOferta')
-                        <small class="text-danger">{{$message}}</small>
+                        <small class="text-danger">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Población objetivo</label>
                         <input type="text" class="form-control" name="poblacionOferta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
                         @error('poblacionOferta')
-                        <br>
                         <small class="text-danger">*{{$message}}</small>
-                        <br>
                         @enderror
                     </div>
                     <div class="mb-3">
@@ -126,18 +108,14 @@
                             @endforeach
                         </select>
                         @error('categoriaOferta')
-                        <br>
                         <small class="text-danger">*{{$message}}</small>
-                        <br>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label fw-bold">Costo o inversión</label>
                         <textarea type="text" name="costoOferta" class="form-control" id="exampleInputPassword1" placeholder="Valor de inversión" style="background-color: #ececec;"></textarea>
                         @error('costoOferta')
-                        <br>
                         <small class="text-danger">*{{$message}}</small>
-                        <br>
                         @enderror
                     </div>
                     <div class="mb-3">
@@ -147,9 +125,7 @@
                         ?>
                         <input type="date" class="form-control" name="fechaFinOferta" id="exampleInputEmail1" style="background-color: #ececec;">
                         @error('fechaFinOferta')
-                        <br>
                         <small class="text-danger">*{{$message}}</small>
-                        <br>
                         @enderror
                     </div>
                     <div class="mb-3">
@@ -160,9 +136,7 @@
                             <option>Presencial</option>
                         </select>
                         @error('tipoCursoOferta')
-                        <br>
                         <small class="text-danger">*{{$message}}</small>
-                        <br>
                         @enderror
                     </div>
                     <div class="mb-3">
@@ -172,9 +146,7 @@
                         ?>
                         <input type="date" class="form-control" name="fechaCierreOferta" id="exampleInputEmail1" style="background-color: #ececec;">
                         @error('fechaCierreOferta')
-                        <br>
                         <small class="text-danger">*{{$message}}</small>
-                        <br>
                         @enderror
                     </div>
                 </div>
