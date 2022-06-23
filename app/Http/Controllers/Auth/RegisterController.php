@@ -73,6 +73,8 @@ class RegisterController extends Controller
             'lastname' => $data['lastname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'tipoId'=>$data['tipoId'],
+            'numIdentificacion' =>$data['numId'],
         ]);
     }
 
@@ -84,6 +86,8 @@ class RegisterController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'tipoId'=> ['required', 'string'],
+            'numIdentificacion' =>['required', 'numeric'],
         ]);
 
         User::create([
@@ -91,6 +95,8 @@ class RegisterController extends Controller
             'lastname' => $request->input('lastname'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
+            'tipoId'=>$request->input('tipoId'),
+            'numIdentificacion' =>$request->input('numId'),
         ]);
 
         return redirect()->route('login');
