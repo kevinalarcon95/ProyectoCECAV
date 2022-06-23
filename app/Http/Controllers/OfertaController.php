@@ -74,18 +74,18 @@ class OfertaController extends Controller
     {
 
         $request->validate([
-            'nombreOferta' => 'required|alpha',
+            'nombreOferta' => 'required|regex:/^[A-Z][A-Z,a-z, ,á,é,í,ó,ú,Ü,_,-]+$/',
             'descripcionOferta' => 'required|string',
             'tipoPagoOferta' => 'required',
             'unidadAcademicaOferta' => 'required|string',
             'fechaInicioOferta' => 'required|date|after_or_equal:today',
-            'resolucionOferta' => 'required|string|unique',
+            'resolucionOferta' => 'required|string',
             'intensidadHorarioOferta' => 'required|string',
-            'cuposOferta' => 'required|alpha_num',
+            'cuposOferta' => 'required|numeric',
             'imagenOferta' => 'required|image',
             'poblacionOferta' => 'required|string|max:200',
             'categoriaOferta' => 'required',
-            'costoOferta' => 'required|numeric',
+            'costoOferta' => 'required|regex:/^[0-9]+[.][0-9]{3}$/',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
             'fechaCierreOferta' => 'required|date|after:fechaInicioOferta'

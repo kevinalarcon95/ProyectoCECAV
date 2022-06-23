@@ -1,5 +1,5 @@
- // Script para las validaciones de los formularios (Codigo Boostrap)
- (() => {
+// Script para las validaciones de los formularios (Codigo Boostrap)
+(() => {
     'use strict'
 
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
