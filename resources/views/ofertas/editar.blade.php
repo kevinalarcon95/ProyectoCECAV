@@ -42,7 +42,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Tipo de pago</label>
-                        <select class="form-select" name="tipoPagoOferta"  aria-label="Default select example" style="background-color: #ececec;">
+                        <select class="form-select" name="tipoPagoOferta"  disabled aria-label="Default select example" style="background-color: #ececec;">
                             <option selected>{{old('tipoPagoOferta',$oferta->tipo_pago)}}</option>
                             <option>Pago</option>
                             <option>No pago</option>                            
@@ -76,7 +76,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Resolución</label>
-                        <input type="text" class="form-control" name="resolucionOferta" value="{{old('resolucionOferta',$oferta->resolucion)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        <input type="text" class="form-control" name="resolucionOferta" disabled value="{{old('resolucionOferta',$oferta->resolucion)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
                         @error('resolucionOferta')
                             <br>
                             <small>*{{$message}}</small>
@@ -108,8 +108,10 @@
                         <label for="formFile" class="form-label fw-bold">Seleccione una imagen</label>
                         <!--<img src="{{ asset('img/ofertasp').'/'.$oferta->imagen }}" alt="" width="420" height="340">-->
                         {{$oferta->imagen}}
-                        <input class="form-control"  type="file" name="imagenOferta" value="{{old('imagenOferta',$oferta->imagen)}}" id="formFile" style="background-color: #ececec;">
-                      
+                        <input class="form-control"  type="file" accept="image/*" name="imagenOferta" value="{{old('imagenOferta',$oferta->imagen)}}" id="formFile" style="background-color: #ececec;">
+                        @error('imagenOferta')
+                        <small class="text-danger">{{$message}}</small>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Población objetivo</label>
@@ -135,7 +137,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label fw-bold">Costo o inversión</label>
-                        <textarea type="text" name="costoOferta" class="form-control" id="exampleInputPassword1" placeholder="Valor de inversión" style="background-color: #ececec;">{{old('costoOferta',$oferta->costo)}}</textarea>
+                        <textarea type="text" name="costoOferta"  disabled class="form-control" id="exampleInputPassword1" placeholder="Valor de inversión" style="background-color: #ececec;">{{old('costoOferta',$oferta->costo)}}</textarea>
                         @error('costoOferta')
                             <br>
                             <small>*{{$message}}</small>
