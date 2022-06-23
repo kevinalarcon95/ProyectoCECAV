@@ -134,13 +134,10 @@
                         <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin</strong></label>
                         <input type="date" class="form-control @error('fechaFinOferta') is-invalid @enderror"" name=" fechaFinOferta" value="{{old('fechaFinOferta')}}" style="background-color: #ececec;" required>
                         <div class="invalid-feedback">*Campo obligatorio.</div>
-                        @error('fechaFinOferta')
-                        <small class="invalid-feedback">*{{$message}}</small>
-                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Tipo de curso</label>
-                        <select class="form-select @error('tipoCursoOferta') is-invalid @enderror" name="tipoCursoOferta " value="{{old('tipoCursoOferta')}}" style="background-color: #ececec;" required>
+                        <select class="form-select @error('tipoCursoOferta') is-invalid @enderror" name="tipoCursoOferta" value="{{old('tipoCursoOferta')}}" style="background-color: #ececec;" required>
                             <option selected disabled value="">Elige</option>
                             <option>Virtual</option>
                             <option>Presencial</option>

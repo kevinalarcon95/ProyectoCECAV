@@ -85,7 +85,7 @@ class OfertaController extends Controller
             'imagenOferta' => 'required|image',
             'poblacionOferta' => 'required|string|max:200',
             'categoriaOferta' => 'required',
-            'costoOferta' => 'required|regex:/^[0-9]+[.][0-9]{3}$/',
+            'costoOferta' => 'required|string',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
             'fechaCierreOferta' => 'required|date|after:fechaInicioOferta'
@@ -185,8 +185,8 @@ class OfertaController extends Controller
         $updateData = Oferta::findOrFail($id);
 
         $request->validate([
-            'nombreOferta' => 'required|string|max:200',
-            'descripcionOferta' => 'required|string|max:200',
+            'nombreOferta' => 'required|string',
+            'descripcionOferta' => 'required|string',
             'tipoPagoOferta' => 'required',
             'unidadAcademicaOferta' => 'required|string|max:200',
             'fechaInicioOferta' => 'required|date|after_or_equal:today',
