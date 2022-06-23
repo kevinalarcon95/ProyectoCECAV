@@ -17,7 +17,7 @@
                 académicas de la Unicauca...
             </p>
             <br>            
-            <a href="#" type="submit" class="btn btn-primary" style="color: white; background-color: #08153A; border: none; border-radius: 20px; padding-left: 40px; padding-right: 40px;font-size: 14pt;">
+            <a href="{{(route('/homeInfo/quienesSomos'))}}" type="submit" class="btn btn-primary" style="color: white; background-color: #08153A; border: none; border-radius: 20px; padding-left: 40px; padding-right: 40px;font-size: 14pt;">
                 Leer más
             </a>
         </div>
@@ -96,7 +96,7 @@
             </p>
             <br>
             <div class="col-7">
-                <a href="#" type="submit" class="btn btn-primary" style="color: white; background-color: #08153A; border: none; border-radius: 20px; padding-left: 40px; padding-right: 40px;font-size: 14pt;">
+                <a href="{{(route('/homeInfo/funcionesCecav'))}}" type="submit" class="btn btn-primary" style="color: white; background-color: #08153A; border: none; border-radius: 20px; padding-left: 40px; padding-right: 40px;font-size: 14pt;">
                     Leer más
                 </a>
             </div>
