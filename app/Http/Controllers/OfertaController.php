@@ -24,7 +24,7 @@ class OfertaController extends Controller
     public function index()
     {
         $objOferta = Oferta::all();
-        return view('ofertas.index')->with('objOferta', $objOferta);;
+        return view('ofertas.index')->with('objOferta', $objOferta);
     }
 
     public function list()
@@ -88,7 +88,7 @@ class OfertaController extends Controller
             'costoOferta' => 'required|string',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
-            'fechaCierreOferta' => 'required|date|after:fechaInicioOferta'
+            'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
         ]);
 
         $imagen = $request->file('imagenOferta')->store('public/ofertas');
@@ -188,18 +188,18 @@ class OfertaController extends Controller
             'nombreOferta' => 'required|string',
             'descripcionOferta' => 'required|string',
             'tipoPagoOferta' => 'required',
-            'unidadAcademicaOferta' => 'required|string|max:200',
+            'unidadAcademicaOferta' => 'required|string',
             'fechaInicioOferta' => 'required|date|after_or_equal:today',
             'resolucionOferta' => 'required|string',
             'intensidadHorarioOferta' => 'required|string',
             'cuposOferta' => 'required|numeric',
             //'imagenOferta' => 'required',
-            'poblacionOferta' => 'required|string|max:200',
+            'poblacionOferta' => 'required|string',
             'categoriaOferta' => 'required',
-            'costoOferta' => 'required|numeric',
+            'costoOferta' => 'required|string',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
-            'fechaCierreOferta' => 'required|date|after:fechaInicioOferta'
+            'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
         ]);
 
 

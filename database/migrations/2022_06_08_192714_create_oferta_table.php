@@ -22,7 +22,7 @@ class CreateOfertaTable extends Migration
             $table->text('imagen');
             $table->text('poblacion_objetivo');
             $table->unsignedBigInteger('id_categoria');
-            $table->double('costo');        
+            $table->text('costo');        
             $table->date('fecha_inicio');
             $table->text('resolucion')->unique();
             $table->text('intensidad_horario');
