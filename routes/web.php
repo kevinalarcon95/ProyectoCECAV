@@ -24,11 +24,11 @@ Auth::routes();
 //Auth::routes(['register' => false, 'reset' => false]);
 
 Route::get('/homePrincipal', function () {
-    return view('home');
+    return view('infoCecav.infoGeneral');
 });
 
 Route::get('/', function () {
-    return view('home');
+    return view('infoCecav.infoGeneral');
 });
 
 //Rutas ofertas e inscripciones

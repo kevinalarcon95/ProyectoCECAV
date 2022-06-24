@@ -17,7 +17,7 @@
                 académicas de la Unicauca...
             </p>
             <br>            
-            <a href="#" type="submit" class="btn btn-primary" style="color: white; background-color: #08153A; border: none; border-radius: 20px; padding-left: 40px; padding-right: 40px;font-size: 14pt;">
+            <a href="{{(route('/homeInfo/quienesSomos'))}}" type="submit" class="btn btn-primary" style="color: white; background-color: #08153A; border: none; border-radius: 20px; padding-left: 40px; padding-right: 40px;font-size: 14pt;">
                 Leer más
             </a>
         </div>
@@ -96,7 +96,7 @@
             </p>
             <br>
             <div class="col-7">
-                <a href="#" type="submit" class="btn btn-primary" style="color: white; background-color: #08153A; border: none; border-radius: 20px; padding-left: 40px; padding-right: 40px;font-size: 14pt;">
+                <a href="{{(route('/homeInfo/funcionesCecav'))}}" type="submit" class="btn btn-primary" style="color: white; background-color: #08153A; border: none; border-radius: 20px; padding-left: 40px; padding-right: 40px;font-size: 14pt;">
                     Leer más
                 </a>
             </div>
@@ -109,15 +109,13 @@
                 <h1>Misión</h1>
             </strong>
             <p align="justify">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy text
-                ever since the 1500s, when an unknown printer took a galley of type
-                and scrambled it to make a type specimen book. It has survived not
-                only five centuries, but also the leap into electronic typesetting,
-                remaining essentially unchanged. It was popularised in the 1960s
-                with the release of Letraset sheets containing Lorem Ipsum
-                passages, and more recently with desktop publishing software like
-                Aldus PageMaker including versions of Lorem Ipsum.
+                La Universidad del Cauca es una institución de educación superior pública, autónoma, del orden nacional, creada en los orígenes de la República de Colombia.
+                <br>
+                La Universidad del Cauca, fundada en su tradición y legado histórico, es un proyecto cultural que tiene un compromiso vital y permanente con el desarrollo social, mediante la educación crítica, responsable y creativa.
+                <br>
+                La Universidad forma personas con integridad ética, pertinencia e idoneidad profesional, demócratas comprometidos con el bienestar de la sociedad en armonía con el entorno.
+                <br>
+                La Universidad del Cauca genera y socializa la ciencia, la técnica, la tecnología, el arte y la cultura en la docencia, la investigación y la proyección social.
             </p>
             <br>            
         </div>
@@ -134,15 +132,7 @@
                 <h1>Visión</h1>
             </strong>
             <p align="justify">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy text
-                ever since the 1500s, when an unknown printer took a galley of type
-                and scrambled it to make a type specimen book. It has survived not
-                only five centuries, but also the leap into electronic typesetting,
-                remaining essentially unchanged. It was popularised in the 1960s
-                with the release of Letraset sheets containing Lorem Ipsum
-                passages, and more recently with desktop publishing software like
-                Aldus PageMaker including versions of Lorem Ipsum.
+                La Universidad del Cauca, fiel a su lema "Posteris Lvmen Moritvrvs Edat" (Quién ha de morir deje su luz a la posteridad), tiene un compromiso histórico, vital y permanente con la construcción de una sociedad equitativa y justa en la formación de un ser humano integral, ético y solidario.
             </p>
             <br>     
         </div>
