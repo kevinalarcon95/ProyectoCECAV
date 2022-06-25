@@ -6,6 +6,7 @@ use App\Http\Controllers\OfertaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\PreicfesController;
+use App\Http\Controllers\AspiIcfesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,4 +61,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/admin/update/{id}', [OfertaController::class, 'update'] )->name('ofertas.update');
 
     Route::delete('/admin/deleteOferta/{id}', [OfertaController::class, 'destroy'])->name('/admin/deleteOferta');
+
+    Route::get('/admin/listInscritosPreicfes', [AspiIcfesController::class, 'list'])->name('/admin/listInscritosPreicfes');
 });
