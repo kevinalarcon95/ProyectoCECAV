@@ -4,7 +4,7 @@
 
 <div class="conteiner m-5">
     <div class="row">
-        <form action="{{route('/admin/saveOferta')}}" method="POST" enctype="multipart/form-data" class="g-3 needs-validation" novalidate>
+        <form action="{{route('/admin/saveOferta')}}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
             @csrf
             <div class="row mx-3">
                 <div class="col-sm-1 mr-0" style="text-align: left;">
@@ -22,43 +22,33 @@
                     <div class="mb-3 has-validation">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Nombre (Diplomado, curso, charla, etc)</label>
                         <input type="text" class="form-control @error('nombreOferta') is-invalid @enderror" name="nombreOferta" placeholder="Tu respuesta" id="nombreOferta" style="background-color: #ececec;" value="{{old('nombreOferta')}}" required>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
                         @error('nombreOferta')
                         <small id="validationServer03Feedback" class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label fw-bold">Descripción</label>
-                        <textarea type="text" class="form-control  @error('descripcionOferta') is-invalid @enderror" name="descripcionOferta" placeholder="Tu respuesta" style="background-color: #ececec;" value="{{old('descripcionOferta')}}" required></textarea>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
+                        <textarea type="text" class="form-control  @error('descripcionOferta') is-invalid @enderror" name="descripcionOferta" placeholder="Tu respuesta" style="background-color: #ececec;" required>{{ old('descripcionOferta') }}</textarea>
                         @error('descripcionOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
+                    <!-- Para ela entrada de costo se requiere que el selector este en "Pago"-->
                     <div class="mb-3">
                         <label class="form-label fw-bold ">Tipo de pago</label>
-                        <select class="form-select" name="tipoPagoOferta" id="validationCustom04" onChange="enableSubmit(this)" value="{{old('tipoPagoOferta')}}" style="background-color: #ececec;" required>
+                        <select class="form-select" name="tipoPagoOferta" value="{{old('tipoPagoOferta')}}" style="background-color: #ececec;" required onchange="if(this.value=='Pago') {document.getElementById('costoOferta').disabled = false} else {document.getElementById('costoOferta').disabled = true} ">
                             <option selected disabled value="">Elige</option>
-                            <option>Pago</option>
-                            <option>No pago</option>
+                            <option value="Pago" @if(old('tipoPagoOferta')=='Pago' ) selected @endif>Pago</option>
+                            <option value="Gratuito" @if(old('tipoPagoOferta')=='Gratutio' ) selected @endif>Gratuito</option>
                         </select>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
                         @error('tipoPagoOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
+                    
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label fw-bold">Unidad académica</label>
-                        <input type="text" class="form-control @error('unidadAcademicaOferta') is-invalid @enderror" name="unidadAcademicaOferta" placeholder="Tu respuesta" value="{{old('unidadAcademicaOferta')}}" style="background-color: #ececec;" required>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
-                        @error('unidadAcademicaOferta')
-                        <small class="invalid-feedback">*{{$message}}</small>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label "><strong>Fecha inicio</strong></label>
-                        <input type="date" class="form-control @error('fechaInicioOferta') is-invalid @enderror" name="fechaInicioOferta" value="{ {old('fechaInicioOferta') }}" style="background-color: #ececec;" required>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
+                        <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio</strong></label>
+                        <input type="date" class="form-control @error('fechaInicioOferta') is-invalid @enderror"" name=" fechaInicioOferta" value="{{old('fechaInicioOferta')}}" style="background-color: #ececec;" required>
                         @error('fechaInicioOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -66,7 +56,6 @@
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Resolución</label>
                         <input type="text" class="form-control  @error('resolucionOferta') is-invalid @enderror" name="resolucionOferta" placeholder="Tu respuesta" value="{{old('resolucionOferta')}}" style="background-color: #ececec;" required>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
                         @error('resolucionOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -74,7 +63,6 @@
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Intensidad horaria</label>
                         <input type="text" class="form-control @error('intensidadHorarioOferta') is-invalid @enderror" name="intensidadHorarioOferta" placeholder="Tu respuesta" value="{{old('intensidadHorarioOferta')}}" style="background-color: #ececec;" required>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
                         @error('intensidadHorarioOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -82,18 +70,16 @@
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Limite de cupos</label>
                         <input type="number" class="form-control @error('cuposOferta') is-invalid @enderror" name="cuposOferta" placeholder="Tu respuesta" value="{{old('cuposOferta')}}" min="0" style="background-color: #ececec;" required>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
                         @error('cuposOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
-
                 </div>
                 <div class="col">
                     <div class="mb-3">
                         <label for="formFile" class="form-label fw-bold">Seleccione una imagen</label>
                         <input class="form-control @error('imagenOferta') is-invalid @enderror" type="file" name="imagenOferta" accept="image/*" value="{{old('imagenOferta')}}" style="background-color: #ececec;" required>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
+
                         @error('imagenOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -101,7 +87,7 @@
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Población objetivo</label>
                         <input type="text" class="form-control @error('poblacionOferta') is-invalid @enderror" name="poblacionOferta" placeholder="Tu respuesta" value="{{old('poblacionOferta')}}" style="background-color: #ececec;" required>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
+
                         @error('poblacionOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -111,38 +97,35 @@
                         <select class="form-select @error('categoriaOferta') is-invalid @enderror" name="categoriaOferta" value="{{old('categoriaOferta')}}" style="background-color: #ececec;" required>
                             <option selected disabled value="">Elige</option>
                             @foreach($categoria as $key => $value)
-                            <option value="{{ $key }}">{{ $value }}</option>
+                            <option value="{{ $key }}" {{ (collect(old('categoriaOferta'))->contains($key)) ? 'selected':'' }} />{{ $value }}</option>
                             @endforeach
                         </select>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
                         @error('categoriaOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Costo o inversión</label>
-                        <div class="form-floating ">
-                            <input type="text" class="form-control @error('costoOferta') is-invalid @enderror" name="costoOferta" id="floatingInputValue" placeholder="Valor de inversión" value="{{old('costoOferta')}}" style="background-color: #ececec;" disabled required></input>
-                            <label for="floatingInputValue" disabled>Valor Inversión -> Ejem: 50.000</label>
-                            <div class="invalid-feedback">*Campo obligatorio.</div>
-                            @error('costoOferta')
-                            <small class="invalid-feedback">*{{$message}}</small>
-                            @enderror
-                        </div>
+                        <textarea type="text" class="form-control @error('costoOferta') is-invalid @enderror" name="costoOferta" id="costoOferta" placeholder="Valor de inversión" style="background-color: #ececec;" disabled required>{{ old('costoOferta') }}</textarea>
+                        @error('costoOferta')
+                        <small class="invalid-feedback">*{{$message}}</small>
+                        @enderror
                     </div>
+                    
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin</strong></label>
                         <input type="date" class="form-control @error('fechaFinOferta') is-invalid @enderror"" name=" fechaFinOferta" value="{{old('fechaFinOferta')}}" style="background-color: #ececec;" required>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
+                        @error('fechaFinOferta')
+                        <small class="invalid-feedback">*{{$message}}</small>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Tipo de curso</label>
-                        <select class="form-select @error('tipoCursoOferta') is-invalid @enderror" name="tipoCursoOferta" value="{{old('tipoCursoOferta')}}" style="background-color: #ececec;" required>
-                            <option selected disabled value="">Elige</option>
-                            <option>Virtual</option>
-                            <option>Presencial</option>
+                        <select name="tipoCursoOferta" id="tipoCursoOferta" class="form-select @error('tipoCursoOferta') is-invalid @enderror" value="{{ old('tipoCursoOferta')}}" required>
+                            <option selected disabled value="{{ old('tipoCursoOferta')}}">Elige</option>
+                            <option value="Virtual" @if(old('tipoCursoOferta')=='Virtual' ) selected @endif>Virtual</option>
+                            <option value="Presencial" @if(old('tipoCursoOferta')=='Presencial' ) selected @endif>Presencial</option>
                         </select>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
                         @error('tipoCursoOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -150,7 +133,6 @@
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"><strong>Fecha cierre de inscripciones</strong></label>
                         <input type="date" class="form-control @error('fechaCierreOferta') is-invalid @enderror" name="fechaCierreOferta" value="{{old('fechaCierreOferta')}}" style="background-color: #ececec;" required>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
                         @error('fechaCierreOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -175,8 +157,3 @@
 </div>
 @endsection
 
-<script>
-    function enableSubmit(e) {
-        document.getElementsByName("costoOferta")[0].disabled = e.selectedIndex == 2;
-    }
-</script>

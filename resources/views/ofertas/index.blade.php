@@ -43,7 +43,7 @@
                             <a type="button"  href="{{ url('/detalleOferta/') }}{{'/'}}{{ $objOferta->id }} "  class="btn btn-primary" style="background:#04153B; border:none;">Más detalles</a>
                         </div>
                         <div class="col-6 text-end">
-                            <button type="button" class="btn btn-primary" style="background:#004AAD; border:none;">Inscribirse</button>
+                            <a type="button" href="{{ url('/inscripcionOferta/') }}{{'/'}}{{ $objOferta->id }} "  class="btn btn-primary" style="background:#004AAD; border:none;">Inscribirse</a>
                         </div>
                     </div>
                 </div>

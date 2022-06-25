@@ -24,7 +24,7 @@ class OfertaController extends Controller
     public function index()
     {
         $objOferta = Oferta::all();
-        return view('ofertas.index')->with('objOferta', $objOferta);;
+        return view('ofertas.index')->with('objOferta', $objOferta);
     }
 
     public function list()
@@ -88,7 +88,7 @@ class OfertaController extends Controller
             'costoOferta' => 'required|string',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
-            'fechaCierreOferta' => 'required|date|after:fechaInicioOferta'
+            'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
         ]);
 
         $imagen = $request->file('imagenOferta')->store('public/ofertas');
@@ -188,18 +188,31 @@ class OfertaController extends Controller
             'nombreOferta' => 'required|string',
             'descripcionOferta' => 'required|string',
             'tipoPagoOferta' => 'required',
+<<<<<<< HEAD
+            'unidadAcademicaOferta' => 'required|string',
+            'fechaInicioOferta' => 'required|date|after_or_equal:today',
+            'resolucionOferta' => 'required|string',
+=======
             'unidadAcademicaOferta' => 'required|string|max:200',
             'fechaInicioOferta' => 'required|date|after:today',
             //'resolucionOferta' => 'required|numeric|min:100',
+>>>>>>> a70b082b58218c904f6f788aedb16bf6e9a1da94
             'intensidadHorarioOferta' => 'required|string',
             'cuposOferta' => 'required|numeric|min:1',
             //'imagenOferta' => 'required',
-            'poblacionOferta' => 'required|string|max:200',
+            'poblacionOferta' => 'required|string',
             'categoriaOferta' => 'required',
+<<<<<<< HEAD
+            'costoOferta' => 'required|string',
+            'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
+            'tipoCursoOferta' => 'required',
+            'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
+=======
             //'costoOferta' => 'required|numeric|min:0',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
             'fechaCierreOferta' => 'required|date|after:today|before:fechaInicioOferta',
+>>>>>>> a70b082b58218c904f6f788aedb16bf6e9a1da94
         ]);
 
 

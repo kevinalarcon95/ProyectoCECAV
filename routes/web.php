@@ -6,7 +6,8 @@ use App\Http\Controllers\OfertaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\PreicfesController;
-use App\Http\Controllers\AspiIcfesController;
+use App\Http\Controllers\InscripcionOfertaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/ofertasInscripciones', [OfertaController::class, 'index'])->name('/ofertasInscripciones');
 Route::get('/detalleOferta/{idOfer?}', [OfertaController::class, 'show'])->name('/detalleOferta/{idOfer?}');
+Route::get('/inscripcionOferta/{idOfer?}', [inscripcionOfertaController::class, 'index'])->name('/inscripcionOferta/{idOfer?}');
 
 
 //Rutas informacion cecav
