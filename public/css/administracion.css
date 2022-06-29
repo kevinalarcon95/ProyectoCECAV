@@ -15,3 +15,9 @@ input, select {
     position: relative;
     top: 100px;
 }
+
+.subtitulo{
+    font-size: 11px;
+    font-weight: bold;
+    color: #B8B9BB;
+}
