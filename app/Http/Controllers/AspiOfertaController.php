@@ -71,8 +71,7 @@ class AspiOfertaController extends Controller
         $entidadUser = $request->input('entidadUser');
         $nitUser = $request->input('nitUser');
 
-        //TODO: falta implementar las opciones que no son obligatorios ponerle no aplica
-        //no olvidar que si llegan nulos toca ponerlos en NO APLICA
+
         try {
             AspiOferta::create([
                 'id_oferta' => $idOferta,
@@ -107,7 +106,6 @@ class AspiOfertaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     //TODO: aqui le mande el id de la oferta y la identificacion del estudiante para sacar los datos que necesitamos
     public function show($id,$identificacion)
     {
         $categoria = Oferta::pluck('nombre', 'id');
