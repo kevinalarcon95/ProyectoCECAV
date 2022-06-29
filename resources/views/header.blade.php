@@ -49,7 +49,7 @@
                     <a class="nav-link" href="#">CERTIFICADOS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">ACERCA DE CECAV</a>
+                    <a class="nav-link" href="{{(route('/homeInfo'))}}">ACERCA DE CECAV</a>
                 </li>
                 <li>
                     <!-- Right Side Of Navbar -->

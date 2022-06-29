@@ -192,55 +192,55 @@ class OfertaController extends Controller
             'descripcionOferta' => 'required|string',
             'tipoPagoOferta' => 'required',
             'unidadAcademicaOferta' => 'required|string|max:200',
-            'fechaInicioOferta' => 'required|date|after_or_equal:today',
-            'resolucionOferta' => 'required|string',
+            'fechaInicioOferta' => 'required|date|after:today',
+            //'resolucionOferta' => 'required|numeric|min:100',
             'intensidadHorarioOferta' => 'required|string',
-            'cuposOferta' => 'required|numeric',
+            'cuposOferta' => 'required|numeric|min:1',
             //'imagenOferta' => 'required',
             'poblacionOferta' => 'required|string|max:200',
             'categoriaOferta' => 'required',
-            'costoOferta' => 'required|numeric',
+            //'costoOferta' => 'required|numeric|min:0',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
-            'fechaCierreOferta' => 'required|date|after:fechaInicioOferta'
+            'fechaCierreOferta' => 'required|date|after:today|before:fechaInicioOferta',
         ]);
 
 
         //Obteniendo los datos de la vista
         $nombreOferta = $request->input('nombreOferta');
         $descripcionOferta = $request->input('descripcionOferta');
-        $tipoPagoOferta = $request->input('tipoPagoOferta');
+        //$tipoPagoOferta = $request->input('tipoPagoOferta');
         $unidadAcademicaOferta = $request->input('unidadAcademicaOferta');
         $fechaInicioOferta = $request->input('fechaInicioOferta');
-        $resolucionOferta = $request->input('resolucionOferta');
+        //$resolucionOferta = $request->input('resolucionOferta');
         $intensidadHorarioOferta = $request->input('intensidadHorarioOferta');
         $cuposOferta = $request->input('cuposOferta');
         
         $poblacionOferta = $request->input('poblacionOferta');
         $categoriaOferta = $request->input('categoriaOferta');
         $fechaFinOferta = $request->input('fechaFinOferta');
-        $costoOferta = $request->input('costoOferta');
+        //$costoOferta = $request->input('costoOferta');
         $tipoCursoOferta = $request->input('tipoCursoOferta');
         $fechaCierreOferta = $request->input('fechaCierreOferta');
 
+        try{
+            $updateData->nombre = $nombreOferta;
+            $updateData->descripcion = $descripcionOferta;
+            //$updateData->tipo_pago =  $tipoPagoOferta;
+            $updateData->unidad_academica = $unidadAcademicaOferta;
+            $updateData->poblacion_objetivo = $poblacionOferta;
+            $updateData->id_categoria = $categoriaOferta;
+            //$updateData->costo = $costoOferta;
+            $updateData->fecha_inicio = $fechaInicioOferta;          
+            //$updateData->resolucion = $resolucionOferta;                      
+            $updateData->intensidad_horario = $intensidadHorarioOferta;
+            $updateData->limite_cupos = $cuposOferta;            
+            $updateData->fecha_fin = $fechaFinOferta;
+            $updateData->tipo_curso = $tipoCursoOferta;
+            $updateData->fecha_cierre_inscripcion = $fechaCierreOferta;
+            $updateData->id_certificado = 1;
 
-        $updateData->nombre = $nombreOferta;
-        $updateData->descripcion = $descripcionOferta;
-        $updateData->tipo_pago =  $tipoPagoOferta;
-        $updateData->unidad_academica = $unidadAcademicaOferta;
-        $updateData->poblacion_objetivo = $poblacionOferta;
-        $updateData->id_categoria = $categoriaOferta;
-        $updateData->costo = $costoOferta;
-        $updateData->fecha_inicio = $fechaInicioOferta;
-        $updateData->resolucion = $resolucionOferta;
-        $updateData->intensidad_horario = $intensidadHorarioOferta;
-        $updateData->limite_cupos = $cuposOferta;
-        $updateData->fecha_fin = $fechaFinOferta;
-        $updateData->tipo_curso = $tipoCursoOferta;
-        $updateData->fecha_cierre_inscripcion = $fechaCierreOferta;
-        $updateData->id_certificado = 1;
-
-        try{    
+        
             if( $request->file('imagenOferta') == null){
             
             }else{
@@ -255,12 +255,12 @@ class OfertaController extends Controller
             
 
             $updateData->save();
-            Toastr::success('¡Su registro fue actualizado exitosamente!', '', ["positionClass" => "toast-top-right"]);
+            Toastr::success('¡Su registro fue editado exitosamente!', '', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listOferta');
 
         } catch (Throwable $e) {
             dd($e);
-            Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
+            Toastr::error('¡Error al editar su registro!', '', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listOferta');
         }
     }
@@ -288,5 +288,5 @@ class OfertaController extends Controller
             ->where('oferta.id', '=', $id)
             ->get();
         return (count($numInscritos));
-    }
+    }    
 }
