@@ -24,6 +24,13 @@
     background-color: #34a853!important;
     border-color: #34a853!important;
 }
+
+.btn-editar-deshabilitar{
+    color: #fff!important;
+    background-color: #78C28C!important;
+    border-color: #78C28C!important;
+}
+
 .btn-eliminar, .modal-header{
     color: #fff!important;
     background-color: #c50b0a!important;
@@ -54,4 +61,13 @@ div.dataTables_wrapper div.dataTables_filter input {
 .pagination > li.active > a, .pagination > li.active > span{
     background-color:#022135 !important;
     color: #d9d9d9 !important;
+}
+
+/*========================Preicfes =============================*/
+.titulo{
+    margin-left: 0.8rem;
+    margin-top: 0.5rem;
+}
+.btn-cancelar{
+    text-decoration: none !important;
 }

@@ -26,7 +26,23 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('/preIcfes') }}">PREICFES</a>
+                    @role('admin')
+                        <li class="nav-item dropdown">
+                            <a id=" navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                PREICFES
+                            </a>
+                            <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{(route('/admin/listPreicfes'))}}">
+                                    GESTIÓN CURSOS PREICFES
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    LISTADO ESTUDIANTES INSCRITOS
+                                </a>
+                            </div>
+                        </li>
+                    @else
+                        <a class="nav-link" href="{{ route('/preIcfes') }}">PREICFES</a>
+                    @endrole
                 </li>
                 
                 <li class="nav-item">
