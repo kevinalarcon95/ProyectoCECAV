@@ -22,7 +22,23 @@
             <!-- Left links -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('/ofertasInscripciones') }}">OFERTA E INSCRIPCIONES</a>
+                    @role('admin')
+                        <li class="nav-item dropdown">
+                            <a id=" navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                OFERTAS E INSCRIPCIONES
+                            </a>
+                            <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{(route('/admin/listPreicfes'))}}">
+                                    GESTIÓN DE OFERTAS
+                                </a>
+                                <a class="dropdown-item" href="{{ route('/ofertasInscripciones') }}">
+                                    GALERIA DE OFERTAS
+                                </a>
+                            </div>
+                        </li>
+                    @else
+                        <a class="nav-link" href="{{ route('/ofertasInscripciones') }}">OFERTAS E INSCRIPCIONES</a>
+                    @endrole
                 </li>
 
                 <li class="nav-item">
@@ -63,22 +79,7 @@
                         @endif
 
                         @else
-                        @role('admin')
-                        <li class="nav-item dropdown">
-                            <a id=" navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                ADMINISTRACIÓN
-                            </a>
-                            <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{(route('/admin/listOferta'))}}">
-                                    GESTION DE CURSOS
-                                </a>
-
-                                <a class="dropdown-item" href="#">
-                                    GESTION DE DIPLOMADOS
-                                </a>
-                            </div>
-                        </li>
-                        @endrole
+                   
 
                         <li class="nav-item dropdown">
                             <a id=" navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

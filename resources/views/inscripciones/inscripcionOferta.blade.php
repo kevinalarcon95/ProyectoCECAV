@@ -9,7 +9,7 @@
         </div>
     </div>
     <form action="{{route('/saveInscripcion')}}" method="POST" class="row g-3 needs-validation" novalidate>
-    @csrf
+        @csrf
         <div class="row">
             <div class="mb-3">
                 <label class="form-label fw-bold">Seleccione el evento al cual se quiere inscribir</label>
@@ -36,11 +36,14 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Dirección de residencia (Incluir Ciudad)</label>
-                    <input type="text" class="form-control" name="direccionUser" placeholder="Tu respuesta">
+                    <input type="text" class="form-control @error('direccionUser') is-invalid @enderror" name="direccionUser" placeholder="Tu respuesta" value="{{ old('direccionUser')}}">
+                    @error('direccionUser')
+                    <small id="validationServer03Feedback" class="invalid-feedback">*{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Tipo de inscripción</label>
-                    <select class="form-select" name="tipoInscripcion" aria-label="Default select example" style="background-color: #ececec;">
+                    <select class="form-select @error('tipoInscripcion') is-invalid @enderror" name="tipoInscripcion" aria-label="Default select example" style="background-color: #ececec;" required>
                         <option selected disabled>Elige</option>
                         <option value="Estudiante Pregrado">Estudiante Pregrado</option>
                         <option value="Estudiante posgrado">Estudiante posgrado</option>
@@ -48,6 +51,9 @@
                         <option value="Profesional">Profesional</option>
                         <option value="Otro">Otro</option>
                     </select>
+                    @error('tipoInscripcion')
+                        <small class="invalid-feedback">*{{$message}}</small>
+                        @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si es estudiante de Unicauca, Por favor escriba su codigo</label>
@@ -72,12 +78,15 @@
                     <input type="text" class="form-control" name="numeroIdentificacion" placeholder="{{$objUser->numIdentificacion}}" value="{{old('apellidoUser',$objUser->numIdentificacion)}}" readonly="true">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label fw-bold">Télefono o número de celular</label>
-                    <input type="text" class="form-control" name="telefonoUser" placeholder="Tu respuesta">
+                    <label class="form-label fw-bold">Teléfono o número de celular</label>
+                    <input type="text" class="form-control @error('telefonoUser') is-invalid @enderror" name="telefonoUser" placeholder="Tu respuesta">
+                    @error('telefonoUser')
+                    <small id="validationServer03Feedback" class="invalid-feedback">*{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Tipo de vinculacion con Unicauca</label>
-                    <select class="form-select" name="vinculacion" aria-label="Default select example" style="background-color: #ececec;">
+                    <select class="form-select @error('vinculacion') is-invalid @enderror" name="vinculacion" aria-label="Default select example" style="background-color: #ececec;">
                         <option selected disabled>Elige</option>
                         <option value="Estudiante (Pregrado o Posgrado)">Estudiante (Pregrado o Posgrado)</option>
                         <option value="Docente">Docente</option>
@@ -85,6 +94,9 @@
                         <option value="Exalumno">Exalumno</option>
                         <option value="Particular">Particular</option>
                     </select>
+                    @error('vinculacion')
+                    <small id="validationServer03Feedback" class="invalid-feedback">*{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si es profesional, indicar su profesión y/o especialidad</label>

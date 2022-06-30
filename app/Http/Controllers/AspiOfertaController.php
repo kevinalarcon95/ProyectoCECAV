@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AspiIcfes;
 use App\Models\AspiOferta;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
@@ -43,8 +44,7 @@ class AspiOfertaController extends Controller
      */
     public function store(Request $request)
     {
-
-        /*$request->validate([
+     /* $request->validate([
             'idOferta' => 'required|numeric',
             'nombreUser' => 'required|string',
             'apellidoUser' => 'required|string',
@@ -60,7 +60,6 @@ class AspiOfertaController extends Controller
             'entidadUser' => 'string',
             'nitUser' => 'string'
         ]);*/
-
 
         $idOferta = $request->input('idOferta');
         $nombreUser = $request->input('nombreUser');
@@ -79,33 +78,40 @@ class AspiOfertaController extends Controller
 
         $objUser = User::where('id', Auth::user()->id)->first();
         $id_user = $objUser->id;
-        try {
 
-            AspiOferta::create([
-                'id_oferta' => $idOferta,
-                'nombre' => $nombreUser,
-                'apellido' => $apellidoUser,
-                'tipo_identificacion' => $tipoIdentificacion,
-                'identificacion' => $numeroIdentificacion,
-                'direccion_residencia' => $direccionUser,
-                'telefono' => $telefonoUser,
-                'tipo_inscripcion' => $tipoInscripcion,
-                'tipo_vinculacion' => $vinculacion,
-                'codigo_universitario' => $codigoUser,
-                'profesion' => $profesionUser,
-                'programa' => $programaUser,
-                'entidad' => $entidadUser,
-                'nit_entidad' => $nitUser,
-                'id_user' => $id_user
-            ]);
-
-
-            Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
+        if (User::where('id',  $id_user)->exists()) {
+            //dd('existe');
+            Toastr::warning('¡Ya existe un registro para esta oferta!', 'Atención', ["positionClass" => "toast-top-right"]);
             return redirect('/ofertasInscripciones');
-        } catch (Throwable $e) {
-            dd($e);
-            Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
-            return redirect('/ofertasInscripciones');
+        } else {
+            try {
+
+                AspiOferta::create([
+                    'id_oferta' => $idOferta,
+                    'nombre' => $nombreUser,
+                    'apellido' => $apellidoUser,
+                    'tipo_identificacion' => $tipoIdentificacion,
+                    'identificacion' => $numeroIdentificacion,
+                    'direccion_residencia' => $direccionUser,
+                    'telefono' => $telefonoUser,
+                    'tipo_inscripcion' => $tipoInscripcion,
+                    'tipo_vinculacion' => $vinculacion,
+                    'codigo_universitario' => $codigoUser,
+                    'profesion' => $profesionUser,
+                    'programa' => $programaUser,
+                    'entidad' => $entidadUser,
+                    'nit_entidad' => $nitUser,
+                    'id_user' => $id_user
+                ]);
+
+
+                Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
+                return redirect('/ofertasInscripciones');
+            } catch (Throwable $e) {
+                dd($e);
+                Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
+                return redirect('/ofertasInscripciones');
+            }
         }
     }
 
@@ -154,5 +160,13 @@ class AspiOfertaController extends Controller
     public function destroy(AspiOferta $aspiOferta)
     {
         //
+    }
+
+    public static function existeRegistro($id)
+    {
+        $objAspioferta = AspiIcfes::findOrFail($id);
+        if ($objAspioferta->id != null) {
+            return true;
+        }
     }
 }
