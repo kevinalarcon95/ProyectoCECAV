@@ -64,4 +64,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/admin/update/{id}', [OfertaController::class, 'update'])->name('ofertas.update');
 
     Route::delete('/admin/deleteOferta/{id}', [OfertaController::class, 'destroy'])->name('/admin/deleteOferta');
+
+    //=============================== PreIcfes ===============================
+    Route::get('/admin/listPreicfes', [PreicfesController::class, 'list'])->name('/admin/listPreicfes');
+    Route::get('/admin/createPreicfes', [PreicfesController::class, 'create'])->name('/admin/createPreicfes');
+    Route::post('/admin/savePreicfes', [PreicfesController::class, 'store'])->name('/admin/savePreicfes');
+    Route::get('/admin/editPreicfes/{id}', [PreicfesController::class, 'edit'])->name('/admin/editPreicfes/{id}');
+    Route::patch('/admin/updatePreicfes/{id}', [PreicfesController::class, 'update'])->name('/admin/updatePreicfes/{id}');
+    Route::delete('/admin/deletePreicfes/{id}', [PreicfesController::class, 'destroy'])->name('/admin/deletePreicfes');
+
 });

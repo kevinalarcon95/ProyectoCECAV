@@ -32,10 +32,6 @@ class CreateAspiOfertaTable extends Migration
             $table->unsignedBigInteger('id_user');
             $table->timestamps();
             
-           
-
-
-
             $table->primary(['id_oferta', 'identificacion']);
             $table->index('identificacion');
             $table->foreign('id_oferta')->references('id')->on('oferta'); 
