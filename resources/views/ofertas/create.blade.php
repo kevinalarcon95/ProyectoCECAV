@@ -4,7 +4,7 @@
 
 <div class="conteiner m-5">
     <div class="row">
-        <form action="{{route('/admin/saveOferta')}}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+        <form action="{{route('/admin/saveOferta')}}" class="row g-3 needs-validation"  method="POST" enctype="multipart/form-data" novalidate>
             @csrf
             <div class="row mx-3">
                 <div class="col-sm-1 mr-0" style="text-align: left;">
@@ -19,7 +19,7 @@
             <hr />
             <div class="row m-3 pt-3">
                 <div class="col">
-                    <div class="mb-3 has-validation">
+                    <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Nombre (Diplomado, curso, charla, etc)</label>
                         <input type="text" class="form-control @error('nombreOferta') is-invalid @enderror" name="nombreOferta" placeholder="Tu respuesta" id="nombreOferta" style="background-color: #ececec;" value="{{old('nombreOferta')}}" required>
                         @error('nombreOferta')
@@ -36,16 +36,24 @@
                     <!-- Para ela entrada de costo se requiere que el selector este en "Pago"-->
                     <div class="mb-3">
                         <label class="form-label fw-bold ">Tipo de pago</label>
-                        <select class="form-select" name="tipoPagoOferta" value="{{old('tipoPagoOferta')}}" style="background-color: #ececec;" required onchange="if(this.value=='Pago') {document.getElementById('costoOferta').disabled = false} else {document.getElementById('costoOferta').disabled = true} ">
+                        <select class="form-select" name="tipoPagoOferta" value="{{old('tipoPagoOferta')}}" style="background-color: #ececec;" required onchange="if(this.value=='Pago') {document.getElementById('costoOferta').disabled = false; console.log(this.value)} else {document.getElementById('costoOferta').disabled = true}">
                             <option selected disabled value="">Elige</option>
                             <option value="Pago" @if(old('tipoPagoOferta')=='Pago' ) selected @endif>Pago</option>
                             <option value="Gratuito" @if(old('tipoPagoOferta')=='Gratutio' ) selected @endif>Gratuito</option>
+
                         </select>
                         @error('tipoPagoOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
-                    
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label fw-bold">Unidad académica</label>
+                        <input type="text" class="form-control @error('unidadAcademicaOferta') is-invalid @enderror" name="unidadAcademicaOferta" placeholder="Tu respuesta" value="{{old('unidadAcademicaOferta')}}" style="background-color: #ececec;" required>
+                        <div class="invalid-feedback">*Campo obligatorio.</div>
+                        @error('unidadAcademicaOferta')
+                        <small class="invalid-feedback">*{{$message}}</small>
+                        @enderror
+                    </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio</strong></label>
                         <input type="date" class="form-control @error('fechaInicioOferta') is-invalid @enderror"" name=" fechaInicioOferta" value="{{old('fechaInicioOferta')}}" style="background-color: #ececec;" required>
@@ -111,7 +119,6 @@
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
-                    
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin</strong></label>
                         <input type="date" class="form-control @error('fechaFinOferta') is-invalid @enderror"" name=" fechaFinOferta" value="{{old('fechaFinOferta')}}" style="background-color: #ececec;" required>
@@ -138,7 +145,6 @@
                         @enderror
                     </div>
                 </div>
-
             </div>
             <hr />
             <div class="row">
@@ -156,4 +162,3 @@
     </div>
 </div>
 @endsection
-

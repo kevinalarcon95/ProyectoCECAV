@@ -9,6 +9,8 @@ use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Oferta;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use Throwable;
@@ -72,9 +74,9 @@ class OfertaController extends Controller
      */
     public function store(Request $request)
     {
-
+/*
         $request->validate([
-            'nombreOferta' => 'required|regex:/^[A-Z][A-Z,a-z, ,á,é,í,ó,ú,Ü,_,-]+$/',
+            'nombreOferta' => 'required|string',
             'descripcionOferta' => 'required|string',
             'tipoPagoOferta' => 'required',
             'unidadAcademicaOferta' => 'required|string',
@@ -85,17 +87,16 @@ class OfertaController extends Controller
             'imagenOferta' => 'required|image',
             'poblacionOferta' => 'required|string|max:200',
             'categoriaOferta' => 'required',
-            'costoOferta' => 'required|string',
+            //'costoOferta' => 'required|string',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
             'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
-        ]);
+        ]);*/
+        //dd($request);
 
         $imagen = $request->file('imagenOferta')->store('public/ofertas');
         $url = Storage::url($imagen);
         $imagen = $url;
-
-        //dd("hola desde store",$imagen);
 
         $nombreOferta = $request->input('nombreOferta');
         $descripcionOferta = $request->input('descripcionOferta');
@@ -111,6 +112,8 @@ class OfertaController extends Controller
         $costoOferta = $request->input('costoOferta');
         $tipoCursoOferta = $request->input('tipoCursoOferta');
         $fechaCierreOferta = $request->input('fechaCierreOferta');
+
+        
 
         try {
             /*
@@ -141,7 +144,7 @@ class OfertaController extends Controller
             Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/createOferta');
         } catch (Throwable $e) {
-            //dd($e);
+            dd($e);
             Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/createOferta');
         }
@@ -188,31 +191,18 @@ class OfertaController extends Controller
             'nombreOferta' => 'required|string',
             'descripcionOferta' => 'required|string',
             'tipoPagoOferta' => 'required',
-<<<<<<< HEAD
             'unidadAcademicaOferta' => 'required|string',
             'fechaInicioOferta' => 'required|date|after_or_equal:today',
             'resolucionOferta' => 'required|string',
-=======
-            'unidadAcademicaOferta' => 'required|string|max:200',
-            'fechaInicioOferta' => 'required|date|after:today',
-            //'resolucionOferta' => 'required|numeric|min:100',
->>>>>>> a70b082b58218c904f6f788aedb16bf6e9a1da94
             'intensidadHorarioOferta' => 'required|string',
             'cuposOferta' => 'required|numeric|min:1',
             //'imagenOferta' => 'required',
             'poblacionOferta' => 'required|string',
             'categoriaOferta' => 'required',
-<<<<<<< HEAD
             'costoOferta' => 'required|string',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
             'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
-=======
-            //'costoOferta' => 'required|numeric|min:0',
-            'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
-            'tipoCursoOferta' => 'required',
-            'fechaCierreOferta' => 'required|date|after:today|before:fechaInicioOferta',
->>>>>>> a70b082b58218c904f6f788aedb16bf6e9a1da94
         ]);
 
 

@@ -7,18 +7,23 @@ use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Oferta;
 use App\Models\User;
+use App\Models\Categoria;
+use Illuminate\Support\Facades\Auth;
 use Throwable;
 
 class AspiOfertaController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $objUser = User::where('id', Auth::user()->id)->first();
+        $objOferta = Oferta::findOrFail($id);
+        return view('inscripciones.inscripcionOferta', compact('objUser'))->with('objOferta', $objOferta);
     }
 
     /**
@@ -26,9 +31,8 @@ class AspiOfertaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -39,11 +43,12 @@ class AspiOfertaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+
+        /*$request->validate([
             'idOferta' => 'required|numeric',
             'nombreUser' => 'required|string',
             'apellidoUser' => 'required|string',
-            'tipoIdentifiacion' => 'required|string',
+            'tipoIdentificacion' => 'required|string',
             'numeroIdentificacion' => 'required|numeric',
             'direccionUser' => 'required|string',
             'telefonoUser' => 'required|string',
@@ -54,12 +59,13 @@ class AspiOfertaController extends Controller
             'programaUser' => 'string',
             'entidadUser' => 'string',
             'nitUser' => 'string'
-        ]);
+        ]);*/
+
 
         $idOferta = $request->input('idOferta');
         $nombreUser = $request->input('nombreUser');
         $apellidoUser = $request->input('apellidoUser');
-        $tipoIdentifiacion = $request->input('tipoIdentifiacion');
+        $tipoIdentificacion = $request->input('tipoIdentificacion');
         $numeroIdentificacion = $request->input('numeroIdentificacion');
         $direccionUser = $request->input('direccionUser');
         $telefonoUser = $request->input('telefonoUser');
@@ -71,14 +77,19 @@ class AspiOfertaController extends Controller
         $entidadUser = $request->input('entidadUser');
         $nitUser = $request->input('nitUser');
 
+        $objUser = User::where('id', Auth::user()->id)->first();
+        $id_user = $objUser->id;
+        //dd($objUser);
+        //dd($request);
         //TODO: falta implementar las opciones que no son obligatorios ponerle no aplica
         //no olvidar que si llegan nulos toca ponerlos en NO APLICA
         try {
+
             AspiOferta::create([
                 'id_oferta' => $idOferta,
                 'nombre' => $nombreUser,
                 'apellido' => $apellidoUser,
-                'tipo_identificacion' => $tipoIdentifiacion,
+                'tipo_identificacion' => $tipoIdentificacion,
                 'identificacion' => $numeroIdentificacion,
                 'direccion_residencia' => $direccionUser,
                 'telefono' => $telefonoUser,
@@ -88,15 +99,17 @@ class AspiOfertaController extends Controller
                 'profesion' => $profesionUser,
                 'programa' => $programaUser,
                 'entidad' => $entidadUser,
-                'nit_entidad' => $nitUser
+                'nit_entidad' => $nitUser,
+                'id_user' => $id_user
             ]);
 
+
             Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
-            //return redirect('/admin/createOferta');
+            return redirect('/ofertasInscripciones');
         } catch (Throwable $e) {
-            //dd($e);
+            dd($e);
             Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
-            //return redirect('/admin/createOferta');
+            return redirect('/ofertasInscripciones');
         }
     }
 
@@ -107,12 +120,12 @@ class AspiOfertaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     //TODO: aqui le mande el id de la oferta y la identificacion del estudiante para sacar los datos que necesitamos
-    public function show($id,$identificacion)
+    //TODO: aqui le mande el id de la oferta y la identificacion del estudiante para sacar los datos que necesitamos
+    public function show($id, $identificacion)
     {
         $categoria = Oferta::pluck('nombre', 'id');
-        $usuario = User::findOrFail($id);             
-        return view('ofertas.detalleOferta',compact('objOferta'))->with('usuario', $usuario);
+        $usuario = User::findOrFail($id);
+        return view('ofertas.detalleOferta', compact('objOferta'))->with('usuario', $usuario);
     }
 
     /**
