@@ -44,14 +44,14 @@ class AspiOfertaController extends Controller
      */
     public function store(Request $request)
     {
-     /* $request->validate([
+        $request->validate([
             'idOferta' => 'required|numeric',
             'nombreUser' => 'required|string',
             'apellidoUser' => 'required|string',
             'tipoIdentificacion' => 'required|string',
             'numeroIdentificacion' => 'required|numeric',
             'direccionUser' => 'required|string',
-            'telefonoUser' => 'required|string',
+            'telefonoUser' => 'required|numeric',
             'tipoInscripcion' => 'required|string',
             'vinculacion' => 'required|string',
             'codigoUser' => 'numeric',
@@ -59,7 +59,7 @@ class AspiOfertaController extends Controller
             'programaUser' => 'string',
             'entidadUser' => 'string',
             'nitUser' => 'string'
-        ]);*/
+        ]);
 
         $idOferta = $request->input('idOferta');
         $nombreUser = $request->input('nombreUser');
@@ -79,7 +79,7 @@ class AspiOfertaController extends Controller
         $objUser = User::where('id', Auth::user()->id)->first();
         $id_user = $objUser->id;
 
-        if (User::where('id',  $id_user)->exists()) {
+        if (AspiOferta::where('id_user',  $id_user)->exists()) {
             //dd('existe');
             Toastr::warning('¡Ya existe un registro para esta oferta!', 'Atención', ["positionClass" => "toast-top-right"]);
             return redirect('/ofertasInscripciones');
@@ -103,7 +103,6 @@ class AspiOfertaController extends Controller
                     'nit_entidad' => $nitUser,
                     'id_user' => $id_user
                 ]);
-
 
                 Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
                 return redirect('/ofertasInscripciones');

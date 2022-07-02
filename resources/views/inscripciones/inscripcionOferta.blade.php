@@ -57,15 +57,15 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si es estudiante de Unicauca, Por favor escriba su codigo</label>
-                    <input type="text" class="form-control" name="codigoUser" placeholder="Tu respuesta">
+                    <input type="text" class="form-control" name="codigoUser" placeholder="Tu respuesta (Opcional)">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si es estudiante indicar el programa al cual pertenece</label>
-                    <input type="text" class="form-control" name="programaUser" placeholder="Tu respuesta">
+                    <input type="text" class="form-control" name="programaUser" placeholder="Tu respuesta (Opcional)">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si el recibo lo paga la entidad en la que trabaja, por favor escribir el NIT</label>
-                    <input type="text" class="form-control" name="nitUser" placeholder="Tu respuesta">
+                    <input type="text" class="form-control" name="nitUser" placeholder="Tu respuesta (Opcional)">
                 </div>
             </div>
             <div class="col-6">
@@ -75,7 +75,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Número de identificación</label>
-                    <input type="text" class="form-control" name="numeroIdentificacion" placeholder="{{$objUser->numIdentificacion}}" value="{{old('apellidoUser',$objUser->numIdentificacion)}}" readonly="true">
+                    <input type="text" class="form-control" name="numeroIdentificacion" placeholder="{{$objUser->numIdentificacion}}" value="{{old('numeroIdentificacion',$objUser->numIdentificacion)}}" readonly="true">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Teléfono o número de celular</label>
@@ -100,13 +100,13 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si es profesional, indicar su profesión y/o especialidad</label>
-                    <input type="text" class="form-control" name="profesionUser" placeholder="Tu respuesta">
+                    <input type="text" class="form-control" name="profesionUser" placeholder="Tu respuesta (Opcional)">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Entidad</label>
                     <h6 style="color: gray; font-size:14px;">Por favor informar a que Institución pertenece y el cargo
                         que ocupa</h6>
-                    <input type="text" class="form-control" name="entidadUser" placeholder="Tu respuesta">
+                    <input type="text" class="form-control" name="entidadUser" placeholder="Tu respuesta (Opcional)">
                 </div>
 
             </div>
@@ -121,6 +121,5 @@
             </div>
         </div>
     </form>
-
 </div>
 @endsection
