@@ -116,8 +116,10 @@ class OfertaController extends Controller
         $tipoCursoOferta = $request->input('tipoCursoOferta');
         $fechaCierreOferta = $request->input('fechaCierreOferta');
 
-        
-
+        if($costoOferta == null){
+            $costoOferta = 0;
+        }
+    
         try {
             /*
                 $oferta = new Oferta();
