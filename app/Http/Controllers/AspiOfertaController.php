@@ -2,23 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AspiIcfes;
 use App\Models\AspiOferta;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Oferta;
 use App\Models\User;
+use App\Models\Categoria;
+use Illuminate\Support\Facades\Auth;
 use Throwable;
 
 class AspiOfertaController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $objUser = User::where('id', Auth::user()->id)->first();
+        $objOferta = Oferta::findOrFail($id);
+        return view('inscripciones.inscripcionOferta', compact('objUser'))->with('objOferta', $objOferta);
     }
     public function list()
     {       
@@ -88,9 +94,8 @@ class AspiOfertaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -105,10 +110,10 @@ class AspiOfertaController extends Controller
             'idOferta' => 'required|numeric',
             'nombreUser' => 'required|string',
             'apellidoUser' => 'required|string',
-            'tipoIdentifiacion' => 'required|string',
+            'tipoIdentificacion' => 'required|string',
             'numeroIdentificacion' => 'required|numeric',
             'direccionUser' => 'required|string',
-            'telefonoUser' => 'required|string',
+            'telefonoUser' => 'required|numeric',
             'tipoInscripcion' => 'required|string',
             'vinculacion' => 'required|string',
             'codigoUser' => 'numeric',
@@ -121,7 +126,7 @@ class AspiOfertaController extends Controller
         $idOferta = $request->input('idOferta');
         $nombreUser = $request->input('nombreUser');
         $apellidoUser = $request->input('apellidoUser');
-        $tipoIdentifiacion = $request->input('tipoIdentifiacion');
+        $tipoIdentificacion = $request->input('tipoIdentificacion');
         $numeroIdentificacion = $request->input('numeroIdentificacion');
         $direccionUser = $request->input('direccionUser');
         $telefonoUser = $request->input('telefonoUser');
@@ -133,32 +138,41 @@ class AspiOfertaController extends Controller
         $entidadUser = $request->input('entidadUser');
         $nitUser = $request->input('nitUser');
 
-        //TODO: falta implementar las opciones que no son obligatorios ponerle no aplica
-        //no olvidar que si llegan nulos toca ponerlos en NO APLICA
-        try {
-            AspiOferta::create([
-                'id_oferta' => $idOferta,
-                'nombre' => $nombreUser,
-                'apellido' => $apellidoUser,
-                'tipo_identificacion' => $tipoIdentifiacion,
-                'identificacion' => $numeroIdentificacion,
-                'direccion_residencia' => $direccionUser,
-                'telefono' => $telefonoUser,
-                'tipo_inscripcion' => $tipoInscripcion,
-                'tipo_vinculacion' => $vinculacion,
-                'codigo_universitario' => $codigoUser,
-                'profesion' => $profesionUser,
-                'programa' => $programaUser,
-                'entidad' => $entidadUser,
-                'nit_entidad' => $nitUser
-            ]);
+        $objUser = User::where('id', Auth::user()->id)->first();
+        $id_user = $objUser->id;
 
-            Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
-            //return redirect('/admin/createOferta');
-        } catch (Throwable $e) {
-            //dd($e);
-            Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
-            //return redirect('/admin/createOferta');
+        if (AspiOferta::where('id_user',  $id_user)->exists()) {
+            //dd('existe');
+            Toastr::warning('¡Ya existe un registro para esta oferta!', 'Atención', ["positionClass" => "toast-top-right"]);
+            return redirect('/ofertasInscripciones');
+        } else {
+            try {
+
+                AspiOferta::create([
+                    'id_oferta' => $idOferta,
+                    'nombre' => $nombreUser,
+                    'apellido' => $apellidoUser,
+                    'tipo_identificacion' => $tipoIdentificacion,
+                    'identificacion' => $numeroIdentificacion,
+                    'direccion_residencia' => $direccionUser,
+                    'telefono' => $telefonoUser,
+                    'tipo_inscripcion' => $tipoInscripcion,
+                    'tipo_vinculacion' => $vinculacion,
+                    'codigo_universitario' => $codigoUser,
+                    'profesion' => $profesionUser,
+                    'programa' => $programaUser,
+                    'entidad' => $entidadUser,
+                    'nit_entidad' => $nitUser,
+                    'id_user' => $id_user
+                ]);
+
+                Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
+                return redirect('/ofertasInscripciones');
+            } catch (Throwable $e) {
+                dd($e);
+                Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
+                return redirect('/ofertasInscripciones');
+            }
         }
     }
 
@@ -168,13 +182,11 @@ class AspiOfertaController extends Controller
      * @param  \App\Models\AspiOferta  $aspiOferta
      * @return \Illuminate\Http\Response
      */
-
-     //TODO: aqui le mande el id de la oferta y la identificacion del estudiante para sacar los datos que necesitamos
-    public function show($id,$identificacion)
+    public function show($id, $identificacion)
     {
         $categoria = Oferta::pluck('nombre', 'id');
-        $usuario = User::findOrFail($id);             
-        return view('ofertas.detalleOferta',compact('objOferta'))->with('usuario', $usuario);
+        $usuario = User::findOrFail($id);
+        return view('ofertas.detalleOferta', compact('objOferta'))->with('usuario', $usuario);
     }
 
     /**
@@ -209,5 +221,13 @@ class AspiOfertaController extends Controller
     public function destroy(AspiOferta $aspiOferta)
     {
         //
+    }
+
+    public static function existeRegistro($id)
+    {
+        $objAspioferta = AspiIcfes::findOrFail($id);
+        if ($objAspioferta->id != null) {
+            return true;
+        }
     }
 }

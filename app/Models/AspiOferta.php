@@ -9,9 +9,20 @@ class AspiOferta extends Model
 {
     use HasFactory;
     protected $table = 'aspi_oferta';
-
-    public function scopeFechaInicioConsulta($query,$fechaInicioConsulta){
-        if($fechaInicioConsulta)
-            return $query->where('aspi_oferta.created_at','=',"%$fechaInicioConsulta%");
-    }
+    protected $fillable  = [
+        'id_oferta',
+        'nombre',
+        'apellido',
+        'tipo_identificacion',
+        'identificacion',
+        'direccion_residencia',
+        'telefono',
+        'tipo_inscripcion',
+        'tipo_vinculacion',
+        'profesion',
+        'programa',
+        'entidad',
+        'nit_entidad',
+        'id_user'
+    ];
 }

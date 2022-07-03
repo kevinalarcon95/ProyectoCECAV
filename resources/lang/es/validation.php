@@ -146,6 +146,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'direccionUser' => '"Dirección de residencia"',
+        'telefonoUser' => '"Teléfono o número de celular"',
+        'tipoInscripcion' => '"Tipo de inscripción"',
+        'vinculacion' => '"Tipo de vinculación"'
+    ],
 
 ];
