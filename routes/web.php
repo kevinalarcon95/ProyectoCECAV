@@ -5,8 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OfertaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InfoController;
-use App\Http\Controllers\PreicfesController;
-use App\Http\Controllers\InscripcionOfertaController;
+use App\Http\Controllers\AspiOfertaController;
+//use App\Http\Controllers\InscripcionOfertaController;
 
 
 /*
@@ -64,5 +64,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::delete('/admin/deleteOferta/{id}', [OfertaController::class, 'destroy'])->name('/admin/deleteOferta');
 
-    Route::get('/admin/listInscritosPreicfes', [AspiIcfesController::class, 'list'])->name('/admin/listInscritosPreicfes');
+    Route::get('/admin/listInscritos', [AspiOfertaController::class, 'list'])->name('/admin/listInscritos');
+    Route::get('/admin/listInscritos/Consulta', [AspiOfertaController::class, 'consultaRangofechas'])->name('/admin/listInscritos/Consulta');
 });

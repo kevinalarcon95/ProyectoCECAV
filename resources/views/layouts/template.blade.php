@@ -34,7 +34,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
- </head>
+     <!-- estilo fecha-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css">
+</head>
 
 <body onload="initialize();">
     @include('header')
@@ -45,6 +48,17 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="{{ asset('js/validaciones.js')}}"></script>
+    <!--exportar librerias excel-->
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+    <!--consultar según la fecha-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
+   
     <script>
         $(document).ready(function() {
             $('#example').DataTable({
@@ -63,6 +77,82 @@
                 pageLength: 4,
                 pagingType: "simple_numbers",
 
+
+            });
+        });
+    </script>
+    <!--script exportar excel-->
+    <script>
+        $(document).ready(function () {
+        $('#datatables').DataTable({
+           
+            scrollX: true,
+            "info": false,
+            "lengthChange": false,
+            pagingType: 'first_last_numbers',            
+               
+            "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
+                    paginate: {
+                        first: 'Atras',
+                        last: 'Siguiente',
+                    }
+                },
+            pageLength: 4,
+            pagingType: "simple_numbers",
+            
+            dom: 'Bfrtip',
+            buttons: [                
+                    {
+                        //'excel'      
+                        extend:"excel", 
+                        text:'Exportar',
+                        exportOptions:{
+                            'columns':[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]   
+                        }                                  
+                    }
+            ],            
+                   
+        });
+    });
+    </script>
+    <script>
+        var minDate, maxDate;
+ 
+        // Custom filtering function which will search data in column four between two values
+        $.fn.dataTable.ext.search.push(
+            function( settings, data, dataIndex ) {
+                var min = minDate.val();
+                var max = maxDate.val();
+                var date = new Date( data[14] );
+        
+                if (
+                    ( min === null && max === null ) ||
+                    ( min === null && date <= max ) ||
+                    ( min <= date  && max === null ) ||
+                    ( min <= date  &&  date <= max )                     
+                ) {
+                    return true;
+                }
+                return false;
+            }
+        );
+        
+        $(document).ready(function() {
+            // Create date inputs
+            minDate = new DateTime($('#min'), {
+                format: 'MMMM Do YYYY'
+            });
+            maxDate = new DateTime($('#max'), {
+                format: 'MMMM Do YYYY'
+            });
+        
+            // DataTables initialisation
+            var table = $('#datatables').DataTable();
+        
+            // Refilter the table
+            $('#min, #max').on('change', function () {
+                table.draw();
             });
         });
     </script>
