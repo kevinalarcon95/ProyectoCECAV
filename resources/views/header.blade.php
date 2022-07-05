@@ -28,7 +28,7 @@
                                 OFERTAS E INSCRIPCIONES
                             </a>
                             <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{(route('/admin/listPreicfes'))}}">
+                                <a class="dropdown-item" href="{{(route('/admin/listOferta'))}}">
                                     GESTIÓN DE OFERTAS
                                 </a>
                                 <a class="dropdown-item" href="{{ route('/ofertasInscripciones') }}">
