@@ -35,6 +35,7 @@
      <!-- estilo fecha-->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css">
+    
 </head>
 
 <body>
@@ -59,7 +60,7 @@
     <!--consultar según la fecha-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
     <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
-   
+    <script src="https://cdn.datatables.net/plug-ins/1.12.1/filtering/row-based/TableTools.ShowSelectedOnly.js"></script>
     <script>
         $(document).ready(function() {
             $('#example').DataTable({
@@ -82,11 +83,12 @@
             });
         });
     </script>
+    
     <!--script exportar excel-->
     <script>
         $(document).ready(function () {
         $('#datatables').DataTable({
-           
+            
             scrollX: true,
             "info": false,
             "lengthChange": false,
@@ -109,11 +111,11 @@
                         extend:"excel", 
                         text:'Exportar',
                         exportOptions:{
-                            'columns':[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]   
+                            'columns':[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]   
                         }                                  
                     }
             ],            
-                   
+            
         });
     });
     </script>
@@ -125,7 +127,7 @@
             function( settings, data, dataIndex ) {
                 var min = minDate.val();
                 var max = maxDate.val();
-                var date = new Date( data[14] );
+                var date = new Date( data[15] );
         
                 if (
                     ( min === null && max === null ) ||
@@ -157,7 +159,7 @@
             });
         });
     </script>
-    <script></script>
+    
 </body>
 @include('footer')
 <!--@jquery

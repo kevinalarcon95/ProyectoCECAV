@@ -27,9 +27,11 @@ class AspiOfertaController extends Controller
         return view('inscripciones.inscripcionOferta', compact('objUser'))->with('objOferta', $objOferta);
     }
     public function list()
-    {       
-        $datos['aspiOferta'] = AspiOferta::select(
+    {                     
+        $datos['aspiOferta'] = AspiOferta::join('oferta','aspi_oferta.id_oferta','=','oferta.id')  
+        ->select(
             'aspi_oferta.id_oferta',
+            'oferta.nombre as nomOferta',
             'aspi_oferta.nombre',
             'aspi_oferta.apellido',    
             'aspi_oferta.tipo_identificacion',
@@ -47,48 +49,14 @@ class AspiOfertaController extends Controller
             'aspi_oferta.created_at'
                 
         )
-            ->from('aspi_oferta')       
-            ->join('oferta','aspi_oferta.id_oferta','=','oferta.id')              
-            ->get();
+        //->$where
+        ->get();
             
-        $oferta = Oferta::pluck('nombre', 'id');            
-        return view('preIcfes.listInscritosCursos', $datos)->with('oferta', $oferta);
-    }
-    public static function consultaRangofechas(Request $request)
-    {       
-        $fechaInicioConsulta = $request->get('fechaInicioConsulta');
-        $fechaFinConsulta = $request->get('fechaFinConsulta');
-        $cursosOfertados = $request->get('cursosOfertados');
-        $datos['aspiOferta'] = AspiOferta::select(
-            'aspi_oferta.id_oferta',
-            'aspi_oferta.nombre',
-            'aspi_oferta.apellido',    
-            'aspi_oferta.tipo_identificacion',
-            'aspi_oferta.identificacion',
-            'aspi_oferta.direccion_residencia',
-            'aspi_oferta.telefono',
-            'aspi_oferta.tipo_inscripcion',
-            'aspi_oferta.tipo_vinculacion',
-            'aspi_oferta.codigo_universitario',
-            'aspi_oferta.profesion',
-            'aspi_oferta.programa',
-            'aspi_oferta.entidad',
-            'aspi_oferta.nit_entidad',
-            'aspi_oferta.id_user',
-            'aspi_oferta.created_at'
-            )
-            ->from('aspi_oferta')    
-            ->join('oferta','aspi_oferta.id_oferta','=','oferta.id')                                     
-            ->whereBetween('aspi_oferta.created_at',['2022-06-24','2022-06-24'])
-            ->get();
-        $oferta = Oferta::pluck('nombre', 'id');            
-        return view('preIcfes.listInscritosCursos', $datos)->with('oferta', $oferta);  
-    }
+        $oferta = Oferta::pluck('nombre', 'id'); 
+        return view('inscritos.listInscritosCursos', $datos)->with('oferta', $oferta);
+    }   
     
-    public static function exportarExcel()
-    {
-        //
-    }
+    
     /**
      * Show the form for creating a new resource.
      *

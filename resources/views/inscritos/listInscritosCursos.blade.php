@@ -6,47 +6,31 @@
 
 <div class="contenedor mt-5">
     <div class="row">
-        <!--<form action="{{route('/admin/editOferta')}}" method="POST">-->
-        <form action="{{route('/admin/listInscritos')}}" method="get" class="form-inline pull-right">
             <div class="row mx-3">
                 <div class="d-flex justify-content-between align-baseline">
                     <h4>Listado estudiantes inscritos</h4>           
                 </div>
             </div>
             <hr>
-            <div class="row m-3 pt-3">
+            <div class="row m-3 pt-3">  
                 <div class="col-2">
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label"><strong>Fecha Inicio</strong></label>
-                        <?php
-                        $date = date('Y-m-d');                
-                        ?>
-                        <input type="date" class="form-control" name="fechaInicioConsulta" value="$fechaInicioConsulta" id="exampleInputEmail1" style="background-color: #ececec;">
-                        @error('fechaFinConsulta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
-                        @enderror
-                    </div>
+                    <table border="0" cellspacing="5" cellpadding="5">
+                        <tbody><tr>
+                            <td>Minimum date:</td>
+                            <td><input type="text" id="min" name="min"></td>
+                        </tr>
+                        <tr>
+                            <td>Maximum date:</td>
+                            <td><input type="text" id="max" name="max"></td>
+                        </tr>
+                    </tbody></table>
                 </div>
-                <div class="col-2">
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label"><strong>Fecha Fin</strong></label>
-                        <?php
-                        $date = date('Y-m-d');               
-                        ?>
-                        <input type="date" class="form-control" name="fechaFinConsulta" value="$fechaFinConsulta" id="exampleInputEmail1" style="background-color: #ececec;">
-                        @error('fechaFinConsulta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
-                        @enderror
-                    </div>
-                </div>
+                <div class="col-1">     
+                </div>       
                 <div class="col-2">
                     <div class="mb-3">
                         <label class="form-label fw-bold">Cursos Ofertados</label>
-                        <select class="form-select" name="cursosOfertados" aria-label="Default select example" style="background-color: #ececec;">
+                        <select class="form-select" name="cursosOfertados"  aria-label="Default select example" style="background-color: #ececec;">
                             @foreach($oferta as $key => $value)
                             <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach
@@ -58,30 +42,29 @@
                         @enderror
                     
                     </div>
-                </div>
-                <div class="col-2" >
-                    <div class="mb-3">
-                        <br>
-                        <a type="button" href="{{ route('/admin/listInscritos/Consulta')}}" class="botones btn btn-editar me-1">Consultar</a>                        
-                    </div>
-                </div>      
+                    <form method="POST" name="Busqueda" action="index.php" class="form-inline">
+                    <button name="buscar" type="submit">Buscar</button>      
+                    <select class="form-select" name="cursos"  aria-label="Default select example" style="background-color: #ececec;">
+                            <option value="">Curso</option>
+                            <?
+                               if (! empty($oferta)) {
+                                foreach ($oferta as $keyy => $value) {
+                                echo '<option value="' . $oferta[$keyy]['nombre'] . '">' . $oferta[$keyy]['nombre'] . '</option>';
+                                     }
+                               }
+                            ?>
+                    </select>   
+                    </form>                 
+                </div>   
                 
             </div>
-            <table border="0" cellspacing="5" cellpadding="5">
-                <tbody><tr>
-                    <td>Minimum date:</td>
-                    <td><input type="text" id="min" name="min"></td>
-                </tr>
-                <tr>
-                    <td>Maximum date:</td>
-                    <td><input type="text" id="max" name="max"></td>
-                </tr>
-            </tbody></table>
+            
             <table id="datatables" class="display nowrap " style="width:100%">
                 <thead>
                     <tr>
                         
                         <th scope="col" class="celda"> No</th>
+                        <th scope="col" class="celda"> Curso</th>
                         <th scope="col" class="celda"> Nombre</th>
                         <th scope="col" class="celda"> Apellido</th>
                         <th scope="col" class="celda"> Tipo identificacion</th>
@@ -103,8 +86,8 @@
                     @foreach( $aspiOferta as $varInscrito)
                     <tr>
                         <td class="celda">{{$varInscrito->id_oferta}}</td>
+                        <td class="celda">{{$varInscrito->nomOferta}}</td>
                         <td  class="celda">{{$varInscrito->nombre}}</td>
-
                         <td  class="celda">{{$varInscrito->apellido}}</td>
                         <td  class="celda">{{$varInscrito->tipo_identificacion}}</td>
                         <td  class="celda">{{$varInscrito->identificacion}}</td>
@@ -135,7 +118,7 @@
 
             </table>
             <hr />
-        </form>
+        
     </div>
 </div>
 

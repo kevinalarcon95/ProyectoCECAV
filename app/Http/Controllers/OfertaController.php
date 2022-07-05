@@ -202,13 +202,13 @@ class OfertaController extends Controller
             'intensidadHorarioOferta' => 'required|string',
             'cuposOferta' => 'required|numeric|min:1',
             //'imagenOferta' => 'required',
-           // 'imagenOferta' => 'max:2048|mimes:jpeg,png,jpg',
+            'imagenOferta' => 'max:2048|mimes:jpeg,png,jpg',
             'poblacionOferta' => 'required|string',
             'categoriaOferta' => 'required',            
            // 'costoOferta' => 'required|numeric|min:0',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta',
             'tipoCursoOferta' => 'in:Virtual,Presencial',
-            'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
+            'fechaCierreOferta' => 'required|date|before:fechaInicioOferta|after_or_equal:today'
         ]);
 
 
