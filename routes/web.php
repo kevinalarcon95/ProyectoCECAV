@@ -5,11 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OfertaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AspiOfertaController;
-use App\Http\Controllers\InfoController;
+use App\Http\Controllers\AspiIcfesController;
 use App\Http\Controllers\PreicfesController;
 use App\Http\Controllers\InscripcionOfertaController;
-use App\Http\Controllers\AspiIcfesController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,5 +76,10 @@ Route::group(['middleware' => ['auth']], function () {
     //Route::get('/preIcfes', [AspiIcfesController::class, 'index'])->name('/preIcfes');
     Route::get('/inscripcionPreIcfes/{id}', [AspiIcfesController::class, 'index'])->name('/inscripcionPreIcfes/{id}');
     Route::post('/saveInscripPreIcfes', [AspiIcfesController::class, 'store'])->name('/saveInscripPreIcfes');
+
+    //---Listado inscritos a cursos---
+    Route::get('/admin/listInscritos', [AspiOfertaController::class, 'list'])->name('/admin/listInscritos');
+    //---Listado inscritos a Preicfes---
+    Route::get('/admin/listInscritosPreicfes', [AspiIcfesController::class, 'list'])->name('/admin/listInscritosPreicfes');
 
 });

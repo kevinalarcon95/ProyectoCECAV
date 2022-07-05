@@ -71,3 +71,8 @@ div.dataTables_wrapper div.dataTables_filter input {
 .btn-cancelar{
     text-decoration: none !important;
 }
+.buttons-excel{
+    background-color: #f0d50c!important;
+    border-color: #f4e006!important;
+    border-radius: 3px;  
+} 

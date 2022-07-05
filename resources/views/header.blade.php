@@ -51,7 +51,7 @@
                                 <a class="dropdown-item" href="{{(route('/admin/listPreicfes'))}}">
                                     GESTIÓN CURSOS PREICFES
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{(route('/admin/listInscritosPreicfes'))}}">
                                     LISTADO ESTUDIANTES INSCRITOS
                                 </a>
                             </div>

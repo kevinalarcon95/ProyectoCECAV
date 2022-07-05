@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Role;
+
 use App\Models\AspiIcfes;
 use Illuminate\Http\Request;
 use App\Models\user;
@@ -24,7 +28,34 @@ class AspiIcfesController extends Controller
         $objPreIcfes = Preicfes::findOrFail($id);
         return view('inscripciones.inscripcionIcfes', compact('objUser')) ->with ( 'objPreIcfes', $objPreIcfes);
     }
-
+    /**
+     * función de listar aspirantes inscritos PreIcfes
+     */
+    public function list()
+    {
+        $datos['aspiIcfes'] = AspiIcfes::select(
+            'aspi_icfes.id_icfes',
+            'aspi_icfes.tipo_identificacion',
+            'aspi_icfes.identificacion',    
+            'aspi_icfes.nombre_apellido',
+            'aspi_icfes.direccion_residencia',           
+            'aspi_icfes.telefono',
+            'aspi_icfes.correo',
+            'aspi_icfes.colegio',
+            'aspi_icfes.departamento_colegio',
+            'aspi_icfes.municipio_colegio',
+            'aspi_icfes.nombre_apellido_acudiente',
+            'aspi_icfes.correo_acudiente',
+            'aspi_icfes.tipo_curso',
+            'aspi_icfes.pregrado',
+            'aspi_icfes.horario',
+            'aspi_icfes.created_at'                 
+        )
+            ->from('aspi_icfes')           
+            ->get();       
+                 
+        return view('inscritos.listInscritosPreicfes', $datos);  
+    }
     /**
      * Show the form for creating a new resource.
      *

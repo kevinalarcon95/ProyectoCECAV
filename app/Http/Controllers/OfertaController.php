@@ -195,19 +195,20 @@ class OfertaController extends Controller
         $request->validate([
             'nombreOferta' => 'required|string',
             'descripcionOferta' => 'required|string',
-            'tipoPagoOferta' => 'required',
+            'tipoPagoOferta' => 'in:Pago,Gratuito',
             'unidadAcademicaOferta' => 'required|string',
-            'fechaInicioOferta' => 'required|date|after_or_equal:today',
-            'resolucionOferta' => 'required|string',
+            'fechaInicioOferta' => 'required|date|after_or_equal:fechaCierreOferta',
+           // 'resolucionOferta' => 'required|string',
             'intensidadHorarioOferta' => 'required|string',
             'cuposOferta' => 'required|numeric|min:1',
             //'imagenOferta' => 'required',
+            'imagenOferta' => 'max:2048|mimes:jpeg,png,jpg',
             'poblacionOferta' => 'required|string',
-            'categoriaOferta' => 'required',
-            'costoOferta' => 'required|string',
-            'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
-            'tipoCursoOferta' => 'required',
-            'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
+            'categoriaOferta' => 'required',            
+           // 'costoOferta' => 'required|numeric|min:0',
+            'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta',
+            'tipoCursoOferta' => 'in:Virtual,Presencial',
+            'fechaCierreOferta' => 'required|date|before:fechaInicioOferta|after_or_equal:today'
         ]);
 
 
@@ -246,7 +247,7 @@ class OfertaController extends Controller
             $updateData->id_certificado = 1;
 
         
-            if( $request->file('imagenOferta') == null){
+           /* if( $request->file('imagenOferta') == null){
             
             }else{
                 $image_path = public_path().$updateData->imagen;
@@ -256,8 +257,13 @@ class OfertaController extends Controller
             $url = Storage::url($imagen);
             $imagen = $url;
             $updateData ->imagen = $imagen;
+            }*/
+            if ($request->hasFile('imagenOferta')) {
+                $datosTemporal = Oferta::findOrFail($id);
+                $url = str_replace('storage', 'public', $datosTemporal->imagen);
+                Storage::delete($url);
+                $datos['imagen'] = Storage::url($request->file('imagenOferta')->store('public/ofertas'));
             }
-            
 
             $updateData->save();
             Toastr::success('¡Su registro fue editado exitosamente!', '', ["positionClass" => "toast-top-right"]);
