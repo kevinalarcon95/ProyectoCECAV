@@ -18,7 +18,8 @@ class PreicfesController extends Controller
      */
     public function index()
     {
-        return view('preIcfes.formInscripcion');
+        $objPreIcfes = Preicfes::all();
+        return view('preIcfes.index') ->with ( 'objPreIcfes', $objPreIcfes);
     }
 
     public function list()
@@ -46,7 +47,7 @@ class PreicfesController extends Controller
      */
     public function store(Request $request)
     {
-        //Falta validar fechas y horas 
+        //Falta validar fechas y horas
         $campos = [
             'nombre' => 'required|string',
             'imagen' => 'required|max:2048|mimes:jpeg,png,jpg',
@@ -99,9 +100,10 @@ class PreicfesController extends Controller
      * @param  \App\Models\Preicfes  $preicfes
      * @return \Illuminate\Http\Response
      */
-    public function show(Preicfes $preicfes)
+    public function show($id)
     {
-        //
+        $objPreIcfes = Preicfes::findOrFail($id);    
+        return view('preIcfes.detallePreIcfes')->with('objPreIcfes', $objPreIcfes);
     }
 
     /**

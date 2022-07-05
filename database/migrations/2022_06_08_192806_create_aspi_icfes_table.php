@@ -28,7 +28,7 @@ class CreateAspiIcfesTable extends Migration
             $table->text('correo_acudiente');
             $table->text('tipo_curso');
             $table->text('pregrado');
-            $table->dateTime('horario');
+            $table->text('horario');
             $table->unsignedBigInteger('id_icfes');
             $table->unsignedBigInteger('id_user');
             $table->timestamps();

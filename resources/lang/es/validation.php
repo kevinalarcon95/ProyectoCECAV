@@ -150,7 +150,19 @@ return [
         'direccionUser' => '"Dirección de residencia"',
         'telefonoUser' => '"Teléfono o número de celular"',
         'tipoInscripcion' => '"Tipo de inscripción"',
-        'vinculacion' => '"Tipo de vinculación"'
+        'vinculacion' => '"Tipo de vinculación"',
+
+        //preicfes
+        'telefonoIcfes' => '"Número telefono"',
+        'municipioIcfes' => '"Municipio en el que está ubicado el nombre del colegio"',
+        'numAcuIcfes' => '"Correo electrónico ó número telefónico del acudiente"',
+        'programaIcfes' => '"Programa de pregrado al cual aspira"',
+        'numIdIcfes' => '"Número de identificación"',
+        'dirResIcfes' => '"Dirección de residencia"',
+        'nomColIcfes' => '"Nombre del colegio en que está estudiando o estudió"',
+        'departamentoIcfes' => '"Departamento en que está ubicado el nombre del colegio"',
+        'nomAcuIcfes' => '"Nombres y apellidos completos del acudiente"',
+        
     ],
 
 ];

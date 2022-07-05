@@ -8,6 +8,7 @@ use App\Http\Controllers\AspiOfertaController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\PreicfesController;
 use App\Http\Controllers\InscripcionOfertaController;
+use App\Http\Controllers\AspiIcfesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,7 @@ Route::get('/homeInfo/funcionesCecav', [InfoController::class, 'funciones'])->na
 
 //Rutas preicfes
 Route::get('/preIcfes', [PreicfesController::class, 'index'])->name('/preIcfes');
+Route::get('/detallePreIcfes/{idPreIcfes?}', [PreicfesController::class, 'show'])->name('/detallePreIcfes/{idPreIcfes?}');
 
 //Rutas para ofertas
 Route::get('/ofertas', [OfertaController::class, 'create'])->name('/ofertas');
@@ -72,5 +74,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/editPreicfes/{id}', [PreicfesController::class, 'edit'])->name('/admin/editPreicfes/{id}');
     Route::patch('/admin/updatePreicfes/{id}', [PreicfesController::class, 'update'])->name('/admin/updatePreicfes/{id}');
     Route::delete('/admin/deletePreicfes/{id}', [PreicfesController::class, 'destroy'])->name('/admin/deletePreicfes');
+
+    //Route::get('/preIcfes', [AspiIcfesController::class, 'index'])->name('/preIcfes');
+    Route::get('/inscripcionPreIcfes/{id}', [AspiIcfesController::class, 'index'])->name('/inscripcionPreIcfes/{id}');
+    Route::post('/saveInscripPreIcfes', [AspiIcfesController::class, 'store'])->name('/saveInscripPreIcfes');
 
 });
