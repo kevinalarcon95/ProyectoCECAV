@@ -3,19 +3,19 @@
 @section('content')
 
 <div class="conteiner m-5">
+    <div class="row mx-3">
+        <div class="col-sm-2" style="text-align: left;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#4285F4" class="bi bi-plus-circle-fill " viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+            </svg>
+        </div>
+        <div class="col-sm-10">
+            <h5 style="margin-left: -9.2rem; margin-top: 0.5rem;">Añadir registro</h5>
+        </div>
+    </div>
     <div class="row">
-        <form action="{{route('/admin/saveOferta')}}" class="row g-3 needs-validation"  method="POST" enctype="multipart/form-data" novalidate>
+        <form action="{{route('/admin/saveOferta')}}" class="row g-3 needs-validation" method="POST" enctype="multipart/form-data" novalidate>
             @csrf
-            <div class="row mx-3">
-                <div class="col-sm-1 mr-0" style="text-align: left;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#4285F4" class="bi bi-plus-circle-fill " viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-                    </svg>
-                </div>
-                <div class="col-sm-11" style="text-align: left; color: #3E4C60">
-                    <h5>Añadir registro</h5>
-                </div>
-            </div>
             <hr />
             <div class="row m-3 pt-3">
                 <div class="col">
@@ -49,7 +49,6 @@
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Unidad académica</label>
                         <input type="text" class="form-control @error('unidadAcademicaOferta') is-invalid @enderror" name="unidadAcademicaOferta" placeholder="Tu respuesta" value="{{old('unidadAcademicaOferta')}}" style="background-color: #ececec;" required>
-                        <div class="invalid-feedback">*Campo obligatorio.</div>
                         @error('unidadAcademicaOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror

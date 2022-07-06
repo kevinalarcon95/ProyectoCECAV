@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="contenedor mt-5">
-    <div class="row mx-3">
+    <div class="row mx-3"> 
         <div class="d-flex justify-content-between align-baseline">
             <h4>Gestión de cursos</h4>
             <a href="{{ route('/admin/createOferta') }}" class="botones btn btn-añadir me-1">

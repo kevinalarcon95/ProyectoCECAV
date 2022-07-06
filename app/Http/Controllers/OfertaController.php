@@ -32,7 +32,7 @@ class OfertaController extends Controller
     public function list()
     {
         $fecha_actual = date("d-m-y");
-        $fecha_pasada = strtotime($fecha_actual."- 5 years");
+        $fecha_pasada = strtotime($fecha_actual . "- 5 years");
         $datos['ofertas'] = Oferta::select(
             'oferta.id',
             'oferta.nombre',
@@ -77,25 +77,24 @@ class OfertaController extends Controller
      */
     public function store(Request $request)
     {
-/*
+
         $request->validate([
             'nombreOferta' => 'required|string',
             'descripcionOferta' => 'required|string',
             'tipoPagoOferta' => 'required',
-            'unidadAcademicaOferta' => 'required|string',
+            'unidadAcademicaOferta' => 'required|string|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?)(?=.*?[#?!@$%^&*-]).{6,}$/',
             'fechaInicioOferta' => 'required|date|after_or_equal:today',
             'resolucionOferta' => 'required|string',
             'intensidadHorarioOferta' => 'required|string',
             'cuposOferta' => 'required|numeric',
-            'imagenOferta' => 'required|image',
-            'poblacionOferta' => 'required|string|max:200',
+            'imagenOferta' => 'required|image|mimes:jpeg,png,jpg,svg',
+            'poblacionOferta' => 'required|string|max:200|',
             'categoriaOferta' => 'required',
             //'costoOferta' => 'required|string',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
             'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
-        ]);*/
-        //dd($request);
+        ]);
 
         $imagen = $request->file('imagenOferta')->store('public/ofertas');
         $url = Storage::url($imagen);
@@ -116,42 +115,40 @@ class OfertaController extends Controller
         $tipoCursoOferta = $request->input('tipoCursoOferta');
         $fechaCierreOferta = $request->input('fechaCierreOferta');
 
-        if($costoOferta == null){
+        if ($costoOferta == null) {
             $costoOferta = 0;
-        }
-    
-        try {
-            /*
-                $oferta = new Oferta();
-                $oferta->nombreOferta = $nombreOferta;
-                $oferta->descripcionOferta = $descripcionOferta;
-                $oferta->save();
-                */
-            Oferta::create([
-                'nombre' => $nombreOferta,
-                'descripcion' => $descripcionOferta,
-                'tipo_pago' => $tipoPagoOferta,
-                'unidad_academica' => $unidadAcademicaOferta,
-                'imagen' => $imagen,
-                'poblacion_objetivo' => $poblacionOferta,
-                'id_categoria' => $categoriaOferta,
-                'costo' => $costoOferta,
-                'fecha_inicio' => $fechaInicioOferta,
-                'resolucion' => $resolucionOferta,
-                'intensidad_horario' => $intensidadHorarioOferta,
-                'limite_cupos' => $cuposOferta,
-                'fecha_fin' => $fechaFinOferta,
-                'tipo_curso' => $tipoCursoOferta,
-                'fecha_cierre_inscripcion' => $fechaCierreOferta,
-                'id_certificado' => 1,
-            ]);
-
-            Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
-            return redirect('/admin/createOferta');
-        } catch (Throwable $e) {
-            dd($e);
-            Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
-            return redirect('/admin/createOferta');
+        } 
+        
+        if (Oferta::where('resolucion',  $resolucionOferta)->exists()) {
+            Toastr::info('¡Ya existe una oferta con la resolución '. $resolucionOferta .'!', 'Información', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/createOferta')->withInput();
+        } else {
+            try {
+                Oferta::create([
+                    'nombre' => $nombreOferta,
+                    'descripcion' => $descripcionOferta,
+                    'tipo_pago' => $tipoPagoOferta,
+                    'unidad_academica' => $unidadAcademicaOferta,
+                    'imagen' => $imagen,
+                    'poblacion_objetivo' => $poblacionOferta,
+                    'id_categoria' => $categoriaOferta,
+                    'costo' => $costoOferta,
+                    'fecha_inicio' => $fechaInicioOferta,
+                    'resolucion' => $resolucionOferta,
+                    'intensidad_horario' => $intensidadHorarioOferta,
+                    'limite_cupos' => $cuposOferta,
+                    'fecha_fin' => $fechaFinOferta,
+                    'tipo_curso' => $tipoCursoOferta,
+                    'fecha_cierre_inscripcion' => $fechaCierreOferta,
+                    'id_certificado' => 1,
+                ]);
+                Toastr::success('¡Su registro fue exitoso!', 'Exito', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/createOferta');
+            } catch (Throwable $e) {
+                dd($e);
+                Toastr::error('¡Error al crear su registro!', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/createOferta');
+            }
         }
     }
 
@@ -163,9 +160,9 @@ class OfertaController extends Controller
      */
     public function show($id)
     {
-        $objOferta = Oferta::findOrFail($id);        
-        $categoria = Categoria::pluck('nombre', 'id');        
-        return view('ofertas.detalleOferta',compact('objOferta'))->with('categoria', $categoria);
+        $objOferta = Oferta::findOrFail($id);
+        $categoria = Categoria::pluck('nombre', 'id');
+        return view('ofertas.detalleOferta', compact('objOferta'))->with('categoria', $categoria);
     }
 
     /**
@@ -176,9 +173,9 @@ class OfertaController extends Controller
      */
     public function edit($id)
     {
-        $oferta = Oferta::findOrFail($id);        
-        $categoria = Categoria::pluck('nombre', 'id');        
-        return view('ofertas.editar',compact('oferta'))->with('categoria', $categoria);
+        $oferta = Oferta::findOrFail($id);
+        $categoria = Categoria::pluck('nombre', 'id');
+        return view('ofertas.editar', compact('oferta'))->with('categoria', $categoria);
     }
 
     /**
@@ -198,14 +195,14 @@ class OfertaController extends Controller
             'tipoPagoOferta' => 'in:Pago,Gratuito',
             'unidadAcademicaOferta' => 'required|string',
             'fechaInicioOferta' => 'required|date|after_or_equal:fechaCierreOferta',
-           // 'resolucionOferta' => 'required|string',
+            // 'resolucionOferta' => 'required|string',
             'intensidadHorarioOferta' => 'required|string',
             'cuposOferta' => 'required|numeric|min:1',
             //'imagenOferta' => 'required',
             'imagenOferta' => 'max:2048|mimes:jpeg,png,jpg',
             'poblacionOferta' => 'required|string',
-            'categoriaOferta' => 'required',            
-           // 'costoOferta' => 'required|numeric|min:0',
+            'categoriaOferta' => 'required',
+            // 'costoOferta' => 'required|numeric|min:0',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta',
             'tipoCursoOferta' => 'in:Virtual,Presencial',
             'fechaCierreOferta' => 'required|date|before:fechaInicioOferta|after_or_equal:today'
@@ -221,7 +218,7 @@ class OfertaController extends Controller
         //$resolucionOferta = $request->input('resolucionOferta');
         $intensidadHorarioOferta = $request->input('intensidadHorarioOferta');
         $cuposOferta = $request->input('cuposOferta');
-        
+
         $poblacionOferta = $request->input('poblacionOferta');
         $categoriaOferta = $request->input('categoriaOferta');
         $fechaFinOferta = $request->input('fechaFinOferta');
@@ -229,7 +226,7 @@ class OfertaController extends Controller
         $tipoCursoOferta = $request->input('tipoCursoOferta');
         $fechaCierreOferta = $request->input('fechaCierreOferta');
 
-        try{
+        try {
             $updateData->nombre = $nombreOferta;
             $updateData->descripcion = $descripcionOferta;
             //$updateData->tipo_pago =  $tipoPagoOferta;
@@ -237,17 +234,17 @@ class OfertaController extends Controller
             $updateData->poblacion_objetivo = $poblacionOferta;
             $updateData->id_categoria = $categoriaOferta;
             //$updateData->costo = $costoOferta;
-            $updateData->fecha_inicio = $fechaInicioOferta;          
+            $updateData->fecha_inicio = $fechaInicioOferta;
             //$updateData->resolucion = $resolucionOferta;                      
             $updateData->intensidad_horario = $intensidadHorarioOferta;
-            $updateData->limite_cupos = $cuposOferta;            
+            $updateData->limite_cupos = $cuposOferta;
             $updateData->fecha_fin = $fechaFinOferta;
             $updateData->tipo_curso = $tipoCursoOferta;
             $updateData->fecha_cierre_inscripcion = $fechaCierreOferta;
             $updateData->id_certificado = 1;
 
-        
-           /* if( $request->file('imagenOferta') == null){
+
+            /* if( $request->file('imagenOferta') == null){
             
             }else{
                 $image_path = public_path().$updateData->imagen;
@@ -268,7 +265,6 @@ class OfertaController extends Controller
             $updateData->save();
             Toastr::success('¡Su registro fue editado exitosamente!', '', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listOferta');
-
         } catch (Throwable $e) {
             dd($e);
             Toastr::error('¡Error al editar su registro!', '', ["positionClass" => "toast-top-right"]);
@@ -299,5 +295,5 @@ class OfertaController extends Controller
             ->where('oferta.id', '=', $id)
             ->get();
         return (count($numInscritos));
-    }    
+    }
 }
