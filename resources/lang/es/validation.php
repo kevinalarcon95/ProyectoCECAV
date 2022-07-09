@@ -147,6 +147,21 @@ return [
     */
 
     'attributes' => [
+        //create oferta
+        'nombreOferta' => '"Nombre"',
+        'descripcionOferta' => '"Descripción"',
+        'tipoPagoOferta' => '"Tipo de pago"',
+        'costoOferta' => '"Costo o inversión "',
+        'fechaInicioOferta' => '"Fecha inicio"',
+        'fechaFinOferta' => '"Fecha fin "',
+        'intensidadHorarioOferta' => '"Intensidad Horaria"',
+        'cuposOferta' => '"Limite de cupos"',
+        'poblacionOferta' => '"población objetivo"',
+        'categoriaOferta' => '"Categoria"',
+        'unidadAcademicaOferta' => '"Unidad academica"',
+        'resolucionOferta' => '"Resolución"',
+        'tipoCursoOferta' => '"Tipo de curso"',
+        'fechaCierreOferta' => '"Fecha cierre de inscripciones"',
         //inscripcion Oferta
         'direccionUser' => '"Dirección de residencia"',
         'telefonoUser' => '"Teléfono o número de celular"',
