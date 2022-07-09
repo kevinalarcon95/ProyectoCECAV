@@ -90,8 +90,8 @@ class OfertaController extends Controller
             'cuposOferta' => 'required|numeric',
             'imagenOferta' => 'required|image|mimes:jpeg,png,jpg,svg1|dimensions:min_width=100,min_height=200|max:5000',
             'poblacionOferta' => 'required|string|max:200|',
-            //'categoriaOferta' => 'required',
-            'costoOferta' => 'required|string',
+            'categoriaOferta' => 'required',
+            //'costoOferta' => 'required|string',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
             'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
