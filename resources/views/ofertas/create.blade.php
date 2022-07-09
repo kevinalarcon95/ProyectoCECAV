@@ -23,7 +23,7 @@
                         <label for="exampleInputEmail1" class="form-label fw-bold">Nombre (Diplomado, curso, charla, etc)</label>
                         <input type="text" class="form-control @error('nombreOferta') is-invalid @enderror" name="nombreOferta" placeholder="Tu respuesta" id="nombreOferta" style="background-color: #ececec;" value="{{old('nombreOferta')}}" required>
                         @error('nombreOferta')
-                        <small id="validationServer03Feedback" class="invalid-feedback">*{{$message}}</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
@@ -47,9 +47,9 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label fw-bold">Unidad académica</label>
-                        <input type="text" class="form-control @error('unidadAcademicaOferta') is-invalid @enderror" name="unidadAcademicaOferta" placeholder="Tu respuesta" value="{{old('unidadAcademicaOferta')}}" style="background-color: #ececec;" required>
-                        @error('unidadAcademicaOferta')
+                        <label class="form-label fw-bold">Costo o inversión</label>
+                        <textarea type="text" class="form-control @error('costoOferta') is-invalid @enderror" name="costoOferta" id="costoOferta" placeholder="Valor de inversión" style="background-color: #ececec;" disabled required>{{ old('costoOferta') }}</textarea>
+                        @error('costoOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
@@ -61,9 +61,9 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label fw-bold">Resolución</label>
-                        <input type="text" class="form-control  @error('resolucionOferta') is-invalid @enderror" name="resolucionOferta" placeholder="Tu respuesta" value="{{old('resolucionOferta')}}" style="background-color: #ececec;" required>
-                        @error('resolucionOferta')
+                        <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin</strong></label>
+                        <input type="date" class="form-control @error('fechaFinOferta') is-invalid @enderror"" name=" fechaFinOferta" value="{{old('fechaFinOferta')}}" style="background-color: #ececec;" required>
+                        @error('fechaFinOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
@@ -85,8 +85,8 @@
                 <div class="col">
                     <div class="mb-3">
                         <label for="formFile" class="form-label fw-bold">Seleccione una imagen</label>
-                        <input class="form-control @error('imagenOferta') is-invalid @enderror" type="file" name="imagenOferta" accept="image/*" value="{{old('imagenOferta')}}" style="background-color: #ececec;" required>
-
+                        <input class="form-control @error('imagenOferta') is-invalid @enderror" type="file" name="imagenOferta" id="imagen" accept="image/*" value="{{old('imagenOferta')}}" style="background-color: #ececec;" required>
+                        <img class="mt-1 img-thumbnail img-fluid" id="imagenSeleccionada"  width="100" alt="">
                         @error('imagenOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -112,16 +112,16 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">Costo o inversión</label>
-                        <textarea type="text" class="form-control @error('costoOferta') is-invalid @enderror" name="costoOferta" id="costoOferta" placeholder="Valor de inversión" style="background-color: #ececec;" disabled required>{{ old('costoOferta') }}</textarea>
-                        @error('costoOferta')
+                        <label for="exampleInputEmail1" class="form-label fw-bold">Unidad académica</label>
+                        <input type="text" class="form-control @error('unidadAcademicaOferta') is-invalid @enderror" name="unidadAcademicaOferta" placeholder="Tu respuesta" value="{{old('unidadAcademicaOferta')}}" style="background-color: #ececec;" required>
+                        @error('unidadAcademicaOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin</strong></label>
-                        <input type="date" class="form-control @error('fechaFinOferta') is-invalid @enderror"" name=" fechaFinOferta" value="{{old('fechaFinOferta')}}" style="background-color: #ececec;" required>
-                        @error('fechaFinOferta')
+                        <label for="exampleInputEmail1" class="form-label fw-bold">Resolución</label>
+                        <input type="text" class="form-control  @error('resolucionOferta') is-invalid @enderror" name="resolucionOferta" placeholder="Tu respuesta" value="{{old('resolucionOferta')}}" style="background-color: #ececec;" required>
+                        @error('resolucionOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
@@ -148,16 +148,23 @@
             <hr />
             <div class="row">
                 <div class="col" style="text-align: right;">
-                    <button type="submit" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
-                        </svg> Cancelar</button>
-                    <button type="submit" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-down-left" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M9.636 2.5a.5.5 0 0 0-.5-.5H2.5A1.5 1.5 0 0 0 1 3.5v10A1.5 1.5 0 0 0 2.5 15h10a1.5 1.5 0 0 0 1.5-1.5V6.864a.5.5 0 0 0-1 0V13.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
-                            <path fill-rule="evenodd" d="M5 10.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1H6.707l8.147-8.146a.5.5 0 0 0-.708-.708L6 9.293V5.5a.5.5 0 0 0-1 0v5z" />
-                        </svg> Guardar</button>
+                    <a type="button" class="btn btn-secondary" href="{{url('/admin/listOferta') }}"><i class="bi bi-x"></i> Cancelar</a>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Guardar</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 @endsection
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+    $(document).ready(function(e) {
+        $('#imagen').change(function() {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#imagenSeleccionada').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+    });
+</script>

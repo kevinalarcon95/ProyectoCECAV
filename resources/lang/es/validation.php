@@ -147,6 +147,7 @@ return [
     */
 
     'attributes' => [
+        //inscripcion Oferta
         'direccionUser' => '"Dirección de residencia"',
         'telefonoUser' => '"Teléfono o número de celular"',
         'tipoInscripcion' => '"Tipo de inscripción"',

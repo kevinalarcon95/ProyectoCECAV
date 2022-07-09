@@ -8,6 +8,7 @@ use App\Http\Controllers\AspiOfertaController;
 use App\Http\Controllers\AspiIcfesController;
 use App\Http\Controllers\PreicfesController;
 use App\Http\Controllers\InscripcionOfertaController;
+use App\Http\Controllers\InfoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
