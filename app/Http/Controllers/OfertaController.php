@@ -144,7 +144,7 @@ class OfertaController extends Controller
                     'id_certificado' => 1,
                 ]);
                 Toastr::success('¡Su registro fue exitoso!', 'Exito', ["positionClass" => "toast-top-right"]);
-                return redirect('/admin/createOferta');
+                return redirect('/admin/listOferta');
             } catch (Throwable $e) {
                 dd($e);
                 Toastr::error('¡Error al crear su registro!', 'Error', ["positionClass" => "toast-top-right"]);
