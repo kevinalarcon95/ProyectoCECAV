@@ -164,6 +164,21 @@ return [
         'departamentoIcfes' => '"Departamento en que está ubicado el nombre del colegio"',
         'nomAcuIcfes' => '"Nombres y apellidos completos del acudiente"',
         
+        //Editar oferta
+        'nombreOferta' => '"Nombre "',
+        'descripcionOferta' => '"Descripcion"',
+        'tipoPagoOferta' => '"Tipo de Pago"',
+        'unidadAcademicaOferta' => '"Unidad Academica"',
+        'fechaInicioOferta' => '"Fecha Inicio "',
+        'resolucionOferta' => '"Resolución"',
+        'intensidadHorarioOferta' => '"Intensidad horaria"',
+        'cuposOferta' => '"Cupos"',          
+        'imagenOferta' => '"Imagen"',
+        'poblacionOferta' => '"Población"',
+        'categoriaOferta' => '"Categoria"',          
+        'fechaFinOferta' => '"Fecha Fin "',
+        'tipoCursoOferta' => '"Tipo de curso"',
+        'fechaCierreOferta' => 'Fecha cierre'
     ],
 
 ];
