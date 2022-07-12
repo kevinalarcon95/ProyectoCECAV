@@ -19,12 +19,53 @@ class PreicfesController extends Controller
     public function index()
     {
         $objPreIcfes = Preicfes::all();
-        return view('preIcfes.index') ->with ( 'objPreIcfes', $objPreIcfes);
+        return view('preIcfes.index')->with('objPreIcfes', $objPreIcfes);
     }
 
     public function list()
     {
-        $datosPreicfes['arrayPreicfes'] = Preicfes::all();
+        $fecha_actual = date("y-m-d");
+        $fecha_pasada = date("y-m-d", strtotime($fecha_actual . "-5 years"));
+        $datosPreicfes['arrayPreicfes'] = Preicfes::where('fecha_inicio', '>=', $fecha_pasada)->get();
+        $datosPreicfes['arrayPreicfes'] = Preicfes::select(
+            "preicfes.id",
+            "preicfes.nombre",
+            "preicfes.descripcion",
+            "preicfes.imagen",
+            "preicfes.fecha_inicio",
+            "preicfes.fecha_fin",
+            "preicfes.fecha_inicio_inscripcion",
+            "preicfes.fecha_fin_inscripcion",
+            "preicfes.duracion",
+            "preicfes.valor",
+            "preicfes.tipo_curso",
+            "preicfes.poblacion_objetivo",
+            "preicfes.estructura",
+            "preicfes.pasos_inscripcion",
+            DB::raw("GROUP_CONCAT(horario_preicfes.horario) as `horario`")
+        )
+            ->from('preicfes')
+            ->join('horario_preicfes', 'horario_preicfes.id_preicfes', '=', 'preicfes.id')
+            ->groupby(
+                'preicfes.id',
+                "preicfes.id",
+                "preicfes.nombre",
+                "preicfes.descripcion",
+                "preicfes.imagen",
+                "preicfes.fecha_inicio",
+                "preicfes.fecha_fin",
+                "preicfes.fecha_inicio_inscripcion",
+                "preicfes.fecha_fin_inscripcion",
+                "preicfes.duracion",
+                "preicfes.valor",
+                "preicfes.tipo_curso",
+                "preicfes.poblacion_objetivo",
+                "preicfes.estructura",
+                "preicfes.pasos_inscripcion",
+            )
+            ->where('fecha_inicio', '>=', $fecha_pasada)
+            ->get();
+
         return view('preicfes.list', $datosPreicfes);
     }
 
@@ -35,8 +76,7 @@ class PreicfesController extends Controller
      */
     public function create()
     {
-         $opcionesTipoCurso = ['Virtual', 'Presencial'];
-        return view('preicfes.create', compact('opcionesTipoCurso'));
+        return view('preicfes.create');
     }
 
     /**
@@ -48,7 +88,7 @@ class PreicfesController extends Controller
     public function store(Request $request)
     {
         //Falta validar fechas y horas
-        $campos = [
+        $request->validate([
             'nombre' => 'required|string',
             'imagen' => 'required|max:2048|mimes:jpeg,png,jpg',
             'tipo_curso' => 'in:Virtual,Presencial',
@@ -63,33 +103,27 @@ class PreicfesController extends Controller
             'fecha_inicio' => 'required|date|after_or_equal:fecha_fin_inscripcion',
             'fecha_fin_inscripcion' => 'required|date|after_or_equal:fecha_inicio_inscripcion',
             'fecha_inicio_inscripcion' => 'required|date|after_or_equal:today',
-        ];
-        $mensaje = [
-            'tipo_curso.in' => 'Se debe seleccionar una opcion de tipo Curso',
-            'fecha_inicio_inscripcion.after_or_equal' => 'El campo fecha inicio inscripcion debe ser una fecha posterior o igual a hoy'
-        ];
-
-        $this->validate($request, $campos, $mensaje);
-
-        //Se traen todos los datos del formulario
+        ]);
         $datosPreicfes = request()->except('_token');
 
-        //Se le da formato al horario
-        //$datosPreicfes['horario'] = $datosPreicfes['jornadaM1'] . ' y ' . $datosPreicfes['jornadaM2'] . ' y ' . $datosPreicfes['jornadaT1'] . ' y ' . $datosPreicfes['jornadaT2'];
-        //Se eliminan los campos en los que se capturan las horas
-        //unset($datosPreicfes['jornadaM1'], $datosPreicfes['jornadaM2'], $datosPreicfes['jornadaT1'], $datosPreicfes['jornadaT2']);
-
-
+        $horario = $datosPreicfes['horario'];
+        unset($datosPreicfes['horario']);
         $datosPreicfes['imagen'] = Storage::url($request->file('imagen')->store('public/preicfes'));
 
         try {
-            Preicfes::insert($datosPreicfes);
-            Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
+            $idPreicfes = DB::table('preicfes')->insertGetId($datosPreicfes);
+            for ($i = 0; $i < count($horario); $i++) {
+                DB::table('horario_preicfes')->insertGetId(
+                    [
+                        'id_preicfes' => $idPreicfes,
+                        'horario' => $horario[$i]
+                    ]
+                );
+            }
+            Toastr::success('¡Su registro fue exitoso!', 'Exito', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listPreicfes');
         } catch (Throwable $e) {
-            //dd($e);
-            Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
-            //Toastr::error('¡Error al crear su registro!','');
+            Toastr::error('¡Error al crear su registro!', 'Error', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/createPreicfes');
         }
     }
@@ -102,7 +136,7 @@ class PreicfesController extends Controller
      */
     public function show($id)
     {
-        $objPreIcfes = Preicfes::findOrFail($id);    
+        $objPreIcfes = Preicfes::findOrFail($id);
         return view('preIcfes.detallePreIcfes')->with('objPreIcfes', $objPreIcfes);
     }
 
@@ -115,8 +149,11 @@ class PreicfesController extends Controller
     public function edit($id)
     {
         $preicfes = Preicfes::findOrFail($id);
-        $opcionesTipoCurso = ['Virtual', 'Presencial'];
-        return view('preicfes.edit', compact('preicfes', 'opcionesTipoCurso'));
+        $horarios = Preicfes::select(
+            'horario'
+        )->from('horario_preicfes')->where('id_preicfes', '=', $id)->get();;
+
+        return view('preicfes.edit', compact('preicfes', 'horarios'));
     }
 
     /**
@@ -128,7 +165,7 @@ class PreicfesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $campos = [
+        $request->validate([
             'nombre' => 'required|string',
             'imagen' => 'max:2048|mimes:jpeg,png,jpg',
             'tipo_curso' => 'in:Virtual,Presencial',
@@ -143,14 +180,11 @@ class PreicfesController extends Controller
             'fecha_inicio' => 'required',
             'fecha_fin_inscripcion' => 'required',
             'fecha_inicio_inscripcion' => 'required',
-        ];
-        $mensaje = [
-            'tipo_curso.in' => 'Se debe seleccionar una opcion de tipo Curso'
-        ];
-
-        $this->validate($request, $campos, $mensaje);
+        ]);
 
         $datos = request()->except(['_token', '_method']);
+        $horario = $datos['horario'];
+        unset($datos['horario']);
 
         if ($request->hasFile('imagen')) {
             $datosTemporal = Preicfes::findOrFail($id);
@@ -159,25 +193,22 @@ class PreicfesController extends Controller
             $datos['imagen'] = Storage::url($request->file('imagen')->store('public/preicfes'));
         }
 
-
-        //Se le da formato al horario
-        //$datos['horario'] = $datos['jornadaM1'] . ' y ' . $datos['jornadaM2'] . ' y ' . $datos['jornadaT1'] . ' y ' . $datos['jornadaT2'];
-        //Se eliminan los campos en los que se capturan las horas
-        //unset($datos['jornadaM1'], $datos['jornadaM2'], $datos['jornadaT1'], $datos['jornadaT2']);
-
-
         try {
             Preicfes::where('id', '=', $id)->update($datos);
-            Toastr::success('¡Actualizo exitoso!', '', ["positionClass" => "toast-top-right"]);
+            DB::delete('DELETE FROM horario_preicfes WHERE id_preicfes = ?', [$id]);
+            for ($i = 0; $i < count($horario); $i++) {
+                DB::table('horario_preicfes')->insertGetId(
+                    [
+                        'id_preicfes' => $id,
+                        'horario' => $horario[$i]
+                    ]
+                );
+            }
+            Toastr::success('¡Su registro fue actualizado!', 'Exito', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listPreicfes');
         } catch (Throwable $e) {
-            //dd($e);
-            Toastr::error('¡Error al actualizar !', '', ["positionClass" => "toast-top-right"]);
-            //Toastr::error('¡Error al crear su registro!','');
-
-            $preicfes = Preicfes::findOrFail($id);
-            $opcionesTipoCurso = ['Virtual', 'Presencial'];
-            return view('preicfes.edit', compact('preicfes', 'opcionesTipoCurso'));
+            Toastr::error('¡Error al actualizar !', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/listPreicfes');
         }
     }
 
@@ -193,14 +224,16 @@ class PreicfesController extends Controller
         $url = str_replace('storage', 'public', $preicfes->imagen);
         Storage::delete($url);
         try {
+            DB::delete('DELETE FROM horario_preicfes WHERE id_preicfes = ?', [$id]);
             DB::delete('DELETE FROM preicfes WHERE id = ?', [$id]);
-            Toastr::success('¡Registro eliminado exitosamente!', '', ["positionClass" => "toast-top-right"]);
+            Toastr::success('¡Registro eliminado exitosamente!', 'Exitoso', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listPreicfes');
         } catch (Throwable $e) {
-            Toastr::error('¡Error al eliminar!', '', ["positionClass" => "toast-top-right"]);
+            Toastr::error('¡Error al eliminar!', 'Error', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listPreicfes');
         }
     }
+
     public static function existeInscritos($id)
     {
         $numInscritos = DB::table('Preicfes')

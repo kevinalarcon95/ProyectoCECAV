@@ -32,8 +32,8 @@ class OfertaController extends Controller
 
     public function list()
     {
-        $fecha_actual = date("d-m-y");
-        $fecha_pasada = strtotime($fecha_actual . "- 5 years");
+        $fecha_actual = date("y-m-d");
+        $fecha_pasada = date("y-m-d", strtotime($fecha_actual . "-5 years"));
         $datos['ofertas'] = Oferta::select(
             'oferta.id',
             'oferta.nombre',
@@ -54,10 +54,10 @@ class OfertaController extends Controller
         )
             ->from('oferta')
             ->join('categoria', 'oferta.id_categoria', '=', 'categoria.id')
-            //->whereBetween('')
-            //->where('oferta.fecha_inicio', 'BETWEEN', $fecha_pasada." AND ")
+            ->where('oferta.fecha_inicio','>=',$fecha_pasada)
             ->get();
-        return view('ofertas.list', $datos);
+        
+            return view('ofertas.list', $datos);
     }
     /**
      * Show the form for creating a new resource.
