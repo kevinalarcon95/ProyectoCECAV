@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use Throwable;
+use Carbon\Carbon;
 
 class OfertaController extends Controller
 {
@@ -25,14 +26,14 @@ class OfertaController extends Controller
      */
     public function index()
     {
-        $objOferta = Oferta::all();
+        $objOferta = Oferta::orderBy('nombre','asc')->get();
         return view('ofertas.index')->with('objOferta', $objOferta);
     }
 
     public function list()
     {
-        $fecha_actual = date("d-m-y");
-        $fecha_pasada = strtotime($fecha_actual . "- 5 years");
+        $fecha_actual = date("y-m-d");
+        $fecha_pasada = date("y-m-d", strtotime($fecha_actual . "-5 years"));
         $datos['ofertas'] = Oferta::select(
             'oferta.id',
             'oferta.nombre',
@@ -53,10 +54,10 @@ class OfertaController extends Controller
         )
             ->from('oferta')
             ->join('categoria', 'oferta.id_categoria', '=', 'categoria.id')
-            //->whereBetween('')
-            //->where('oferta.fecha_inicio', 'BETWEEN', $fecha_pasada." AND ")
+            ->where('oferta.fecha_inicio','>=',$fecha_pasada)
             ->get();
-        return view('ofertas.list', $datos);
+        
+            return view('ofertas.list', $datos);
     }
     /**
      * Show the form for creating a new resource.
@@ -82,12 +83,12 @@ class OfertaController extends Controller
             'nombreOferta' => 'required|string',
             'descripcionOferta' => 'required|string',
             'tipoPagoOferta' => 'required',
-            'unidadAcademicaOferta' => 'required|string|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?)(?=.*?[#?!@$%^&*-]).{6,}$/',
+            'unidadAcademicaOferta' => 'required|string|regex:/^[\pL\s\-]+$/u',
             'fechaInicioOferta' => 'required|date|after_or_equal:today',
             'resolucionOferta' => 'required|string',
             'intensidadHorarioOferta' => 'required|string',
             'cuposOferta' => 'required|numeric',
-            'imagenOferta' => 'required|image|mimes:jpeg,png,jpg,svg',
+            'imagenOferta' => 'required|image|mimes:jpeg,png,jpg,svg1|dimensions:min_width=100,min_height=200|max:5000',
             'poblacionOferta' => 'required|string|max:200|',
             'categoriaOferta' => 'required',
             //'costoOferta' => 'required|string',
@@ -104,18 +105,18 @@ class OfertaController extends Controller
         $descripcionOferta = $request->input('descripcionOferta');
         $tipoPagoOferta = $request->input('tipoPagoOferta');
         $unidadAcademicaOferta = $request->input('unidadAcademicaOferta');
-        $fechaInicioOferta = $request->input('fechaInicioOferta');
+        $fechaInicioOferta = Carbon::parse($request->input('fechaInicioOferta'))->translatedFormat('l d \d\e F \d\e\l Y');
         $resolucionOferta = $request->input('resolucionOferta');
         $intensidadHorarioOferta = $request->input('intensidadHorarioOferta');
         $cuposOferta = $request->input('cuposOferta');
         $poblacionOferta = $request->input('poblacionOferta');
         $categoriaOferta = $request->input('categoriaOferta');
-        $fechaFinOferta = $request->input('fechaFinOferta');
+        $fechaFinOferta = Carbon::parse($request->input('fechaFinOferta'))->translatedFormat('l d \d\e F \d\e\l Y');
         $costoOferta = $request->input('costoOferta');
         $tipoCursoOferta = $request->input('tipoCursoOferta');
-        $fechaCierreOferta = $request->input('fechaCierreOferta');
+        $fechaCierreOferta = Carbon::parse($request->input('fechaCierreOferta'))->translatedFormat('l d \d\e F \d\e\l Y');
 
-        if ($costoOferta == null) {
+        if ($tipoPagoOferta == 'Gratuito' || $costoOferta == null) {
             $costoOferta = 0;
         } 
         
@@ -143,7 +144,7 @@ class OfertaController extends Controller
                     'id_certificado' => 1,
                 ]);
                 Toastr::success('¡Su registro fue exitoso!', 'Exito', ["positionClass" => "toast-top-right"]);
-                return redirect('/admin/createOferta');
+                return redirect('/admin/listOferta');
             } catch (Throwable $e) {
                 dd($e);
                 Toastr::error('¡Error al crear su registro!', 'Error', ["positionClass" => "toast-top-right"]);
@@ -175,6 +176,7 @@ class OfertaController extends Controller
     {
         $oferta = Oferta::findOrFail($id);
         $categoria = Categoria::pluck('nombre', 'id');
+        $fechaFinOferta = Carbon::parse($oferta->fecha_fin)->format('d/m/Y');
         return view('ofertas.editar', compact('oferta'))->with('categoria', $categoria);
     }
 
@@ -195,10 +197,9 @@ class OfertaController extends Controller
             'tipoPagoOferta' => 'in:Pago,Gratuito',
             'unidadAcademicaOferta' => 'required|string',
             'fechaInicioOferta' => 'required|date|after_or_equal:fechaCierreOferta',
-            // 'resolucionOferta' => 'required|string',
+            'resolucionOferta' => 'required|string',
             'intensidadHorarioOferta' => 'required|string',
             'cuposOferta' => 'required|numeric|min:1',
-            //'imagenOferta' => 'required',
             'imagenOferta' => 'max:2048|mimes:jpeg,png,jpg',
             'poblacionOferta' => 'required|string',
             'categoriaOferta' => 'required',
@@ -215,7 +216,8 @@ class OfertaController extends Controller
         //$tipoPagoOferta = $request->input('tipoPagoOferta');
         $unidadAcademicaOferta = $request->input('unidadAcademicaOferta');
         $fechaInicioOferta = $request->input('fechaInicioOferta');
-        //$resolucionOferta = $request->input('resolucionOferta');
+              
+        $resolucionOferta = $request->input('resolucionOferta');
         $intensidadHorarioOferta = $request->input('intensidadHorarioOferta');
         $cuposOferta = $request->input('cuposOferta');
 
@@ -225,6 +227,7 @@ class OfertaController extends Controller
         //$costoOferta = $request->input('costoOferta');
         $tipoCursoOferta = $request->input('tipoCursoOferta');
         $fechaCierreOferta = $request->input('fechaCierreOferta');
+        
 
         try {
             $updateData->nombre = $nombreOferta;
@@ -235,7 +238,7 @@ class OfertaController extends Controller
             $updateData->id_categoria = $categoriaOferta;
             //$updateData->costo = $costoOferta;
             $updateData->fecha_inicio = $fechaInicioOferta;
-            //$updateData->resolucion = $resolucionOferta;                      
+            $updateData->resolucion = $resolucionOferta;                      
             $updateData->intensidad_horario = $intensidadHorarioOferta;
             $updateData->limite_cupos = $cuposOferta;
             $updateData->fecha_fin = $fechaFinOferta;
@@ -263,11 +266,11 @@ class OfertaController extends Controller
             }
 
             $updateData->save();
-            Toastr::success('¡Su registro fue editado exitosamente!', '', ["positionClass" => "toast-top-right"]);
+            Toastr::success('¡Su registro fue editado exitosamente!', 'Exito', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listOferta');
         } catch (Throwable $e) {
             dd($e);
-            Toastr::error('¡Error al editar su registro!', '', ["positionClass" => "toast-top-right"]);
+            Toastr::error('¡Error al editar su registro!', 'Error', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listOferta');
         }
     }
@@ -296,4 +299,5 @@ class OfertaController extends Controller
             ->get();
         return (count($numInscritos));
     }
+    
 }

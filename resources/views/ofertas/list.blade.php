@@ -62,7 +62,7 @@
 
                         <a type="button" href="{{ route('/admin/editOferta')}}/{{$varOferta->id}}" class="botones btn btn-editar me-1"><i class="bi bi-pencil-square me-1"></i>Editar</a>
 
-                        <button type="button" class="botones btn btn-eliminar" data-bs-toggle="modal" data-bs-target="#exampleModal{{$varOferta->id}}"><i class="bi bi-trash3 me-1"></i>Borrar</button>
+                        <button type="button" class="botones btn btn-eliminar" data-bs-toggle="modal" data-bs-target="#exampleModal{{$varOferta->id}}"><i class="bi bi-trash3 me-1"></i>Eliminar</button>
 
                     </div>
                 </td>

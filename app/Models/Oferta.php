@@ -29,4 +29,5 @@ class Oferta extends Model
         'fecha_cierre_inscripcion',
         'id_certificado',
     ];
+    
 }

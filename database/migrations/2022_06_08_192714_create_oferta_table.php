@@ -23,13 +23,13 @@ class CreateOfertaTable extends Migration
             $table->text('poblacion_objetivo');
             $table->unsignedBigInteger('id_categoria');
             $table->text('costo');        
-            $table->date('fecha_inicio');
+            $table->text('fecha_inicio');
             $table->text('resolucion')->unique();
             $table->text('intensidad_horario');
             $table->integer('limite_cupos');
-            $table->date('fecha_fin');
+            $table->text('fecha_fin');
             $table->text('tipo_curso');   
-            $table->date('fecha_cierre_inscripcion');
+            $table->text('fecha_cierre_inscripcion');
             $table->unsignedBigInteger('id_certificado');
             $table->timestamps();
 

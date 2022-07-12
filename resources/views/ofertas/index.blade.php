@@ -11,38 +11,30 @@
 
     <!--Buscador-->
     <div class="row">
-        <div class="col-12"></div>
-        <form action="#" method="">
-            <div class="form-row">
-                <div class="col-6 text-end">
-                    <div class="input-group mb-3">
-                        <input type="search" class="form-control" name="buscadorOferta" placeholder="Buscar" aria-describedby="button-addon2" value="" style="background:#ECECEC;">
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2" style="background:#04153B;">Buscar </button>
-                    </div>
-                </div>
-                <div class="col"></div>
+        <div class="col"></div>
+        <div class="col">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Buscar" aria-describedby="button-addon2" style="background:#ECECEC;">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="background:#04153B;">Buscar </button>
             </div>
-        </form>
+        </div>
+        <div class="col"></div>
     </div>
-    <!--Fin Buscador-->
-
+    <!--Fin Buscador-->   
     <!-- cards -->
     <div class="row ml-5 mr-5 mb-4">
         @foreach ($objOferta as $objOferta)
         <div class="col-lg-4 col-sm-12 p-3">
             <div class="card">
-                <div class="box img">
-                    <img class="card-img-top" src="{{ asset($objOferta->imagen) }}" alt="Card image cap"" >
+                <div class="col-md-4">
+                    <img class="card-img-fluid" src="{{ asset($objOferta->imagen) }}" alt="Card image cap" style="height: 500px;width: unset;">
                 </div>
 
-                <div class=" card-body">
-
-                    <h5 class="card-text">{{$objOferta->nombre}}</h5>
-
-                    <p>Costo: $ {{$objOferta->costo}}</p>
-                    <p>Fecha de inicio: {{$objOferta->fecha_inicio}}</p>
-                    <p>Fecha de finalizacion: {{$objOferta->fecha_fin}}</p>
-
+                <div class=" card-body mb-2">
+                    <h5 class="card-text" style="color: #800000;">{{$objOferta->nombre}}</h5>
+                    <p class=""><strong>Población Objetivo:</strong> {{$objOferta->poblacion_objetivo}}</p>
+                    <p><strong>Fecha de inicio:</strong> {{$objOferta->fecha_inicio}}</p>
+                    <p><strong>Fecha de finalización:</strong> {{$objOferta->fecha_fin}}</p>
                     <div class="row">
                         <div class="col-6">
                             <a type="button" href="{{ url('/detalleOferta/') }}{{'/'}}{{ $objOferta->id }} " class="btn btn-primary" style="background:#04153B; border:none;">Más detalles</a>
@@ -74,4 +66,9 @@
             object-position: center center;
         }
     }
+    .img {
+        width: auto;
+        height: auto;
+    }
+    
 </style>
