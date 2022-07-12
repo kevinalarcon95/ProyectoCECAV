@@ -5,10 +5,17 @@
 <!--Formulario inscripcion preicfes-->
 
 <div class="container">
-    <div class="row text-center mt-5 mb-3">
-        <h2 class="fw-bold">FORMULARIO DE INSCRIPCIÓN FUNCIONARIOS</h2>
+    <div class="row mx-3 ">
+
+        <div class="col-sm-11 botones me-2" style=" color: #3E4C60">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#4285F4" class="bi bi-plus-circle-fill " viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+            </svg>
+            <h5 class="titulo">Añadir registro</h5>
+        </div>
+
     </div>
-    <form action="#" method="POST" class="needs-validation" novalidate>
+    <form action="{{route('/admin/saveFuncionario')}}" method="POST" class="needs-validation" novalidate>
         @csrf
 
         <div class="row">
@@ -57,6 +64,12 @@
                     @enderror
                 </div>
 
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col text-center">
+                <button type="submit" class="btn btn-primary" style="background-color:#04153B; border:none">Enviar formulario</button>
             </div>
         </div>
 
