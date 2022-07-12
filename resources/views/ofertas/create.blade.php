@@ -43,6 +43,7 @@
 
                         </select>
                         @error('tipoPagoOferta')
+                        <div class="valid-feedback">Looks good!</div>
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
@@ -57,6 +58,7 @@
                         <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio</strong></label>
                         <input type="date" class="form-control @error('fechaInicioOferta') is-invalid @enderror"" name=" fechaInicioOferta" value="{{old('fechaInicioOferta')}}" style="background-color: #ececec;" required>
                         @error('fechaInicioOferta')
+                        <div class="valid-feedback">Looks good!</div>
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
@@ -64,6 +66,8 @@
                         <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin</strong></label>
                         <input type="date" class="form-control @error('fechaFinOferta') is-invalid @enderror"" name=" fechaFinOferta" value="{{old('fechaFinOferta')}}" style="background-color: #ececec;" required>
                         @error('fechaFinOferta')
+                        <div class="valid-feedback">Looks good!</div>
+                        if
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
@@ -86,7 +90,7 @@
                     <div class="mb-3">
                         <label for="formFile" class="form-label fw-bold">Seleccione una imagen</label>
                         <input class="form-control @error('imagenOferta') is-invalid @enderror" type="file" name="imagenOferta" id="imagen" accept="image/*" value="{{old('imagenOferta')}}" style="background-color: #ececec;" required>
-                        <img class="mt-1 img-thumbnail img-fluid" id="imagenSeleccionada"  width="100" alt="">
+                        <img class="mt-1 img-thumbnail img-fluid" id="imagenSeleccionada" width="100" alt="">
                         @error('imagenOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -113,7 +117,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Unidad académica</label>
-                        <input type="text" class="form-control @error('unidadAcademicaOferta') is-invalid @enderror" name="unidadAcademicaOferta" placeholder="Tu respuesta" value="{{old('unidadAcademicaOferta')}}" style="background-color: #ececec;" required>
+                        <input type="text" class="form-control @error('unidadAcademicaOferta') is-invalid @enderror" name="unidadAcademicaOferta" placeholder="Tu respuesta" value="{{old('unidadAcademicaOferta')}}" style="background-color: #ececec;" pattern="/^[\pL\s\-]+$/u" required>
                         @error('unidadAcademicaOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -160,6 +164,18 @@
 <script>
     $(document).ready(function(e) {
         $('#imagen').change(function() {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#imagenSeleccionada').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(e) {
+        $('#imagen').change(function() {
+            const $tipoPago = $('#stipoPago');
             let reader = new FileReader();
             reader.onload = (e) => {
                 $('#imagenSeleccionada').attr('src', e.target.result);

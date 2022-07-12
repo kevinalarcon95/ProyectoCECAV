@@ -105,16 +105,16 @@ class OfertaController extends Controller
         $descripcionOferta = $request->input('descripcionOferta');
         $tipoPagoOferta = $request->input('tipoPagoOferta');
         $unidadAcademicaOferta = $request->input('unidadAcademicaOferta');
-        $fechaInicioOferta = Carbon::parse($request->input('fechaInicioOferta'))->translatedFormat('l d \d\e F \d\e\l Y');
+        $fechaInicioOferta = $request->input('fechaInicioOferta');
         $resolucionOferta = $request->input('resolucionOferta');
         $intensidadHorarioOferta = $request->input('intensidadHorarioOferta');
         $cuposOferta = $request->input('cuposOferta');
         $poblacionOferta = $request->input('poblacionOferta');
         $categoriaOferta = $request->input('categoriaOferta');
-        $fechaFinOferta = Carbon::parse($request->input('fechaFinOferta'))->translatedFormat('l d \d\e F \d\e\l Y');
+        $fechaFinOferta = $request->input('fechaFinOferta');
         $costoOferta = $request->input('costoOferta');
         $tipoCursoOferta = $request->input('tipoCursoOferta');
-        $fechaCierreOferta = Carbon::parse($request->input('fechaCierreOferta'))->translatedFormat('l d \d\e F \d\e\l Y');
+        $fechaCierreOferta = $request->input('fechaCierreOferta');
 
         if ($tipoPagoOferta == 'Gratuito' || $costoOferta == null) {
             $costoOferta = 0;
@@ -226,6 +226,8 @@ class OfertaController extends Controller
         //$costoOferta = $request->input('costoOferta');
         $tipoCursoOferta = $request->input('tipoCursoOferta');
         $fechaCierreOferta = $request->input('fechaCierreOferta');
+
+        //dd($fechaInicioOferta);
 
         try {
             $updateData->nombre = $nombreOferta;

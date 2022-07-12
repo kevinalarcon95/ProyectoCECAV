@@ -67,6 +67,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{(route('/homeInfo'))}}">ACERCA DE CECAV</a>
                 </li>
+                @role('user')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{(route('/misOfertas'))}}">MIS OFERTAS</a>
+                </li>
+                @endrole
                 <li>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto ">

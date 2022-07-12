@@ -31,10 +31,11 @@
                 </div>
 
                 <div class=" card-body mb-2">
+                    
                     <h5 class="card-text" style="color: #800000;">{{$objOferta->nombre}}</h5>
                     <p class=""><strong>Población Objetivo:</strong> {{$objOferta->poblacion_objetivo}}</p>
-                    <p><strong>Fecha de inicio:</strong> {{$objOferta->fecha_inicio}}</p>
-                    <p><strong>Fecha de finalización:</strong> {{$objOferta->fecha_fin}}</p>
+                    <p><strong>Fecha de inicio:</strong> {{ \Carbon\Carbon::parse($objOferta->fecha_inicio)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
+                    <p><strong>Fecha de finalización:</strong> {{ \Carbon\Carbon::parse($objOferta->fecha_fin)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
                     <div class="row">
                         <div class="col-6">
                             <a type="button" href="{{ url('/detalleOferta/') }}{{'/'}}{{ $objOferta->id }} " class="btn btn-primary" style="background:#04153B; border:none;">Más detalles</a>
