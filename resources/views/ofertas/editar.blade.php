@@ -11,94 +11,83 @@
             
             <div class="row mx-3">
                 <div class="col-sm-1 mr-0" style="text-align: left;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#4285F4" class="bi bi-plus-circle-fill " viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-plus-circle-fill " viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                     </svg>
                 </div>
-                <div class="col-sm-11" style="text-align: left; color: #3E4C60">
-                    <h5>Editar oferta</h5>
-                </div>
+                <div class="col-sm-10">
+                    <h5 style="margin-left: -3.2rem; margin-top: 0.5rem;">Editar registro</h5>
+                 </div>
             </div>
             <hr />
             <div class="row m-3 pt-3">
                 <div class="col">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Nombre (Diplomado, curso, charla, etc)</label>
-                        <input type="text" class="form-control" name="nombreOferta" value="{{old('nombreOferta', $oferta->nombre)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        <input type="text" class="form-control @error('nombreOferta') is-invalid @enderror" name="nombreOferta" value="{{old('nombreOferta', $oferta->nombre)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
                         @error('nombreOferta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label fw-bold">Descripcion</label>
-                        <textarea type="text" name="descripcionOferta"  class="form-control"  value="{{old('descripcionOferta', $oferta->descripcion)}}" id="exampleInputPassword1" placeholder="Tu respuesta" style="background-color: #ececec;">{{$oferta->descripcion}}</textarea>
+                        <textarea type="text" name="descripcionOferta"  class="form-control  @error('descripcionOferta') is-invalid @enderror"  value="{{old('descripcionOferta', $oferta->descripcion)}}" id="exampleInputPassword1" placeholder="Tu respuesta" style="background-color: #ececec;">{{$oferta->descripcion}}</textarea>
                         @error('descripcionOferta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Tipo de pago</label>
                         <select class="form-select" name="tipoPagoOferta"  disabled aria-label="Default select example" style="background-color: #ececec;">
-                            <option selected>{{old('tipoPagoOferta',$oferta->tipo_pago)}}</option>
-                            <option>Pago</option>
-                            <option>No pago</option>                            
+                            <option selected>{{old('tipoPagoOferta',$oferta->tipo_pago)}}</option>                           
+                            <option value="Pago" @if(old('tipoPagoOferta')=='Pago' ) selected @endif>Pago</option>
+                            <option value="Gratuito" @if(old('tipoPagoOferta')=='Gratutio' ) selected @endif>Gratuito</option>                           
                         </select>
                         @error('tipoPagoOferta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label fw-bold">Unidad académica</label>
-                        <input type="text" class="form-control" name="unidadAcademicaOferta" value="{{old('unidadAcademicaOferta',$oferta->unidad_academica)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
-                        @error('unidadAcademicaOferta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
+                        <label for="exampleInputPassword1" class="form-label fw-bold">Costo o inversión</label>
+                        <textarea type="text" class="form-control @error('costoOferta') is-invalid @enderror" name="costoOferta"  disabled class="form-control" id="exampleInputPassword1" placeholder="Valor de inversión" style="background-color: #ececec;">{{old('costoOferta',$oferta->costo)}}</textarea>
+                        @error('costoOferta')
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio</strong></label>
                         <?php
-                        $date = date('Y-m-d');
-                        ?>
-                        <input type="date" class="form-control" name="fechaInicioOferta" value="{{old('fechaInicioOferta',$oferta->fecha_inicio)}}" id="exampleInputEmail1" style="background-color: #ececec;">
+                           $date = date('Y-m-d');
+                         ?>
+                        <input type="date" class="form-control @error('fechaInicioOferta') is-invalid @enderror" name="fechaInicioOferta" value="{{old('fechaInicioOferta',$oferta->fecha_inicio)}}" id="exampleInputEmail1" style="background-color: #ececec;">
                         @error('fechaInicioOferta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label fw-bold">Resolución</label>
-                        <input type="text" class="form-control" name="resolucionOferta" disabled value="{{old('resolucionOferta',$oferta->resolucion)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
-                        @error('resolucionOferta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
+                        <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin</strong></label>
+                        <?php
+                        //$date = ;
+                        ?>
+                        <input type="date" class="form-control @error('fechaFinOferta') is-invalid @enderror" name="fechaFinOferta" value="{{old('fechaFinOferta',$oferta->fecha_fin)}}" id="exampleInputEmail1" style="background-color: #ececec;">
+                        @error('fechaFinOferta')
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Intensidad horaria</label>
-                        <input type="text" class="form-control" name="intensidadHorarioOferta" value="{{old('intensidadHorarioOferta',$oferta->intensidad_horario)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        <input type="text" class="form-control @error('intensidadHorarioOferta') is-invalid @enderror" name="intensidadHorarioOferta" value="{{old('intensidadHorarioOferta',$oferta->intensidad_horario)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
                         @error('intensidadHorarioOferta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Limite de cupos</label>
-                        <input type="text" class="form-control" name="cuposOferta" value="{{old('cuposOferta',$oferta->limite_cupos)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        <input type="text" class="form-control @error('cuposOferta') is-invalid @enderror" name="cuposOferta" value="{{old('cuposOferta',$oferta->limite_cupos)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
                         @error('cuposOferta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
 
@@ -108,77 +97,62 @@
                         <label for="formFile" class="form-label fw-bold">Seleccione una imagen</label>
                         <!--<img src="{{ asset('img/ofertasp').'/'.$oferta->imagen }}" alt="" width="420" height="340">-->
                         {{$oferta->imagen}}
-                        <input class="form-control"  type="file" accept="image/*" name="imagenOferta" value="{{old('imagenOferta',$oferta->imagen)}}" id="formFile" style="background-color: #ececec;">
+                        <input class="form-control @error('imagenOferta') is-invalid @enderror"  type="file" accept="image/*" name="imagenOferta" id="imagen" value="{{old('imagenOferta',$oferta->imagen)}}" id="formFile" style="background-color: #ececec;">
+                        <img class="mt-1 img-thumbnail img-fluid" id="imagenSeleccionada"  width="100" alt="">
                         @error('imagenOferta')
-                        <small class="text-danger">{{$message}}</small>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label fw-bold">Población objetivo</label>
-                        <input type="text" class="form-control" name="poblacionOferta" value="{{old('poblacionOferta',$oferta->poblacion_objetivo)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        <input type="text" class="form-control @error('poblacionOferta') is-invalid @enderror"  name="poblacionOferta" value="{{old('poblacionOferta',$oferta->poblacion_objetivo)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
                         @error('poblacionOferta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Categoria</label>
-                        <select class="form-select" name="categoriaOferta" aria-label="Default select example" style="background-color: #ececec;">
+                        <select class="form-select @error('categoriaOferta') is-invalid @enderror" name="categoriaOferta" aria-label="Default select example" style="background-color: #ececec;">
                             @foreach($categoria as $key => $value)
                             <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach
                         </select>
                         @error('categoriaOferta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label fw-bold">Costo o inversión</label>
-                        <textarea type="text" name="costoOferta"  disabled class="form-control" id="exampleInputPassword1" placeholder="Valor de inversión" style="background-color: #ececec;">{{old('costoOferta',$oferta->costo)}}</textarea>
-                        @error('costoOferta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
+                        <label for="exampleInputEmail1" class="form-label fw-bold">Unidad académica</label>
+                        <input type="text" class="form-control @error('unidadAcademicaOferta') is-invalid @enderror"  name="unidadAcademicaOferta" value="{{old('unidadAcademicaOferta',$oferta->unidad_academica)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        @error('unidadAcademicaOferta')
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin</strong></label>
-                        <?php
-                        $date = date('Y-m-d');
-                        ?>
-                        <input type="date" class="form-control" name="fechaFinOferta" value="{{old('fechaFinOferta',$oferta->fecha_fin)}}" id="exampleInputEmail1" style="background-color: #ececec;">
-                        @error('fechaFinOferta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
+                        <label for="exampleInputEmail1" class="form-label fw-bold">Resolución</label>
+                        <input type="text" class="form-control  @error('resolucionOferta') is-invalid @enderror" name="resolucionOferta" value="{{old('resolucionOferta',$oferta->resolucion)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
+                        @error('resolucionOferta')
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
-                    </div>
+                    </div>                    
                     <div class="mb-3">
                         <label class="form-label fw-bold">Tipo de curso</label>
-                        <select class="form-select" name="tipoCursoOferta" aria-label="Default select example" style="background-color: #ececec;">
-                            <option selected>{{old('tipoCursoOferta',$oferta->tipo_curso)}}</option>
+                        <select class="form-select @error('tipoCursoOferta') is-invalid @enderror" name="tipoCursoOferta" value="{{old('tipoCursoOferta',$oferta->tipo_curso)}}"  aria-label="Default select example" style="background-color: #ececec;">
                             <option>Virtual</option>
                             <option>Presencial</option>
                         </select>
                         @error('tipoCursoOferta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"><strong>Fecha cierre de inscripciones</strong></label>
                         <?php
-                        $date = date('Y-m-d');
+                            $date = date('Y-m-d');
                         ?>
-                        <input type="date" class="form-control" name="fechaCierreOferta" value="{{old('fechaCierreOferta',$oferta->fecha_cierre_inscripcion)}}" id="exampleInputEmail1" style="background-color: #ececec;">
+                        <input type="date" class="form-control @error('fechaCierreOferta') is-invalid @enderror" name="fechaCierreOferta" value="{{old('fechaCierreOferta', $oferta->fecha_cierre_inscripcion)}}" id="exampleInputEmail1" style="background-color: #ececec;">
                         @error('fechaCierreOferta')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
+                        <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                 </div>
@@ -201,3 +175,15 @@
     
 </div>
 @endsection
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+    $(document).ready(function(e) {
+        $('#imagen').change(function() {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#imagenSeleccionada').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+    });
+</script>
