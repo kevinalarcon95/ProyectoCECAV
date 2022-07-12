@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Estudiante_oferta;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\AspiOferta;
 
@@ -17,10 +18,11 @@ class EstudianteOfertaController extends Controller
      */
     public function index()
     {
+        $cantAspiOferta = AspiOferta::count();
         $objInscripcion = AspiOferta::join('oferta', 'oferta.id', '=', 'aspi_oferta.id_oferta')
-                          ->select('oferta.*')
-                          ->get();
-        return view('cursosEstudiante.misCursosOferta')->with('objInscripcion', $objInscripcion);
+            ->select('oferta.*')
+            ->get();
+        return view('cursosEstudiante.misCursosOferta', compact('cantAspiOferta'))->with('objInscripcion', $objInscripcion);
     }
 
     /**
@@ -84,8 +86,15 @@ class EstudianteOfertaController extends Controller
      * @param  \App\Models\Estudiante_oferta  $estudiante_oferta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Estudiante_oferta $estudiante_oferta)
+    public function destroy($id)
     {
-        //
+
+        DB::delete('DELETE FROM aspi_oferta WHERE id_oferta = ?', [$id]);
+        return redirect('/misOfertas');
+    }
+
+    public static function existeInscripcion($id)
+    {
+        return AspiOferta::where('id_oferta',  $id)->exists();
     }
 }

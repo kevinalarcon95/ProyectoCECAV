@@ -109,7 +109,7 @@ class AspiOfertaController extends Controller
         $objUser = User::where('id', Auth::user()->id)->first();
         $id_user = $objUser->id;
 
-        if (AspiOferta::where('id_user',  $id_user)->exists()) {
+        if (AspiOferta::where('id_oferta',  $idOferta)->exists()) {
             //dd('existe');
             Toastr::warning('¡Ya existe un registro para esta oferta!', 'Atención', ["positionClass" => "toast-top-right"]);
             return redirect('/ofertasInscripciones');

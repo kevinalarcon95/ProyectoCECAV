@@ -26,7 +26,10 @@ class AspiIcfesController extends Controller
         //$objPreIcfes = Preicfes::all();
         $objUser = User::where('id', Auth::user()->id)->first();
         $objPreIcfes = Preicfes::findOrFail($id);
-        return view('inscripciones.inscripcionIcfes', compact('objUser')) ->with ( 'objPreIcfes', $objPreIcfes);
+
+        $objHorario = DB::table('horario_preicfes')->where('id_preicfes', '=', $id)->pluck('horario','id');
+
+        return view('inscripciones.inscripcionIcfes', compact('objUser','objHorario')) ->with ( 'objPreIcfes', $objPreIcfes);
     }
     /**
      * función de listar aspirantes inscritos PreIcfes
@@ -76,13 +79,14 @@ class AspiIcfesController extends Controller
     {
         $request->validate([
             'telefonoIcfes' => 'required|numeric',
-            'municipioIcfes' => 'required',
+            'municipioIcfes' => 'required|string',
             'numAcuIcfes' => 'required',
-            'programaIcfes' => 'required',
+            'programaIcfes' => 'required|string',
             'dirResIcfes' => 'required',
             'nomColIcfes' => 'required',
-            'departamentoIcfes' => 'required',
-            'nomAcuIcfes' => 'required',
+            'departamentoIcfes' => 'required|string',
+            'nomAcuIcfes' => 'required|string',
+            'horarioIcfes' => 'required',
         ]);
 
         $tipoIdIcfes = $request->input('tipoIdIcfes');

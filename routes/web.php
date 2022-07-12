@@ -92,5 +92,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/saveFuncionario', [FuncionarioController::class, 'store'])->name('/admin/saveFuncionario');
 
     Route::get('/misOfertas', [EstudianteOfertaController::class, 'index'])->name('/misOfertas');
-
+    Route::delete('/eliminarInscripcionOferta/{id}', [EstudianteOfertaController::class, 'destroy'])->name('/eliminarInscripcionOferta/{id}');
 });
