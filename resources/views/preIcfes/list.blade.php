@@ -5,7 +5,7 @@
 <div class="contenedor mt-5">
     <div class="row mx-3">
         <div class="d-flex justify-content-between align-baseline">
-            <h4>Gestión curso PREICFES</h4>
+            <h4>Gestión PREICFES</h4>
             <a href="{{ route('/admin/createPreicfes') }}" class="botones btn btn-añadir me-1">
                 <i class="bi bi-plus me-1"></i>Añadir
             </a>

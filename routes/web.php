@@ -9,6 +9,9 @@ use App\Http\Controllers\AspiIcfesController;
 use App\Http\Controllers\PreicfesController;
 use App\Http\Controllers\InscripcionOfertaController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\EstudianteOfertaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -82,5 +85,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/listInscritos', [AspiOfertaController::class, 'list'])->name('/admin/listInscritos');
     //---Listado inscritos a Preicfes---
     Route::get('/admin/listInscritosPreicfes', [AspiIcfesController::class, 'list'])->name('/admin/listInscritosPreicfes');
+
+    //=============================== Funcionarios cecav ===============================
+    Route::get('/admin/Funcionario', [FuncionarioController::class, 'index'])->name('/admin/Funcionario');
+    Route::get('/admin/createFuncionario', [FuncionarioController::class, 'create'])->name('/admin/createFuncionario');
+    Route::post('/admin/saveFuncionario', [FuncionarioController::class, 'store'])->name('/admin/saveFuncionario');
+
+    Route::get('/misOfertas', [EstudianteOfertaController::class, 'index'])->name('/misOfertas');
 
 });

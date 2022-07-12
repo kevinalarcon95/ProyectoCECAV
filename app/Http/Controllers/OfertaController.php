@@ -32,8 +32,8 @@ class OfertaController extends Controller
 
     public function list()
     {
-        $fecha_actual = date("d-m-y");
-        $fecha_pasada = strtotime($fecha_actual . "- 5 years");
+        $fecha_actual = date("y-m-d");
+        $fecha_pasada = date("y-m-d", strtotime($fecha_actual . "-5 years"));
         $datos['ofertas'] = Oferta::select(
             'oferta.id',
             'oferta.nombre',
@@ -54,10 +54,10 @@ class OfertaController extends Controller
         )
             ->from('oferta')
             ->join('categoria', 'oferta.id_categoria', '=', 'categoria.id')
-            //->whereBetween('')
-            //->where('oferta.fecha_inicio', 'BETWEEN', $fecha_pasada." AND ")
+            ->where('oferta.fecha_inicio','>=',$fecha_pasada)
             ->get();
-        return view('ofertas.list', $datos);
+        
+            return view('ofertas.list', $datos);
     }
     /**
      * Show the form for creating a new resource.
@@ -90,8 +90,8 @@ class OfertaController extends Controller
             'cuposOferta' => 'required|numeric',
             'imagenOferta' => 'required|image|mimes:jpeg,png,jpg,svg1|dimensions:min_width=100,min_height=200|max:5000',
             'poblacionOferta' => 'required|string|max:200|',
-            //'categoriaOferta' => 'required',
-            'costoOferta' => 'required|string',
+            'categoriaOferta' => 'required',
+            //'costoOferta' => 'required|string',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
             'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
@@ -105,16 +105,16 @@ class OfertaController extends Controller
         $descripcionOferta = $request->input('descripcionOferta');
         $tipoPagoOferta = $request->input('tipoPagoOferta');
         $unidadAcademicaOferta = $request->input('unidadAcademicaOferta');
-        $fechaInicioOferta = Carbon::parse($request->input('fechaInicioOferta'))->translatedFormat('l d \d\e F \d\e\l Y');
+        $fechaInicioOferta = $request->input('fechaInicioOferta');
         $resolucionOferta = $request->input('resolucionOferta');
         $intensidadHorarioOferta = $request->input('intensidadHorarioOferta');
         $cuposOferta = $request->input('cuposOferta');
         $poblacionOferta = $request->input('poblacionOferta');
         $categoriaOferta = $request->input('categoriaOferta');
-        $fechaFinOferta = Carbon::parse($request->input('fechaFinOferta'))->translatedFormat('l d \d\e F \d\e\l Y');
+        $fechaFinOferta = $request->input('fechaFinOferta');
         $costoOferta = $request->input('costoOferta');
         $tipoCursoOferta = $request->input('tipoCursoOferta');
-        $fechaCierreOferta = Carbon::parse($request->input('fechaCierreOferta'))->translatedFormat('l d \d\e F \d\e\l Y');
+        $fechaCierreOferta = $request->input('fechaCierreOferta');
 
         if ($tipoPagoOferta == 'Gratuito' || $costoOferta == null) {
             $costoOferta = 0;
@@ -144,7 +144,7 @@ class OfertaController extends Controller
                     'id_certificado' => 1,
                 ]);
                 Toastr::success('¡Su registro fue exitoso!', 'Exito', ["positionClass" => "toast-top-right"]);
-                return redirect('/admin/createOferta');
+                return redirect('/admin/listOferta');
             } catch (Throwable $e) {
                 dd($e);
                 Toastr::error('¡Error al crear su registro!', 'Error', ["positionClass" => "toast-top-right"]);
@@ -228,6 +228,8 @@ class OfertaController extends Controller
         $tipoCursoOferta = $request->input('tipoCursoOferta');
         $fechaCierreOferta = $request->input('fechaCierreOferta');
         
+
+        //dd($fechaInicioOferta);
 
         try {
             $updateData->nombre = $nombreOferta;

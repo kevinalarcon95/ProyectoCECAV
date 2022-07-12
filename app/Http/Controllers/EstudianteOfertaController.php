@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Estudiante_oferta;
 use Illuminate\Http\Request;
+use App\Models\AspiOferta;
 
 class EstudianteOfertaController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,10 @@ class EstudianteOfertaController extends Controller
      */
     public function index()
     {
-        //
+        $objInscripcion = AspiOferta::join('oferta', 'oferta.id', '=', 'aspi_oferta.id_oferta')
+                          ->select('oferta.*')
+                          ->get();
+        return view('cursosEstudiante.misCursosOferta')->with('objInscripcion', $objInscripcion);
     }
 
     /**
