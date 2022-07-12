@@ -18,7 +18,6 @@ class CreatePreicfesTable extends Migration
             $table->text('nombre');
             $table->longText('descripcion');
             $table->text('imagen');
-            $table->text('horario');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->date('fecha_inicio_inscripcion');
