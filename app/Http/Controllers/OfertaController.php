@@ -176,6 +176,7 @@ class OfertaController extends Controller
     {
         $oferta = Oferta::findOrFail($id);
         $categoria = Categoria::pluck('nombre', 'id');
+        $fechaFinOferta = Carbon::parse($oferta->fecha_fin)->format('d/m/Y');
         return view('ofertas.editar', compact('oferta'))->with('categoria', $categoria);
     }
 
@@ -196,10 +197,9 @@ class OfertaController extends Controller
             'tipoPagoOferta' => 'in:Pago,Gratuito',
             'unidadAcademicaOferta' => 'required|string',
             'fechaInicioOferta' => 'required|date|after_or_equal:fechaCierreOferta',
-            // 'resolucionOferta' => 'required|string',
+            'resolucionOferta' => 'required|string',
             'intensidadHorarioOferta' => 'required|string',
             'cuposOferta' => 'required|numeric|min:1',
-            //'imagenOferta' => 'required',
             'imagenOferta' => 'max:2048|mimes:jpeg,png,jpg',
             'poblacionOferta' => 'required|string',
             'categoriaOferta' => 'required',
@@ -216,7 +216,8 @@ class OfertaController extends Controller
         //$tipoPagoOferta = $request->input('tipoPagoOferta');
         $unidadAcademicaOferta = $request->input('unidadAcademicaOferta');
         $fechaInicioOferta = $request->input('fechaInicioOferta');
-        //$resolucionOferta = $request->input('resolucionOferta');
+              
+        $resolucionOferta = $request->input('resolucionOferta');
         $intensidadHorarioOferta = $request->input('intensidadHorarioOferta');
         $cuposOferta = $request->input('cuposOferta');
 
@@ -226,6 +227,7 @@ class OfertaController extends Controller
         //$costoOferta = $request->input('costoOferta');
         $tipoCursoOferta = $request->input('tipoCursoOferta');
         $fechaCierreOferta = $request->input('fechaCierreOferta');
+        
 
         try {
             $updateData->nombre = $nombreOferta;
@@ -236,7 +238,7 @@ class OfertaController extends Controller
             $updateData->id_categoria = $categoriaOferta;
             //$updateData->costo = $costoOferta;
             $updateData->fecha_inicio = $fechaInicioOferta;
-            //$updateData->resolucion = $resolucionOferta;                      
+            $updateData->resolucion = $resolucionOferta;                      
             $updateData->intensidad_horario = $intensidadHorarioOferta;
             $updateData->limite_cupos = $cuposOferta;
             $updateData->fecha_fin = $fechaFinOferta;
@@ -297,4 +299,5 @@ class OfertaController extends Controller
             ->get();
         return (count($numInscritos));
     }
+    
 }
