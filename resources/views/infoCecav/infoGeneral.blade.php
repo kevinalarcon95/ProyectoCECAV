@@ -35,44 +35,45 @@
                 <h3>Marisol Muñoz Ordoñez</h3>
             </div>
             <div class="row ">
-                <p>Cargo: Directora. <br>
+                <p>
                     Teléfono: 8209800 ext. 3206. <br>
                     Correo:marisolmunoz@unicauca.edu.co
                 </p>
             </div>        
         </div>
-        <div class="col mt-3">
-            <div class="row text-center">
-                <h3>Yuly Andrea Ordoñez</h3>
-            </div>
-            <div class="row text-center">
-                <p>Teléfono: 8209800 ext. 3204. <br>
-                    Correo:yuordonez@unicauca.edu.co
-                </p>
-            </div>
-        </div>
-        <div class="col mt-3">
-            <div class="row">
-                <h3>Olga Lucía Correa Lasso</h3>
-            </div>
-            <div class="row ">
-                <p>Contratista.<br>
-                    Teléfono: 8209800 ext. 3203. <br>
-                    Correo:olgacorrea@unicauca.edu.co
-                </p>
-            </div>
-        </div>
+        
         <div class="row">
             <div class="col mt-3">
                 <div class="row">
                     <h3>Doris Stella Muñoz Cruz</h3>
                 </div>
                 <div class="row ">
-                    <p>Contratista. <br>
+                    <p>
                         Teléfono: 8209800 ext. 3203. <br>
                         Correo: dsmunoz@unicauca.edu.co
                     </p>
                 </div>        
+            </div>
+            <div class="col mt-3">
+                <div class="row text-center">
+                    <h3>Hugo Orlando Benavidez Velasco</h3>
+                </div>
+                <div class="row text-center">
+                    <p>Teléfono: 8209800 ext. 3204. <br>
+                        Correo:hugovelasco@unicauca.edu.co
+                    </p>
+                </div>
+            </div>
+            <div class="col mt-3">
+                <div class="row">
+                    <h3>Olga Lucía Correa Lasso</h3>
+                </div>
+                <div class="row ">
+                    <p>
+                        Teléfono: 8209800 ext. 3203. <br>
+                        Correo:olgacorrea@unicauca.edu.co
+                    </p>
+                </div>
             </div>
         </div>
         <hr style="margin: 3rem 0; color: inherit; border: 0; border-top: 2px solid; opacity: 0.25; width: 100%;">
@@ -104,35 +105,34 @@
     </div>
 
     <div class="row mx-5 mt-5 mb-1 text-justify">
-        <div class="col-7">
+        <div class="col-6">
+            <br>
             <strong>
                 <h1>Misión</h1>
             </strong>
             <p align="justify">
-                La Universidad del Cauca es una institución de educación superior pública, autónoma, del orden nacional, creada en los orígenes de la República de Colombia.
-                <br>
-                La Universidad del Cauca, fundada en su tradición y legado histórico, es un proyecto cultural que tiene un compromiso vital y permanente con el desarrollo social, mediante la educación crítica, responsable y creativa.
-                <br>
-                La Universidad forma personas con integridad ética, pertinencia e idoneidad profesional, demócratas comprometidos con el bienestar de la sociedad en armonía con el entorno.
-                <br>
-                La Universidad del Cauca genera y socializa la ciencia, la técnica, la tecnología, el arte y la cultura en la docencia, la investigación y la proyección social.
+                El CECAV es la unidad de gestión administrativa de la Universidad del Cauca que contribuye a la actualización, profundización y perfeccionamiento de las personas en diversos campos del saber que les permiten adquirir conocimientos y habilidades mediante programas de educación continua, abierta y virtual, con altos estándares de calidad y profesionalismo en el ámbito local, regional e internacional.
             </p>
             <br>            
         </div>
+        <div class="col-1">
+        </div>
         <div class="col-5">
-            <img src="{{ asset('img/facultadContables.jpg') }}" alt="" width="420" height="340" class="d-inline-block align-text-top" style="border-radius: 15px;">
+            <img src="{{ asset('img/mision.jpg') }}" alt="" width="420" height="340" class="d-inline-block align-text-top" style="border-radius: 15px;">
         </div>        
     </div>
     <div class="row mx-5 mt-5 mb-1 text-justify">
         <div class="col-7">            
-            <img src="{{ asset('img/facultadContables.jpg') }}" alt="" width="420" height="340" class="d-inline-block align-text-top" style="border-radius: 15px;">                  
+            <img src="{{ asset('img/vision.jpg') }}" alt="" width="500" height="340" class="d-inline-block align-text-top" style="border-radius: 15px;">                  
         </div>
         <div class="col-5">
+            <br>
             <strong>
                 <h1>Visión</h1>
             </strong>
             <p align="justify">
-                La Universidad del Cauca, fiel a su lema "Posteris Lvmen Moritvrvs Edat" (Quién ha de morir deje su luz a la posteridad), tiene un compromiso histórico, vital y permanente con la construcción de una sociedad equitativa y justa en la formación de un ser humano integral, ético y solidario.
+                <br>
+                Ser el centro de educación continua, abierta y virtual líder en el departamento del Cauca para el año 2027, año del bicentenario.
             </p>
             <br>     
         </div>
