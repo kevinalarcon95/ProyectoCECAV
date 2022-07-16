@@ -193,7 +193,15 @@ return [
         'categoriaOferta' => '"Categoria"',          
         'fechaFinOferta' => '"Fecha Fin "',
         'tipoCursoOferta' => '"Tipo de curso"',
-        'fechaCierreOferta' => 'Fecha cierre'
+        'fechaCierreOferta' => 'Fecha cierre',
+
+        //Funcionarios
+        'nombreFunc' => '"nombre"',
+        'cargoFunc' => '"cargo"',
+        'telefonoFunc' => '"teléfono"',
+        'extensionFunc' => '"número extensión"',
+        'correoFunc' => '"correo"',
+
     ],
 
 ];

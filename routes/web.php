@@ -45,6 +45,7 @@ Route::get('/homeInfo', [InfoController::class, 'index'])->name('/homeInfo');
 Route::get('/homeInfo/quienesSomos', [InfoController::class, 'info'])->name('/homeInfo/quienesSomos');
 Route::get('/homeInfo/funcionesCecav', [InfoController::class, 'funciones'])->name('/homeInfo/funcionesCecav');
 
+
 //Rutas preicfes
 Route::get('/preIcfes', [PreicfesController::class, 'index'])->name('/preIcfes');
 Route::get('/detallePreIcfes/{idPreIcfes?}', [PreicfesController::class, 'show'])->name('/detallePreIcfes/{idPreIcfes?}');
@@ -87,7 +88,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/listInscritosPreicfes', [AspiIcfesController::class, 'list'])->name('/admin/listInscritosPreicfes');
 
     //=============================== Funcionarios cecav ===============================
-    Route::get('/admin/Funcionario', [FuncionarioController::class, 'index'])->name('/admin/Funcionario');
+    Route::get('/admin/listFuncionario', [FuncionarioController::class, 'list'])->name('/admin/listFuncionario');
     Route::get('/admin/createFuncionario', [FuncionarioController::class, 'create'])->name('/admin/createFuncionario');
     Route::post('/admin/saveFuncionario', [FuncionarioController::class, 'store'])->name('/admin/saveFuncionario');
 

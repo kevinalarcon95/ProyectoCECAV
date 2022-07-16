@@ -98,7 +98,7 @@
                             </a>
 
                             <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-center" href="#">
+                                <a class="dropdown-item text-center" href="{{ route('/admin/listFuncionario') }}">
                                     FUNCIONARIOS
                                 </a>
 

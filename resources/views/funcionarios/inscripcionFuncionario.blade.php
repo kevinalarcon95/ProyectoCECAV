@@ -4,7 +4,7 @@
 
 <!--Formulario inscripcion preicfes-->
 
-<div class="container">
+<div class="container m-5">
     <div class="row mx-3 ">
 
         <div class="col-sm-11 botones me-2" style=" color: #3E4C60">
@@ -17,13 +17,13 @@
     </div>
     <form action="{{route('/admin/saveFuncionario')}}" method="POST" class="needs-validation" novalidate>
         @csrf
-
+        <hr />
         <div class="row">
             <div class="col-6">
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Nombre completo</label>
-                    <input type="text" class="form-control @error('nombreFunc') is-invalid @enderror" value="{{old('nombreFunc')}}" name="nombreFunc" placeholder="Tu respuesta" required>
+                    <input type="text" class="form-control @error('nombreFunc') is-invalid @enderror" value="{{old('nombreFunc')}}" name="nombreFunc" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" required>
                     @error('nombreFunc')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -31,7 +31,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Cargo</label>
-                    <input type="text" class="form-control @error('cargoFunc') is-invalid @enderror" value="{{old('cargoFunc')}}" name="cargoFunc" placeholder="Tu respuesta" required>
+                    <input type="text" class="form-control @error('cargoFunc') is-invalid @enderror" value="{{old('cargoFunc')}}" name="cargoFunc" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" required>
                     @error('cargoFunc')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -39,7 +39,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Teléfono</label>
-                    <input type="text" class="form-control @error('telefonoFunc') is-invalid @enderror" value="{{old('telefonoFunc')}}" name="telefonoFunc" placeholder="Tu respuesta" required>
+                    <input type="number" class="form-control @error('telefonoFunc') is-invalid @enderror" value="{{old('telefonoFunc')}}" name="telefonoFunc" placeholder="Tu respuesta" required>
                     @error('telefonoFunc')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -50,7 +50,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Número de extensión</label>
-                    <input type="text" class="form-control @error('extensionFunc') is-invalid @enderror" value="{{old('extensionFunc')}}" name="extensionFunc" placeholder="Tu respuesta" required>
+                    <input type="number" class="form-control @error('extensionFunc') is-invalid @enderror" value="{{old('extensionFunc')}}" name="extensionFunc" placeholder="Tu respuesta" required>
                     @error('extensionFunc')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -66,7 +66,7 @@
 
             </div>
         </div>
-
+        <hr />
         <div class="row mt-2">
             <div class="col text-center">
                 <button type="submit" class="btn btn-primary" style="background-color:#04153B; border:none">Enviar formulario</button>
