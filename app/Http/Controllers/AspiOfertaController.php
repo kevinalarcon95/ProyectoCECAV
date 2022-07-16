@@ -109,6 +109,8 @@ class AspiOfertaController extends Controller
         $objUser = User::where('id', Auth::user()->id)->first();
         $id_user = $objUser->id;
 
+        
+
         if (AspiOferta::where('id_oferta',  $idOferta)->exists()) {
             //dd('existe');
             Toastr::warning('¡Ya existe un registro para esta oferta!', 'Atención', ["positionClass" => "toast-top-right"]);
@@ -134,11 +136,11 @@ class AspiOfertaController extends Controller
                     'id_user' => $id_user
                 ]);
 
-                Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
+                Toastr::success('¡Su registro fue exitoso!', 'Exito', ["positionClass" => "toast-top-right"]);
                 return redirect('/ofertasInscripciones');
             } catch (Throwable $e) {
                 dd($e);
-                Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
+                Toastr::error('¡Error al crear su registro!', 'Error', ["positionClass" => "toast-top-right"]);
                 return redirect('/ofertasInscripciones');
             }
         }

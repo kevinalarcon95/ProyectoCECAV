@@ -28,11 +28,14 @@
                                 OFERTAS E INSCRIPCIONES
                             </a>
                             <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{(route('/admin/listOferta'))}}">
+                                <a class="dropdown-item text-center" href="{{(route('/admin/listOferta'))}}">
                                     GESTIÓN DE OFERTAS
                                 </a>
-                                <a class="dropdown-item" href="{{ route('/ofertasInscripciones') }}">
+                                <a class="dropdown-item text-center" href="{{ route('/ofertasInscripciones') }}">
                                     GALERIA DE OFERTAS
+                                </a>
+                                <a class="dropdown-item text-center" href="#">
+                                    LISTADO DE ESTUDIANTES INSCRITOS
                                 </a>
                             </div>
                         </li>
@@ -48,10 +51,13 @@
                                 PREICFES
                             </a>
                             <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{(route('/admin/listPreicfes'))}}">
+                                <a class="dropdown-item text-center" href="{{(route('/admin/listPreicfes'))}}">
                                     GESTIÓN CURSOS PREICFES
                                 </a>
-                                <a class="dropdown-item" href="{{(route('/admin/listInscritosPreicfes'))}}">
+                                <a class="dropdown-item text-center" href="#">
+                                    GALERIA DE CURSOS PREICFES
+                                </a>
+                                <a class="dropdown-item text-center" href="{{(route('/admin/listInscritosPreicfes'))}}">
                                     LISTADO ESTUDIANTES INSCRITOS
                                 </a>
                             </div>
@@ -92,11 +98,11 @@
                             </a>
 
                             <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">
-                                    PERFIL
+                                <a class="dropdown-item text-center" href="#">
+                                    FUNCIONARIOS
                                 </a>
 
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a class="dropdown-item text-center" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('CERRAR SESIÓN') }}
                                 </a>

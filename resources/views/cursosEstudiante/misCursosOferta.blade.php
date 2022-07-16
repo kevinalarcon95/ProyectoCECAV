@@ -17,7 +17,7 @@
                                 {{$objInscripcion->nombre}}
                             </div>
                             <div class="col-5 text-end" style="color:#181D40;">
-                                {{\Carbon\Carbon::parse($objInscripcion->created_at, 'UTC')->isoFormat('MMMM D YYYY, h:mm:ss a')}}
+                                Inscrito el {{\Carbon\Carbon::parse($objInscripcion->created_at, 'UTC')->translatedFormat('l d \d\e F \d\e\l Y')}}
                             </div>
                         </button>
                     </h2>
