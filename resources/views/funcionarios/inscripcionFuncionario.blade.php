@@ -21,6 +21,7 @@
         <div class="row">
             <div class="col-6">
 
+            
                 <div class="mb-3">
                     <label class="form-label fw-bold">Nombre completo</label>
                     <input type="text" class="form-control @error('nombreFunc') is-invalid @enderror" value="{{old('nombreFunc')}}" name="nombreFunc" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" required>
