@@ -14,7 +14,6 @@ class InfoController extends Controller
         $objDirectora = Funcionario::where('cargo', 'DIRECTORA')->first();
         $objFuncionario = Funcionario::all();
         return view('infoCecav.infoGeneral',compact('objDirectora'))->with('objFuncionario', $objFuncionario);
-        
     }
     /**
      * Show the application dashboard.
@@ -25,6 +24,11 @@ class InfoController extends Controller
     {
         return view('infoCecav.quienesSomos');
     }
+
+    public function funcionarios(){
+        
+    }
+
     public function funciones()
     {
         return view('infoCecav.funcionesCecav');

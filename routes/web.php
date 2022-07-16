@@ -26,14 +26,16 @@ use App\Http\Controllers\EstudianteOfertaController;
 Auth::routes();
 
 //Auth::routes(['register' => false, 'reset' => false]);
-
+/*
 Route::get('/homePrincipal', function () {
     return view('infoCecav.infoGeneral');
 });
 
 Route::get('/', function () {
     return view('infoCecav.infoGeneral');
-});
+});*/
+Route::get('/homePrincipal', [HomeController::class, 'index'])->name('homePrincipal');
+Route::get('/', [HomeController::class, 'index'])->name('/');
 
 //Rutas ofertas e inscripciones
 Route::get('/home', [HomeController::class, 'index'])->name('home');

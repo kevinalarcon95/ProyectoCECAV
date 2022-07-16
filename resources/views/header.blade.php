@@ -23,50 +23,50 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     @role('admin')
-                        <li class="nav-item dropdown">
-                            <a id=" navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                OFERTAS E INSCRIPCIONES
-                            </a>
-                            <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-center" href="{{(route('/admin/listOferta'))}}">
-                                    GESTIÓN DE OFERTAS
-                                </a>
-                                <a class="dropdown-item text-center" href="{{ route('/ofertasInscripciones') }}">
-                                    GALERIA DE OFERTAS
-                                </a>
-                                <a class="dropdown-item text-center" href="#">
-                                    LISTADO DE ESTUDIANTES INSCRITOS
-                                </a>
-                            </div>
-                        </li>
-                    @else
-                        <a class="nav-link" href="{{ route('/ofertasInscripciones') }}">OFERTAS E INSCRIPCIONES</a>
-                    @endrole
+                <li class="nav-item dropdown">
+                    <a id=" navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        OFERTAS E INSCRIPCIONES
+                    </a>
+                    <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item text-center" href="{{(route('/admin/listOferta'))}}">
+                            GESTIÓN DE OFERTAS
+                        </a>
+                        <a class="dropdown-item text-center" href="{{ route('/ofertasInscripciones') }}">
+                            GALERIA DE OFERTAS
+                        </a>
+                        <a class="dropdown-item text-center" href="#">
+                            LISTADO DE ESTUDIANTES INSCRITOS
+                        </a>
+                    </div>
+                </li>
+                @else
+                <a class="nav-link" href="{{ route('/ofertasInscripciones') }}">OFERTAS E INSCRIPCIONES</a>
+                @endrole
                 </li>
 
                 <li class="nav-item">
                     @role('admin')
-                        <li class="nav-item dropdown">
-                            <a id=" navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                PREICFES
-                            </a>
-                            <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-center" href="{{(route('/admin/listPreicfes'))}}">
-                                    GESTIÓN CURSOS PREICFES
-                                </a>
-                                <a class="dropdown-item text-center" href="#">
-                                    GALERIA DE CURSOS PREICFES
-                                </a>
-                                <a class="dropdown-item text-center" href="{{(route('/admin/listInscritosPreicfes'))}}">
-                                    LISTADO ESTUDIANTES INSCRITOS
-                                </a>
-                            </div>
-                        </li>
-                    @else
-                        <a class="nav-link" href="{{ route('/preIcfes') }}">PREICFES</a>
-                    @endrole
+                <li class="nav-item dropdown">
+                    <a id=" navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        PREICFES
+                    </a>
+                    <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item text-center" href="{{(route('/admin/listPreicfes'))}}">
+                            GESTIÓN CURSOS PREICFES
+                        </a>
+                        <a class="dropdown-item text-center" href="#">
+                            GALERIA DE CURSOS PREICFES
+                        </a>
+                        <a class="dropdown-item text-center" href="{{(route('/admin/listInscritosPreicfes'))}}">
+                            LISTADO ESTUDIANTES INSCRITOS
+                        </a>
+                    </div>
                 </li>
-                
+                @else
+                <a class="nav-link" href="{{ route('/preIcfes') }}">PREICFES</a>
+                @endrole
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">CERTIFICADOS</a>
                 </li>
@@ -90,7 +90,7 @@
                         @endif
 
                         @else
-                   
+
 
                         <li class="nav-item dropdown">
                             <a id=" navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -98,10 +98,11 @@
                             </a>
 
                             <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                @role('admin')
                                 <a class="dropdown-item text-center" href="{{ route('/admin/listFuncionario') }}">
                                     FUNCIONARIOS
                                 </a>
-
+                                @endrole
                                 <a class="dropdown-item text-center" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('CERRAR SESIÓN') }}

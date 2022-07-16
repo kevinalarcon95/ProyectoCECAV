@@ -3,26 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Funcionario;
 
 class HomeController extends Controller
 {
+ 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
+     * Show the application home infoCecav.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        return view('home');
+        $objDirectora = Funcionario::where('cargo', 'DIRECTORA')->first();
+        $objFuncionario = Funcionario::all();
+        return view('infoCecav.infoGeneral',compact('objDirectora'))->with('objFuncionario', $objFuncionario);
+        //return view('home');
     }
 }
