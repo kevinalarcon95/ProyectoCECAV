@@ -16,7 +16,6 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarRightAlignExample">
             <!-- Left links -->
@@ -43,7 +42,6 @@
                 <a class="nav-link" href="{{ route('/ofertasInscripciones') }}">OFERTAS E INSCRIPCIONES</a>
                 @endrole
                 </li>
-
                 <li class="nav-item">
                     @role('admin')
                 <li class="nav-item dropdown">
@@ -66,7 +64,6 @@
                 <a class="nav-link" href="{{ route('/preIcfes') }}">PREICFES</a>
                 @endrole
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="#">CERTIFICADOS</a>
                 </li>
@@ -88,15 +85,11 @@
                             <a class="nav-link" href="{{ route('login') }}">{{ __('INGRESAR') }}</a>
                         </li>
                         @endif
-
                         @else
-
-
                         <li class="nav-item dropdown">
                             <a id=" navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
-
                             <div id="menuDropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 @role('admin')
                                 <a class="dropdown-item text-center" href="{{ route('/admin/listFuncionario') }}">
@@ -107,13 +100,11 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('CERRAR SESIÓN') }}
                                 </a>
-
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </div>
                         </li>
-
                         @endguest
                     </ul>
                 </li>
