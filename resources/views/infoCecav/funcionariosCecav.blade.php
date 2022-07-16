@@ -1,4 +1,4 @@
-@if($objDirectora != null && $objFuncionario != null)
+@if($objDirectora != null)
 <div class="col-12 text-center">
     <div class="card">
         <div class="card-body">
@@ -12,7 +12,8 @@
         </div>
     </div>
 </div>
-
+@endif
+@if($objFuncionario != null)
 @foreach($objFuncionario as $objFuncionario)
 @if($objFuncionario->cargo != 'DIRECTORA')
 <div class="col-4 text-center">
@@ -29,11 +30,11 @@
 </div>
 @endif
 @endforeach
-</div>
 @endif
+</div>
 <style>
-    .card{
-        border:none;
+    .card {
+        border: none;
 
     }
 </style>
