@@ -93,6 +93,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/listFuncionario', [FuncionarioController::class, 'list'])->name('/admin/listFuncionario');
     Route::get('/admin/createFuncionario', [FuncionarioController::class, 'create'])->name('/admin/createFuncionario');
     Route::post('/admin/saveFuncionario', [FuncionarioController::class, 'store'])->name('/admin/saveFuncionario');
+    Route::delete('/admin/eliminarFuncionario/{id}', [FuncionarioController::class, 'destroy'])->name('/admin/eliminarFuncionario/{id}');
+    //editar
+    Route::get('/admin/editFuncionario/{id?}', [FuncionarioController::class, 'edit'])->name('/admin/editFuncionario/{id?}');
+    Route::put('/admin/update/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update');
+
 
     Route::get('/misOfertas', [EstudianteOfertaController::class, 'index'])->name('/misOfertas');
     Route::delete('/eliminarInscripcionOferta/{id}', [EstudianteOfertaController::class, 'destroy'])->name('/eliminarInscripcionOferta/{id}');
