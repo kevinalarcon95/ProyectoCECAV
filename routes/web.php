@@ -11,6 +11,7 @@ use App\Http\Controllers\InscripcionOfertaController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\EstudianteOfertaController;
+use App\Http\Controllers\RegisterGoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,10 @@ Route::get('/detallePreIcfes/{idPreIcfes?}', [PreicfesController::class, 'show']
 //Rutas para ofertas
 Route::get('/ofertas', [OfertaController::class, 'create'])->name('/ofertas');
 
+//Rutas Google
+Route::get('/loginGoogle', [RegisterGoogleController::class, 'loginGoogle'])->name('/loginGoogle');
+Route::get('/google-callback', [RegisterGoogleController::class, 'callBackUser'])->name('/callBackGoogle');
+
 Route::group(['middleware' => ['auth']], function () {
     //Rutas para inscribirse a una ofera
     Route::get('/inscripcionOferta/{idOfer?}', [AspiOfertaController::class, 'index'])->name('/inscripcionOferta/{idOfer?}');
@@ -68,7 +73,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/admin/editOferta/{idOfer?}', [OfertaController::class, 'edit'])->name('/admin/editOferta/{idOfer?}');
     Route::post('/admin/editOferta', [OfertaController::class, 'edit'])->name('/admin/editOferta');
-    Route::put('/admin/update/{id}', [OfertaController::class, 'update'])->name('ofertas.update');
+    Route::put('/admin/updateOferta/{id}', [OfertaController::class, 'update'])->name('ofertas.update');
 
     Route::delete('/admin/deleteOferta/{id}', [OfertaController::class, 'destroy'])->name('/admin/deleteOferta');
 

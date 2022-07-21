@@ -27,7 +27,7 @@
         <div class="col-lg-4 col-sm-12 p-3">
             <div class="card">
                 <div class="col-md-4 container-img">
-                    <img src="{{ asset($objOferta->imagen) }}" alt="Card image cap" style="height:500px;width:417px;">
+                    <img class="img-fluid" src="{{ asset($objOferta->imagen) }}" alt="Card image cap" style="height:500px;width:417px;">
                 </div>
 
                 <div class=" card-body mb-2">
@@ -68,16 +68,12 @@
         }
     }
    
-    .img{
-
-    }
     .container-img{
         height: auto;
         width: auto;
         max-height: 100%;
         max-width: 100%;
     }
-
 
 
 
