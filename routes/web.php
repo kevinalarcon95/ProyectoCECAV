@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/admin/editOferta/{idOfer?}', [OfertaController::class, 'edit'])->name('/admin/editOferta/{idOfer?}');
     Route::post('/admin/editOferta', [OfertaController::class, 'edit'])->name('/admin/editOferta');
-    Route::put('/admin/update/{id}', [OfertaController::class, 'update'])->name('ofertas.update');
+    Route::put('/admin/updateOferta/{id}', [OfertaController::class, 'update'])->name('ofertas.update');
 
     Route::delete('/admin/deleteOferta/{id}', [OfertaController::class, 'destroy'])->name('/admin/deleteOferta');
 
