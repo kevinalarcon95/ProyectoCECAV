@@ -99,10 +99,10 @@ class PreicfesController extends Controller
             'horario' => 'required',
             'duracion' => 'required|string',
             'pasos_inscripcion' => 'required|string',
-            'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
-            'fecha_inicio' => 'required|date|after_or_equal:fecha_fin_inscripcion',
-            'fecha_fin_inscripcion' => 'required|date|after_or_equal:fecha_inicio_inscripcion',
             'fecha_inicio_inscripcion' => 'required|date|after_or_equal:today',
+            'fecha_fin_inscripcion' => 'required|date|after_or_equal:fecha_inicio_inscripcion|before:fecha_inicio|before:fecha_fin',
+            'fecha_inicio' => 'required|date|after_or_equal:fecha_inicio_inscripcion|after_or_equal:fecha_fin_inscripcion|before:fecha_fin',
+            'fecha_fin' => 'required|date|after_or_equal:fecha_inicio_inscripcion|after_or_equal:fecha_fin_inscripcion|after_or_equal:fecha_inicio',
         ]);
         $datosPreicfes = request()->except('_token');
 
@@ -177,10 +177,11 @@ class PreicfesController extends Controller
             'horario' => 'required',
             'duracion' => 'required|string',
             'pasos_inscripcion' => 'required|string',
-            'fecha_fin' => 'required',
-            'fecha_inicio' => 'required',
-            'fecha_fin_inscripcion' => 'required',
-            'fecha_inicio_inscripcion' => 'required',
+            'fecha_inicio_inscripcion' => 'required|date|after_or_equal:today',
+            'fecha_fin_inscripcion' => 'required|date|after_or_equal:fecha_inicio_inscripcion|before:fecha_inicio|before:fecha_fin',
+            'fecha_inicio' => 'required|date|after_or_equal:fecha_inicio_inscripcion|after_or_equal:fecha_fin_inscripcion|before:fecha_fin',
+            'fecha_fin' => 'required|date|after_or_equal:fecha_inicio_inscripcion|after_or_equal:fecha_fin_inscripcion|after_or_equal:fecha_inicio',
+            
         ]);
 
         $datos = request()->except(['_token', '_method']);
