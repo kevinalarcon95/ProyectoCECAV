@@ -52,7 +52,7 @@
                         <a class="dropdown-item text-center" href="{{(route('/admin/listPreicfes'))}}">
                             GESTIÓN CURSOS PREICFES
                         </a>
-                        <a class="dropdown-item text-center" href="#">
+                        <a class="dropdown-item text-center" href="{{(route('/preIcfes'))}}">
                             GALERIA DE CURSOS PREICFES
                         </a>
                         <a class="dropdown-item text-center" href="{{(route('/admin/listInscritosPreicfes'))}}">

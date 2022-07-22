@@ -12,7 +12,7 @@
         @csrf
         <div class="row">
             <div class="mb-3">
-                <label class="form-label fw-bold">Seleccione el evento al cual se quiere inscribir</label>
+                <label class="form-label fw-bold">Evento al cual se quiere inscribir</label>
                 <select class="form-select" name="idOferta" style="background-color: #ececec;" value="{{$objOferta->id}}" required>
                     <option selected readonly="true" value="{{$objOferta->id}}">{{$objOferta->nombre}}</option>
                 </select>
@@ -43,13 +43,13 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Tipo de inscripción</label>
-                    <select class="form-select @error('tipoInscripcion') is-invalid @enderror" name="tipoInscripcion" aria-label="Default select example" style="background-color: #ececec;" required>
-                        <option selected disabled>Elige</option>
-                        <option value="Estudiante Pregrado">Estudiante Pregrado</option>
-                        <option value="Estudiante posgrado">Estudiante posgrado</option>
-                        <option value="Profesor Universitario">Profesor Universitario</option>
-                        <option value="Profesional">Profesional</option>
-                        <option value="Otro">Otro</option>
+                    <select class="form-select @error('tipoInscripcion') is-invalid @enderror" name="tipoInscripcion" aria-label="Default select example" value="{{ old('tipoInscripcion')}}" style="background-color: #ececec;" required>
+                        <option selected disabled value="{{ old('tipoInscripcion')}}">Elige</option>
+                        <option value="Estudiante-Pregrado" @if(old('vinculacion')== 'Estudiante-Pregrado' ) selected @endif>Estudiante-Pregrado</option>
+                        <option value="Estudiante-Posgrado" @if(old('vinculacion')== 'Estudiante-Posgrado' ) selected @endif>Estudiante-Posgrado</option>
+                        <option value="Profesor-Universitario" @if(old('vinculacion')== 'Profesor-Universitario' ) selected @endif>Profesor-Universitario</option>
+                        <option value="Profesional" @if(old('vinculacion')== 'Profesional' ) selected @endif>Profesional</option>
+                        <option value="Otro" @if(old('vinculacion')== 'Otro' ) selected @endif>Otro</option>
                     </select>
                     @error('tipoInscripcion')
                         <small class="invalid-feedback">*{{$message}}</small>
@@ -57,15 +57,15 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si es estudiante de Unicauca, Por favor escriba su codigo</label>
-                    <input type="text" class="form-control" name="codigoUser" placeholder="Tu respuesta (Opcional)">
+                    <input type="text" class="form-control" name="codigoUser" placeholder="Tu respuesta (Opcional)" value="{{old('codigoUser')}}">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si es estudiante indicar el programa al cual pertenece</label>
-                    <input type="text" class="form-control" name="programaUser" placeholder="Tu respuesta (Opcional)">
+                    <input type="text" class="form-control" name="programaUser" placeholder="Tu respuesta (Opcional)" value="{{old('programaUser')}}">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si el recibo lo paga la entidad en la que trabaja, por favor escribir el NIT</label>
-                    <input type="text" class="form-control" name="nitUser" placeholder="Tu respuesta (Opcional)">
+                    <input type="text" class="form-control" name="nitUser" placeholder="Tu respuesta (Opcional)" value="{{old('nitUser')}}">
                 </div>
             </div>
             <div class="col-6">
@@ -79,20 +79,20 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Teléfono o número de celular</label>
-                    <input type="text" class="form-control @error('telefonoUser') is-invalid @enderror" name="telefonoUser" placeholder="Tu respuesta">
+                    <input type="text" class="form-control @error('telefonoUser') is-invalid @enderror" name="telefonoUser" placeholder="Tu respuesta" value="{{old('telefonoUser')}}">
                     @error('telefonoUser')
                     <small id="validationServer03Feedback" class="invalid-feedback">*{{$message}}</small>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Tipo de vinculacion con Unicauca</label>
-                    <select class="form-select @error('vinculacion') is-invalid @enderror" name="vinculacion" aria-label="Default select example" style="background-color: #ececec;">
-                        <option selected disabled>Elige</option>
-                        <option value="Estudiante (Pregrado o Posgrado)">Estudiante (Pregrado o Posgrado)</option>
-                        <option value="Docente">Docente</option>
-                        <option value="Administrativo">Administrativo</option>
-                        <option value="Exalumno">Exalumno</option>
-                        <option value="Particular">Particular</option>
+                    <select class="form-select @error('vinculacion') is-invalid @enderror" name="vinculacion" aria-label="Default select example" value="{{ old('vinculacion')}}" style="background-color: #ececec;">
+                        <option selected disabled value="{{ old('vinculacion')}}">Elige</option>
+                        <option value="Estudiante(Pregrado/Posgrado)" @if(old('vinculacion') == 'Estudiante(Pregrado/Posgrado)' ) selected @endif>Estudiante(Pregrado/Posgrado)</option>
+                        <option value="Docente" @if(old('vinculacion')== 'Docente' ) selected @endif>Docente</option>
+                        <option value="Administrativo" @if(old('vinculacion')== 'Administrativo' ) selected @endif>Administrativo</option>
+                        <option value="Exalumno" @if(old('vinculacion')== 'Exalumno' ) selected @endif>Exalumno</option>
+                        <option value="Particular" @if(old('vinculacion')== 'Particular' ) selected @endif>Particular</option>
                     </select>
                     @error('vinculacion')
                     <small id="validationServer03Feedback" class="invalid-feedback">*{{$message}}</small>
@@ -100,13 +100,13 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si es profesional, indicar su profesión y/o especialidad</label>
-                    <input type="text" class="form-control" name="profesionUser" placeholder="Tu respuesta (Opcional)">
+                    <input type="text" class="form-control" name="profesionUser" placeholder="Tu respuesta (Opcional)" value="{{old('profesionUser')}}">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Entidad</label>
                     <h6 style="color: gray; font-size:14px;">Por favor informar a que Institución pertenece y el cargo
                         que ocupa</h6>
-                    <input type="text" class="form-control" name="entidadUser" placeholder="Tu respuesta (Opcional)">
+                    <input type="text" class="form-control" name="entidadUser" placeholder="Tu respuesta (Opcional)" value="{{old('entidadUser')}}">
                 </div>
 
             </div>

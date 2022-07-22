@@ -196,11 +196,11 @@ return [
         'fechaCierreOferta' => 'Fecha cierre',
 
         //Funcionarios
-        'nombreFunc' => '"nombre"',
-        'cargoFunc' => '"cargo"',
-        'telefonoFunc' => '"teléfono"',
-        'extensionFunc' => '"número extensión"',
-        'correoFunc' => '"correo"',
+        'nombreFunc' => '"Nombre"',
+        'cargoFunc' => '"Cargo"',
+        'telefonoFunc' => '"Teléfono"',
+        'extensionFunc' => '"Número extensión"',
+        'correoFunc' => '"Correo"',
 
     ],
 

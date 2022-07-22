@@ -9,7 +9,6 @@
         <h2 class="fw-bold">OFERTAS E INSCRIPCIONES PREICFES</h2>
     </div>
 
-
     <div class="row">
         <div class="col"></div>
         <div class="col">
@@ -30,20 +29,19 @@
                     <img class="card-img-top" src="{{ asset($objPreIcfes->imagen) }}" alt="Card image cap"" >
                 </div>
 
-                <div class="card-body">
+                <div class=" card-body">
 
-                    <h5 class="card-text">{{$objPreIcfes->nombre}}</h5>
-
-                    <p>Costo: $ {{$objPreIcfes->valor}}</p>
-                    <p>Fecha de inicio: {{$objPreIcfes->fecha_inicio}}</p>
-                    <p>Fecha de finalizacion: {{$objPreIcfes->fecha_fin}}</p>
-
+                    <h5 class="card-text" style="color: #800000;">{{$objPreIcfes->nombre}}</h5>
+                    <p class=""><strong>Población Objetivo:</strong> {{$objPreIcfes->poblacion_objetivo}}</p>
+                    <p><strong>Costo: </strong>$ {{$objPreIcfes->valor}}</p>
+                    <p><strong>Fecha de inicio:</strong> {{ \Carbon\Carbon::parse($objPreIcfes->fecha_inicio)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
+                    <p><strong>Fecha de finalización:</strong> {{ \Carbon\Carbon::parse($objPreIcfes->fecha_fin)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
                     <div class="row">
                         <div class="col-6">
-                            <a type="button"  href="{{ url('/detallePreIcfes/') }}{{'/'}}{{ $objPreIcfes->id }}"  class="btn btn-primary" style="background:#04153B; border:none;">Más detalles</a>
+                            <a type="button" href="{{ url('/detallePreIcfes/') }}{{'/'}}{{ $objPreIcfes->id }}" class="btn btn-primary" style="background:#04153B; border:none;">Más detalles</a>
                         </div>
                         <div class="col-6 text-end">
-                            <a type="button" href="{{ url('/inscripcionPreIcfes/') }}{{'/'}}{{ $objPreIcfes->id }}"  class="btn btn-primary" style="background:#004AAD; border:none;">Inscribirse</a>
+                            <a type="button" href="{{ url('/inscripcionPreIcfes/') }}{{'/'}}{{ $objPreIcfes->id }}" class="btn btn-primary" style="background:#004AAD; border:none;">Inscribirse</a>
                         </div>
                     </div>
                 </div>
@@ -57,7 +55,6 @@
 @endsection
 
 <style>
-    
     .box img {
         width: 100%;
         height: auto;

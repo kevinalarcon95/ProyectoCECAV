@@ -136,8 +136,9 @@ class PreicfesController extends Controller
      */
     public function show($id)
     {
+        $objHorario = DB::table('horario_preicfes')->where('id_preicfes', '=', $id)->pluck('horario','id');
         $objPreIcfes = Preicfes::findOrFail($id);
-        return view('preIcfes.detallePreIcfes')->with('objPreIcfes', $objPreIcfes);
+        return view('preIcfes.detallePreIcfes', compact('objHorario'))->with('objPreIcfes', $objPreIcfes);
     }
 
     /**

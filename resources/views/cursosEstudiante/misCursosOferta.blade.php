@@ -5,8 +5,8 @@
     <div class="row my-5 text-center">
         <h3>Mis Ofertas</h3>
     </div>
+    @if($cantAspiOferta != 0 || $cantAspiIcfes !=0)
     <div class="row">
-        @if($cantAspiOferta != 0)
         @foreach($objInscripcion as $objInscripcion)
         <div class="row mb-3">
             <div class="accordion" id="accordionExample">
@@ -57,9 +57,10 @@
             </div>
         </div>
         @endforeach
-        @else
-        <h4 class="text-center">No hay inscripciones </h4>
-        @endif
     </div>
+    @include('cursosEstudiante.misCursosPreicfes')
+    @else
+    <h4 class="text-center">No hay inscripciones </h4>
+    @endif
 </div>
 @endsection

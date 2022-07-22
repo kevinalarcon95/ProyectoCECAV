@@ -106,4 +106,5 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/misOfertas', [EstudianteOfertaController::class, 'index'])->name('/misOfertas');
     Route::delete('/eliminarInscripcionOferta/{id}', [EstudianteOfertaController::class, 'destroy'])->name('/eliminarInscripcionOferta/{id}');
+    Route::delete('/eliminarInscripcionPreicfes/{id}', [EstudianteOfertaController::class, 'destroyPreicfes'])->name('/eliminarInscripcionPreicfes/{id}');
 });

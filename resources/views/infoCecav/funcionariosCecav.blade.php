@@ -3,11 +3,11 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">{{$objDirectora->nombre}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Cargo: Directora</h6>
-            <p class="card-text">
-                <strong>Tel.</strong> {{$objDirectora->telefono}} <strong>Ext.</strong> {{$objDirectora->extension}}.
-                <br>
+            <h6 class="card-subtitle text-muted">Cargo: Directora</h6>
+            <p class="card-text" style="font-size: 15px;">
                 <strong>Correo:</strong> {{$objDirectora->correo}}.
+                <br>
+                <strong>Tel.</strong> {{$objDirectora->telefono}} <strong>Ext.</strong> {{$objDirectora->extension}}.
             </p>
         </div>
     </div>
@@ -20,10 +20,10 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">{{$objFuncionario->nombre}}</h5>
-            <p class="card-text" style="font-size: 17px;">
-                <strong>Tel.</strong> {{$objFuncionario->telefono}} <strong>Ext.</strong> {{$objFuncionario->extension}}.
-                <br>
+            <p class="card-text" style="font-size: 15px;">
                 <strong>Correo:</strong> {{$objFuncionario->correo}}.
+                <br>
+                <strong>Tel.</strong> {{$objFuncionario->telefono}} <strong>Ext.</strong> {{$objFuncionario->extension}}.
             </p>
         </div>
     </div>
