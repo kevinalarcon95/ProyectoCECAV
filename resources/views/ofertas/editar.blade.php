@@ -38,19 +38,20 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">Tipo de pago</label>
-                        <select class="form-select" name="tipoPagoOferta"  disabled aria-label="Default select example" style="background-color: #ececec;">
+                        <label class="form-label fw-bold">Tipo de pago</label>                       
+                        <select class="form-select" name="tipoPagoOferta" value="{{old('tipoPagoOferta',$oferta->tipo_pago)}}" style="background-color: #ececec;" required onchange="if(this.value=='Pago') {document.getElementById('costoOferta').disabled = false; console.log(this.value)} else {document.getElementById('costoOferta').disabled = true}">
                             <option selected>{{old('tipoPagoOferta',$oferta->tipo_pago)}}</option>                           
                             <option value="Pago" @if(old('tipoPagoOferta')=='Pago' ) selected @endif>Pago</option>
-                            <option value="Gratuito" @if(old('tipoPagoOferta')=='Gratutio' ) selected @endif>Gratuito</option>                           
+                            <option value="Gratuito" @if(old('tipoPagoOferta')=='Gratuito' ) selected @endif>Gratuito</option>                           
                         </select>
                         @error('tipoPagoOferta')
+                        <div class="valid-feedback">Looks good!</div>
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label fw-bold">Costo o inversión</label>
-                        <textarea type="text" class="form-control @error('costoOferta') is-invalid @enderror" name="costoOferta"  disabled class="form-control" id="exampleInputPassword1" placeholder="Valor de inversión" style="background-color: #ececec;">{{old('costoOferta',$oferta->costo)}}</textarea>
+                        <label for="exampleInputPassword1" class="form-label fw-bold">Costo o inversión</label>                        
+                        <textarea type="text" class="form-control @error('costoOferta') is-invalid @enderror" name="costoOferta"  id="costoOferta"" placeholder="Valor de inversión" style="background-color: #ececec;" disabled required>{{old('costoOferta',$oferta->costo)}}</textarea>
                         @error('costoOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -138,6 +139,7 @@
                     <div class="mb-3">
                         <label class="form-label fw-bold">Tipo de curso</label>
                         <select class="form-select @error('tipoCursoOferta') is-invalid @enderror" name="tipoCursoOferta" value="{{old('tipoCursoOferta',$oferta->tipo_curso)}}"  aria-label="Default select example" style="background-color: #ececec;">
+                            <option selected>{{old('tipoCursoOferta',$oferta->tipo_curso)}}</option>
                             <option>Virtual</option>
                             <option>Presencial</option>
                         </select>
