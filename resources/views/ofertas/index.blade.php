@@ -26,15 +26,16 @@
         @foreach ($objOferta as $objOferta)
         <div class="col-lg-4 col-sm-12 p-3">
             <div class="card">
-                <div class="box img">
-                    <img class="card-img-top" src="{{ asset($objOferta->imagen) }}" alt="Card image cap">
+                <div class="col-md-4 container-img">
+                    <img src="{{ asset($objOferta->imagen) }}" alt="Card image cap" style="height:500px;width:417px;">
                 </div>
 
                 <div class=" card-body mb-2">
+                    
                     <h5 class="card-text" style="color: #800000;">{{$objOferta->nombre}}</h5>
                     <p class=""><strong>Población Objetivo:</strong> {{$objOferta->poblacion_objetivo}}</p>
-                    <p><strong>Fecha de inicio:</strong> {{$objOferta->fecha_inicio}}</p>
-                    <p><strong>Fecha de finalización:</strong> {{$objOferta->fecha_fin}}</p>
+                    <p><strong>Fecha de inicio:</strong> {{ \Carbon\Carbon::parse($objOferta->fecha_inicio)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
+                    <p><strong>Fecha de finalización:</strong> {{ \Carbon\Carbon::parse($objOferta->fecha_fin)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
                     <div class="row">
                         <div class="col-6">
                             <a type="button" href="{{ url('/detalleOferta/') }}{{'/'}}{{ $objOferta->id }} " class="btn btn-primary" style="background:#04153B; border:none;">Más detalles</a>
@@ -66,4 +67,19 @@
             object-position: center center;
         }
     }
+   
+    .img{
+
+    }
+    .container-img{
+        height: auto;
+        width: auto;
+        max-height: 100%;
+        max-width: 100%;
+    }
+
+
+
+
+
 </style>

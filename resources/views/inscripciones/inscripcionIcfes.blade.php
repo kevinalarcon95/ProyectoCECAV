@@ -26,7 +26,7 @@
 
         <div class="row">
             <div class="my-3">
-                <label class="form-label fw-bold">Evento al cual se quiere inscribir</label>
+                <label class="form-label fw-bold">Curso al cual se quiere inscribir</label>
                 <select class="form-select" name="idIcfes" value="{{$objPreIcfes->id}}" style="background-color: #ececec;" required>
                     <option selected readonly="true" value="{{$objPreIcfes->id}}">{{$objPreIcfes->nombre}}</option>
                 </select>
@@ -42,12 +42,12 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Nombres y apellidos completos</label>
-                    <input type="text" class="form-control" name="nombreIcfes" placeholder="{{$objUser->name}} {{$objUser->lastname}}" value="{{$objUser->name}} {{$objUser->lastname}}" readonly="true">
+                    <input type="text" class="form-control" name="nombreIcfes" placeholder="{{$objUser->name}} {{$objUser->lastname}}" value="{{$objUser->name}} {{$objUser->lastname}}" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" readonly="true">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Número telefono</label>
-                    <input type="text" class="form-control @error('telefonoIcfes') is-invalid @enderror" value="{{old('telefonoIcfes')}}" name="telefonoIcfes" placeholder="Tu respuesta" required>
+                    <input type="number" class="form-control @error('telefonoIcfes') is-invalid @enderror" value="{{old('telefonoIcfes')}}" name="telefonoIcfes" placeholder="Tu respuesta" required>
                     @error('telefonoIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -60,7 +60,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Municipio en el que está ubicado el nombre del colegio</label>
-                    <input type="text" class="form-control @error('municipioIcfes') is-invalid @enderror" value="{{old('municipioIcfes')}}" name="municipioIcfes" placeholder="Tu respuesta" required>
+                    <input type="text" class="form-control @error('municipioIcfes') is-invalid @enderror" value="{{old('municipioIcfes')}}" name="municipioIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" required>
                     @error('municipioIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -68,7 +68,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Correo electrónico ó número telefónico del acudiente</label>
-                    <input type="text" class="form-control @error('numAcuIcfes') is-invalid @enderror" value="{{old('numAcuIcfes')}}" name="numAcuIcfes" placeholder="Tu respuesta" required>
+                    <input type="text" class="form-control @error('numAcuIcfes') is-invalid @enderror" value="{{old('numAcuIcfes')}}" name="numAcuIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode != 32))" required>
                     @error('numAcuIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -76,7 +76,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Programa de pregrado al cual aspira</label>
-                    <input type="text" class="form-control @error('programaIcfes') is-invalid @enderror" value="{{old('programaIcfes')}}" name="programaIcfes" placeholder="Tu respuesta" required>
+                    <input type="text" class="form-control @error('programaIcfes') is-invalid @enderror" value="{{old('programaIcfes')}}" name="programaIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" required>
                     @error('programaIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -108,7 +108,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Departamento en que está ubicado el nombre del colegio</label>
-                    <input type="text" class="form-control @error('departamentoIcfes') is-invalid @enderror" value="{{old('departamentoIcfes')}}" name="departamentoIcfes" placeholder="Tu respuesta" required>
+                    <input type="text" class="form-control @error('departamentoIcfes') is-invalid @enderror" value="{{old('departamentoIcfes')}}" name="departamentoIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" required>
                     @error('departamentoIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -116,7 +116,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Nombres y apellidos completos del acudiente</label>
-                    <input type="text" class="form-control @error('nomAcuIcfes') is-invalid @enderror" value="{{old('nomAcuIcfes')}}" name="nomAcuIcfes" placeholder="Tu respuesta" required>
+                    <input type="text" class="form-control @error('nomAcuIcfes') is-invalid @enderror" value="{{old('nomAcuIcfes')}}" name="nomAcuIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" required>
                     @error('nomAcuIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -124,13 +124,22 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Tipo de curso</label>
-                    <input type="text" class="form-control" name="tipoCursoIcfes" placeholder="{{$objPreIcfes->tipo_curso}}" value="{{$objPreIcfes->horario}}" readonly="true">
+                    <input type="text" class="form-control" name="tipoCursoIcfes" placeholder="{{$objPreIcfes->tipo_curso}}" value="{{$objPreIcfes->tipo_curso}}" readonly="true">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label fw-bold">Horario</label>
-                    <input type="text" class="form-control" name="horarioIcfes" placeholder="{{$objPreIcfes->horario}}" value="{{$objPreIcfes->horario}}" readonly="true">
-                </div>
+                        <label class="form-label fw-bold">Horario</label>
+                        <select class="form-select @error('horarioIcfes') is-invalid @enderror" name="horarioIcfes" value="{{old('horarioIcfes')}}" style="background-color: #ececec;" required>
+                            <option selected disabled value="">Elige</option>
+                            @foreach($objHorario as $key => $value)
+                            <option value="{{ $key }}" {{ (collect(old('horarioIcfes'))->contains($key)) ? 'selected':'' }} />{{ $value }}</option>
+                            @endforeach
+                        </select>
+                        @error('horarioIcfes')
+                        <small class="invalid-feedback">*{{$message}}</small>
+                        @enderror
+                    </div>
+
             </div>
         </div>
 
