@@ -67,7 +67,6 @@
                         <input type="date" class="form-control @error('fechaFinOferta') is-invalid @enderror"" name=" fechaFinOferta" value="{{old('fechaFinOferta')}}" style="background-color: #ececec;" required>
                         @error('fechaFinOferta')
                         <div class="valid-feedback">Looks good!</div>
-                        if
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>

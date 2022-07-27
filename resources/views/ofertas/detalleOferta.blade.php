@@ -27,7 +27,7 @@
         <h5 style="color: #800000;">Intensidad horaria:</h5>
         <p>{{$objOferta->intensidad_horario}}</p>
     </div>
-    @if($objOferta->tipo_pago == 'Gratuito')
+    @if($objOferta->costo== 0)
     <div class="row mt-2">
         <h5 style="color: #800000;">Valor de la inversión:</h5>
         <p>Gratuito</p>

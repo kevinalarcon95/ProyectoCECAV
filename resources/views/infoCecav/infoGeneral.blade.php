@@ -20,7 +20,7 @@
                     académicas de la Unicauca...
                 </p>
             </div>
-            <div class="col-lg-7 col-md-12 d-sm-none">
+            <div class="col-lg-7 col-md-12">
                 <a href="{{(route('/homeInfo/quienesSomos'))}}" type="submit" class="btn btn-primary" style="color: white; background-color: #08153A; border: none; border-radius: 20px; padding-left: 40px; padding-right: 40px;font-size: 14pt;">
                     Leer más
                 </a>
