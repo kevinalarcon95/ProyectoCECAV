@@ -5,7 +5,7 @@
 <div class="contenedor mt-5">
     <div class="row mx-3">
         <div class="d-flex justify-content-between align-baseline">
-            <h4>Gestión PREICFES</h4>
+            <h4>Gestión de cursos PREICFES</h4>
             <a href="{{ route('/admin/createPreicfes') }}" class="botones btn btn-añadir me-1">
                 <i class="bi bi-plus me-1"></i>Añadir
             </a>
@@ -54,8 +54,8 @@
                 <td  class="celda">{{$varPreicfes->estructura}}</td>
                 <td>
                     <div class="d-flex flex-row">
-                        <?php $fecha_actual= date("d-m-y");?>
-                        @if ($fecha_actual < $varPreicfes->fecha_fin_inscripcion)
+                        <?php $fecha_actual= date("Y-m-d");?>
+                        @if ($fecha_actual < $varPreicfes->fecha_fin)
                         <a type="button" href="{{ url('/admin/editPreicfes/'.$varPreicfes->id)}}" class="botones btn btn-editar me-1" ><i class="bi bi-pencil-square me-1"></i>Editar</a>
                         @else
                         <a type="button" class="botones btn btn-editar-deshabilitar me-1" ><i class="bi bi-pencil-square me-1"></i>Editar</a>

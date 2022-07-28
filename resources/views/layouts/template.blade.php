@@ -33,8 +33,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
      <!-- estilo fecha-->
-     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css">
+     <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">-->
     
 </head>
 
@@ -110,6 +109,7 @@
                         //'excel'      
                         extend:"excel", 
                         text:'Exportar',
+                        class: 'btn btn-success',
                         exportOptions:{
                             'columns':[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]   
                         }                                  

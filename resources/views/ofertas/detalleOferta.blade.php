@@ -10,7 +10,6 @@
         <div class="col-12">
             <img src="{{ asset($objOferta->imagen) }}" alt="" width="520" height="600" style="border-radius: 15px;">
         </div>
-
     </div>
     <div class="row mt-3">
         <div class="col-12">
@@ -28,7 +27,7 @@
         <h5 style="color: #800000;">Intensidad horaria:</h5>
         <p>{{$objOferta->intensidad_horario}}</p>
     </div>
-    @if($objOferta->tipo_pago == 'Gratuito')
+    @if($objOferta->costo== 0)
     <div class="row mt-2">
         <h5 style="color: #800000;">Valor de la inversión:</h5>
         <p>Gratuito</p>
@@ -39,10 +38,17 @@
         <p>{{$objOferta->costo}}</p>
     </div>
     @endif
+    @if($objOferta->limite_cupos == 0)
+    <div class="row mt-2">
+        <h5 style="color: #800000;">Limite de cupos:</h5>
+        <p><strong>Cupos limitados</strong></p>
+    </div>
+    @else
     <div class="row mt-2">
         <h5 style="color: #800000;">Limite de cupos:</h5>
         <p>{{$objOferta->limite_cupos}}</p>
     </div>
+    @endif
 
 </div>
 <!-- fin detalles oferta -->
