@@ -20,10 +20,11 @@
     </div>
     <div class="col-6 px-4 justify-content-center" style="justify-content: center !important;align-items: center; background-color: white;">
         <h3 class="fw-bold text-center py-5 mt-4" style="color:#04153B;">Crear Cuenta</h3>
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('updateUser',$userExists->idgoogle) }}">
+            @method('PUT')
             @csrf
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ ($userNew->name) }}" required autocomplete="name" placeholder="{{ old($userNew->lastname) }}" autofocus style="background-color: #ececec;">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name',$userExists->name) }}" required autocomplete="name" placeholder="{{ old('$userExists->name') }}" autofocus style="background-color: #ececec;">
 
                 @error('name')
                 <span class="invalid-feedback" role="alert">
@@ -32,7 +33,7 @@
                 @enderror
             </div>
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lastname" value="{{ ($userNew->lastname) }}" required autocomplete="name" placeholder="{{ old($userNew->lastname) }}" autofocus style="background-color: #ececec;" disabled>
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lastname" value="{{ old('lastname',$userExists->lastname) }}" required autocomplete="name" placeholder="{{ old('$userExists->lastname') }}" autofocus style="background-color: #ececec;" >
 
                 @error('lastname')
                 <span class="invalid-feedback" role="alert">
@@ -41,7 +42,7 @@
                 @enderror
             </div>
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ ($userNew->email) }}" required autocomplete="email" placeholder="{{ old($userNew->email) }}" style="background-color: #ececec;">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email',$userExists->email) }}" required autocomplete="email" placeholder="{{ old('$userExists->email') }}" style="background-color: #ececec;">
 
                 @error('email')
                 <span class="invalid-feedback" role="alert">
