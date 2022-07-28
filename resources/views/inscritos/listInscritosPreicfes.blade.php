@@ -26,9 +26,7 @@
                     </tbody></table>
                 </div>
                 <div class="col-1">     
-                </div>       
-                
-                
+                </div>             
             </div>
             
             <table id="datatables" class="display nowrap " style="width:100%">

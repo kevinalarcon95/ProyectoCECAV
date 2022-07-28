@@ -8,12 +8,12 @@
     <div class="row">
             <div class="row mx-3">
                 <div class="d-flex justify-content-between align-baseline">
-                    <h4>Listado estudiantes inscritos</h4>           
+                    <h4>Listado Estudiantes Inscritos</h4>           
                 </div>
             </div>
             <hr>
             <div class="row m-3 pt-3">  
-                <div class="col-2">
+                <div class="col-2">                    
                     <table border="0" cellspacing="5" cellpadding="5">
                         <tbody><tr>
                             <td>Fecha Inicio:</td>
@@ -23,40 +23,8 @@
                             <td>Fecha Fin:</td>
                             <td><input type="text" id="max" name="max"></td>
                         </tr>
-                    </tbody></table>
-                </div>
-                <div class="col-1">     
-                </div>       
-                <div class="col-2">
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">Cursos Ofertados</label>
-                        <select class="form-select" name="cursosOfertados"  aria-label="Default select example" style="background-color: #ececec;">
-                            @foreach($oferta as $key => $value)
-                            <option value="{{ $key }}">{{ $value }}</option>
-                            @endforeach
-                        </select>
-                        @error('cursosOfertados')
-                            <br>
-                            <small>*{{$message}}</small>
-                            <br>
-                        @enderror
-                    
-                    </div>
-                    <form method="POST" name="Busqueda" action="index.php" class="form-inline">
-                    <button name="buscar" type="submit">Buscar</button>      
-                    <select class="form-select" name="cursos"  aria-label="Default select example" style="background-color: #ececec;">
-                            <option value="">Curso</option>
-                            <?
-                               if (! empty($oferta)) {
-                                foreach ($oferta as $keyy => $value) {
-                                echo '<option value="' . $oferta[$keyy]['nombre'] . '">' . $oferta[$keyy]['nombre'] . '</option>';
-                                     }
-                               }
-                            ?>
-                    </select>   
-                    </form>                 
-                </div>   
-                
+                    </tbody></table>                            
+                </div>         
             </div>
             
             <table id="datatables" class="display nowrap " style="width:100%">

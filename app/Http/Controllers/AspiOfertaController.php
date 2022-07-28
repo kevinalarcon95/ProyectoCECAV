@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Exports\AspiOfertaExport;
 use App\Models\AspiIcfes;
 use App\Models\AspiOferta;
 use Illuminate\Http\Request;
@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\Auth;
 use Throwable;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AspiOfertaController extends Controller
 {
@@ -27,7 +28,7 @@ class AspiOfertaController extends Controller
         return view('inscripciones.inscripcionOferta', compact('objUser'))->with('objOferta', $objOferta);
     }
     public function list()
-    {                     
+    {            
         $datos['aspiOferta'] = AspiOferta::join('oferta','aspi_oferta.id_oferta','=','oferta.id')  
         ->select(
             'aspi_oferta.id_oferta',
@@ -197,5 +198,49 @@ class AspiOfertaController extends Controller
         if ($objAspioferta->id != null) {
             return true;
         }
+    }
+    public function exportExcel()
+    {
+        
+        ini_set('memory_limit','-1');
+        set_time_limit(3);        
+        return Excel::download(new AspiOfertaExport,'Listado-Inscritos-Cursos.xlsx');      
+       
+    } 
+    public function consultar(Request $request){
+        $f1 = $f2 = date('Y-m-d');
+        
+        if(! is_null( $request->input('fecha_inicio')) && ! empty($request->input('fecha_inicio')) && ! is_null($request->input('fecha_fin')) || ! empty($request->input('fecha_fin')))
+        {
+            $f1 = Carbon::parse($this->fecha_inicio)->format('Y-m-d').'00:00:00';
+            $f2 = Carbon::parse($this->fecha_fin)->format('Y-m-d').'23:59:59';
+        }
+       
+        $datos['aspiOferta'] = AspiOferta::join('oferta','aspi_oferta.id_oferta','=','oferta.id')  
+        ->select(
+            'aspi_oferta.id_oferta',
+            'oferta.nombre as nomOferta',
+            'aspi_oferta.nombre',
+            'aspi_oferta.apellido',    
+            'aspi_oferta.tipo_identificacion',
+            'aspi_oferta.identificacion',
+            'aspi_oferta.direccion_residencia',
+            'aspi_oferta.telefono',
+            'aspi_oferta.tipo_inscripcion',
+            'aspi_oferta.tipo_vinculacion',
+            'aspi_oferta.codigo_universitario',
+            'aspi_oferta.profesion',
+            'aspi_oferta.programa',
+            'aspi_oferta.entidad',
+            'aspi_oferta.nit_entidad',
+            'aspi_oferta.id_user',
+            'aspi_oferta.created_at'
+                
+        )
+        ->whereBetween('aspi_oferta.created_at', [$f1, $f2])
+        //->where('oferta.nombre','=',"curso tenis")        
+        ->get();
+        $oferta = Oferta::pluck('nombre', 'id'); 
+        return view('inscritos.listInscritosCursos', $datos)->with('oferta', $oferta);
     }
 }

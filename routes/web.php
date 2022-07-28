@@ -83,9 +83,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     //---Listado inscritos a cursos---
     Route::get('/admin/listInscritos', [AspiOfertaController::class, 'list'])->name('/admin/listInscritos');
+    Route::get('/admin/listInscritos2', [AspiOfertaController::class, 'consultar'])->name('/admin/listInscritos2');
     //---Listado inscritos a Preicfes---
     Route::get('/admin/listInscritosPreicfes', [AspiIcfesController::class, 'list'])->name('/admin/listInscritosPreicfes');
-
+    Route::get('/admin/expexcel',[AspiOfertaController::class,'exportExcel'])->name('admin/expexcel');
     //=============================== Funcionarios cecav ===============================
     Route::get('/admin/Funcionario', [FuncionarioController::class, 'index'])->name('/admin/Funcionario');
     Route::get('/admin/createFuncionario', [FuncionarioController::class, 'create'])->name('/admin/createFuncionario');
