@@ -23,7 +23,7 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Nombre (s)" autofocus style="background-color: #ececec;">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ ($userNew->name) }}" required autocomplete="name" placeholder="{{ old($userNew->lastname) }}" autofocus style="background-color: #ececec;">
 
                 @error('name')
                 <span class="invalid-feedback" role="alert">
@@ -32,7 +32,7 @@
                 @enderror
             </div>
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lastname" value="" required autocomplete="name" placeholder="Apellido (s)" autofocus style="background-color: #ececec;">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lastname" value="{{ ($userNew->lastname) }}" required autocomplete="name" placeholder="{{ old($userNew->lastname) }}" autofocus style="background-color: #ececec;" disabled>
 
                 @error('lastname')
                 <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
                 @enderror
             </div>
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Correo electronico" style="background-color: #ececec;">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ ($userNew->email) }}" required autocomplete="email" placeholder="{{ old($userNew->email) }}" style="background-color: #ececec;">
 
                 @error('email')
                 <span class="invalid-feedback" role="alert">

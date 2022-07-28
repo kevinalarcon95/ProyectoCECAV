@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Throwable;
 use Maatwebsite\Excel\Facades\Excel;
 
+use function PHPUnit\Framework\isNull;
+
 class AspiOfertaController extends Controller
 {
 
@@ -85,13 +87,13 @@ class AspiOfertaController extends Controller
             'telefonoUser' => 'required|numeric',
             'tipoInscripcion' => 'required|string',
             'vinculacion' => 'required|string',
-            'codigoUser' => 'numeric',
-            'profesionUser' => 'string',
-            'programaUser' => 'string',
-            'entidadUser' => 'string',
-            'nitUser' => 'string'
+            //'codigoUser' => 'numeric',
+            //'profesionUser' => 'string',
+            //'programaUser' => 'string',
+            //'entidadUser' => 'string',
+            //'nitUser' => 'string'
         ]);
-
+        
         $idOferta = $request->input('idOferta');
         $nombreUser = $request->input('nombreUser');
         $apellidoUser = $request->input('apellidoUser');
@@ -101,11 +103,11 @@ class AspiOfertaController extends Controller
         $telefonoUser = $request->input('telefonoUser');
         $tipoInscripcion = $request->input('tipoInscripcion');
         $vinculacion = $request->input('vinculacion');
-        $codigoUser = $request->input('codigoUser');
-        $profesionUser = $request->input('profesionUser');
-        $programaUser = $request->input('programaUser');
-        $entidadUser = $request->input('entidadUser');
-        $nitUser = $request->input('nitUser');
+        $codigoUser = is_null($request->input('codigoUser')) ?  '0' : $request->input('codigoUser');
+        $profesionUser = is_null($request->input('profesionUser')) ? 'No aplica' : $request->input('profesionUser');
+        $programaUser = is_null($request->input('programaUser')) ? 'No aplica' : $request->input('programaUser');
+        $entidadUser = is_null($request->input('entidadUser')) ? 'No aplica' : $request->input('entidadUser');
+        $nitUser = is_null($request->input('nitUser')) ? 0 : $request->input('nitUser');
 
         $objUser = User::where('id', Auth::user()->id)->first();
         $id_user = $objUser->id;
@@ -135,11 +137,11 @@ class AspiOfertaController extends Controller
                     'id_user' => $id_user
                 ]);
 
-                Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
+                Toastr::success('¡Su registro fue exitoso!', 'Exito', ["positionClass" => "toast-top-right"]);
                 return redirect('/ofertasInscripciones');
             } catch (Throwable $e) {
                 dd($e);
-                Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
+                Toastr::error('¡Error al crear su registro!', 'Error', ["positionClass" => "toast-top-right"]);
                 return redirect('/ofertasInscripciones');
             }
         }

@@ -26,8 +26,8 @@
         @foreach ($objOferta as $objOferta)
         <div class="col-lg-4 col-sm-12 p-3">
             <div class="card">
-                <div class="col-md-4">
-                    <img class="card-img-fluid" src="{{ asset($objOferta->imagen) }}" alt="Card image cap" style="height: 500px;width: unset;">
+                <div class="col-md-4 container-img">
+                    <img class="" src="{{ asset($objOferta->imagen) }}" alt="Card image cap" style="height:500px;width:417px;">
                 </div>
 
                 <div class=" card-body mb-2">
@@ -67,9 +67,15 @@
             object-position: center center;
         }
     }
-    .img {
-        width: auto;
+   
+    .container-img{
         height: auto;
+        width: auto;
+        max-height: 100%;
+        max-width: 100%;
     }
-    
+
+
+
+
 </style>

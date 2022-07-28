@@ -41,7 +41,7 @@
             </div>
 
             <div class="mb-4 mx-5 d-grid btnGoogle" style="padding-left: 15%; padding-right: 15%;">
-                <button type="submit" class="btn btn-outline-light" style="color:#04153B;border-color: black; padding-left: 60px; padding-right: 60px;font-size: 12pt;">
+                <a href="{{ route('/loginGoogle') }}" class="btn btn-outline-light" style="color:#04153B;border-color: black; padding-left: 60px; padding-right: 60px;font-size: 12pt;">
                     <div class="row align-item-center">
                         <div class="col-2 text-end">
                             <img src="{{ asset('img/iconGoogle.png') }}" alt="" width="20" height="20" class="d-inline-block align-text-top">
@@ -50,8 +50,7 @@
                             Continuar con Google
                         </div>
                     </div>
-
-                </button>
+                </a>
             </div>
 
             <!-- <div class="mb-4">

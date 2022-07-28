@@ -67,7 +67,6 @@
                         <input type="date" class="form-control @error('fechaFinOferta') is-invalid @enderror"" name=" fechaFinOferta" value="{{old('fechaFinOferta')}}" style="background-color: #ececec;" required>
                         @error('fechaFinOferta')
                         <div class="valid-feedback">Looks good!</div>
-                        if
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
@@ -131,7 +130,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Tipo de curso</label>
-                        <select name="tipoCursoOferta" id="tipoCursoOferta" class="form-select @error('tipoCursoOferta') is-invalid @enderror" value="{{ old('tipoCursoOferta')}}" required>
+                        <select name="tipoCursoOferta" id="tipoCursoOferta" class="form-select @error('tipoCursoOferta') is-invalid @enderror" value="{{ old('tipoCursoOferta')}}" style="background-color: #ececec;" required>
                             <option selected disabled value="{{ old('tipoCursoOferta')}}">Elige</option>
                             <option value="Virtual" @if(old('tipoCursoOferta')=='Virtual' ) selected @endif>Virtual</option>
                             <option value="Presencial" @if(old('tipoCursoOferta')=='Presencial' ) selected @endif>Presencial</option>

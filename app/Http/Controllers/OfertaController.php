@@ -89,7 +89,7 @@ class OfertaController extends Controller
             'intensidadHorarioOferta' => 'required|string',
             'cuposOferta' => 'required|numeric',
             'imagenOferta' => 'required|image|mimes:jpeg,png,jpg,svg1|dimensions:min_width=100,min_height=200|max:5000',
-            'poblacionOferta' => 'required|string|max:200|',
+            'poblacionOferta' => 'required|string',
             'categoriaOferta' => 'required',
             //'costoOferta' => 'required|string',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
@@ -213,7 +213,7 @@ class OfertaController extends Controller
         //Obteniendo los datos de la vista
         $nombreOferta = $request->input('nombreOferta');
         $descripcionOferta = $request->input('descripcionOferta');
-        //$tipoPagoOferta = $request->input('tipoPagoOferta');
+        $tipoPagoOferta = $request->input('tipoPagoOferta');
         $unidadAcademicaOferta = $request->input('unidadAcademicaOferta');
         $fechaInicioOferta = $request->input('fechaInicioOferta');
               
@@ -224,21 +224,29 @@ class OfertaController extends Controller
         $poblacionOferta = $request->input('poblacionOferta');
         $categoriaOferta = $request->input('categoriaOferta');
         $fechaFinOferta = $request->input('fechaFinOferta');
-        //$costoOferta = $request->input('costoOferta');
+        $costoOferta = $request->input('costoOferta');
         $tipoCursoOferta = $request->input('tipoCursoOferta');
         $fechaCierreOferta = $request->input('fechaCierreOferta');
         
-
+        if ($tipoPagoOferta == 'Gratuito' || $costoOferta == null) {
+            $costoOferta = 0;
+        } 
         //dd($fechaInicioOferta);
-
+        $imagen = $request->input('imagenOferta');
         try {
             $updateData->nombre = $nombreOferta;
             $updateData->descripcion = $descripcionOferta;
-            //$updateData->tipo_pago =  $tipoPagoOferta;
+            $updateData->tipo_pago =  $tipoPagoOferta;
             $updateData->unidad_academica = $unidadAcademicaOferta;
+            if ($request->hasFile('imagenOferta')) {
+                //$datosTemporal = Oferta::findOrFail($id);
+                $url = str_replace('storage', 'public', $updateData->imagen);
+                Storage::delete($url);
+                $updateData->imagen = Storage::url($request->file('imagenOferta')->store('public/ofertas'));
+            }
             $updateData->poblacion_objetivo = $poblacionOferta;
             $updateData->id_categoria = $categoriaOferta;
-            //$updateData->costo = $costoOferta;
+            $updateData->costo = $costoOferta;
             $updateData->fecha_inicio = $fechaInicioOferta;
             $updateData->resolucion = $resolucionOferta;                      
             $updateData->intensidad_horario = $intensidadHorarioOferta;
@@ -260,13 +268,8 @@ class OfertaController extends Controller
             $imagen = $url;
             $updateData ->imagen = $imagen;
             }*/
-            if ($request->hasFile('imagenOferta')) {
-                $datosTemporal = Oferta::findOrFail($id);
-                $url = str_replace('storage', 'public', $datosTemporal->imagen);
-                Storage::delete($url);
-                $datos['imagen'] = Storage::url($request->file('imagenOferta')->store('public/ofertas'));
-            }
-
+            //dd($imagen);
+            //dd($updateData);
             $updateData->save();
             Toastr::success('¡Su registro fue editado exitosamente!', 'Exito', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listOferta');

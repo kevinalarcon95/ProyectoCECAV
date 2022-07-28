@@ -26,7 +26,7 @@ class AspiIcfesController extends Controller
         //$objPreIcfes = Preicfes::all();
         $objUser = User::where('id', Auth::user()->id)->first();
         $objPreIcfes = Preicfes::findOrFail($id);
-
+        
         $objHorario = DB::table('horario_preicfes')->where('id_preicfes', '=', $id)->pluck('horario','id');
 
         return view('inscripciones.inscripcionIcfes', compact('objUser','objHorario')) ->with ( 'objPreIcfes', $objPreIcfes);
@@ -133,11 +133,11 @@ class AspiIcfesController extends Controller
                     'id_user' => $id_user
                 ]);
     
-                Toastr::success('¡Su registro fue exitoso!', '', ["positionClass" => "toast-top-right"]);
+                Toastr::success('¡Su registro fue exitoso!', 'Exito', ["positionClass" => "toast-top-right"]);
                 return redirect('/preIcfes');
             } catch (Throwable $e) {
                 dd($e);
-                Toastr::error('¡Error al crear su registro!', '', ["positionClass" => "toast-top-right"]);
+                Toastr::error('¡Error al crear su registro!', 'Error', ["positionClass" => "toast-top-right"]);
                 return redirect('/preIcfes');
             }
         }

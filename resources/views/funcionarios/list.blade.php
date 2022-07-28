@@ -33,10 +33,10 @@
                 <td  class="celda">{{$varFuncionario->correo}}</td>
                 <td>
                     <div class="d-flex flex-row">
-                        <a type="button" href="{{ url('/admin/editPreicfes/'.$varFuncionario->id)}}" class="botones btn btn-editar me-1" ><i class="bi bi-pencil-square me-1"></i>Editar</a>
-                        <button type="button" class="botones btn btn-eliminar" data-bs-toggle="modal" data-bs-target="#modalEliminar{{$varFuncionario->id}}"><i class="bi bi-trash3 me-1"></i>Eliminar</button>
-
+                        <a type="button" href="{{ url('/admin/editFuncionario/'.$varFuncionario->id)}}" class="botones btn btn-editar me-1" ><i class="bi bi-pencil-square me-1"></i>Editar</a>
+                        <button type="button" class="botones btn btn-eliminar" data-bs-toggle="modal" data-bs-target="#exampleModal{{$varFuncionario->id}}"><i class="bi bi-trash3 me-1"></i>Eliminar</button>
                     </div>
+                    @include('funcionarios.modalEliminar')
                 </td>
             </tr>
             @endforeach

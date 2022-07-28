@@ -38,19 +38,24 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">Tipo de pago</label>
-                        <select class="form-select" name="tipoPagoOferta"  disabled aria-label="Default select example" style="background-color: #ececec;">
-                            <option selected>{{old('tipoPagoOferta',$oferta->tipo_pago)}}</option>                           
-                            <option value="Pago" @if(old('tipoPagoOferta')=='Pago' ) selected @endif>Pago</option>
-                            <option value="Gratuito" @if(old('tipoPagoOferta')=='Gratutio' ) selected @endif>Gratuito</option>                           
+                        <label class="form-label fw-bold">Tipo de pago</label>                       
+                        <select class="form-select" name="tipoPagoOferta" value="{{old('tipoPagoOferta',$oferta->tipo_pago)}}" style="background-color: #ececec;" required onchange="if(this.value=='Pago') {document.getElementById('costoOferta').disabled = false; console.log(this.value)} else {document.getElementById('costoOferta').disabled = true}">
+                            @if($oferta->tipo_pago == 'Pago')
+                            <option selected>{{old('tipoPagoOferta',$oferta->tipo_pago)}}</option>
+                            <option>Gratuito</option>
+                            @else
+                            <option selected>{{old('tipoPagoOferta',$oferta->tipo_pago)}}</option>
+                            <option>Pago</option>
+                            @endif
                         </select>
                         @error('tipoPagoOferta')
+                        <div class="valid-feedback">Looks good!</div>
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label fw-bold">Costo o inversión</label>
-                        <textarea type="text" class="form-control @error('costoOferta') is-invalid @enderror" name="costoOferta"  disabled class="form-control" id="exampleInputPassword1" placeholder="Valor de inversión" style="background-color: #ececec;">{{old('costoOferta',$oferta->costo)}}</textarea>
+                        <label for="exampleInputPassword1" class="form-label fw-bold">Costo o inversión</label>                        
+                        <textarea type="text" class="form-control @error('costoOferta') is-invalid @enderror" name="costoOferta"  id="costoOferta"" placeholder="Valor de inversión" style="background-color: #ececec;" disabled required>{{old('costoOferta',$oferta->costo)}}</textarea>
                         @error('costoOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -96,9 +101,9 @@
                     <div class="mb-3">
                         <label for="formFile" class="form-label fw-bold">Seleccione una imagen</label>
                         <!--<img src="{{ asset('img/ofertasp').'/'.$oferta->imagen }}" alt="" width="420" height="340">-->
-                        {{$oferta->imagen}}
-                        <input class="form-control @error('imagenOferta') is-invalid @enderror"  type="file" accept="image/*" name="imagenOferta" id="imagen" value="{{old('imagenOferta',$oferta->imagen)}}" id="formFile" style="background-color: #ececec;">
-                        <img class="mt-1 img-thumbnail img-fluid" id="imagenSeleccionada"  width="100" alt="">
+                        <!--{{$oferta->imagen}}-->
+                        <input class="form-control @error('$oferta->imagen') is-invalid @enderror"  type="file" accept="image/*" name="imagenOferta" id="imagen" style="background-color: #ececec;">
+                        <img class="img-thumbnail img-fluid mt-2" id="imagenSeleccionada" src="{{ asset($oferta->imagen) }}" width="150" alt="">
                         @error('imagenOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -138,8 +143,13 @@
                     <div class="mb-3">
                         <label class="form-label fw-bold">Tipo de curso</label>
                         <select class="form-select @error('tipoCursoOferta') is-invalid @enderror" name="tipoCursoOferta" value="{{old('tipoCursoOferta',$oferta->tipo_curso)}}"  aria-label="Default select example" style="background-color: #ececec;">
-                            <option>Virtual</option>
+                            @if($oferta->tipo_curso == 'Virtual')
+                            <option selected>{{old('tipoCursoOferta',$oferta->tipo_curso)}}</option>
                             <option>Presencial</option>
+                            @else
+                            <option selected>{{old('tipoCursoOferta',$oferta->tipo_curso)}}</option>
+                            <option>Virtual</option>
+                            @endif
                         </select>
                         @error('tipoCursoOferta')
                         <small class="invalid-feedback">*{{$message}}</small>

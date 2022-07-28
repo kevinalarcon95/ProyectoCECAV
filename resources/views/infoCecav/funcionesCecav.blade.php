@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container my-4">
-    <div class="row mx-5 mt-5 mb-1 text-justify">
+    <div class="row mx-3 mt-3 mb-1 text-justify">
             <strong>
                 <h1>Funciones</h1>
             </strong>

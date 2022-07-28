@@ -60,7 +60,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Municipio en el que está ubicado el nombre del colegio</label>
-                    <input type="text" class="form-control @error('municipioIcfes') is-invalid @enderror" value="{{old('municipioIcfes')}}" name="municipioIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" required>
+                    <input type="text" class="form-control @error('municipioIcfes') is-invalid @enderror" value="{{old('municipioIcfes')}}" name="municipioIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" required>
                     @error('municipioIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -68,7 +68,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Correo electrónico ó número telefónico del acudiente</label>
-                    <input type="text" class="form-control @error('numAcuIcfes') is-invalid @enderror" value="{{old('numAcuIcfes')}}" name="numAcuIcfes" placeholder="Tu respuesta" required>
+                    <input type="text" class="form-control @error('numAcuIcfes') is-invalid @enderror" value="{{old('numAcuIcfes')}}" name="numAcuIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode != 32))" required>
                     @error('numAcuIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -76,7 +76,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Programa de pregrado al cual aspira</label>
-                    <input type="text" class="form-control @error('programaIcfes') is-invalid @enderror" value="{{old('programaIcfes')}}" name="programaIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" required>
+                    <input type="text" class="form-control @error('programaIcfes') is-invalid @enderror" value="{{old('programaIcfes')}}" name="programaIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" required>
                     @error('programaIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -108,7 +108,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Departamento en que está ubicado el nombre del colegio</label>
-                    <input type="text" class="form-control @error('departamentoIcfes') is-invalid @enderror" value="{{old('departamentoIcfes')}}" name="departamentoIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" required>
+                    <input type="text" class="form-control @error('departamentoIcfes') is-invalid @enderror" value="{{old('departamentoIcfes')}}" name="departamentoIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" required>
                     @error('departamentoIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -116,7 +116,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Nombres y apellidos completos del acudiente</label>
-                    <input type="text" class="form-control @error('nomAcuIcfes') is-invalid @enderror" value="{{old('nomAcuIcfes')}}" name="nomAcuIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" required>
+                    <input type="text" class="form-control @error('nomAcuIcfes') is-invalid @enderror" value="{{old('nomAcuIcfes')}}" name="nomAcuIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" required>
                     @error('nomAcuIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror

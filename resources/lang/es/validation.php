@@ -178,6 +178,9 @@ return [
         'nomColIcfes' => '"Nombre del colegio en que está estudiando o estudió"',
         'departamentoIcfes' => '"Departamento en que está ubicado el nombre del colegio"',
         'nomAcuIcfes' => '"Nombres y apellidos completos del acudiente"',
+
+        //Create preicfes
+        
         
         //Editar oferta
         'nombreOferta' => '"Nombre "',
@@ -193,7 +196,15 @@ return [
         'categoriaOferta' => '"Categoria"',          
         'fechaFinOferta' => '"Fecha Fin "',
         'tipoCursoOferta' => '"Tipo de curso"',
-        'fechaCierreOferta' => 'Fecha cierre'
+        'fechaCierreOferta' => 'Fecha cierre',
+
+        //Funcionarios
+        'nombreFunc' => '"Nombre"',
+        'cargoFunc' => '"Cargo"',
+        'telefonoFunc' => '"Teléfono"',
+        'extensionFunc' => '"Número extensión"',
+        'correoFunc' => '"Correo"',
+
     ],
 
 ];
