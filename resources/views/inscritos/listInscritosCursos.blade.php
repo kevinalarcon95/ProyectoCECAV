@@ -12,21 +12,60 @@
                 </div>
             </div>
             <hr>
-            <div class="row m-3 pt-3">  
-                <div class="col-2">                    
-                    <table border="0" cellspacing="5" cellpadding="5">
-                        <tbody><tr>
-                            <td>Fecha Inicio:</td>
-                            <td><input type="text" id="min" name="min"></td>
-                        </tr>
-                        <tr>
-                            <td>Fecha Fin:</td>
-                            <td><input type="text" id="max" name="max"></td>
-                        </tr>
-                    </tbody></table>                            
-                </div>         
+            <div class="row ">
+                <div class="col-4">
+                    <div class="input-group text-center">
+                        <div class="group-text mx-2">
+                            <i class="bi bi-funnel-fill" style="color:gray;"></i>
+                            <label for="text" class="col-form-label fw-bold" style="color:gray;">Fecha de inicio</label>
+                        </div>
+                        <input class="form-control" type="text" id="min" name="min" aria-describedby="btnGroupAddon">
+                        <div class="input-group-text" id="btnGroupAddon">
+                            <i class="bi bi-calendar" style="color:gray;"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="input-group text-center">
+                        <div class="group-text mx-2">
+                            <i class="bi bi-funnel-fill" style="color:gray;"></i>
+                            <label for="text" class="col-form-label fw-bold" style="color:gray;">Fecha de fin</label>
+                        </div>
+                        <input class="form-control" type="text" id="max" name="max" aria-describedby="btnGroupAddon">
+                        <div class="input-group-text" id="btnGroupAddon">
+                            <i class="bi bi-calendar" style="color:gray;"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
+            <div class="row my-3">
+                <div class="col-6  py-1">
+                    <div class="input-group text-center">
+                        <div class="group-text mx-2">
+                            <i class="bi bi-funnel-fill" style="color:gray;"></i>
+                            <label for="text" class="col-form-label fw-bold" style="color:gray;">Cursos ofertados</label>
+                        </div>
+                        <select class="form-select" aria-label="Default select example" style="background-color: #ececec;">
+                            <option selected disabled>Seleccione</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6 text-end py-1" style="background-color: #ececec;">
+                    <div class="form-check form-check-inline my-2">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                        <label class="form-check-label fw-bold" for="inlineRadio1" style="color:gray;">Pagos</label>
+                    </div>
+                    <div class="form-check form-check-inline my-2">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                        <label class="form-check-label fw-bold" for="inlineRadio2" style="color:gray;">Estudiantes aprobados</label>
+                    </div>
+                    <label class="form-check-label fw-bold mx-3" for="inlineRadio2" style="color:gray;">Archivo Excel: </label>
+                    <button type="button" class="btn btn-success" aria-describedby="btnGroupAddon2"><i class="bi bi-upload"></i> Importar</button>
+                </div>
+            </div>
             <table id="datatables" class="display nowrap " style="width:100%">
                 <thead>
                     <tr>

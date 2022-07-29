@@ -33,7 +33,7 @@
                         <a class="dropdown-item text-center" href="{{ route('/ofertasInscripciones') }}">
                             GALERIA DE OFERTAS
                         </a>
-                        <a class="dropdown-item text-center" href="#">
+                        <a class="dropdown-item text-center" href="{{ route('/admin/listInscritos') }}">
                             LISTADO DE ESTUDIANTES INSCRITOS
                         </a>
                     </div>
