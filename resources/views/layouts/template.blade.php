@@ -32,17 +32,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-     <!-- estilo fecha-->
-     <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">-->
-    
+    <!-- estilo fecha-->
+    <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">-->
+
 </head>
 
 <body>
-    
+
     @include('header')
 
     @yield('content')
-        <!-- Scripts -->
+    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -60,6 +60,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
     <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.12.1/filtering/row-based/TableTools.ShowSelectedOnly.js"></script>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+
     <script>
         $(document).ready(function() {
             $('#example').DataTable({
@@ -82,65 +85,63 @@
             });
         });
     </script>
-    
+
     <!--script exportar excel-->
     <script>
-        $(document).ready(function () {
-        $('#datatables').DataTable({
-            
-            scrollX: true,
-            "info": false,
-            "lengthChange": false,
-            pagingType: 'first_last_numbers',            
-               
-            "language": {
+        $(document).ready(function() {
+            $('#datatables').DataTable({
+
+                scrollX: true,
+                "info": false,
+                "lengthChange": false,
+                pagingType: 'first_last_numbers',
+
+                "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
                     paginate: {
                         first: 'Atras',
                         last: 'Siguiente',
                     }
                 },
-            pageLength: 4,
-            pagingType: "simple_numbers",
-            
-            dom: 'Bfrtip',
-            buttons: [                
-                    {
-                        //'excel'      
-                        extend:"excel", 
-                        text:'Exportar',
-                        class: 'btn btn-success',
-                        exportOptions:{
-                            'columns':[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]   
-                        }                                  
+                pageLength: 4,
+                pagingType: "simple_numbers",
+
+                dom: 'Bfrtip',
+                buttons: [{
+                    //'excel'      
+                    extend: "excel",
+                    text: 'Exportar',
+                    class: 'btn btn-success',
+                    exportOptions: {
+                        'columns': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
                     }
-            ],            
-            
+                }],
+
+            });
         });
-    });
     </script>
     <script>
         var minDate, maxDate;
- 
+
         // Custom filtering function which will search data in column four between two values
         $.fn.dataTable.ext.search.push(
-            function( settings, data, dataIndex ) {
+            function(settings, data, dataIndex) {
                 var min = minDate.val();
                 var max = maxDate.val();
-                var date = new Date( data[15] );
-        
+                var date = new Date(data[15]);
+
                 if (
-                    ( min === null && max === null ) ||
-                    ( min === null && date <= max ) ||
-                    ( min <= date  && max === null ) ||
-                    ( min <= date  &&  date <= max )                     
+                    (min === null && max === null) ||
+                    (min === null && date <= max) ||
+                    (min <= date && max === null) ||
+                    (min <= date && date <= max)
                 ) {
                     return true;
                 }
                 return false;
             }
         );
-        
+
         $(document).ready(function() {
             // Create date inputs
             minDate = new DateTime($('#min'), {
@@ -149,17 +150,23 @@
             maxDate = new DateTime($('#max'), {
                 format: 'MMMM Do YYYY'
             });
-        
+
             // DataTables initialisation
             var table = $('#datatables').DataTable();
-        
+
             // Refilter the table
-            $('#min, #max').on('change', function () {
+            $('#min, #max').on('change', function() {
                 table.draw();
             });
         });
     </script>
-    
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </body>
 @include('footer')
 <!--@jquery
