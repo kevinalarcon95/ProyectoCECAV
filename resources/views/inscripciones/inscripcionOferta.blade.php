@@ -11,14 +11,11 @@
     <form action="{{route('/saveInscripcion')}}" method="POST" class="row g-3 needs-validation" novalidate>
         @csrf
         <div class="row">
-            <div class="mb-3">
+        <div class="mb-3">
                 <label class="form-label fw-bold">Evento al cual se quiere inscribir</label>
                 <select class="form-select" name="idOferta" style="background-color: #ececec;" value="{{$objOferta->id}}" required>
                     <option selected readonly="true" value="{{$objOferta->id}}">{{$objOferta->nombre}}</option>
                 </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" style="color: gray;">Por favor escribir los nombres completos en mayúsculas y sin tildes, esté requisito es fundamental para la expedición del recibo de pago.</label>
             </div>
         </div>
 
@@ -35,6 +32,12 @@
                     </select>
                 </div>
                 <div class="mb-3">
+
+                    
+
+
+
+
                     <label class="form-label fw-bold">Dirección de residencia (Incluir Ciudad)</label>
                     <input type="text" class="form-control @error('direccionUser') is-invalid @enderror" name="direccionUser" placeholder="Tu respuesta" value="{{ old('direccionUser')}}">
                     @error('direccionUser')
@@ -45,11 +48,11 @@
                     <label class="form-label fw-bold">Tipo de inscripción</label>
                     <select class="form-select @error('tipoInscripcion') is-invalid @enderror" name="tipoInscripcion" aria-label="Default select example" value="{{ old('tipoInscripcion')}}" style="background-color: #ececec;" required>
                         <option selected disabled value="{{ old('tipoInscripcion')}}">Elige</option>
-                        <option value="Estudiante-Pregrado" @if(old('vinculacion')== 'Estudiante-Pregrado' ) selected @endif>Estudiante-Pregrado</option>
-                        <option value="Estudiante-Posgrado" @if(old('vinculacion')== 'Estudiante-Posgrado' ) selected @endif>Estudiante-Posgrado</option>
-                        <option value="Profesor-Universitario" @if(old('vinculacion')== 'Profesor-Universitario' ) selected @endif>Profesor-Universitario</option>
-                        <option value="Profesional" @if(old('vinculacion')== 'Profesional' ) selected @endif>Profesional</option>
-                        <option value="Otro" @if(old('vinculacion')== 'Otro' ) selected @endif>Otro</option>
+                        <option value="Estudiante-Pregrado" @if(old('tipoInscripcion')== 'Estudiante-Pregrado' ) selected @endif>Estudiante-Pregrado</option>
+                        <option value="Estudiante-Posgrado" @if(old('tipoInscripcion')== 'Estudiante-Posgrado' ) selected @endif>Estudiante-Posgrado</option>
+                        <option value="Profesor-Universitario" @if(old('tipoInscripcion')== 'Profesor-Universitario' ) selected @endif>Profesor-Universitario</option>
+                        <option value="Profesional" @if(old('tipoInscripcion')== 'Profesional' ) selected @endif>Profesional</option>
+                        <option value="Otro" @if(old('tipoInscripcion')== 'Otro' ) selected @endif>Otro</option>
                     </select>
                     @error('tipoInscripcion')
                         <small class="invalid-feedback">*{{$message}}</small>
@@ -57,11 +60,11 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si es estudiante de Unicauca, Por favor escriba su codigo</label>
-                    <input type="text" class="form-control" name="codigoUser" placeholder="Tu respuesta (Opcional)" value="{{old('codigoUser')}}">
+                    <input type="number" class="form-control" name="codigoUser" placeholder="Tu respuesta (Opcional)" value="{{old('codigoUser')}}">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si es estudiante indicar el programa al cual pertenece</label>
-                    <input type="text" class="form-control" name="programaUser" placeholder="Tu respuesta (Opcional)" value="{{old('programaUser')}}">
+                    <input type="text" class="form-control" name="programaUser" placeholder="Tu respuesta (Opcional)" value="{{old('programaUser')}}" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si el recibo lo paga la entidad en la que trabaja, por favor escribir el NIT</label>
@@ -79,7 +82,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Teléfono o número de celular</label>
-                    <input type="text" class="form-control @error('telefonoUser') is-invalid @enderror" name="telefonoUser" placeholder="Tu respuesta" value="{{old('telefonoUser')}}">
+                    <input type="number" class="form-control @error('telefonoUser') is-invalid @enderror" name="telefonoUser" placeholder="Tu respuesta" value="{{old('telefonoUser')}}">
                     @error('telefonoUser')
                     <small id="validationServer03Feedback" class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -100,7 +103,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si es profesional, indicar su profesión y/o especialidad</label>
-                    <input type="text" class="form-control" name="profesionUser" placeholder="Tu respuesta (Opcional)" value="{{old('profesionUser')}}">
+                    <input type="text" class="form-control" name="profesionUser" placeholder="Tu respuesta (Opcional)" value="{{old('profesionUser')}}" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Entidad</label>

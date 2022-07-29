@@ -5,7 +5,7 @@
 <div class="contenedor mt-5">
     <div class="row mx-3">
         <div class="d-flex justify-content-between align-baseline">
-            <h4>Gestión de cursos PREICFES</h4>
+            <h4>Gestión de cursos preicfes</h4>
             <a href="{{ route('/admin/createPreicfes') }}" class="botones btn btn-añadir me-1">
                 <i class="bi bi-plus me-1"></i>Añadir
             </a>
@@ -23,12 +23,12 @@
                 <th scope="col" class="celda"> Fecha inicio de inscripciones</th>
                 <th scope="col" class="celda"> Fecha fin de inscripciones</th>
                 <th scope="col" class="celda"> Fecha inicio de clases</th>
-                <th scope="col" class="celda"> Fecha fin de clases</th>
+                <th scope="col" class="celda"> Fecha final de clases</th>
                 <th scope="col" class="celda"> Horario</th>
                 <th scope="col" class="celda"> Duración</th>
                 <th scope="col" class="celda"> Tipo de curso</th>
                 <th scope="col" class="celda"> Valor</th>
-                <th scope="col" class="celda"> Poblacion objetivo</th>
+                <th scope="col" class="celda"> Población objetivo</th>
                 <th scope="col" class="celda"> Pasos para inscribirse</th>
                 <th scope="col" class="celda"> Estructura del curso</th>
                 <th scope="col" class="celda"> Acciones</th>

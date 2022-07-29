@@ -28,7 +28,7 @@ class CreateAspiOfertaTable extends Migration
             $table->text('profesion'); //no nullable porque en econtrolador si el campo llega nuevo por default le ponemos No aplica
             $table->text('programa');//no nullable porque en econtrolador si el campo llega nuevo por default le ponemos No aplica
             $table->text('entidad');//no nullable porque en econtrolador si el campo llega nuevo por default le ponemos No aplica
-            $table->integer('nit_entidad')->nullable();
+            $table->text('nit_entidad')->nullable();
             $table->unsignedBigInteger('id_user');
             $table->timestamps();
             

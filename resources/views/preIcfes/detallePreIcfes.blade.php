@@ -4,7 +4,7 @@
 <!--Detalles oferta-->
 <div class="container my-4">
     <div class="row my-3">
-        <h3 style="color: #800000;">{{$objPreIcfes->nombre}}</h3>
+        <h5 style="color: #800000;">{{$objPreIcfes->nombre}}</h5>
     </div>
     <div class="row w-80 mb-2 text-center">
         <div class="col-12">
@@ -13,7 +13,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <h4 style="color: #800000;">Presentación</h4>
+            <h5 style="color: #800000;">Presentación:</h5>
             <p class="text-justify mt-4" style="text-align: justify;">
                 {{$objPreIcfes->descripcion}}
             </p>
@@ -38,7 +38,7 @@
         <p>${{$objPreIcfes->valor}}</p>
     </div>
     <div class="row mt-2">
-        <h5 style="color: #800000;">Poblacion Objetivo:</h5>
+        <h5 style="color: #800000;">Población objetivo:</h5>
         <p>{{$objPreIcfes->poblacion_objetivo}}</p>
     </div>
     <div class="row mt-2">
@@ -50,7 +50,7 @@
         <p>{{$objPreIcfes->estructura}}</p>
     </div>
     <div class="row mt-2">
-        <p>Incluye tres (3) simulacros tipo ICFES.</p>
+        <p>Incluye tres (3) simulacros tipo icfes.</p>
     </div>
 
 

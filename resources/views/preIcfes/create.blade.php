@@ -10,7 +10,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#4285F4" class="bi bi-plus-circle-fill " viewBox="0 0 16 16">
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
         </svg>
-        <h5 class="titulo">Añadir registro</h5>
+        <h5 class="titulo">Añadir curso preicfes</h5>
     </div>
 </div>
 <hr />
@@ -27,8 +27,8 @@
         </div>
         <!----- Descripcion ----->
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label fw-bold">Descripcion</label>
-            <textarea type="text" name="descripcion" class="form-control @error('descripcion') is-invalid @enderror" id="descripcion" placeholder="Tu respuesta" style="background-color: #ececec;" required>{{ old('descripcion')}}</textarea>
+            <label for="exampleInputPassword1" class="form-label fw-bold">Descripción</label>
+            <textarea type="text" name="descripcion" class="form-control @error('descripcion') is-invalid @enderror" id="descripcion" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ old('descripcion')}}</textarea>
             @error('descripcion')
             <small class="invalid-feedback">*{{$message}}</small>
             <br>
@@ -36,7 +36,7 @@
         </div>
         <!----- Fecha inicio inscripcion ----->
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio inscripcion</strong></label>
+            <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio de inscripción</strong></label>
             <?php
             $date = date('Y-m-d');
             ?>
@@ -48,7 +48,7 @@
         </div>
         <!----- Fecha fin inscripcion ----->
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin inscripcion</strong></label>
+            <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin de inscripción</strong></label>
             <?php
             $date = date('Y-m-d');
             ?>
@@ -72,7 +72,7 @@
         </div>
         <!----- Poblacion objetivo  ----->
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label fw-bold">Poblacion objetivo</label>
+            <label for="exampleInputEmail1" class="form-label fw-bold">Población objetivo</label>
             <input type="text" class="form-control @error('poblacion_objetivo') is-invalid @enderror" name="poblacion_objetivo" id="poblacion_objetivo" value="{{ old('poblacion_objetivo')}}" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;" required>
             @error('poblacion_objetivo')
                 <small class="invalid-feedback">*{{$message}}</small>
@@ -81,7 +81,7 @@
         <!----- Estructura del curso ----->
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label fw-bold">Estructura del curso</label>
-            <textarea type="text" name="estructura" class="form-control @error('estructura') is-invalid @enderror" id="estructura" placeholder="Tu respuesta" style="background-color: #ececec;" required>{{ old('estructura')}}</textarea>
+            <textarea type="text" name="estructura" class="form-control @error('estructura') is-invalid @enderror" id="estructura" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ old('estructura')}}</textarea>
             @error('estructura')
             <small class="invalid-feedback">*{{$message}}</small>
             <br>
@@ -100,7 +100,7 @@
         </div>
         <!----- Fecha inicio  ----->
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio</strong></label>
+            <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio de clases</strong></label>
             <?php
             $date = date('Y-m-d');
             ?>
@@ -112,7 +112,7 @@
         </div>
         <!----- Fecha Fin  ----->
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin</strong></label>
+            <label for="exampleInputEmail1" class="form-label"><strong>Fecha final de clases</strong></label>
             <?php
             $date = date('Y-m-d');
             ?>
@@ -124,7 +124,7 @@
         </div>
         <!----- Duracion  ----->
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label fw-bold">Duracion</label>
+            <label for="exampleInputEmail1" class="form-label fw-bold">Duración</label>
             <input type="text" class="form-control  @error('duracion') is-invalid @enderror" name="duracion" id="duracion" value="{{ old('duracion')}}" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;" required>
             @error('duracion')
             <small class="invalid-feedback">*{{$message}}</small>
@@ -143,7 +143,7 @@
         <!----- Pasos para inscribirse ----->
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label fw-bold">Pasos para inscribirse</label>
-            <textarea type="text" name="pasos_inscripcion" class="form-control @error('pasos_inscripcion') is-invalid @enderror" id="pasos_inscripcion" placeholder="Tu respuesta" style="background-color: #ececec;" required>{{ old('pasos_inscripcion')}}</textarea>
+            <textarea type="text" name="pasos_inscripcion" class="form-control @error('pasos_inscripcion') is-invalid @enderror" id="pasos_inscripcion" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ old('pasos_inscripcion')}}</textarea>
             @error('pasos_inscripcion')
             <small class="invalid-feedback">*{{$message}}</small>
             <br>
