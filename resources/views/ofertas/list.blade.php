@@ -15,7 +15,7 @@
     </div>
     <hr>
 
-    <table id="example" class="display nowrap " style="width:100%">
+    <table id="example" class="display nowrap" style="width:80%">
         <thead>
             <tr>
                 <th scope="col" class="celda"> No. </th>
@@ -46,9 +46,12 @@
 
                 <td>
                     <div class="d-flex flex-row">
-                        <a type="button" href="{{ route('/admin/editOferta')}}/{{$varOferta->id}}" class="botones btn btn-editar d-grid"><i class="bi bi-plus-circle-fill"></i></a>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalVer{{$varOferta->id}}">
+                        <i class="bi bi-plus-lg"></i> Ver
+                        </button>
                     </div>
                 </td>
+                @include('ofertas.modalVer')
                 <td class="celda">{{$varOferta->poblacion_objetivo}}</td>
                 <td class="celda">{{$varOferta->nombreCategoria}}</td>
                 <td class="celda">{{$varOferta->tipo_pago}}</td>
@@ -77,7 +80,6 @@
 
     </table>
     <hr />
-
 </div>
 
 @section ('js')
