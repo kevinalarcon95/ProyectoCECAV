@@ -19,11 +19,11 @@
         </div>
     </div>
     <div class="col-6 px-4 justify-content-center" style="justify-content: center !important;align-items: center; background-color: white;">
-        <h3 class="fw-bold text-center py-5 mt-4" style="color:#04153B;">Crear Cuenta</h3>
-        <form method="POST" action="{{ route('register') }}">
+        <h3 class="fw-bold text-center py-3 mt-4" style="color:#04153B;">Crear Cuenta</h3>
+        <form method="POST" action="{{ route('register') }}" class="needs-validation" novalidate>
             @csrf
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Nombre (s)" autofocus style="background-color: #ececec;">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Nombre(s)" autofocus style="background-color: #ececec;" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))">
 
                 @error('name')
                 <span class="invalid-feedback" role="alert">
@@ -32,7 +32,7 @@
                 @enderror
             </div>
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lastname" value="" required autocomplete="name" placeholder="Apellido (s)" autofocus style="background-color: #ececec;">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="name" placeholder="Apellido(s)" autofocus style="background-color: #ececec;" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))">
 
                 @error('lastname')
                 <span class="invalid-feedback" role="alert">
@@ -50,9 +50,8 @@
                 @enderror
             </div>
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <select class="form-select" name="tipoId" aria-label="Default select example" style="background-color: #ececec;">
-                    <option selected>Tipo de identificación</option>
-                    <option value="Cedula de ciudadania">Cedula de ciudadania</option>
+                <select class="form-select" name="tipoId" aria-label="Default select example" style="background-color: #ececec;" required>
+                    <option selected>Cedula de ciudadania</option>
                     <option value="Tarjeta de identidad">Tarjeta de identidad</option>
                     <option value="Cedula de extranjeria">Cedula de extranjeria</option>
                 </select>
@@ -63,7 +62,7 @@
                 @enderror
             </div>
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="password" type="text" class="form-control @error('numId') is-invalid @enderror" name="numId" required autocomplete="" placeholder="Numero de identificación" style="background-color: #ececec;">
+                <input type="number" class="form-control @error('numId') is-invalid @enderror" name="numId" value="{{ old('numId') }}" autocomplete="" placeholder="Numero de identificación" style="background-color: #ececec;" required>
 
                 @error('numId')
                 <span class="invalid-feedback" role="alert">
@@ -72,7 +71,7 @@
                 @enderror
             </div>
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Contraseña" style="background-color: #ececec;">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password" placeholder="Contraseña" style="background-color: #ececec;" required>
 
                 @error('password')
                 <span class="invalid-feedback" role="alert">
@@ -82,7 +81,7 @@
             </div>
 
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmar contraseña" style="background-color: #ececec;">
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmar contraseña" style="background-color: #ececec;" required>
             </div>
 
             <div class="mb-4 mx-5 d-grid" style="padding-left: 15%; padding-right: 15%;">

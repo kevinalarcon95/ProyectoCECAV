@@ -3,7 +3,7 @@
 @section('content')
 <div class="container my-4">
     <div class="row text-justify">
-        <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="col-lg-8 col-md-6 col-sm-12">
             <div class="row mb-2">
                 <strong>
                     <h2>¿Quiénes Somos?</h2>
@@ -17,7 +17,8 @@
                     <br><br>
                     Comenzó sus labores en el primer semestre de este año como un
                     mecanismo de servicio, apoyo y acompañamiento a las unidades
-                    académicas de la Unicauca...
+                    académicas de la Unicauca, para el desarrollo exitoso de sus 
+                    cursos, programas y eventos de educación no formal.
                 </p>
             </div>
             <div class="col-lg-7 col-md-12">
@@ -26,8 +27,8 @@
                 </a>
             </div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 text-end">
-            <img src="{{ asset('img/facultadContables.jpg') }}" alt="" width="420" height="340" class="d-inline-block align-text-top" style="border-radius: 15px;">
+        <div class="col-lg-4 col-md-6 col-sm-12 text-end">
+            <img src="{{ asset('img/logoCecav.jpg') }}" alt="" width="270" height="340" class="d-inline-block align-text-top" style="border-radius: 15px;">
         </div>
     </div>
     <hr style="margin-top: 3rem; color: inherit; border: 0; border-top: 2px solid; opacity: 0.25; width: 100%;">
