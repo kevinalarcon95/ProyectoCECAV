@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="contenedor mt-5">
-    <div class="row mx-3"> 
+    <div class="row mx-3">
         <div class="d-flex justify-content-between align-baseline">
             <h4>Gestión de Ofertas</h4>
             <a href="{{ route('/admin/createOferta') }}" class="botones btn btn-añadir me-1">
@@ -41,22 +41,26 @@
             @foreach( $ofertas as $varOferta)
             <tr>
                 <td class="celda">{{$varOferta->id}}</td>
-                <td  class="celda"><img class="img-thumbnail" src="{{ asset($varOferta->imagen) }}" width="100" alt=""></td>
-                <td  class="celda">{{$varOferta->nombre}}</td>
+                <td class="celda"><img class="img-thumbnail" src="{{ asset($varOferta->imagen) }}" width="100" alt=""></td>
+                <td class="celda">{{$varOferta->nombre}}</td>
 
-                <td  class="celda">{{$varOferta->descripcion}}</td>
-                <td  class="celda">{{$varOferta->poblacion_objetivo}}</td>
-                <td  class="celda">{{$varOferta->nombreCategoria}}</td>
-                <td  class="celda">{{$varOferta->tipo_pago}}</td>
-                <td  class="celda">{{$varOferta->costo}}</td>
-                <td  class="celda">{{$varOferta->unidad_academica}}</td>
-                <td  class="celda">{{$varOferta->fecha_inicio}}</td>
-                <td  class="celda">{{$varOferta->fecha_fin}}</td>
-                <td  class="celda">{{$varOferta->resolucion}}</td>
-                <td  class="celda">{{$varOferta->tipo_curso}}</td>
-                <td  class="celda">{{$varOferta->intensidad_horario}}</td>
-                <td  class="celda">{{$varOferta->fecha_cierre_inscripcion}}</td>
-                <td  class="celda">{{$varOferta->limite_cupos}}</td>
+                <td>
+                    <div class="d-flex flex-row">
+                        <a type="button" href="{{ route('/admin/editOferta')}}/{{$varOferta->id}}" class="botones btn btn-editar d-grid"><i class="bi bi-plus-circle-fill"></i></a>
+                    </div>
+                </td>
+                <td class="celda">{{$varOferta->poblacion_objetivo}}</td>
+                <td class="celda">{{$varOferta->nombreCategoria}}</td>
+                <td class="celda">{{$varOferta->tipo_pago}}</td>
+                <td class="celda">{{$varOferta->costo}}</td>
+                <td class="celda">{{$varOferta->unidad_academica}}</td>
+                <td class="celda">{{$varOferta->fecha_inicio}}</td>
+                <td class="celda">{{$varOferta->fecha_fin}}</td>
+                <td class="celda">{{$varOferta->resolucion}}</td>
+                <td class="celda">{{$varOferta->tipo_curso}}</td>
+                <td class="celda">{{$varOferta->intensidad_horario}}</td>
+                <td class="celda">{{$varOferta->fecha_cierre_inscripcion}}</td>
+                <td class="celda">{{$varOferta->limite_cupos}}</td>
                 <td>
                     <div class="d-flex flex-row">
 

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Exports\AspiOfertaExport;
 use App\Models\AspiIcfes;
 use App\Models\AspiOferta;
 use Illuminate\Http\Request;
@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\Auth;
 use Throwable;
+use Maatwebsite\Excel\Facades\Excel;
 
 use function PHPUnit\Framework\isNull;
 
@@ -29,7 +30,7 @@ class AspiOfertaController extends Controller
         return view('inscripciones.inscripcionOferta', compact('objUser'))->with('objOferta', $objOferta);
     }
     public function list()
-    {                     
+    {            
         $datos['aspiOferta'] = AspiOferta::join('oferta','aspi_oferta.id_oferta','=','oferta.id')  
         ->select(
             'aspi_oferta.id_oferta',
@@ -51,7 +52,7 @@ class AspiOfertaController extends Controller
             'aspi_oferta.created_at'
                 
         )
-        //->$where
+        
         ->get();
             
         $oferta = Oferta::pluck('nombre', 'id'); 
@@ -200,4 +201,10 @@ class AspiOfertaController extends Controller
             return true;
         }
     }
+    public function exportExcel()
+    {        
+        ini_set('memory_limit','-1');
+        set_time_limit(3);        
+        return Excel::download(new AspiOfertaExport,'Listado-Inscritos-Cursos.xlsx');        
+    }     
 }
