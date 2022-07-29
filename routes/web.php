@@ -58,7 +58,9 @@ Route::get('/ofertas', [OfertaController::class, 'create'])->name('/ofertas');
 
 //Rutas Google
 Route::get('/loginGoogle', [RegisterGoogleController::class, 'loginGoogle'])->name('/loginGoogle');
-Route::get('/google-callback', [RegisterGoogleController::class, 'callBackUser'])->name('/callBackGoogle');
+Route::get('/google-callback', [RegisterGoogleController::class, 'callBackUser'])->name('/google-callback');
+Route::get('/registreGoogle/{id}', [RegisterGoogleController::class, 'index'])->name('registre.Google');
+Route::put('/updateUser/{id}', [RegisterGoogleController::class, 'update'])->name('updateUser');
 
 Route::group(['middleware' => ['auth']], function () {
     //Rutas para inscribirse a una ofera
