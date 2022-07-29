@@ -30,7 +30,7 @@
                 <!--------- Descripcion --------->
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label fw-bold">Descripción</label>
-                    <textarea type="text" name="descripcion" class="form-control @error('descripcion') is-invalid @enderror" id="descripcion" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ isset($preicfes->descripcion)?$preicfes->descripcion:old('descripcion')}}</textarea>
+                    <textarea type="text" name="descripcion" class="form-control @error('descripcion') is-invalid @enderror" id="editor" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ isset($preicfes->descripcion)?$preicfes->descripcion:old('descripcion')}}</textarea>
                     @error('descripcion')
                     <small class="invalid-feedback">*{{$message}}</small>
                     <br>

@@ -40,7 +40,14 @@
                 <td class="celda">{{$varPreicfes->id}}</td>
                 <td  class="celda"><img class="img-thumbnail" src="{{ asset($varPreicfes->imagen) }}" width="100" alt=""></td>
                 <td  class="celda">{{$varPreicfes->nombre}}</td>
-                <td  class="celda">{{$varPreicfes->descripcion}}</td>
+                <td>
+                    <div class="d-flex flex-row">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalVer{{$varPreicfes->id}}">
+                        <i class="bi bi-plus-lg"></i> Ver
+                        </button>
+                    </div>
+                </td>
+                @include('preicfes.modalVer')
                 <td  class="celda">{{$varPreicfes->fecha_inicio}}</td>
                 <td  class="celda">{{$varPreicfes->fecha_fin}}</td>
                 <td  class="celda">{{$varPreicfes->fecha_inicio_inscripcion}}</td>

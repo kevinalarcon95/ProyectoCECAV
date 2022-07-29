@@ -28,7 +28,7 @@
         <!----- Descripcion ----->
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label fw-bold">Descripción</label>
-            <textarea type="text" name="descripcion" class="form-control @error('descripcion') is-invalid @enderror" id="descripcion" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ old('descripcion')}}</textarea>
+            <textarea type="text" name="descripcion" class="form-control @error('descripcion') is-invalid @enderror" id="editor" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ old('descripcion')}}</textarea>
             @error('descripcion')
             <small class="invalid-feedback">*{{$message}}</small>
             <br>
@@ -81,7 +81,7 @@
         <!----- Estructura del curso ----->
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label fw-bold">Estructura del curso</label>
-            <textarea type="text" name="estructura" class="form-control @error('estructura') is-invalid @enderror" id="estructura" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ old('estructura')}}</textarea>
+            <textarea type="text" name="estructura" class="form-control @error('estructura') is-invalid @enderror" id="editor" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ old('estructura')}}</textarea>
             @error('estructura')
             <small class="invalid-feedback">*{{$message}}</small>
             <br>
@@ -143,7 +143,7 @@
         <!----- Pasos para inscribirse ----->
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label fw-bold">Pasos para inscribirse</label>
-            <textarea type="text" name="pasos_inscripcion" class="form-control @error('pasos_inscripcion') is-invalid @enderror" id="pasos_inscripcion" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ old('pasos_inscripcion')}}</textarea>
+            <textarea type="text" name="pasos_inscripcion" class="form-control @error('pasos_inscripcion') is-invalid @enderror" id="editor" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ old('pasos_inscripcion')}}</textarea>
             @error('pasos_inscripcion')
             <small class="invalid-feedback">*{{$message}}</small>
             <br>

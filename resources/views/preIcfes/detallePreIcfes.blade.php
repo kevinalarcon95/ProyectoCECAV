@@ -15,7 +15,7 @@
         <div class="col-12">
             <h5 style="color: #800000;">Presentación:</h5>
             <p class="text-justify mt-4" style="text-align: justify;">
-                {{$objPreIcfes->descripcion}}
+                {!!$objPreIcfes->descripcion!!}
             </p>
         </div>
     </div>
