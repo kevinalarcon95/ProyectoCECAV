@@ -15,13 +15,13 @@
         <div class="col-12">
             <h4 style="color: #800000;">Presentación</h4>
             <p class="text-justify mt-4" style="text-align: justify;">
-                {{$objOferta->descripcion}}
+                {!!$objOferta->descripcion!!}
             </p>
         </div>
     </div>
-    <div class="row mt-2">
+    <div class="row mt-2" >
         <h5 style="color: #800000;">Poblacion Objetivo:</h5>
-        <p>{{$objOferta->poblacion_objetivo}}</p>
+        <p style="text-align: justify;">{{$objOferta->poblacion_objetivo}}</p>
     </div>
     <div class="row mt-2">
         <h5 style="color: #800000;">Intensidad horaria:</h5>

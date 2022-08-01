@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="contenedor mt-5">
-    <div class="row mx-3"> 
+    <div class="row mx-3">
         <div class="d-flex justify-content-between align-baseline">
             <h4>Gestión de Ofertas</h4>
             <a href="{{ route('/admin/createOferta') }}" class="botones btn btn-añadir me-1">
@@ -15,7 +15,7 @@
     </div>
     <hr>
 
-    <table id="example" class="display nowrap " style="width:100%">
+    <table id="example" class="display nowrap" style="width:80%">
         <thead>
             <tr>
                 <th scope="col" class="celda"> No. </th>
@@ -41,22 +41,29 @@
             @foreach( $ofertas as $varOferta)
             <tr>
                 <td class="celda">{{$varOferta->id}}</td>
-                <td  class="celda"><img class="img-thumbnail" src="{{ asset($varOferta->imagen) }}" width="100" alt=""></td>
-                <td  class="celda">{{$varOferta->nombre}}</td>
+                <td class="celda"><img class="img-thumbnail" src="{{ asset($varOferta->imagen) }}" width="100" alt=""></td>
+                <td class="celda">{{$varOferta->nombre}}</td>
 
-                <td  class="celda">{{$varOferta->descripcion}}</td>
-                <td  class="celda">{{$varOferta->poblacion_objetivo}}</td>
-                <td  class="celda">{{$varOferta->nombreCategoria}}</td>
-                <td  class="celda">{{$varOferta->tipo_pago}}</td>
-                <td  class="celda">{{$varOferta->costo}}</td>
-                <td  class="celda">{{$varOferta->unidad_academica}}</td>
-                <td  class="celda">{{$varOferta->fecha_inicio}}</td>
-                <td  class="celda">{{$varOferta->fecha_fin}}</td>
-                <td  class="celda">{{$varOferta->resolucion}}</td>
-                <td  class="celda">{{$varOferta->tipo_curso}}</td>
-                <td  class="celda">{{$varOferta->intensidad_horario}}</td>
-                <td  class="celda">{{$varOferta->fecha_cierre_inscripcion}}</td>
-                <td  class="celda">{{$varOferta->limite_cupos}}</td>
+                <td>
+                    <div class="d-flex flex-row">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalVer{{$varOferta->id}}">
+                        <i class="bi bi-plus-lg"></i> Ver
+                        </button>
+                    </div>
+                </td>
+                @include('ofertas.modalVer')
+                <td class="celda">{{$varOferta->poblacion_objetivo}}</td>
+                <td class="celda">{{$varOferta->nombreCategoria}}</td>
+                <td class="celda">{{$varOferta->tipo_pago}}</td>
+                <td class="celda">{{$varOferta->costo}}</td>
+                <td class="celda">{{$varOferta->unidad_academica}}</td>
+                <td class="celda">{{$varOferta->fecha_inicio}}</td>
+                <td class="celda">{{$varOferta->fecha_fin}}</td>
+                <td class="celda">{{$varOferta->resolucion}}</td>
+                <td class="celda">{{$varOferta->tipo_curso}}</td>
+                <td class="celda">{{$varOferta->intensidad_horario}}</td>
+                <td class="celda">{{$varOferta->fecha_cierre_inscripcion}}</td>
+                <td class="celda">{{$varOferta->limite_cupos}}</td>
                 <td>
                     <div class="d-flex flex-row">
 
@@ -73,7 +80,6 @@
 
     </table>
     <hr />
-
 </div>
 
 @section ('js')

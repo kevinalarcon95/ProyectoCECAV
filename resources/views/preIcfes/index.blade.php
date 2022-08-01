@@ -32,7 +32,7 @@
                 <div class=" card-body">
 
                     <h5 class="card-text" style="color: #800000;">{{$objPreIcfes->nombre}}</h5>
-                    <p class=""><strong>Población Objetivo:</strong> {{$objPreIcfes->poblacion_objetivo}}</p>
+                    <p class=""><strong>Población objetivo:</strong> {{$objPreIcfes->poblacion_objetivo}}</p>
                     <p><strong>Costo: </strong>$ {{$objPreIcfes->valor}}</p>
                     <p><strong>Fecha de inicio:</strong> {{ \Carbon\Carbon::parse($objPreIcfes->fecha_inicio)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
                     <p><strong>Fecha de finalización:</strong> {{ \Carbon\Carbon::parse($objPreIcfes->fecha_fin)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>

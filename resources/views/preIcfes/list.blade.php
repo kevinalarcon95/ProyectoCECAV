@@ -5,7 +5,7 @@
 <div class="contenedor mt-5">
     <div class="row mx-3">
         <div class="d-flex justify-content-between align-baseline">
-            <h4>Gestión de cursos PREICFES</h4>
+            <h4>Gestión de cursos preicfes</h4>
             <a href="{{ route('/admin/createPreicfes') }}" class="botones btn btn-añadir me-1">
                 <i class="bi bi-plus me-1"></i>Añadir
             </a>
@@ -23,12 +23,12 @@
                 <th scope="col" class="celda"> Fecha inicio de inscripciones</th>
                 <th scope="col" class="celda"> Fecha fin de inscripciones</th>
                 <th scope="col" class="celda"> Fecha inicio de clases</th>
-                <th scope="col" class="celda"> Fecha fin de clases</th>
+                <th scope="col" class="celda"> Fecha final de clases</th>
                 <th scope="col" class="celda"> Horario</th>
                 <th scope="col" class="celda"> Duración</th>
                 <th scope="col" class="celda"> Tipo de curso</th>
                 <th scope="col" class="celda"> Valor</th>
-                <th scope="col" class="celda"> Poblacion objetivo</th>
+                <th scope="col" class="celda"> Población objetivo</th>
                 <th scope="col" class="celda"> Pasos para inscribirse</th>
                 <th scope="col" class="celda"> Estructura del curso</th>
                 <th scope="col" class="celda"> Acciones</th>
@@ -40,7 +40,14 @@
                 <td class="celda">{{$varPreicfes->id}}</td>
                 <td  class="celda"><img class="img-thumbnail" src="{{ asset($varPreicfes->imagen) }}" width="100" alt=""></td>
                 <td  class="celda">{{$varPreicfes->nombre}}</td>
-                <td  class="celda">{{$varPreicfes->descripcion}}</td>
+                <td>
+                    <div class="d-flex flex-row">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalVer{{$varPreicfes->id}}">
+                        <i class="bi bi-plus-lg"></i> Ver
+                        </button>
+                    </div>
+                </td>
+                @include('preicfes.modalVer')
                 <td  class="celda">{{$varPreicfes->fecha_inicio}}</td>
                 <td  class="celda">{{$varPreicfes->fecha_fin}}</td>
                 <td  class="celda">{{$varPreicfes->fecha_inicio_inscripcion}}</td>

@@ -12,7 +12,7 @@
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                 </svg>
-                <h5 class="titulo">Editar registro</h5>
+                <h5 class="titulo">Editar curso preicfes</h5>
             </div>
         </div>
         <hr />
@@ -29,8 +29,8 @@
                 </div>
                 <!--------- Descripcion --------->
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label fw-bold">Descripcion</label>
-                    <textarea type="text" name="descripcion" class="form-control @error('descripcion') is-invalid @enderror" id="descripcion" placeholder="Tu respuesta" style="background-color: #ececec;" required>{{ isset($preicfes->descripcion)?$preicfes->descripcion:old('descripcion')}}</textarea>
+                    <label for="exampleInputPassword1" class="form-label fw-bold">Descripción</label>
+                    <textarea type="text" name="descripcion" class="form-control @error('descripcion') is-invalid @enderror" id="editor" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ isset($preicfes->descripcion)?$preicfes->descripcion:old('descripcion')}}</textarea>
                     @error('descripcion')
                     <small class="invalid-feedback">*{{$message}}</small>
                     <br>
@@ -38,7 +38,7 @@
                 </div>
                 <!--------- Fecha Inicio inscripcion --------->
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio inscripcion</strong></label>
+                    <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio de inscripción</strong></label>
                     <?php
                     $date = date('Y-m-d');
                     ?>
@@ -50,7 +50,7 @@
                 </div>
                 <!--------- Fecha Fin inscripcion --------->
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin inscripcion</strong></label>
+                    <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin de inscripción</strong></label>
                     <?php
                     $date = date('Y-m-d');
                     ?>
@@ -76,7 +76,7 @@
                 </div>
                 <!--------- Poblacion objetivo --------->
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label fw-bold">Poblacion objetivo</label>
+                    <label for="exampleInputEmail1" class="form-label fw-bold">Población objetivo</label>
                     <input type="text" class="form-control @error('poblacion_objetivo') is-invalid @enderror" name="poblacion_objetivo" id="poblacion_objetivo" value="{{ isset($preicfes->poblacion_objetivo)?$preicfes->poblacion_objetivo:old('poblacion_objetivo')}}" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;" required>
                     @error('poblacion_objetivo')
                     <small class="invalid-feedback">*{{$message}}</small>
@@ -85,7 +85,7 @@
                 <!--------- Estructura del curso  --------->
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label fw-bold">Estructura del curso</label>
-                    <textarea type="text" name="estructura" class="form-control @error('estructura') is-invalid @enderror" id="estructura" placeholder="Tu respuesta" style="background-color: #ececec;" required>{{ isset($preicfes->estructura)?$preicfes->estructura:old('estructura')}}</textarea>
+                    <textarea type="text" name="estructura" class="form-control @error('estructura') is-invalid @enderror" id="estructura" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ isset($preicfes->estructura)?$preicfes->estructura:old('estructura')}}</textarea>
                     @error('estructura')
                     <small class="invalid-feedback">*{{$message}}</small>
                     <br>
@@ -104,7 +104,7 @@
                 </div>
                 <!--------- Fecha Inicio --------->
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio</strong></label>
+                    <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio de clases</strong></label>
                     <?php
                     $date = date('Y-m-d');
                     ?>
@@ -116,7 +116,7 @@
                 </div>
                 <!--------- Fecha Fin --------->
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin</strong></label>
+                    <label for="exampleInputEmail1" class="form-label"><strong>Fecha final de clases</strong></label>
                     <?php
                     $date = date('Y-m-d');
                     ?>
@@ -128,7 +128,7 @@
                 </div>
                 <!--------- Duracion --------->
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label fw-bold">Duracion</label>
+                    <label for="exampleInputEmail1" class="form-label fw-bold">Duración</label>
                     <input type="text" class="form-control  @error('duracion') is-invalid @enderror" name="duracion" id="duracion" value="{{ isset($preicfes->duracion)?$preicfes->duracion:old('duracion')}}" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;" required>
                     @error('duracion')
                     <small class="invalid-feedback">*{{$message}}</small>
@@ -147,7 +147,7 @@
                 <!--------- Pasos para inscribirse --------->
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label fw-bold">Pasos para inscribirse</label>
-                    <textarea type="text" name="pasos_inscripcion" class="form-control @error('pasos_inscripcion') is-invalid @enderror" id="pasos_inscripcion" placeholder="Tu respuesta" style="background-color: #ececec;" required>{{ isset($preicfes->pasos_inscripcion)?$preicfes->pasos_inscripcion:old('pasos_inscripcion')}}</textarea>
+                    <textarea type="text" name="pasos_inscripcion" class="form-control @error('pasos_inscripcion') is-invalid @enderror" id="pasos_inscripcion" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ isset($preicfes->pasos_inscripcion)?$preicfes->pasos_inscripcion:old('pasos_inscripcion')}}</textarea>
                     @error('pasos_inscripcion')
                     <small class="invalid-feedback">*{{$message}}</small>
                     <br>

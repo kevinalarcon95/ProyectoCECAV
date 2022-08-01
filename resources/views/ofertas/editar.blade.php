@@ -32,7 +32,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label fw-bold">Descripcion</label>
-                        <textarea type="text" name="descripcionOferta"  class="form-control  @error('descripcionOferta') is-invalid @enderror"  value="{{old('descripcionOferta', $oferta->descripcion)}}" id="exampleInputPassword1" placeholder="Tu respuesta" style="background-color: #ececec;">{{$oferta->descripcion}}</textarea>
+                        <textarea type="text" name="descripcionOferta" id="editor" class="form-control  @error('descripcionOferta') is-invalid @enderror"  value="{{old('descripcionOferta', $oferta->descripcion)}}" id="exampleInputPassword1" placeholder="Tu respuesta" style="background-color: #ececec;">{{$oferta->descripcion}}</textarea>
                         @error('descripcionOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
