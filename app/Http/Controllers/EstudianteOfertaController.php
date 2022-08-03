@@ -118,13 +118,13 @@ class EstudianteOfertaController extends Controller
      */
     public function destroy($id)
     {
-        DB::delete('DELETE FROM aspi_oferta WHERE id_oferta = ?', [$id]);
+        DB::delete('DELETE FROM aspi_oferta WHERE id_user = ?', [Auth::user()->id]);
         return redirect('/misOfertas');
     }
 
     public function destroyPreicfes($id)
     {
-        DB::delete('DELETE FROM aspi_icfes WHERE id_icfes = ?', [$id]);
+        DB::delete('DELETE FROM aspi_icfes WHERE id_user = ?', [Auth::user()->id]);
         return redirect('/misOfertas');
     }
 

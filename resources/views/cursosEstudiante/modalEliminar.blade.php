@@ -21,7 +21,7 @@
             <div class="modal-footer" style="border: none;">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x me-1"></i>Cerrar</button>
                 @if ($num != 0)
-                <form action="{{url('/eliminarInscripcionOferta')}}/{{$objInscripcion->id}}" method="POST">
+                <form action="{{url('/eliminarInscripcionOferta')}}/{{Auth::user()->id}}" method="POST">
                     @csrf
                     {{method_field('DELETE')}}
                     <button type="submit" class="btn btn-eliminar"><i class="bi bi-trash3 me-1"></i>Eliminar</button>
