@@ -143,3 +143,12 @@
 
 @endsection
 @endsection
+<style>
+    .dt-buttons>.buttons-excel {
+        background-color: #FF914D !important;
+        border: #FF914D !important;
+        border-color: #f4e006 !important;
+        border-radius: 3px;
+        color: white;
+    }
+</style>
