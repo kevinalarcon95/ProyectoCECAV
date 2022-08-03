@@ -233,50 +233,55 @@ class OfertaController extends Controller
         } 
         //dd($fechaInicioOferta);
         $imagen = $request->input('imagenOferta');
-        try {
-            $updateData->nombre = $nombreOferta;
-            $updateData->descripcion = $descripcionOferta;
-            $updateData->tipo_pago =  $tipoPagoOferta;
-            $updateData->unidad_academica = $unidadAcademicaOferta;
-            if ($request->hasFile('imagenOferta')) {
-                //$datosTemporal = Oferta::findOrFail($id);
-                $url = str_replace('storage', 'public', $updateData->imagen);
-                Storage::delete($url);
-                $updateData->imagen = Storage::url($request->file('imagenOferta')->store('public/ofertas'));
+        if (Oferta::where('resolucion',  $resolucionOferta)->exists()) {
+            Toastr::info('¡Ya existe una oferta con la resolución '. $resolucionOferta .'!', 'Información', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/editOferta/',$id);
+        }else{
+            try {            
+                $updateData->nombre = $nombreOferta;
+                $updateData->descripcion = $descripcionOferta;
+                $updateData->tipo_pago =  $tipoPagoOferta;
+                $updateData->unidad_academica = $unidadAcademicaOferta;
+                if ($request->hasFile('imagenOferta')) {
+                    //$datosTemporal = Oferta::findOrFail($id);
+                    $url = str_replace('storage', 'public', $updateData->imagen);
+                    Storage::delete($url);
+                    $updateData->imagen = Storage::url($request->file('imagenOferta')->store('public/ofertas'));
+                }
+                $updateData->poblacion_objetivo = $poblacionOferta;
+                $updateData->id_categoria = $categoriaOferta;
+                $updateData->costo = $costoOferta;
+                $updateData->fecha_inicio = $fechaInicioOferta;
+                $updateData->resolucion = $resolucionOferta;                      
+                $updateData->intensidad_horario = $intensidadHorarioOferta;
+                $updateData->limite_cupos = $cuposOferta;
+                $updateData->fecha_fin = $fechaFinOferta;
+                $updateData->tipo_curso = $tipoCursoOferta;
+                $updateData->fecha_cierre_inscripcion = $fechaCierreOferta;
+                $updateData->id_certificado = 1;
+
+
+                /* if( $request->file('imagenOferta') == null){
+                
+                }else{
+                    $image_path = public_path().$updateData->imagen;
+                unlink($image_path);
+                
+                $imagen = $request->file('imagenOferta')->store('public/ofertas');
+                $url = Storage::url($imagen);
+                $imagen = $url;
+                $updateData ->imagen = $imagen;
+                }*/
+                //dd($imagen);
+                //dd($updateData);
+                $updateData->save();
+                Toastr::success('¡Su registro fue editado exitosamente!', 'Exito', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/listOferta');
+            } catch (Throwable $e) {
+                dd($e);
+                Toastr::error('¡Error al editar su registro!', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/listOferta');
             }
-            $updateData->poblacion_objetivo = $poblacionOferta;
-            $updateData->id_categoria = $categoriaOferta;
-            $updateData->costo = $costoOferta;
-            $updateData->fecha_inicio = $fechaInicioOferta;
-            $updateData->resolucion = $resolucionOferta;                      
-            $updateData->intensidad_horario = $intensidadHorarioOferta;
-            $updateData->limite_cupos = $cuposOferta;
-            $updateData->fecha_fin = $fechaFinOferta;
-            $updateData->tipo_curso = $tipoCursoOferta;
-            $updateData->fecha_cierre_inscripcion = $fechaCierreOferta;
-            $updateData->id_certificado = 1;
-
-
-            /* if( $request->file('imagenOferta') == null){
-            
-            }else{
-                $image_path = public_path().$updateData->imagen;
-            unlink($image_path);
-            
-            $imagen = $request->file('imagenOferta')->store('public/ofertas');
-            $url = Storage::url($imagen);
-            $imagen = $url;
-            $updateData ->imagen = $imagen;
-            }*/
-            //dd($imagen);
-            //dd($updateData);
-            $updateData->save();
-            Toastr::success('¡Su registro fue editado exitosamente!', 'Exito', ["positionClass" => "toast-top-right"]);
-            return redirect('/admin/listOferta');
-        } catch (Throwable $e) {
-            dd($e);
-            Toastr::error('¡Error al editar su registro!', 'Error', ["positionClass" => "toast-top-right"]);
-            return redirect('/admin/listOferta');
         }
     }
 

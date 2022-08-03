@@ -17,13 +17,14 @@ class CreateEstudianteOfertaTable extends Migration
             $table->unsignedBigInteger('id_oferta');
             $table->integer('id_estudiante');
             $table->text('estado');
+            $table->text('referencia');
             $table->timestamps();
 
             $table->primary(['id_estudiante', 'id_oferta']);
             $table->foreign('id_estudiante')->references('identificacion')->on('aspi_oferta'); 
             $table->foreign('id_oferta')->references('id')->on('oferta'); 
 
-            $table->index('estado');
+            
         });
     }
 

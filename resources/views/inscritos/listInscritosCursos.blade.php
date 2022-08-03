@@ -65,6 +65,15 @@
                     <label class="form-check-label fw-bold mx-3" for="inlineRadio2" style="color:gray;">Archivo Excel: </label>
                     <button type="button" class="btn btn-success" aria-describedby="btnGroupAddon2"><i class="bi bi-upload"></i> Importar</button>
                 </div>
+                <form action="/import" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @if(Session::has('message'))
+                    <p>{{Session::get('message')}}</p>                
+                    @endif
+                    <input type="file" name="student_file" accept=".xlsx,.xls" required>
+                    <br> <br>
+                    <input type="submit" value="Upload">
+                </form>
             </div>
             <table id="datatables" class="display nowrap " style="width:100%">
                 <thead>
