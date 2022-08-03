@@ -233,9 +233,11 @@ class OfertaController extends Controller
         } 
         //dd($fechaInicioOferta);
         $imagen = $request->input('imagenOferta');
-        if (Oferta::where('resolucion',  $resolucionOferta)->exists()) {
+        $varId = OfertaController::idResolucionActualizada($resolucionOferta);
+        $resol = OfertaController::resolucion($id);
+        if (Oferta::where('resolucion',  $resolucionOferta)->exists() && $resolucionOferta==$resol) {
             Toastr::info('¡Ya existe una oferta con la resolución '. $resolucionOferta .'!', 'Información', ["positionClass" => "toast-top-right"]);
-            return redirect('/admin/editOferta/',$id);
+            return redirect('/admin/editOferta/'.$id);
         }else{
             try {            
                 $updateData->nombre = $nombreOferta;
@@ -308,6 +310,22 @@ class OfertaController extends Controller
             ->where('oferta.id', '=', $id)
             ->get();
         return (count($numInscritos));
+    }
+    public static function idResolucionActualizada($resolucionOferta)
+    {
+        $idOferta = Oferta::select('id')
+            ->from ('oferta')                      
+            ->where('resolucion', '=', $resolucionOferta)
+            ->get();
+        return ($idOferta);
+    }
+    public static function resolucion($id)
+    {
+        $resolucion = Oferta::select('resolucion')
+            ->from ('oferta')                      
+            ->where('id', '=', $id)
+            ->get();
+        return ($resolucion);
     }
     
 }
