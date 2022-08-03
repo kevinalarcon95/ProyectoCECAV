@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\AspiOferta;
 use App\Models\AspiIcfes;
+use Auth;
 
 class EstudianteOfertaController extends Controller
 {
@@ -22,12 +23,34 @@ class EstudianteOfertaController extends Controller
         $cantAspiIcfes = AspiIcfes::count();
         $cantAspiOferta = AspiOferta::count();
         $objInscripcionI = AspiIcfes::join('preicfes', 'preicfes.id', '=', 'aspi_icfes.id_icfes')
-            ->select('preicfes.id','preicfes.nombre','preicfes.descripcion','preicfes.valor','preicfes.fecha_inicio','preicfes.fecha_fin',
-            'preicfes.tipo_curso','preicfes.poblacion_objetivo','preicfes.imagen','aspi_icfes.created_at')
+            ->where('aspi_icfes.id_user', '=', Auth::user()->id)
+            ->select(
+                'preicfes.id',
+                'preicfes.nombre',
+                'preicfes.descripcion',
+                'preicfes.valor',
+                'preicfes.fecha_inicio',
+                'preicfes.fecha_fin',
+                'preicfes.tipo_curso',
+                'preicfes.poblacion_objetivo',
+                'preicfes.imagen',
+                'aspi_icfes.created_at'
+            )
             ->get();
         $objInscripcion = AspiOferta::join('oferta', 'oferta.id', '=', 'aspi_oferta.id_oferta')
-            ->select('oferta.id','oferta.nombre','oferta.descripcion','oferta.costo','oferta.fecha_inicio','oferta.fecha_fin',
-            'oferta.unidad_academica','oferta.poblacion_objetivo','oferta.imagen','aspi_oferta.created_at')
+            ->where('aspi_oferta.id_user', '=', Auth::user()->id)
+            ->select(
+                'oferta.id',
+                'oferta.nombre',
+                'oferta.descripcion',
+                'oferta.costo',
+                'oferta.fecha_inicio',
+                'oferta.fecha_fin',
+                'oferta.unidad_academica',
+                'oferta.poblacion_objetivo',
+                'oferta.imagen',
+                'aspi_oferta.created_at'
+            )
             ->get();
         return view('cursosEstudiante.misCursosOferta', compact('cantAspiOferta'), compact('cantAspiIcfes'))->with('objInscripcion', $objInscripcion)->with('objInscripcionI', $objInscripcionI);
     }
