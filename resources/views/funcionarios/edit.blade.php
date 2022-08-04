@@ -25,7 +25,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Nombre completo</label>
-                    <input type="text" class="form-control @error('nombreFunc') is-invalid @enderror" value="{{old('nombreFunc', $objFuncionario->nombre)}}" name="nombreFunc" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" required>
+                    <input type="text" class="form-control @error('nombreFunc') is-invalid @enderror" value="{{old('nombreFunc', $objFuncionario->nombre)}}" name="nombreFunc" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 209) ||(event.charCode == 241))" required>
                     @error('nombreFunc')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -33,7 +33,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Cargo</label>
-                    <input type="text" class="form-control @error('cargoFunc') is-invalid @enderror" value="{{old('cargoFunc', $objFuncionario->cargo)}}" name="cargoFunc" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" required>
+                    <input type="text" class="form-control @error('cargoFunc') is-invalid @enderror" value="{{old('cargoFunc', $objFuncionario->cargo)}}" name="cargoFunc" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)|| (event.charCode == 209) ||(event.charCode == 241))" required>
                     @error('cargoFunc')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -60,7 +60,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Correo</label>
-                    <input type="text" class="form-control @error('correoFunc') is-invalid @enderror" value="{{old('correoFunc', $objFuncionario->correo)}}" name="correoFunc" placeholder="Tu respuesta" required>
+                    <input type="text" class="form-control @error('correoFunc') is-invalid @enderror" value="{{old('correoFunc', $objFuncionario->correo)}}" name="correoFunc" placeholder="Tu respuesta" onkeypress="return ((event.charCode != 209) && (event.charCode != 241))" required>
                     @error('correoFunc')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
