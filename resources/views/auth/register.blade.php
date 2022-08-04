@@ -23,7 +23,7 @@
         <form method="POST" action="{{ route('register') }}" class="needs-validation" novalidate>
             @csrf
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Nombre(s)" autofocus style="background-color: #ececec;" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Nombre(s)" autofocus style="background-color: #ececec;" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 209) ||(event.charCode == 241) )">
 
                 @error('name')
                 <span class="invalid-feedback" role="alert">
@@ -32,7 +32,7 @@
                 @enderror
             </div>
             <div class="mb-3 mx-5" style="padding-left: 15%; padding-right: 15%;">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="name" placeholder="Apellido(s)" autofocus style="background-color: #ececec;" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="name" placeholder="Apellido(s)" autofocus style="background-color: #ececec;" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 209) ||(event.charCode == 241))">
 
                 @error('lastname')
                 <span class="invalid-feedback" role="alert">

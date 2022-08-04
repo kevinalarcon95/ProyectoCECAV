@@ -7,7 +7,7 @@
 <div class="contenedor mt-5">
     <div class="row mx-3">
         <div class="d-flex justify-content-between align-baseline">
-            <h4>Gestión de Ofertas</h4>
+            <h4>Gestión de ofertas</h4>
             <a href="{{ route('/admin/createOferta') }}" class="botones btn btn-añadir me-1">
                 <i class="bi bi-plus me-1"></i>Añadir
             </a>
@@ -22,18 +22,18 @@
                 <th scope="col" class="celda"> Imagen</th>
                 <th scope="col" class="celda"> Nombre </th>
                 <th scope="col" class="celda"> Descripción</th>
-                <th scope="col" class="celda"> Población Objetivo</th>
+                <th scope="col" class="celda"> Población objetivo</th>
                 <th scope="col" class="celda"> Categoría</th>
-                <th scope="col" class="celda"> Tipo Pago</th>
+                <th scope="col" class="celda"> Tipo pago</th>
                 <th scope="col" class="celda"> Costo</th>
-                <th scope="col" class="celda"> Unidad Académica</th>
-                <th scope="col" class="celda"> Fecha Inicio</th>
-                <th scope="col" class="celda"> Fecha Fin</th>
+                <th scope="col" class="celda"> Unidad académica</th>
+                <th scope="col" class="celda"> Fecha inicio de clases</th>
+                <th scope="col" class="celda"> Fecha final de clases</th>
                 <th scope="col" class="celda"> Resolución</th>
                 <th scope="col" class="celda"> Tipo Curso</th>
                 <th scope="col" class="celda"> Intensidad Horaria</th>
-                <th scope="col" class="celda"> Fecha Cierre Inscripción</th>
-                <th scope="col" class="celda"> Limite cupos</th>
+                <th scope="col" class="celda"> Fecha fin inscripciones</th>
+                <th scope="col" class="celda"> Límite de cupos</th>
                 <th scope="col" class="celda"> Acciones</th>
             </tr>
         </thead>

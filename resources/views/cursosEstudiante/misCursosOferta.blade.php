@@ -42,7 +42,7 @@
                             <div class="row m-2" style="text-align: justify;">
                                 <h4 style="color: #800000;">Presentación</h4>
                                 <p class="text-justify mt-4" style="text-align: justify;">
-                                    {{$objInscripcion->descripcion}}
+                                    {!!$objInscripcion->descripcion!!}
                                 </p>
                             </div>
                             <div class="row mt-3">

@@ -10,7 +10,7 @@
             </svg>
         </div>
         <div class="col-sm-10">
-            <h5 style="margin-left: -9.2rem; margin-top: 0.5rem;">Añadir registro</h5>
+            <h5 style="margin-left: -9.2rem; margin-top: 0.5rem;">Añadir curso</h5>
         </div>
     </div>
     <div class="row">
@@ -28,7 +28,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label fw-bold">Descripción</label>
-                        <textarea type="text" class="form-control  @error('descripcionOferta') is-invalid @enderror" id="editor" name="descripcionOferta" placeholder="Tu respuesta" style="background-color: #ececec;" required>{{ old('descripcionOferta') }}</textarea>
+                        <textarea type="text" class="form-control  @error('descripcionOferta') is-invalid @enderror" id="editor" name="descripcionOferta" placeholder="Tu respuesta" style="background-color: #ececec; " required>{{ old('descripcionOferta') }}</textarea>
                         @error('descripcionOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -49,22 +49,22 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Costo o inversión</label>
-                        <textarea type="text" class="form-control @error('costoOferta') is-invalid @enderror" name="costoOferta" id="costoOfertaa" placeholder="Valor de inversión" style="background-color: #ececec;" disabled required>{{ old('costoOferta') }}</textarea>
+                        <textarea type="text" class="form-control @error('costoOferta') is-invalid @enderror" name="costoOferta" id="costoOfertaa" placeholder="Valor de inversión" style="background-color: #ececec; font-size: 14px;" disabled required>{{ old('costoOferta') }}</textarea>
                         @error('costoOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio</strong></label>
-                        <input type="date" class="form-control @error('fechaInicioOferta') is-invalid @enderror"" name=" fechaInicioOferta" value="{{old('fechaInicioOferta')}}" style="background-color: #ececec;" required>
+                        <label for="exampleInputEmail1" class="form-label"><strong>Fecha inicio de clases</strong></label>
+                        <input type="date" class="form-control @error('fechaInicioOferta') is-invalid @enderror" name=" fechaInicioOferta" value="{{old('fechaInicioOferta')}}" style="background-color: #ececec;" required>
                         @error('fechaInicioOferta')
                         <div class="valid-feedback">Looks good!</div>
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label"><strong>Fecha fin</strong></label>
-                        <input type="date" class="form-control @error('fechaFinOferta') is-invalid @enderror"" name=" fechaFinOferta" value="{{old('fechaFinOferta')}}" style="background-color: #ececec;" required>
+                        <label for="exampleInputEmail1" class="form-label"><strong>Fecha final de clases</strong></label>
+                        <input type="date" class="form-control @error('fechaFinOferta') is-invalid @enderror" name=" fechaFinOferta" value="{{old('fechaFinOferta')}}" style="background-color: #ececec;" required>
                         @error('fechaFinOferta')
                         <div class="valid-feedback">Looks good!</div>
                         <small class="invalid-feedback">*{{$message}}</small>
@@ -78,7 +78,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label fw-bold">Limite de cupos</label>
+                        <label for="exampleInputEmail1" class="form-label fw-bold">Límite de cupos</label>
                         <input type="number" class="form-control @error('cuposOferta') is-invalid @enderror" name="cuposOferta" placeholder="Tu respuesta" value="{{old('cuposOferta')}}" min="0" style="background-color: #ececec;" required>
                         @error('cuposOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
@@ -103,7 +103,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">Categoria</label>
+                        <label class="form-label fw-bold">Categoría</label>
                         <select class="form-select @error('categoriaOferta') is-invalid @enderror" name="categoriaOferta" value="{{old('categoriaOferta')}}" style="background-color: #ececec;" required>
                             <option selected disabled value="">Elige</option>
                             @foreach($categoria as $key => $value)
