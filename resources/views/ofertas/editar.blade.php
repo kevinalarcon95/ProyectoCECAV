@@ -31,7 +31,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label fw-bold">Descripcion</label>
+                        <label for="exampleInputPassword1" class="form-label fw-bold">Descripción</label>
                         <textarea type="text" name="descripcionOferta" id="editor" class="form-control  @error('descripcionOferta') is-invalid @enderror"  value="{{old('descripcionOferta', $oferta->descripcion)}}" id="exampleInputPassword1" placeholder="Tu respuesta" style="background-color: #ececec;">{{$oferta->descripcion}}</textarea>
                         @error('descripcionOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
@@ -89,7 +89,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label fw-bold">Limite de cupos</label>
+                        <label for="exampleInputEmail1" class="form-label fw-bold">Límite de cupos</label>
                         <input type="text" class="form-control @error('cuposOferta') is-invalid @enderror" name="cuposOferta" value="{{old('cuposOferta',$oferta->limite_cupos)}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;">
                         @error('cuposOferta')
                         <small class="invalid-feedback">*{{$message}}</small>

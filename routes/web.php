@@ -76,6 +76,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/editOferta/{idOfer?}', [OfertaController::class, 'edit'])->name('/admin/editOferta/{idOfer?}');
     Route::post('/admin/editOferta', [OfertaController::class, 'edit'])->name('/admin/editOferta');
     Route::put('/admin/updateOferta/{id}', [OfertaController::class, 'update'])->name('ofertas.update');
+    Route::get('/admin/copyOferta/{id}', [OfertaController::class, 'copy'])->name('/admin/copyOferta/{id}');
+    Route::post('/admin/saveCopyOferta/{id}', [OfertaController::class, 'copyS'])->name('/admin/saveCopyOferta/{id}');
+    
 
     Route::delete('/admin/deleteOferta/{id}', [OfertaController::class, 'destroy'])->name('/admin/deleteOferta');
 
@@ -86,7 +89,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/editPreicfes/{id}', [PreicfesController::class, 'edit'])->name('/admin/editPreicfes/{id}');
     Route::patch('/admin/updatePreicfes/{id}', [PreicfesController::class, 'update'])->name('/admin/updatePreicfes/{id}');
     Route::delete('/admin/deletePreicfes/{id}', [PreicfesController::class, 'destroy'])->name('/admin/deletePreicfes');
-
+    Route::get('/admin/copyPreicfes/{id}', [PreicfesController::class, 'copy'])->name('/admin/copyPreicfes/{id}');
+    Route::post('/admin/saveCopyPreicfes/{id}', [PreicfesController::class, 'copyS'])->name('/admin/saveCopyPreicfes/{id}');
+    
     //Route::get('/preIcfes', [AspiIcfesController::class, 'index'])->name('/preIcfes');
     Route::get('/inscripcionPreIcfes/{id}', [AspiIcfesController::class, 'index'])->name('/inscripcionPreIcfes/{id}');
     Route::post('/saveInscripPreIcfes', [AspiIcfesController::class, 'store'])->name('/saveInscripPreIcfes');

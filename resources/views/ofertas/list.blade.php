@@ -68,7 +68,7 @@
                     <div class="d-flex flex-row">
 
                         <a type="button" href="{{ route('/admin/editOferta')}}/{{$varOferta->id}}" class="botones btn btn-editar me-1"><i class="bi bi-pencil-square me-1"></i>Editar</a>
-
+                        <a type="button" href="{{ url('/admin/copyOferta/'.$varOferta->id)}}" class="botones btn btn-duplicar me-1"><i class="bi bi-clipboard"></i>Duplicar</a>
                         <button type="button" class="botones btn btn-eliminar" data-bs-toggle="modal" data-bs-target="#exampleModal{{$varOferta->id}}"><i class="bi bi-trash3 me-1"></i>Eliminar</button>
 
                     </div>

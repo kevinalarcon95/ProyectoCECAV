@@ -117,7 +117,7 @@ return [
     'uploaded'             => 'El campo :attribute no se pudo subir.',
     'url'                  => 'El formato del campo :attribute es inválido.',
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',
-
+    
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -133,6 +133,7 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        
     ],
 
     /*
@@ -180,6 +181,20 @@ return [
         'nomAcuIcfes' => '"Nombres y apellidos completos del acudiente"',
 
         //Create preicfes
+        'nombrePreicfes' => '"Nombre"',
+        'imagenPreicfes' => '"Imagen"',
+        'tipo_cursoPreicfes' => '"Tipo curso"',
+        'descripcionPreicfes' => '"Descripción"',
+        'valorPreicfes' => '"Valor"',
+        'poblacion_objetivoPreicfes' => '"Población objetivo"',
+        'estructuraPreicfes' => '"Estructura "',
+        'horario' => '"Horario"',
+        'duracionPreicfes' => '"Duración"',
+        'pasos_inscripcionPreicfes' => '"Pasos para inscribirse"',
+        'fecha_inicio_inscripcionPreicfes' => '"Fecha inicio de inscripción"',
+        'fecha_fin_inscripcionPreicfes' => '"Fecha fin de inscripción"',
+        'fecha_inicioPreicfes' => '"Fecha inicio de clases"',
+        'fecha_finPreicfes' => '"Fecha fin de clases"',
         
         
         //Editar oferta

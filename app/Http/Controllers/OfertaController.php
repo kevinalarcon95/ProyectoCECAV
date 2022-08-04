@@ -79,7 +79,8 @@ class OfertaController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
+        $request->validate(
+            [
             'nombreOferta' => 'required|string',
             'descripcionOferta' => 'required|string',
             'tipoPagoOferta' => 'required',
@@ -95,6 +96,8 @@ class OfertaController extends Controller
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
             'tipoCursoOferta' => 'required',
             'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
+        ],[
+            'fechaInicioOferta.after_or_equal' => 'El campo Fecha cierre debe ser una fecha posterior o igual a hoy.',
         ]);
 
         $imagen = $request->file('imagenOferta')->store('public/ofertas');
@@ -206,7 +209,7 @@ class OfertaController extends Controller
             // 'costoOferta' => 'required|numeric|min:0',
             'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta',
             'tipoCursoOferta' => 'in:Virtual,Presencial',
-            'fechaCierreOferta' => 'required|date|before:fechaInicioOferta|after_or_equal:today'
+            'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
         ]);
 
 
@@ -277,6 +280,101 @@ class OfertaController extends Controller
             dd($e);
             Toastr::error('¡Error al editar su registro!', 'Error', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listOferta');
+        }
+    }
+
+    public function copy($id)
+    {
+        $oferta = Oferta::findOrFail($id);
+        $categoria = Categoria::pluck('nombre', 'id');
+        $fechaFinOferta = Carbon::parse($oferta->fecha_fin)->format('d/m/Y');
+        return view('ofertas.duplicar', compact('oferta'))->with('categoria', $categoria);
+    }
+
+    public function copyS(Request $request, $id)
+    {
+
+        $request->validate([
+            'nombreOferta' => 'required|string',
+            'descripcionOferta' => 'required|string',
+            'tipoPagoOferta' => 'required',
+            'unidadAcademicaOferta' => 'required|string|regex:/^[\pL\s\-]+$/u',
+            'fechaInicioOferta' => 'required|date|after_or_equal:hoy',
+            'resolucionOferta' => 'required|string',
+            'intensidadHorarioOferta' => 'required|string',
+            'cuposOferta' => 'required|numeric',
+            'imagenOferta' => 'required|image|mimes:jpeg,png,jpg,svg1|dimensions:min_width=100,min_height=200|max:5000',
+            'poblacionOferta' => 'required|string',
+            'categoriaOferta' => 'required',
+            //'costoOferta' => 'required|string',
+            'fechaFinOferta' => 'required|date|after_or_equal:fechaInicioOferta|after:fechaCierreOferta',
+            'tipoCursoOferta' => 'required',
+            'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
+        ]);
+
+        $updateData = Oferta::findOrFail($id);
+        $originData = $updateData;
+        $imagen = $request->file('imagenOferta')->store('public/ofertas');
+        $url = Storage::url($imagen);
+        $updateData->imagen = $url;
+
+        $updateData->nombre = $request->input('nombreOferta');
+        $updateData->descripcion = $request->input('descripcionOferta');
+        $updateData->tipo_pago = $request->input('tipoPagoOferta');
+        $updateData->unidad_academica = $request->input('unidadAcademicaOferta');
+        $updateData->fecha_inicio = $request->input('fechaInicioOferta');
+        $updateData->resolucion = $request->input('resolucionOferta');
+        $updateData->intensidad_horario = $request->input('intensidadHorarioOferta');
+        $updateData->limite_cupos = $request->input('cuposOferta');
+        $updateData->poblacion_objetivo = $request->input('poblacionOferta');
+        $updateData->id_categoria = $request->input('categoriaOferta');
+        $updateData->fecha_fin = $request->input('fechaFinOferta');
+        $updateData->costo = $request->input('costoOferta');
+        $updateData->tipo_curso = $request->input('tipoCursoOferta');
+        $updateData->fecha_cierre_inscripcion = $request->input('fechaCierreOferta');
+
+        
+        if ($updateData->tipo_pago == 'Gratuito' || $updateData->costo == null) {
+            $updateData->costo = 0;
+        } 
+        
+        if (Oferta::where('resolucion',  $updateData->resolucion)->exists()) {
+            Toastr::info('¡Ya existe una oferta con la resolución '. $updateData->resolucion .'!', 'Información', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/createOferta')->withInput();
+        } else{
+            
+            if(!($originData->fecha_inicio == $updateData->fecha_inicio) && !($originData->fecha_fin == $updateData->fecha_fin) && !($originData->fecha_cierre_inscripcion == $updateData->fecha_cierre_inscripcion)){
+                try {
+                    Oferta::create([
+                        'nombre' => $updateData->nombre,
+                        'descripcion' => $updateData->descripcion,
+                        'tipo_pago' => $updateData->tipo_pago,
+                        'unidad_academica' => $updateData->unidad_academica,
+                        'imagen' => $updateData->imagen,
+                        'poblacion_objetivo' => $updateData->poblacion_objetivo,
+                        'id_categoria' => $updateData->id_categoria,
+                        'costo' => $updateData->costo,
+                        'fecha_inicio' => $updateData->fecha_inicio,
+                        'resolucion' => $updateData->resolucion,
+                        'intensidad_horario' => $updateData->intensidad_horario,
+                        'limite_cupos' => $updateData->limite_cupos,
+                        'fecha_fin' => $updateData->fecha_fin,
+                        'tipo_curso' => $updateData->tipo_curso,
+                        'fecha_cierre_inscripcion' => $updateData->fecha_cierre_inscripcion,
+                        'id_certificado' => 1,
+                    ]);
+                    Toastr::success('¡Su registro fue exitoso!', 'Exito', ["positionClass" => "toast-top-right"]);
+                    return redirect('/admin/listOferta');
+                } catch (Throwable $e) {
+                    dd($e);
+                    Toastr::error('¡Error al crear su registro!', 'Error', ["positionClass" => "toast-top-right"]);
+                    return redirect('/admin/saveCopyOferta/'.$id);
+                }
+            }
+            else {
+                Toastr::info('Se deben modificar las fechas de inscripcion y de clases', 'Información', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/copyOferta/'.$id)->withInput();
+            }
         }
     }
 
