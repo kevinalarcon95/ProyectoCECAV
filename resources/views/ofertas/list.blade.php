@@ -43,7 +43,6 @@
                 <td class="celda">{{$varOferta->id}}</td>
                 <td class="celda"><img class="img-thumbnail" src="{{ asset($varOferta->imagen) }}" width="100" alt=""></td>
                 <td class="celda">{{$varOferta->nombre}}</td>
-
                 <td>
                     <div class="d-flex flex-row">
                         <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalVer{{$varOferta->id}}">
