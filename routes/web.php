@@ -117,5 +117,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/eliminarInscripcionOferta/{id}', [EstudianteOfertaController::class, 'destroy'])->name('/eliminarInscripcionOferta/{id}');
     Route::delete('/eliminarInscripcionPreicfes/{id}', [EstudianteOfertaController::class, 'destroyPreicfes'])->name('/eliminarInscripcionPreicfes/{id}');
 
-    Route::post('/import', [EstudiantesOfertaController::class, 'import']);
+    Route::post('/import', [AspiOfertaController::class, 'import']);
 });
