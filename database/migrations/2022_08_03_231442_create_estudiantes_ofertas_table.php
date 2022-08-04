@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEstudianteOfertaTable extends Migration
+class CreateEstudiantesOfertasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEstudianteOfertaTable extends Migration
      */
     public function up()
     {
-        Schema::create('estudiante_oferta', function (Blueprint $table) {
+        Schema::create('estudiantes_ofertas', function (Blueprint $table) {
             $table->unsignedBigInteger('id_oferta');
             $table->integer('id_estudiante');
             $table->text('estado');
@@ -23,8 +23,6 @@ class CreateEstudianteOfertaTable extends Migration
             $table->primary(['id_estudiante', 'id_oferta']);
             $table->foreign('id_estudiante')->references('identificacion')->on('aspi_oferta'); 
             $table->foreign('id_oferta')->references('id')->on('oferta'); 
-
-            
         });
     }
 
@@ -35,6 +33,6 @@ class CreateEstudianteOfertaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estudiante_oferta');
+        Schema::dropIfExists('estudiantes_ofertas');
     }
 }

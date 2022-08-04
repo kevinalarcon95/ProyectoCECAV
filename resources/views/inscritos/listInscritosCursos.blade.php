@@ -65,6 +65,15 @@
                     <label class="form-check-label fw-bold mx-3" for="inlineRadio2" style="color:gray;">Archivo Excel: </label>
                     <button type="button" class="btn btn-success" aria-describedby="btnGroupAddon2"><i class="bi bi-upload"></i> Importar</button>
                 </div>
+                <form action="/import" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @if(Session::has('message'))
+                    <p>{{Session::get('message')}}</p>                
+                    @endif
+                    <input type="file" name="student_file" accept=".xlsx,.xls" required>
+                    <br> <br>
+                    <input type="submit" value="Upload">
+                </form>
             </div>
             <table id="datatables" class="display nowrap " style="width:100%">
                 <thead>
@@ -85,7 +94,9 @@
                         <th scope="col" class="celda"> Programa</th>
                         <th scope="col" class="celda"> Entidad</th>                
                         <th scope="col" class="celda"> Nit entidad</th>                        
-                        <th scope="col" class="celda"> fecha</th>
+                        <th scope="col" class="celda"> Fecha</th>
+                        <th scope="col" class="celda"> Referencia</th>
+                        <th scope="col" class="celda"> Estado</th>
                         <th scope="col" class="celda"> Acciones</th>
                     </tr>
                 </thead>
@@ -108,7 +119,8 @@
                         <td  class="celda">{{$varInscrito->entidad}}</td>
                         <td  class="celda">{{$varInscrito->nit_entidad}}</td>
                         <td  class="celda">{{\Carbon\Carbon::parse($varInscrito->created_at)->format('Y-m-d')}}</td>
-                        
+                        <td  class="celda">{{$varInscrito->referencia}}</td>
+                        <td  class="celda">{{$varInscrito->estado}}</td>
                         <td>
                             <div class="d-flex flex-row">
 

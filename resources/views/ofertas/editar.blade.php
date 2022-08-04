@@ -4,7 +4,7 @@
 
  <div class="conteiner m-5">
     <div class="row">
-        <!--<form action="{{route('/admin/editOferta')}}" method="POST">-->
+        
         <form action="{{route('ofertas.update',$oferta->id)}}" method="post" enctype="multipart/form-data">
             @method('PUT')
             @csrf

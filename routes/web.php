@@ -12,6 +12,7 @@ use App\Http\Controllers\InfoController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\EstudianteOfertaController;
 use App\Http\Controllers\RegisterGoogleController;
+use App\Http\Controllers\EstudiantesOfertaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,4 +116,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/misOfertas', [EstudianteOfertaController::class, 'index'])->name('/misOfertas');
     Route::delete('/eliminarInscripcionOferta/{id}', [EstudianteOfertaController::class, 'destroy'])->name('/eliminarInscripcionOferta/{id}');
     Route::delete('/eliminarInscripcionPreicfes/{id}', [EstudianteOfertaController::class, 'destroyPreicfes'])->name('/eliminarInscripcionPreicfes/{id}');
+
+    Route::post('/import', [EstudiantesOfertaController::class, 'import']);
 });

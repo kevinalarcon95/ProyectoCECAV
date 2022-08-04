@@ -236,7 +236,10 @@ class OfertaController extends Controller
         } 
         //dd($fechaInicioOferta);
         $imagen = $request->input('imagenOferta');
-        try {
+        $varId = OfertaController::idResolucionActualizada($resolucionOferta);
+        $resol = OfertaController::resolucion($id);
+        
+        try {            
             $updateData->nombre = $nombreOferta;
             $updateData->descripcion = $descripcionOferta;
             $updateData->tipo_pago =  $tipoPagoOferta;
@@ -261,18 +264,18 @@ class OfertaController extends Controller
 
 
             /* if( $request->file('imagenOferta') == null){
-            
-            }else{
-                $image_path = public_path().$updateData->imagen;
-            unlink($image_path);
-            
-            $imagen = $request->file('imagenOferta')->store('public/ofertas');
-            $url = Storage::url($imagen);
-            $imagen = $url;
-            $updateData ->imagen = $imagen;
-            }*/
-            //dd($imagen);
-            //dd($updateData);
+                
+                }else{
+                    $image_path = public_path().$updateData->imagen;
+                unlink($image_path);
+                
+                $imagen = $request->file('imagenOferta')->store('public/ofertas');
+                $url = Storage::url($imagen);
+                $imagen = $url;
+                $updateData ->imagen = $imagen;
+                }*/
+                //dd($imagen);
+                //dd($updateData);
             $updateData->save();
             Toastr::success('¡Su registro fue editado exitosamente!', 'Exito', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listOferta');
@@ -281,6 +284,7 @@ class OfertaController extends Controller
             Toastr::error('¡Error al editar su registro!', 'Error', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/listOferta');
         }
+        
     }
 
     public function copy($id)
@@ -401,6 +405,22 @@ class OfertaController extends Controller
             ->where('oferta.id', '=', $id)
             ->get();
         return (count($numInscritos));
+    }
+    public static function idResolucionActualizada($resolucionOferta)
+    {
+        $idOferta = Oferta::select('id')
+            ->from ('oferta')                      
+            ->where('resolucion', '=', $resolucionOferta)
+            ->get();
+        return ($idOferta);
+    }
+    public static function resolucion($id)
+    {
+        $resolucion = Oferta::select('resolucion')
+            ->from ('oferta')                      
+            ->where('id', '=', $id)
+            ->get();
+        return ($resolucion);
     }
     
 }
