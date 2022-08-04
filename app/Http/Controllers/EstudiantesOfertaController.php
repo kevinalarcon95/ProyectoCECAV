@@ -7,7 +7,7 @@ use App\Models\Estudiante_oferta;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class EstudiantesImportController extends Controller
+class EstudiantesOfertaController extends Controller
 {
     public function index(){
         $estudiantes = Estudiante_oferta::all();
@@ -21,7 +21,7 @@ class EstudiantesImportController extends Controller
              Excel::import(new EstudiantesImport,$req->file('student_file'));
              return back()->with('message','Importación de estudiantes completada');
         } catch (\Throwable $th) {
-            return back()->with('message','Error No se Importo los registros'.$th);
+            return back()->with('message','Error No se Importo los registros');
         }
        
     }

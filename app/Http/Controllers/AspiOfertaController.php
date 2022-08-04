@@ -31,7 +31,8 @@ class AspiOfertaController extends Controller
     }
     public function list()
     {            
-        $datos['aspiOferta'] = AspiOferta::join('oferta','aspi_oferta.id_oferta','=','oferta.id')  
+        $datos['aspiOferta'] = AspiOferta::join('oferta','aspi_oferta.id_oferta','=','oferta.id') 
+        //->join("estudiantes_ofertas", "estudiantes_ofertas.id_oferta", "=", "aspi_oferta.id_oferta")
         ->select(
             'aspi_oferta.id_oferta',
             'oferta.nombre as nomOferta',
@@ -47,9 +48,10 @@ class AspiOfertaController extends Controller
             'aspi_oferta.profesion',
             'aspi_oferta.programa',
             'aspi_oferta.entidad',
-            'aspi_oferta.nit_entidad',
-            'aspi_oferta.id_user',
-            'aspi_oferta.created_at'
+            'aspi_oferta.nit_entidad',            
+            'aspi_oferta.created_at',
+            //'estudiantes_ofertas.referencia',
+            //'estudiantes_ofertas.estado'
                 
         )
         

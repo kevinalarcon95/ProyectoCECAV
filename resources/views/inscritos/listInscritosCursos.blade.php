@@ -94,7 +94,9 @@
                         <th scope="col" class="celda"> Programa</th>
                         <th scope="col" class="celda"> Entidad</th>                
                         <th scope="col" class="celda"> Nit entidad</th>                        
-                        <th scope="col" class="celda"> fecha</th>
+                        <th scope="col" class="celda"> Fecha</th>
+                        <th scope="col" class="celda"> Referencia</th>
+                        <th scope="col" class="celda"> Estado</th>
                         <th scope="col" class="celda"> Acciones</th>
                     </tr>
                 </thead>
@@ -117,7 +119,8 @@
                         <td  class="celda">{{$varInscrito->entidad}}</td>
                         <td  class="celda">{{$varInscrito->nit_entidad}}</td>
                         <td  class="celda">{{\Carbon\Carbon::parse($varInscrito->created_at)->format('Y-m-d')}}</td>
-                        
+                        <td  class="celda">{{$varInscrito->referencia}}</td>
+                        <td  class="celda">{{$varInscrito->estado}}</td>
                         <td>
                             <div class="d-flex flex-row">
 

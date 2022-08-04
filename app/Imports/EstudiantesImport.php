@@ -2,8 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Estudiante;
-use App\Models\Estudiante_oferta;
+use App\Models\EstudiantesOferta;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -14,17 +13,18 @@ class EstudiantesImport implements ToCollection, WithHeadingRow, WithValidation
      /**
     * @param Collection $collection
     */
+    //Recibe filas del excel para mandarlas a la BD
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
             $data = [
                 'id_oferta' => $row['id_oferta'],
                 'id_estudiante' => $row['id_estudiante'],
-                'referencia' => $row['referencia'],
                 'estado' => $row['estado'],
+                'referencia' => $row['referencia']           
 
             ];
-            EstudiantePrueba::create($data);
+            EstudiantesOferta::create($data);
         }
     }
 
