@@ -1,14 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Exports\AspiOfertaExport;
 use App\Models\AspiIcfes;
 use App\Models\AspiOferta;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
+use App\Imports\EstudiantesImport;
 use App\Models\Oferta;
+use App\Models\Estudiante_oferta;
 use App\Models\User;
 use App\Models\Categoria;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Throwable;
 use Maatwebsite\Excel\Facades\Excel;
@@ -29,46 +33,50 @@ class AspiOfertaController extends Controller
         $objOferta = Oferta::findOrFail($id);
         return view('inscripciones.inscripcionOferta', compact('objUser'))->with('objOferta', $objOferta);
     }
+
     public function list()
-    {            
-        $datos['aspiOferta'] = AspiOferta::join('oferta','aspi_oferta.id_oferta','=','oferta.id') 
-        //->join("estudiantes_ofertas", "estudiantes_ofertas.id_oferta", "=", "aspi_oferta.id_oferta")
-        ->select(
-            'aspi_oferta.id_oferta',
-            'oferta.nombre as nomOferta',
-            'aspi_oferta.nombre',
-            'aspi_oferta.apellido',    
-            'aspi_oferta.tipo_identificacion',
-            'aspi_oferta.identificacion',
-            'aspi_oferta.direccion_residencia',
-            'aspi_oferta.telefono',
-            'aspi_oferta.tipo_inscripcion',
-            'aspi_oferta.tipo_vinculacion',
-            'aspi_oferta.codigo_universitario',
-            'aspi_oferta.profesion',
-            'aspi_oferta.programa',
-            'aspi_oferta.entidad',
-            'aspi_oferta.nit_entidad',            
-            'aspi_oferta.created_at',
-            //'estudiantes_ofertas.referencia',
-            //'estudiantes_ofertas.estado'
-                
-        )
-        
-        ->get();
-            
-        $oferta = Oferta::pluck('nombre', 'id'); 
-        return view('inscritos.listInscritosCursos', $datos)->with('oferta', $oferta);
-    }   
-    
-    
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request, $id)
     {
+        
+        $datos['aspiOferta'] = DB::table('aspi_oferta')
+        ->select(
+                'oferta.id',
+                'oferta.nombre as nombreOferta',
+                'aspi_oferta.nombre as nombreEstudiante',
+                'aspi_oferta.apellido',
+                'aspi_oferta.tipo_identificacion',
+                'aspi_oferta.identificacion',
+                'aspi_oferta.direccion_residencia',
+                'aspi_oferta.telefono',
+                'aspi_oferta.tipo_inscripcion',
+                'aspi_oferta.tipo_vinculacion',
+                'aspi_oferta.codigo_universitario',
+                'aspi_oferta.profesion',
+                'aspi_oferta.programa',
+                'aspi_oferta.entidad',
+                'aspi_oferta.nit_entidad',
+                'aspi_oferta.created_at',
+                'estudiante_oferta.referencia',
+                'estudiante_oferta.estado'
+            )
+            ->join('estudiante_oferta', ' estudiante_oferta.id_user', '=', 'aspi_oferta.id_user')
+            ->join('oferta', 'aspi_oferta.id_oferta', '=', 'oferta.id')
+            
+            ->get();
+
+        
+            dd($datos);
+
+       /* $objEstudiante = Estudiante_oferta::join('aspi_oferta', 'aspi_oferta.id_oferta', '=', 'estudiante_oferta.id_oferta')
+            //->where('estudiante_oferta.id_oferta', '=', Auth::user()->id)
+            ->select(
+                'estudiante_oferta.referencia',
+                'estudiante_oferta.estado'
+            )
+            ->get();
+
+        $oferta = Oferta::pluck('nombre', 'id');*/
+
+        return view('inscritos.listInscritosCursos')->with('datos', $datos);
     }
 
     /**
@@ -95,7 +103,7 @@ class AspiOfertaController extends Controller
             //'entidadUser' => 'string',
             //'nitUser' => 'string'
         ]);
-        
+
         $idOferta = $request->input('idOferta');
         $nombreUser = $request->input('nombreUser');
         $apellidoUser = $request->input('apellidoUser');
@@ -105,7 +113,7 @@ class AspiOfertaController extends Controller
         $telefonoUser = $request->input('telefonoUser');
         $tipoInscripcion = $request->input('tipoInscripcion');
         $vinculacion = $request->input('vinculacion');
-        $codigoUser = is_null($request->input('codigoUser')) ?  '0' : $request->input('codigoUser');
+        $codigoUser = is_null($request->input('codigoUser')) ?  0 : $request->input('codigoUser');
         $profesionUser = is_null($request->input('profesionUser')) ? 'No aplica' : $request->input('profesionUser');
         $programaUser = is_null($request->input('programaUser')) ? 'No aplica' : $request->input('programaUser');
         $entidadUser = is_null($request->input('entidadUser')) ? 'No aplica' : $request->input('entidadUser');
@@ -120,7 +128,6 @@ class AspiOfertaController extends Controller
             return redirect('/ofertasInscripciones');
         } else {
             try {
-
                 AspiOferta::create([
                     'id_oferta' => $idOferta,
                     'nombre' => $nombreUser,
@@ -204,9 +211,27 @@ class AspiOfertaController extends Controller
         }
     }
     public function exportExcel()
-    {        
-        ini_set('memory_limit','-1');
-        set_time_limit(3);        
-        return Excel::download(new AspiOfertaExport,'Listado-Inscritos-Cursos.xlsx');        
-    }     
+    {
+        ini_set('memory_limit', '-1');
+        set_time_limit(3);
+        return Excel::download(new AspiOfertaExport, 'Listado-Inscritos-Cursos.xlsx');
+    }
+
+    //Imporatción de un archivo excel 
+    public function import(Request $req)
+    {
+        try {
+            if (!$req->hasFile('student_file')) {
+                throw new \Exception('archivo no existe');
+                Toastr::info('archivo no existe ', 'Error', ["positionClass" => "toast-top-right"]);
+                return back();
+            }
+            Excel::import(new EstudiantesImport, $req->file('student_file'));
+            Toastr::success('Importación de estudiantes completada', 'Exito', ["positionClass" => "toast-top-right"]);
+            return back();
+        } catch (\Throwable $th) {
+            Toastr::error('Error no se Importó los registros', 'Error', ["positionClass" => "toast-top-right"]);
+            return back();
+        }
+    }
 }
