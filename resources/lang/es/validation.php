@@ -148,78 +148,58 @@ return [
     */
 
     'attributes' => [
-        //create oferta
+        //Crear y editar oferta oferta
         'nombreOferta' => '"Nombre"',
         'descripcionOferta' => '"Descripción"',
         'tipoPagoOferta' => '"Tipo de pago"',
         'costoOferta' => '"Costo o inversión "',
-        'fechaInicioOferta' => '"Fecha inicio"',
-        'fechaFinOferta' => '"Fecha fin "',
-        'intensidadHorarioOferta' => '"Intensidad Horaria"',
-        'cuposOferta' => '"Limite de cupos"',
-        'poblacionOferta' => '"población objetivo"',
-        'categoriaOferta' => '"Categoria"',
-        'unidadAcademicaOferta' => '"Unidad academica"',
+        'fechaInicioOferta' => '"Fecha inicio de clases"',
+        'fechaFinOferta' => '"Fecha final de clases"',
+        'intensidadHorarioOferta' => '"Intensidad horaria"',
+        'cuposOferta' => '"Límite de cupos"',
+        'poblacionOferta' => '"Población objetivo"',
+        'categoriaOferta' => '"Categoría"',
+        'unidadAcademicaOferta' => '"Unidad académica"',
         'resolucionOferta' => '"Resolución"',
         'tipoCursoOferta' => '"Tipo de curso"',
         'fechaCierreOferta' => '"Fecha cierre de inscripciones"',
-        //inscripcion Oferta
+        //Inscripcion oferta
         'direccionUser' => '"Dirección de residencia"',
         'telefonoUser' => '"Teléfono o número de celular"',
         'tipoInscripcion' => '"Tipo de inscripción"',
-        'vinculacion' => '"Tipo de vinculación"',
-
-        //preicfes
-        'telefonoIcfes' => '"Número telefono"',
+        'vinculacion' => '"Tipo de vinculación con Unicauca"',
+        //------------------------------------------------------------------
+        //Crear y editar preicfes
+        'nombrePreicfes' => '"Nombre"',
+        'descripcionPreicfes' => '"Descripción"',
+        'fecha_inicio_inscripcionPreicfes' => '"Fecha inicio de inscripción"',
+        'fecha_fin_inscripcionPreicfes' => '"Fecha fin de inscripción"',
+        'tipo_cursoPreicfes' => '"Tipo curso"',
+        'poblacion_objetivoPreicfes' => '"Población objetivo"',
+        'estructuraPreicfes' => '"Estructura del curso"',
+        'imagenPreicfes' => '"Imagen"',
+        'fecha_inicioPreicfes' => '"Fecha inicio de clases"',
+        'fecha_finPreicfes' => '"Fecha fin de clases"',
+        'duracionPreicfes' => '"Duración"',
+        'valorPreicfes' => '"Valor"',
+        'pasos_inscripcionPreicfes' => '"Pasos para inscribirse"',
+        'horario' => '"Horario"',
+        //Inscripcion preicfes
+        'telefonoIcfes' => '"Número teléfono"',
         'municipioIcfes' => '"Municipio en el que está ubicado el nombre del colegio"',
         'numAcuIcfes' => '"Correo electrónico ó número telefónico del acudiente"',
         'programaIcfes' => '"Programa de pregrado al cual aspira"',
-        'numIdIcfes' => '"Número de identificación"',
         'dirResIcfes' => '"Dirección de residencia"',
         'nomColIcfes' => '"Nombre del colegio en que está estudiando o estudió"',
         'departamentoIcfes' => '"Departamento en que está ubicado el nombre del colegio"',
         'nomAcuIcfes' => '"Nombres y apellidos completos del acudiente"',
-
-        //Create preicfes
-        'nombrePreicfes' => '"Nombre"',
-        'imagenPreicfes' => '"Imagen"',
-        'tipo_cursoPreicfes' => '"Tipo curso"',
-        'descripcionPreicfes' => '"Descripción"',
-        'valorPreicfes' => '"Valor"',
-        'poblacion_objetivoPreicfes' => '"Población objetivo"',
-        'estructuraPreicfes' => '"Estructura "',
-        'horario' => '"Horario"',
-        'duracionPreicfes' => '"Duración"',
-        'pasos_inscripcionPreicfes' => '"Pasos para inscribirse"',
-        'fecha_inicio_inscripcionPreicfes' => '"Fecha inicio de inscripción"',
-        'fecha_fin_inscripcionPreicfes' => '"Fecha fin de inscripción"',
-        'fecha_inicioPreicfes' => '"Fecha inicio de clases"',
-        'fecha_finPreicfes' => '"Fecha fin de clases"',
-        
-        
-        //Editar oferta
-        'nombreOferta' => '"Nombre "',
-        'descripcionOferta' => '"Descripcion"',
-        'tipoPagoOferta' => '"Tipo de Pago"',
-        'unidadAcademicaOferta' => '"Unidad Academica"',
-        'fechaInicioOferta' => '"Fecha Inicio "',
-        'resolucionOferta' => '"Resolución"',
-        'intensidadHorarioOferta' => '"Intensidad horaria"',
-        'cuposOferta' => '"Cupos"',          
-        'imagenOferta' => '"Imagen"',
-        'poblacionOferta' => '"Población"',
-        'categoriaOferta' => '"Categoria"',          
-        'fechaFinOferta' => '"Fecha Fin "',
-        'tipoCursoOferta' => '"Tipo de curso"',
-        'fechaCierreOferta' => 'Fecha cierre',
-
-        //Funcionarios
+        //------------------------------------------------------------------
+        //Crear y editar funcionarios
         'nombreFunc' => '"Nombre"',
         'cargoFunc' => '"Cargo"',
         'telefonoFunc' => '"Teléfono"',
         'extensionFunc' => '"Número extensión"',
         'correoFunc' => '"Correo"',
-
     ],
 
 ];

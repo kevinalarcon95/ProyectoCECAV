@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label fw-bold">Número telefono</label>
+                    <label class="form-label fw-bold">Número teléfono</label>
                     <input type="number" class="form-control @error('telefonoIcfes') is-invalid @enderror" value="{{old('telefonoIcfes')}}" name="telefonoIcfes" placeholder="Tu respuesta" required>
                     @error('telefonoIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>

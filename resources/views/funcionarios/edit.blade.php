@@ -60,7 +60,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Correo</label>
-                    <input type="text" class="form-control @error('correoFunc') is-invalid @enderror" value="{{old('correoFunc', $objFuncionario->correo)}}" name="correoFunc" placeholder="Tu respuesta" onkeypress="return ((event.charCode != 209) && (event.charCode != 241))" required>
+                    <input type="email" class="form-control @error('correoFunc') is-invalid @enderror" value="{{old('correoFunc', $objFuncionario->correo)}}" name="correoFunc" placeholder="Tu respuesta" onkeypress="return ((event.charCode != 209) && (event.charCode != 241))" required>
                     @error('correoFunc')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror

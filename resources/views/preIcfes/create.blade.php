@@ -81,7 +81,7 @@
                 <!----- Estructura del curso ----->
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label fw-bold">Estructura del curso</label>
-                    <textarea type="text" name="estructuraPreicfes" class="form-control @error('estructuraPreicfes') is-invalid @enderror" id="estructuraPreicfes" placeholder="Tu respuesta" style="background-color: #ececec;" required>{{ old('estructuraPreicfes')}}</textarea>
+                    <textarea type="text" name="estructuraPreicfes" class="form-control @error('estructuraPreicfes') is-invalid @enderror" id="estructuraPreicfes" placeholder="Tu respuesta" style="background-color: #ececec; font-size:14px;" required>{{ old('estructuraPreicfes')}}</textarea>
                     @error('estructuraPreicfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     <br>
@@ -143,7 +143,7 @@
                 <!----- Pasos para inscribirse ----->
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label fw-bold">Pasos para inscribirse</label>
-                    <textarea type="text" name="pasos_inscripcionPreicfes" class="form-control @error('pasos_inscripcionPreicfes') is-invalid @enderror" id="pasos_inscripcionPreicfes" placeholder="Tu respuesta" style="background-color: #ececec;" required>{{ old('pasos_inscripcionPreicfes')}}</textarea>
+                    <textarea type="text" name="pasos_inscripcionPreicfes" class="form-control @error('pasos_inscripcionPreicfes') is-invalid @enderror" id="pasos_inscripcionPreicfes" placeholder="Tu respuesta" style="background-color: #ececec; font-size:14px;" required>{{ old('pasos_inscripcionPreicfes')}}</textarea>
                     @error('pasos_inscripcionPreicfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     <br>

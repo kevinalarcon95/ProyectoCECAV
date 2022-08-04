@@ -1,6 +1,6 @@
 @extends('layouts.template')
-
 @section('content')
+
 <div class="conteiner m-5">
     <form class="row g-3 needs-validation" action="{{ url('/admin/updatePreicfes/'.$preicfes->id)}}" method="post" enctype="multipart/form-data" novalidate>
         @csrf
@@ -85,7 +85,7 @@
                 <!--------- Estructura del curso  --------->
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label fw-bold">Estructura del curso</label>
-                    <textarea type="text" name="estructuraPreicfes" class="form-control @error('estructuraPreicfes') is-invalid @enderror" id="estructuraPreicfes" placeholder="Tu respuesta" style="background-color: #ececec;" required>{{ isset($preicfes->estructura)?$preicfes->estructura:old('estructuraPreicfes')}}</textarea>
+                    <textarea type="text" name="estructuraPreicfes" class="form-control @error('estructuraPreicfes') is-invalid @enderror" id="estructuraPreicfes" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ isset($preicfes->estructura)?$preicfes->estructura:old('estructuraPreicfes')}}</textarea>
                     @error('estructuraPreicfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     <br>
