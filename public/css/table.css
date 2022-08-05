@@ -25,13 +25,20 @@
     border-color: #34a853!important;
 }
 
+.btn-duplicar{
+    color: #fff!important;
+    background-color: #FF9201!important;
+    border-color: #FF9201!important;
+    /* #FF6D00  #FF9201  #FFAB41 #FFC700*/
+}
+
 .btn-editar-deshabilitar{
     color: #fff!important;
     background-color: #78C28C!important;
     border-color: #78C28C!important;
 }
 
-.btn-eliminar, .modal-header{
+.btn-eliminar, #modalHeader{
     color: #fff!important;
     background-color: #c50b0a!important;
     border-color: #c50b0a!important;

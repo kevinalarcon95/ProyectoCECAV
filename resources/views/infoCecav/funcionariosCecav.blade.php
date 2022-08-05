@@ -15,7 +15,7 @@
 @endif
 @if($objFuncionario != null)
 @foreach($objFuncionario as $objFuncionario)
-@if($objFuncionario->cargo != 'DIRECTORA')
+@if($objFuncionario->cargo != 'DIRECTORA' || cargo != 'DIRECTOR')
 <div class="col-4 text-center">
     <div class="card">
         <div class="card-body">

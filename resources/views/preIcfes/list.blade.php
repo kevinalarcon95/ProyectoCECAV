@@ -48,10 +48,10 @@
                     </div>
                 </td>
                 @include('preicfes.modalVer')
-                <td  class="celda">{{$varPreicfes->fecha_inicio}}</td>
-                <td  class="celda">{{$varPreicfes->fecha_fin}}</td>
                 <td  class="celda">{{$varPreicfes->fecha_inicio_inscripcion}}</td>
                 <td  class="celda">{{$varPreicfes->fecha_fin_inscripcion}}</td>
+                <td  class="celda">{{$varPreicfes->fecha_inicio}}</td>
+                <td  class="celda">{{$varPreicfes->fecha_fin}}</td>
                 <td  class="celda">{{$varPreicfes->horario}}</td>
                 <td  class="celda">{{$varPreicfes->duracion}}</td>
                 <td  class="celda">{{$varPreicfes->tipo_curso}}</td>
@@ -67,6 +67,7 @@
                         @else
                         <a type="button" class="botones btn btn-editar-deshabilitar me-1" ><i class="bi bi-pencil-square me-1"></i>Editar</a>
                         @endif
+                        <a type="button" href="{{ url('/admin/copyPreicfes/'.$varPreicfes->id)}}" class="botones btn btn-duplicar me-1"><i class="bi bi-clipboard"></i>Duplicar</a>
                         <button type="button" class="botones btn btn-eliminar" data-bs-toggle="modal" data-bs-target="#modalEliminar{{$varPreicfes->id}}"><i class="bi bi-trash3 me-1"></i>Eliminar</button>
 
                     </div>

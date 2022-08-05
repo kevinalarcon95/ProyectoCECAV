@@ -19,7 +19,7 @@
             </p>
         </div>
     </div>
-    <div class="row mt-2" >
+    <div class="row mt-2">
         <h5 style="color: #800000;">Poblacion Objetivo:</h5>
         <p style="text-align: justify;">{{$objOferta->poblacion_objetivo}}</p>
     </div>
@@ -49,6 +49,9 @@
         <p>{{$objOferta->limite_cupos}}</p>
     </div>
     @endif
+    <div class="col-12 text-center">
+        <a type="button" href="{{ url('/inscripcionOferta/') }}{{'/'}}{{ $objOferta->id }} " class="btn btn-primary" style="background:#004AAD; border:none;">Inscribirse</a>
+    </div>
 
 </div>
 <!-- fin detalles oferta -->

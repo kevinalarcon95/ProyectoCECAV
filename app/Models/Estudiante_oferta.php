@@ -8,5 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Estudiante_oferta extends Model
 {
     use HasFactory;
+    protected $guard = 'estudiante_oferta';
+
     protected $table = 'estudiante_oferta';
+
+    protected $fillable = [
+        'id_oferta',
+        'id_user',
+        'estado',
+        'referencia'
+    ];
+    
+    
 }

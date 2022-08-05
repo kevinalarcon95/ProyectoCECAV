@@ -1,10 +1,9 @@
 @extends('layouts.template')
-@section('content')
 
+@section('content')
 <div class="conteiner m-5">
-    <form class="row g-3 needs-validation" action="{{ url('/admin/updatePreicfes/'.$preicfes->id)}}" method="post" enctype="multipart/form-data" novalidate>
+    <form class="row g-3 needs-validation" method="post" action="{{ url('/admin/saveCopyPreicfes/'.$preicfes->id)}}" enctype="multipart/form-data" novalidate>
         @csrf
-        {{ method_field('PATCH')}}
         <div class="row mx-3 ">
 
             <div class="col-sm-11 botones me-2" style=" color: #3E4C60">
@@ -12,7 +11,7 @@
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                 </svg>
-                <h5 class="titulo">Editar curso preicfes</h5>
+                <h5 class="titulo"> Duplicar preicfes</h5>
             </div>
         </div>
         <hr />
@@ -65,19 +64,20 @@
                 <!--------- Tipo de curso  --------->
                 <div class="mb-3">
                     <label class="form-label fw-bold">Tipo de curso</label>
-                    <select name="tipo_cursoPreicfes" id="tipo_cursoPreicfes" class="form-select @error('tipo_cursoPreicfes') is-invalid @enderror" value="{{ old('tipo_cursoOPreicfes')}}" required>
+                    <select name="tipo_cursoPreicfes" id="tipo_cursoPreicfes" class="form-select @error('tipo_cursoPreicfes') is-invalid @enderror"  required>
                         <option selected disabled value="{{ old('tipo_cursoPreicfes')}}">Elige</option>
-                        <option value="Virtual" @if('Virtual'==old('tipo_cursoPreicfes') or  'Virtual' == $preicfes->tipo_curso) selected @endif>Virtual</option>
-                        <option value="Presencial" @if('Presencial'==old('tipo_cursoPreicfes') or  'Presencial' == $preicfes->tipo_curso) selected @endif>Presencial</option>
+                        <option value="Virtual" @if('Virtual'==old('tipo_cursoPreicfes') or 'Virtual' == $preicfes->tipo_curso) selected @endif>Virtual</option>
+                        <option value="Presencial" @if('Presencial'==old('tipo_cursoPreicfes') or 'Presencial' == $preicfes->tipo_curso) selected @endif>Presencial</option>
                     </select>
                     @error('tipo_cursoPreicfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
                 </div>
+
                 <!--------- Poblacion objetivo --------->
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label fw-bold">Población objetivo</label>
-                    <input type="text" class="form-control @error('poblacion_objetivoPreicfes') is-invalid @enderror" name="poblacion_objetivoPreicfes" id="poblacion_objetivoPreicfes" value="{{ old('poblacion_objetivoPreicfes',$preicfes->poblacion_objetivo)}}" aria-describedby="emailHelp" placeholder="Tu respuesta" style="background-color: #ececec;" required>
+                    <input type="text" class="form-control @error('poblacion_objetivoPreicfes') is-invalid @enderror" name="poblacion_objetivoPreicfes" placeholder="Tu respuesta" id="poblacion_objetivoPreicfes" style="background-color: #ececec;" value="{{ old('poblacion_objetivoPreicfes',$preicfes->poblacion_objetivo)}}" required>
                     @error('poblacion_objetivoPreicfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -85,7 +85,7 @@
                 <!--------- Estructura del curso  --------->
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label fw-bold">Estructura del curso</label>
-                    <textarea type="text" name="estructuraPreicfes" class="form-control @error('estructuraPreicfes') is-invalid @enderror" id="estructuraPreicfes" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ old('estructuraPreicfes',$preicfes->estructura)}}</textarea>
+                    <textarea type="text" name="estructuraPreicfes" class="form-control @error('estructuraPreicfes') is-invalid @enderror" id="estructuraPreicfes" placeholder="Tu respuesta" style="background-color: #ececec;" required>{{ old('estructuraPreicfes',$preicfes->estructura)}}</textarea>
                     @error('estructuraPreicfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     <br>
@@ -96,7 +96,7 @@
                 <!--------- Imagen --------->
                 <div class="mb-3">
                     <label for="formFile" class="form-label fw-bold">Seleccione una imagen</label>
-                    <input class="form-control  @error('$preicfes->imagen') is-invalid @enderror" type="file" name="imagenPreicfes" id="imagenPreicfes" accept="image/*" style="background-color: #ececec;" >
+                    <input class="form-control  @error('$preicfes->imagen') is-invalid @enderror" type="file" name="imagenPreicfes" id="imagenPreicfes" accept="image/*" style="background-color: #ececec;" required>
                     <img class="img-thumbnail img-fluid" id="imagenSeleccionada" src="{{ asset($preicfes->imagen) }}" width="100" alt="">
                     @error('imagenPreicfes')
                     <small class="invalid-feedback">{{$message}}</small>
@@ -147,7 +147,7 @@
                 <!--------- Pasos para inscribirse --------->
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label fw-bold">Pasos para inscribirse</label>
-                    <textarea type="text" name="pasos_inscripcionPreicfes" class="form-control @error('pasos_inscripcionPreicfes') is-invalid @enderror" id="editor" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ old('pasos_inscripcionPreicfes',$preicfes->pasos_inscripcion)}}</textarea>
+                    <textarea type="text" name="pasos_inscripcionPreicfes" class="form-control @error('pasos_inscripcionPreicfes') is-invalid @enderror" id="pasos_inscripcionPreicfes" placeholder="Tu respuesta" style="background-color: #ececec; font-size: 14px;" required>{{ old('pasos_inscripcionPreicfes',$preicfes->pasos_inscripcion)}}</textarea>
                     @error('pasos_inscripcionPreicfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     <br>
@@ -220,9 +220,9 @@
 
 <script type="text/javascript">
     $(function() {
-        
-            var i = <?= $num - 1 ?>;
-    
+
+        var i = <?= $num - 1 ?>;
+
         $('.add-btn').click(function(e) {
             e.preventDefault();
             i++;

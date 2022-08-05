@@ -15,15 +15,14 @@ class CreateEstudianteOfertaTable extends Migration
     {
         Schema::create('estudiante_oferta', function (Blueprint $table) {
             $table->unsignedBigInteger('id_oferta');
-            $table->integer('id_estudiante');
+            $table->unsignedBigInteger('id_user');
             $table->text('estado');
+            $table->text('referencia');
             $table->timestamps();
 
-            $table->primary(['id_estudiante', 'id_oferta']);
-            $table->foreign('id_estudiante')->references('identificacion')->on('aspi_oferta'); 
+            $table->primary(['id_user', 'id_oferta']);
+            $table->foreign('id_user')->references('id_user')->on('aspi_oferta'); 
             $table->foreign('id_oferta')->references('id')->on('oferta'); 
-
-            $table->index('estado');
         });
     }
 

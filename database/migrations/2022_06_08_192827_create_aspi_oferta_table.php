@@ -24,7 +24,7 @@ class CreateAspiOfertaTable extends Migration
             $table->text('telefono');
             $table->text('tipo_inscripcion'); 
             $table->text('tipo_vinculacion'); 
-            $table->integer('codigo_universitario')->nullable();
+            $table->text('codigo_universitario')->nullable();
             $table->text('profesion'); //no nullable porque en econtrolador si el campo llega nuevo por default le ponemos No aplica
             $table->text('programa');//no nullable porque en econtrolador si el campo llega nuevo por default le ponemos No aplica
             $table->text('entidad');//no nullable porque en econtrolador si el campo llega nuevo por default le ponemos No aplica

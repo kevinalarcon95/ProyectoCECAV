@@ -12,10 +12,10 @@
         @csrf
         <div class="row form-floating px-2">
             <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 275px;font-size:18px; color:#8F8E8E;" disabled>
-        PASOS PARA PARA LA MATRICULA 
+        PASOS PARA LA MATRICULA 
 
         1. Revise spam, correos no deseados (algunas veces el recibo llega a estas carpetas).
-        2. Imprimir el recibo en impresora laser.
+        2. Imprimir el recibo en impresión laser.
         3. Pagar el recibo en el Banco de Bogotá, Banco Popular, Banco de Occidente, Puntos Supergiros o Pagos a través del Botón PSE
            página Web Unicauca.
         4. TIENE 3 DÍAS HÁBILES PARA PAGAR DESPUÉS DE QUE LE LLEGUE EL RECIBO AL CORREO ELECTRÓNICO.
@@ -42,11 +42,11 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Nombres y apellidos completos</label>
-                    <input type="text" class="form-control" name="nombreIcfes" placeholder="{{$objUser->name}} {{$objUser->lastname}}" value="{{$objUser->name}} {{$objUser->lastname}}" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" readonly="true">
+                    <input type="text" class="form-control" name="nombreIcfes" placeholder="{{$objUser->name}} {{$objUser->lastname}}" value="{{$objUser->name}} {{$objUser->lastname}}" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)|| (event.charCode == 209) ||(event.charCode == 241))" readonly="true">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label fw-bold">Número telefono</label>
+                    <label class="form-label fw-bold">Número teléfono</label>
                     <input type="number" class="form-control @error('telefonoIcfes') is-invalid @enderror" value="{{old('telefonoIcfes')}}" name="telefonoIcfes" placeholder="Tu respuesta" required>
                     @error('telefonoIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
@@ -60,7 +60,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Municipio en el que está ubicado el nombre del colegio</label>
-                    <input type="text" class="form-control @error('municipioIcfes') is-invalid @enderror" value="{{old('municipioIcfes')}}" name="municipioIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" required>
+                    <input type="text" class="form-control @error('municipioIcfes') is-invalid @enderror" value="{{old('municipioIcfes')}}" name="municipioIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)|| (event.charCode == 209) ||(event.charCode == 241))" required>
                     @error('municipioIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -68,7 +68,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Correo electrónico ó número telefónico del acudiente</label>
-                    <input type="text" class="form-control @error('numAcuIcfes') is-invalid @enderror" value="{{old('numAcuIcfes')}}" name="numAcuIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode != 32))" required>
+                    <input type="email" class="form-control @error('numAcuIcfes') is-invalid @enderror" value="{{old('numAcuIcfes')}}" name="numAcuIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode != 209) && (event.charCode != 241))" required>
                     @error('numAcuIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -76,7 +76,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Programa de pregrado al cual aspira</label>
-                    <input type="text" class="form-control @error('programaIcfes') is-invalid @enderror" value="{{old('programaIcfes')}}" name="programaIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" required>
+                    <input type="text" class="form-control @error('programaIcfes') is-invalid @enderror" value="{{old('programaIcfes')}}" name="programaIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)|| (event.charCode == 209) ||(event.charCode == 241))" required>
                     @error('programaIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -108,7 +108,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Departamento en que está ubicado el nombre del colegio</label>
-                    <input type="text" class="form-control @error('departamentoIcfes') is-invalid @enderror" value="{{old('departamentoIcfes')}}" name="departamentoIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" required>
+                    <input type="text" class="form-control @error('departamentoIcfes') is-invalid @enderror" value="{{old('departamentoIcfes')}}" name="departamentoIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 209) ||(event.charCode == 241))" required>
                     @error('departamentoIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
@@ -116,7 +116,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Nombres y apellidos completos del acudiente</label>
-                    <input type="text" class="form-control @error('nomAcuIcfes') is-invalid @enderror" value="{{old('nomAcuIcfes')}}" name="nomAcuIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" required>
+                    <input type="text" class="form-control @error('nomAcuIcfes') is-invalid @enderror" value="{{old('nomAcuIcfes')}}" name="nomAcuIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 209) ||(event.charCode == 241))" required>
                     @error('nomAcuIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror

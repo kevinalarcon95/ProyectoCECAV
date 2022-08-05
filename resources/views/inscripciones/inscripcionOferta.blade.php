@@ -27,17 +27,9 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Tipo de identificación</label>
-                    <select class="form-select" name="tipoIdentificacion" aria-label="Default select example" style="background-color: #ececec;" required>
-                        <option selected readonly="true" value="{{old('tipoIdentificacion',$objUser->tipoId)}}">{{$objUser->tipoId}}</option>
-                    </select>
+                    <input type="text" class="form-control" name="tipoIdentificacion" placeholder="{{old('tipoIdentificacion',$objUser->tipoId)}}" value="{{old('tipoIdentificacion',$objUser->tipoId)}}" readonly="true">
                 </div>
                 <div class="mb-3">
-
-                    
-
-
-
-
                     <label class="form-label fw-bold">Dirección de residencia (Incluir Ciudad)</label>
                     <input type="text" class="form-control @error('direccionUser') is-invalid @enderror" name="direccionUser" placeholder="Tu respuesta" value="{{ old('direccionUser')}}">
                     @error('direccionUser')
@@ -60,11 +52,11 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si es estudiante de Unicauca, Por favor escriba su codigo</label>
-                    <input type="number" class="form-control" name="codigoUser" placeholder="Tu respuesta (Opcional)" value="{{old('codigoUser')}}">
+                    <input type="number" class="form-control" name="codigoUser" placeholder="Tu respuesta (Opcional)" value="{{old('codigoUser')}} ">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si es estudiante indicar el programa al cual pertenece</label>
-                    <input type="text" class="form-control" name="programaUser" placeholder="Tu respuesta (Opcional)" value="{{old('programaUser')}}" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))">
+                    <input type="text" class="form-control" name="programaUser" placeholder="Tu respuesta (Opcional)" value="{{old('programaUser')}}" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)|| (event.charCode == 209) ||(event.charCode == 241))">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si el recibo lo paga la entidad en la que trabaja, por favor escribir el NIT</label>
@@ -103,13 +95,12 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Si es profesional, indicar su profesión y/o especialidad</label>
-                    <input type="text" class="form-control" name="profesionUser" placeholder="Tu respuesta (Opcional)" value="{{old('profesionUser')}}" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))">
+                    <input type="text" class="form-control" name="profesionUser" placeholder="Tu respuesta (Opcional)" value="{{old('profesionUser')}}" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 209) ||(event.charCode == 241))">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Entidad</label>
-                    <h6 style="color: gray; font-size:14px;">Por favor informar a que Institución pertenece y el cargo
-                        que ocupa</h6>
-                    <input type="text" class="form-control" name="entidadUser" placeholder="Tu respuesta (Opcional)" value="{{old('entidadUser')}}">
+                    <h6 style="color: gray; font-size:14px;">Por favor informar a que Institución pertenece y el cargo que ocupa</h6>
+                    <input type="text" class="form-control" name="entidadUser" placeholder="Tu respuesta (Opcional)" value="{{old('entidadUser')}}" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)|| (event.charCode == 209) ||(event.charCode == 241))">
                 </div>
 
             </div>
