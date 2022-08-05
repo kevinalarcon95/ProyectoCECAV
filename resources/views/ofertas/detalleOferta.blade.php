@@ -49,7 +49,7 @@
         <p>{{$objOferta->limite_cupos}}</p>
     </div>
     @endif
-    <div class="col-12 text-center">
+    <div class="col-12 text-end">
         <a type="button" href="{{ url('/inscripcionOferta/') }}{{'/'}}{{ $objOferta->id }} " class="btn btn-primary" style="background:#004AAD; border:none;">Inscribirse</a>
     </div>
 

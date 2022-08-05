@@ -32,8 +32,8 @@ class RegisterGoogleController extends Controller
                 'tipoId'=> "GG",
                 'numIdentificacion' =>"0",
                 'idgoogle' => $user->id,
-                'name' => $user['given_name'],
-                'lastname' => $user['family_name'],
+                'name' => strtoupper($user['given_name']),
+                'lastname' => strtoupper($user['family_name']),
                 'email' => $user->email,
                 'password' =>bcrypt('0'),
                 

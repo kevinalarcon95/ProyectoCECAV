@@ -8,7 +8,7 @@
 
     <div class="row mx-3">
         <div class="d-flex justify-content-between align-baseline">
-            <h4>Listado Estudiantes Inscritos</h4>
+            <h4>Listado estudiantes inscritos</h4>
         </div>
     </div>
     <hr>
@@ -53,8 +53,8 @@
             <form action="/import" method="POST" enctype="multipart/form-data">
                 @csrf
                 @if(Session::has('message'))
-                    <p>{{Session::get('message')}}</p>                
-                    @endif
+                <p>{{Session::get('message')}}</p>
+                @endif
                 <div class="input-group">
                     <input type="file" class="form-control" name="student_file" accept=".xlsx,.xls" required id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                     <button class="btn btn-success" type=" submit" id="inputGroupFileAddon04"><i class="bi bi-download"></i> Importar</button>
@@ -62,27 +62,17 @@
             </form>
         </div>
     </div>
-    
+
     <table id="datatables" class="display nowrap " style="width:100%">
         <thead>
             <tr>
 
                 <th scope="col" class="celda"> No</th>
-                <th scope="col" class="celda"> Curso</th>
+                <th scope="col" class="celda"> Oferta</th>
                 <th scope="col" class="celda"> Nombre</th>
                 <th scope="col" class="celda"> Apellido</th>
-                <th scope="col" class="celda"> Tipo identificacion</th>
-                <th scope="col" class="celda"> Identificacion</th>
-                <th scope="col" class="celda"> Direccion residencia</th>
-                <th scope="col" class="celda"> Telefono</th>
-                <th scope="col" class="celda"> Tipo inscripcion</th>
-                <th scope="col" class="celda"> Tipo vinculacion</th>
-                <th scope="col" class="celda"> Codigo universitario</th>
-                <th scope="col" class="celda"> Profesion</th>
-                <th scope="col" class="celda"> Programa</th>
-                <th scope="col" class="celda"> Entidad</th>
-                <th scope="col" class="celda"> Nit entidad</th>
-                <th scope="col" class="celda"> Fecha</th>
+                <th scope="col" class="celda"> Tipo identificación</th>
+                <th scope="col" class="celda"> Identificación</th>
                 <th scope="col" class="celda"> Referencia</th>
                 <th scope="col" class="celda"> Estado</th>
                 <th scope="col" class="celda"> Acciones</th>
@@ -97,28 +87,18 @@
                 <td class="celda">{{$varInscrito->apellido}}</td>
                 <td class="celda">{{$varInscrito->tipo_identificacion}}</td>
                 <td class="celda">{{$varInscrito->identificacion}}</td>
-                <td class="celda">{{$varInscrito->direccion_residencia}}</td>
-                <td class="celda">{{$varInscrito->telefono}}</td>
-                <td class="celda">{{$varInscrito->tipo_inscripcion}}</td>
-                <td class="celda">{{$varInscrito->tipo_vinculacion}}</td>
-                <td class="celda">{{$varInscrito->codigo_universitario}}</td>
-                <td class="celda">{{$varInscrito->profesion}}</td>
-                <td class="celda">{{$varInscrito->programa}}</td>
-                <td class="celda">{{$varInscrito->entidad}}</td>
-                <td class="celda">{{$varInscrito->nit_entidad}}</td>
-                <td class="celda">{{\Carbon\Carbon::parse($varInscrito->created_at)->format('Y-m-d')}}</td>
                 <td class="celda">{{$varInscrito->referencia}}</td>
                 <td class="celda">{{$varInscrito->estado}}</td>
                 <td>
+                    
                     <div class="d-flex flex-row">
-
+                        <button type="button" class="btn btn-outline-secondary me-1" data-bs-toggle="modal" data-bs-target="#exampleModalVer{{$varInscrito->id}}">
+                            <i class="bi bi-plus-lg"></i> Ver más
+                        </button>
                         <a type="button" href="" class="botones btn btn-editar me-1"><i class="bi bi-pencil-square me-1"></i>Editar</a>
-
-                        <button type="button" class="botones btn btn-eliminar" data-bs-toggle="modal" data-bs-target=""><i class="bi bi-trash3 me-1"></i>Borrar</button>
-
                     </div>
                 </td>
-
+                @include('inscritos.modalVerOferta')
             </tr>
             @endforeach
         </tbody>
@@ -132,11 +112,35 @@
 @endsection
 @endsection
 <style>
+    
+
+    .dataTables_filter {
+        margin-top: -30px;
+        position: absolute;
+    }
+
+    .dataTables_wrapper>.dt-buttons {
+        margin-left: 1140px;
+    }
+
+    .datatables_filter>label {
+        padding-left: 305px;
+        margin-left: 100%;
+    }
+
     .dt-buttons>.buttons-excel {
         background-color: #FF914D !important;
         border: #FF914D !important;
         border-color: #f4e006 !important;
         border-radius: 3px;
         color: white;
+        z-index: 1000;
+        margin-top: -5%;
+        padding-bottom: 5%;
     }
+
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination{
+        padding-left: 500px;
+    }
+
 </style>
