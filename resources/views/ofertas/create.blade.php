@@ -36,10 +36,10 @@
                     <!-- Para ela entrada de costo se requiere que el selector este en "Pago"-->
                     <div class="mb-3">
                         <label class="form-label fw-bold ">Tipo de pago</label>
-                        <select class="form-select" name="tipoPagoOferta" value="{{old('tipoPagoOferta')}}" style="background-color: #ececec;" required onchange="if(this.value=='Pago') {document.getElementById('costoOfertaa').disabled = false; console.log(this.value)} else {document.getElementById('costoOfertaa').disabled = true}">
+                        <select class="form-select" name="tipoPagoOferta" value="{{old('tipoPagoOferta')}}" style="background-color: #ececec;" required onchange="if(this.value=='Pago') {document.getElementById('costoOfertaa').disabled = false; console.log(this.value)} else {document.getElementById('costoOfertaa').disabled = true}; document.getElementById('costoOfertaa').value = '';">
                             <option selected disabled value="">Elige</option>
                             <option value="Pago" @if(old('tipoPagoOferta')=='Pago' ) selected @endif>Pago</option>
-                            <option value="Gratuito" @if(old('tipoPagoOferta')=='Gratutio' ) selected @endif>Gratuito</option>
+                            <option value="Gratuito" @if(old('tipoPagoOferta')=='Gratuito' ) selected @endif>Gratuito</option>
 
                         </select>
                         @error('tipoPagoOferta')
