@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 
 use Throwable;
 use Carbon\Carbon;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class OfertaController extends Controller
 {
@@ -423,4 +424,13 @@ class OfertaController extends Controller
         return ($resolucion);
     }
     
+    public function buscador(Request $request){
+        if($request->buscar == null ){
+            return redirect()->route('/ofertasInscripciones');
+        }else{
+            $consulta = Oferta::where('nombre', 'like', "%$request->buscar%")->get();
+            //dd($consulta);
+            return view('ofertas.index2', compact('consulta'));
+        }
+    }
 }

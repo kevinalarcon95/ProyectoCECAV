@@ -57,6 +57,9 @@ Route::get('/detallePreIcfes/{idPreIcfes?}', [PreicfesController::class, 'show']
 //Rutas para ofertas
 Route::get('/ofertas', [OfertaController::class, 'create'])->name('/ofertas');
 
+//Buscardor
+Route::get('/busqueda', [OfertaController::class, 'buscador'])->name('/busqueda');
+
 //Rutas Google
 Route::get('/loginGoogle', [RegisterGoogleController::class, 'loginGoogle'])->name('/loginGoogle');
 Route::get('/google-callback', [RegisterGoogleController::class, 'callBackUser'])->name('/google-callback');

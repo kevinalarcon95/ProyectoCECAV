@@ -26,25 +26,25 @@
     <!--Fin Buscador-->   
     <!-- cards -->
     <div class="row ml-5 mr-5 mb-4">
-        @foreach ($objOferta as $objOferta)
+        @foreach ($consulta as $consulta)
         <div class="col-lg-4 col-sm-12 p-3">
             <div class="card">
                 <div class="col-md-4 container-img">
-                    <img class="" src="{{ asset($objOferta->imagen) }}" alt="Card image cap" style="height:500px;width:417px;">
+                    <img class="" src="{{ asset($consulta->imagen) }}" alt="Card image cap" style="height:500px;width:417px;">
                 </div>
 
                 <div class=" card-body mb-2">
                     
-                    <h5 class="card-text" style="color: #800000;">{{$objOferta->nombre}}</h5>
-                    <p class=""><strong>Población objetivo:</strong> {{$objOferta->poblacion_objetivo}}</p>
-                    <p><strong>Fecha de inicio:</strong> {{ \Carbon\Carbon::parse($objOferta->fecha_inicio)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
-                    <p><strong>Fecha de finalización:</strong> {{ \Carbon\Carbon::parse($objOferta->fecha_fin)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
+                    <h5 class="card-text" style="color: #800000;">{{$consulta->nombre}}</h5>
+                    <p class=""><strong>Población objetivo:</strong> {{$consulta->poblacion_objetivo}}</p>
+                    <p><strong>Fecha de inicio:</strong> {{ \Carbon\Carbon::parse($consulta->fecha_inicio)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
+                    <p><strong>Fecha de finalización:</strong> {{ \Carbon\Carbon::parse($consulta->fecha_fin)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
                     <div class="row">
                         <div class="col-6">
-                            <a type="button" href="{{ url('/detalleOferta/') }}{{'/'}}{{ $objOferta->id }} " class="btn btn-primary" style="background:#04153B; border:none;">Más detalles</a>
+                            <a type="button" href="{{ url('/detalleOferta/') }}{{'/'}}{{ $consulta->id }} " class="btn btn-primary" style="background:#04153B; border:none;">Más detalles</a>
                         </div>
                         <div class="col-6 text-end">
-                            <a type="button" href="{{ url('/inscripcionOferta/') }}{{'/'}}{{ $objOferta->id }} " class="btn btn-primary" style="background:#004AAD; border:none;">Inscribirse</a>
+                            <a type="button" href="{{ url('/inscripcionOferta/') }}{{'/'}}{{ $consulta->id }} " class="btn btn-primary" style="background:#004AAD; border:none;">Inscribirse</a>
                         </div>
                     </div>
                 </div>
