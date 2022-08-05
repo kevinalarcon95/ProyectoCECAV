@@ -7,7 +7,7 @@
     <div class="row">
         <div class="row mx-3">
             <div class="d-flex justify-content-between align-baseline">
-                <h4>Listado estudiantes inscritos Preicfes</h4>
+                <h4>Listado Estudiantes Inscritos Preicfes</h4>
             </div>
         </div>
         <hr>

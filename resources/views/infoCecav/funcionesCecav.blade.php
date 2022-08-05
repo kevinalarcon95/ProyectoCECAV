@@ -29,7 +29,7 @@
                 con el CES y la División de Relación con el Entorno.
                 <br> 
                 8. Coordinar dinámicas administrativas flexibles, oportunas y en la lógica de establecer nuevos e innovadores procesos de
-                acuerdo a las características geográficas, regionales, socio políticas y administrativas de los lugares en donde se establezcan
+                acuerdo a las características geográficas, regionales, sociopolíticas y administrativas de los lugares en donde se establezcan
                 programas.
                 <br> 
                 9. Respaldar la gestión administrativa de los procesos de descentralización, de la oferta académica en la modalidad a distancia y
