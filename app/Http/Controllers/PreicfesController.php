@@ -223,7 +223,7 @@ class PreicfesController extends Controller
         $updateData = Preicfes::findOrFail($id);
         $updateData->nombre = $request->input('nombrePreicfes');
         //Si se cambia la Imagen
-        if ($request->hasFile('imagen')) {
+        if ($request->hasFile('imagenPreicfes')) {
             $url = str_replace('storage', 'public', $updateData->imagen);
             Storage::delete($url);
             $updateData->imagen = Storage::url($request->file('imagenPreicfes')->store('public/preicfes'));
@@ -303,7 +303,8 @@ class PreicfesController extends Controller
         
         $updateData->nombre = $request->input('nombrePreicfes');
         if ($request->hasFile('imagenPreicfes')) {
-            $updateData->imagen = Storage::url($request->file('imagenPreicfes')->store('public/preicfes'));
+            
+            $updateData->imagenPreicfes = Storage::url($request->file('imagenPreicfes')->store('public/preicfes'));
         }
         $updateData->tipo_curso = $request->input('tipo_cursoPreicfes');
         $updateData->descripcion = $request->input('descripcionPreicfes');
