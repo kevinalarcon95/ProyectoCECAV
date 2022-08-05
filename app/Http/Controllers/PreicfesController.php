@@ -386,5 +386,13 @@ class PreicfesController extends Controller
         return (count($numInscritos));
     }
 
-    
+    public function buscador(Request $request){
+        if($request->buscar == null ){
+            return redirect()->route('/preIcfes');
+        }else{
+            $consulta = Preicfes::where('nombre', 'like', "%$request->buscar%")->get();
+            //dd($consulta);
+            return view('preIcfes.index2', compact('consulta'));
+        }
+    }
 }
