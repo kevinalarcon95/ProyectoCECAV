@@ -7,7 +7,7 @@
     <div class="row">
         <div class="row mx-3">
             <div class="d-flex justify-content-between align-baseline">
-                <h4>Listado Estudiantes Inscritos Preicfes</h4>
+                <h4>Listado estudiantes inscritos preicfes</h4>
             </div>
         </div>
         <hr>
@@ -45,21 +45,9 @@
             <tr>
 
                 <th scope="col" class="celda"> No</th>
-                <th scope="col" class="celda"> Tipo identificacion</th>
-                <th scope="col" class="celda"> Identificacion</th>
-                <th scope="col" class="celda"> Nombre y Apellido</th>
-                <th scope="col" class="celda"> Direccion residencia</th>
-                <th scope="col" class="celda"> Telefono</th>
-                <th scope="col" class="celda"> Correo</th>
-                <th scope="col" class="celda"> Colegio</th>
-                <th scope="col" class="celda"> Departamento Colegio</th>
-                <th scope="col" class="celda"> Municipio Colegio</th>
-                <th scope="col" class="celda"> Nombre acudiente</th>
-                <th scope="col" class="celda"> Correo acudiente</th>
-                <th scope="col" class="celda"> Tipo curso</th>
-                <th scope="col" class="celda"> Pregrado</th>
-                <th scope="col" class="celda"> Horario</th>
-                <th scope="col" class="celda"> Fecha de la inscripción</th>
+                <th scope="col" class="celda"> Nombre y apellido</th>
+                <th scope="col" class="celda"> Tipo identificación</th>
+                <th scope="col" class="celda"> Identificación</th>
                 <th scope="col" class="celda"> Acciones</th>
             </tr>
         </thead>
@@ -67,24 +55,16 @@
             @foreach( $aspiIcfes as $varInscrito)
             <tr>
                 <td class="celda">{{$varInscrito->id_icfes}}</td>
+                <td class="celda">{{$varInscrito->nombre_apellido}}</td>
                 <td class="celda">{{$varInscrito->tipo_identificacion}}</td>
                 <td class="celda">{{$varInscrito->identificacion}}</td>
-                <td class="celda">{{$varInscrito->nombre_apellido}}</td>
-                <td class="celda">{{$varInscrito->direccion_residencia}}</td>
-                <td class="celda">{{$varInscrito->telefono}}</td>
-                <td class="celda">{{$varInscrito->correo}}</td>
-                <td class="celda">{{$varInscrito->colegio}}</td>
-                <td class="celda">{{$varInscrito->departamento_colegio}}</td>
-                <td class="celda">{{$varInscrito->municipio_colegio}}</td>
-                <td class="celda">{{$varInscrito->nombre_apellido_acudiente}}</td>
-                <td class="celda">{{$varInscrito->correo_acudiente}}</td>
-                <td class="celda">{{$varInscrito->tipo_curso}}</td>
-                <td class="celda">{{$varInscrito->pregrado}}</td>
-                <td class="celda">{{$varInscrito->horario}}</td>
-                <td class="celda">{{\Carbon\Carbon::parse($varInscrito->created_at)->format('Y-m-d')}}</td>
 
                 <td>
                     <div class="d-flex flex-row">
+
+                        <button type="button" class="btn btn-outline-secondary me-1" data-bs-toggle="modal" data-bs-target="#exampleModalVer{{$varInscrito->id_icfes}}">
+                            <i class="bi bi-plus-lg"></i> Ver más</button>
+                        <?php $fecha_actual = date("Y-m-d"); ?>
 
                         <a type="button" href="" class="botones btn btn-editar me-1"><i class="bi bi-pencil-square me-1"></i>Editar</a>
 
@@ -92,8 +72,9 @@
 
                     </div>
                 </td>
-
+                @include('inscritos.modalVerPreicfes')
             </tr>
+
             @endforeach
         </tbody>
 

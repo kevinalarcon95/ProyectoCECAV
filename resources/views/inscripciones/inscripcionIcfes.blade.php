@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="row text-center mt-5 mb-3">
-        <h2 class="fw-bold">FORMULARIO DE INSCRIPCIÓN CURSO SABER 11 (CALENDARIO A)</h2>
+        <h2 class="fw-bold">FORMULARIO DE INSCRIPCIÓN CURSO PREICFES</h2>
     </div>
     <form action="{{route('/saveInscripPreIcfes')}}" method="POST" class="needs-validation" novalidate>
         @csrf
@@ -68,7 +68,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Correo electrónico ó número telefónico del acudiente</label>
-                    <input type="email" class="form-control @error('numAcuIcfes') is-invalid @enderror" value="{{old('numAcuIcfes')}}" name="numAcuIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode != 209) && (event.charCode != 241))" required>
+                    <input type="text" class="form-control @error('numAcuIcfes') is-invalid @enderror" value="{{old('numAcuIcfes')}}" name="numAcuIcfes" placeholder="Tu respuesta" onkeypress="return ((event.charCode != 209) && (event.charCode != 241))" required>
                     @error('numAcuIcfes')
                     <small class="invalid-feedback">*{{$message}}</small>
                     @enderror
