@@ -13,10 +13,13 @@
     <div class="row">
         <div class="col"></div>
         <div class="col">
+            
+            <form class="row g-3 needs-validation" method="get" action="{{ url('/busqueda')}}">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Buscar" aria-describedby="button-addon2" style="background:#ECECEC;">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="background:#04153B;">Buscar </button>
+                <input type="text" class="form-control" name="buscar" placeholder="Buscar" aria-describedby="button-addon2" style="background:#ECECEC;">
+                <button type ="submit" class="btn btn-outline-secondary" type="button" id="button-addon2" style="background:#04153B;">Buscar </button>
             </div>
+            </form>
         </div>
         <div class="col"></div>
     </div>

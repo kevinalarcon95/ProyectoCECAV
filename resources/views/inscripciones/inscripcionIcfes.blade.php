@@ -12,10 +12,10 @@
         @csrf
         <div class="row form-floating px-2">
             <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 275px;font-size:18px; color:#8F8E8E;" disabled>
-        PASOS PARA PARA LA MATRICULA 
+        PASOS PARA LA MATRICULA 
 
         1. Revise spam, correos no deseados (algunas veces el recibo llega a estas carpetas).
-        2. Imprimir el recibo en impresora laser.
+        2. Imprimir el recibo en impresión laser.
         3. Pagar el recibo en el Banco de Bogotá, Banco Popular, Banco de Occidente, Puntos Supergiros o Pagos a través del Botón PSE
            página Web Unicauca.
         4. TIENE 3 DÍAS HÁBILES PARA PAGAR DESPUÉS DE QUE LE LLEGUE EL RECIBO AL CORREO ELECTRÓNICO.

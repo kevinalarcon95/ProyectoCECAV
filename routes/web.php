@@ -57,6 +57,10 @@ Route::get('/detallePreIcfes/{idPreIcfes?}', [PreicfesController::class, 'show']
 //Rutas para ofertas
 Route::get('/ofertas', [OfertaController::class, 'create'])->name('/ofertas');
 
+//Buscardor
+Route::get('/busqueda', [OfertaController::class, 'buscador'])->name('/busqueda');
+Route::get('/busquedaIcfes', [PreicfesController::class, 'buscador'])->name('/busquedaIcfes');
+
 //Rutas Google
 Route::get('/loginGoogle', [RegisterGoogleController::class, 'loginGoogle'])->name('/loginGoogle');
 Route::get('/google-callback', [RegisterGoogleController::class, 'callBackUser'])->name('/google-callback');
@@ -117,5 +121,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/eliminarInscripcionOferta/{id}', [EstudianteOfertaController::class, 'destroy'])->name('/eliminarInscripcionOferta/{id}');
     Route::delete('/eliminarInscripcionPreicfes/{id}', [EstudianteOfertaController::class, 'destroyPreicfes'])->name('/eliminarInscripcionPreicfes/{id}');
 
-    Route::post('/import', [EstudiantesOfertaController::class, 'import']);
+    Route::post('/import', [AspiOfertaController::class, 'import']);
 });

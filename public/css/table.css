@@ -38,7 +38,7 @@
     border-color: #78C28C!important;
 }
 
-.btn-eliminar, .modal-header{
+.btn-eliminar, #modalHeader{
     color: #fff!important;
     background-color: #c50b0a!important;
     border-color: #c50b0a!important;

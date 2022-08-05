@@ -2,39 +2,38 @@
 
 namespace App\Imports;
 
-use App\Models\EstudiantesOferta;
+use App\Models\Estudiante_Oferta;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\WithValidation;
+use Illuminate\Support\Facades\Validator;
 
-class EstudiantesImport implements ToCollection, WithHeadingRow, WithValidation
-{  
-     /**
-    * @param Collection $collection
-    */
-    //Recibe filas del excel para mandarlas a la BD
+class EstudiantesImport implements ToCollection, WithHeadingRow
+{
+
     public function collection(Collection $rows)
     {
-        foreach ($rows as $row) {
-            $data = [
-                'id_oferta' => $row['id_oferta'],
-                'id_estudiante' => $row['id_estudiante'],
-                'estado' => $row['estado'],
-                'referencia' => $row['referencia']           
 
-            ];
-            EstudiantesOferta::create($data);
+        Validator::make($rows->toArray(), [
+            '*.id_oferta' => 'required',
+            '*.id_user' => 'required',
+            '*.referencia' => 'required',
+            '*.estado' => 'required'
+        ])->validate();
+
+        foreach ($rows as $row) {
+            Estudiante_Oferta::create([
+                'id_oferta' => $row[0],
+                'id_user' => $row[1],
+                'estado' => $row[2],
+                'referencia' => $row[3]
+            ]);
         }
     }
 
-    public function rules(): array
+    public function headingRow(): int
     {
-        return [
-            'id_oferta' => 'required',
-            'id_estudiante' => 'required',
-            'referencia' => 'required',
-            'estado' => 'required'
-        ];
+        return 2;
     }
 }

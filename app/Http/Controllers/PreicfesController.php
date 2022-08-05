@@ -91,7 +91,7 @@ class PreicfesController extends Controller
         //Falta validar fechas y horas
         $request->validate([
             'nombrePreicfes' => 'required|string',
-            'imagenPreicfes' => 'required|max:2048|mimes:jpeg,png,jpg',
+            'imagenPreicfes' => 'required|image|mimes:jpeg,png,jpg,svg1|dimensions:min_width=100,min_height=200|max:5000',
             'tipo_cursoPreicfes' => 'in:Virtual,Presencial',
             'descripcionPreicfes' => 'required|string',
             'valorPreicfes' => 'required|numeric|min:0',
@@ -104,6 +104,8 @@ class PreicfesController extends Controller
             'fecha_fin_inscripcionPreicfes' => 'required|date|after_or_equal:fecha_inicio_inscripcionPreicfes|before:fecha_inicioPreicfes|before:fecha_finPreicfes',
             'fecha_inicioPreicfes' => 'required|date|after_or_equal:fecha_inicio_inscripcionPreicfes|after_or_equal:fecha_fin_inscripcionPreicfes|before:fecha_finPreicfes',
             'fecha_finPreicfes' => 'required|date|after_or_equal:fecha_inicio_inscripcionPreicfes|after_or_equal:fecha_fin_inscripcionPreicfes|after_or_equal:fecha_inicioPreicfes',
+        ],[
+            'fecha_inicio_inscripcionPreicfes.after_or_equal'  => '*El campo Fecha inicio debe ser una fecha posterior o igual a hoy',
         ]);
         $datosPreicfes = request()->except('_token');
 
@@ -200,7 +202,7 @@ class PreicfesController extends Controller
     {
         $request->validate([
             'nombrePreicfes' => 'required|string',
-            'imagenPreicfes' => 'max:2048|mimes:jpeg,png,jpg',
+            'imagenPreicfes' => 'image|mimes:jpeg,png,jpg,svg1|dimensions:min_width=100,min_height=200|max:5000',
             'tipo_cursoPreicfes' => 'in:Virtual,Presencial',
             'descripcionPreicfes' => 'required|string',
             'valorPreicfes' => 'required|numeric|min:0',
@@ -274,7 +276,7 @@ class PreicfesController extends Controller
         
         $request->validate([
             'nombrePreicfes' => 'required|string',
-            'imagenPreicfes' => 'required|max:2048|mimes:jpeg,png,jpg',
+            'imagenPreicfes' => 'required|image|mimes:jpeg,png,jpg,svg1|dimensions:min_width=100,min_height=200|max:5000',
             'tipo_cursoPreicfes' => 'in:Virtual,Presencial',
             'descripcionPreicfes' => 'required|string',
             'valorPreicfes' => 'required|numeric|min:0',
@@ -287,14 +289,16 @@ class PreicfesController extends Controller
             'fecha_fin_inscripcionPreicfes' => 'required|date|after_or_equal:fecha_inicio_inscripcionPreicfes|before:fecha_inicioPreicfes|before:fecha_finPreicfes',
             'fecha_inicioPreicfes' => 'required|date|after_or_equal:fecha_inicio_inscripcionPreicfes|after_or_equal:fecha_fin_inscripcionPreicfes|before:fecha_finPreicfes',
             'fecha_finPreicfes' => 'required|date|after_or_equal:fecha_inicio_inscripcionPreicfes|after_or_equal:fecha_fin_inscripcionPreicfes|after_or_equal:fecha_inicioPreicfes',
+        ],[
+            'fecha_inicio_inscripcionPreicfes.after_or_equal'  => '*El campo Fecha inicio debe ser una fecha posterior o igual a hoy',
         ]);
         $datos = request()->except(['_token', '_method']);
         $horario = $datos['horario'];
         unset($datos['horario']);
 
        
+        $originData = Preicfes::findOrFail($id);
         $updateData = Preicfes::findOrFail($id);
-        $originData = $updateData;
 
         
         $updateData->nombre = $request->input('nombrePreicfes');
@@ -312,7 +316,7 @@ class PreicfesController extends Controller
         $updateData->fecha_fin_inscripcion = $request->input('fecha_fin_inscripcionPreicfes');
         $updateData->fecha_inicio = $request->input('fecha_inicioPreicfes');
         $updateData->fecha_fin = $request->input('fecha_finPreicfes');
-        
+ 
         try {
             if(!($originData->fecha_inicio == $updateData->fecha_inicio) && !($originData->fecha_inicio_inscripcion == $updateData->fecha_inicio_inscripcion) && !($originData->fecha_fin == $updateData->fecha_fin) && !($originData->fecha_fin_inscripcion == $updateData->fecha_fin_inscripcion)){
                 Preicfes::create([
@@ -382,5 +386,13 @@ class PreicfesController extends Controller
         return (count($numInscritos));
     }
 
-    
+    public function buscador(Request $request){
+        if($request->buscar == null ){
+            return redirect()->route('/preIcfes');
+        }else{
+            $consulta = Preicfes::where('nombre', 'like', "%$request->buscar%")->get();
+            //dd($consulta);
+            return view('preIcfes.index2', compact('consulta'));
+        }
+    }
 }

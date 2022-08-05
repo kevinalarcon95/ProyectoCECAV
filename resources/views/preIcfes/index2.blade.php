@@ -24,26 +24,26 @@
 
     <!-- cards -->
     <div class="row ml-5 mr-5 mb-4">
-        @foreach ($objPreIcfes as $objPreIcfes)
+        @foreach ($consulta as $consulta)
         <div class="col-lg-4 col-sm-12 p-3">
             <div class="card">
                 <div class="box img">
-                    <img class="card-img-top" src="{{ asset($objPreIcfes->imagen) }}" alt="Card image cap"" >
+                    <img class="card-img-top" src="{{ asset($consulta->imagen) }}" alt="Card image cap"" >
                 </div>
 
                 <div class=" card-body">
 
-                    <h5 class="card-text" style="color: #800000;">{{$objPreIcfes->nombre}}</h5>
-                    <p class=""><strong>Población objetivo:</strong> {{$objPreIcfes->poblacion_objetivo}}</p>
-                    <p><strong>Costo: </strong>$ {{$objPreIcfes->valor}}</p>
-                    <p><strong>Fecha de inicio:</strong> {{ \Carbon\Carbon::parse($objPreIcfes->fecha_inicio)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
-                    <p><strong>Fecha de finalización:</strong> {{ \Carbon\Carbon::parse($objPreIcfes->fecha_fin)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
+                    <h5 class="card-text" style="color: #800000;">{{$consulta->nombre}}</h5>
+                    <p class=""><strong>Población objetivo:</strong> {{$consulta->poblacion_objetivo}}</p>
+                    <p><strong>Costo: </strong>$ {{$consulta->valor}}</p>
+                    <p><strong>Fecha de inicio:</strong> {{ \Carbon\Carbon::parse($consulta->fecha_inicio)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
+                    <p><strong>Fecha de finalización:</strong> {{ \Carbon\Carbon::parse($consulta->fecha_fin)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
                     <div class="row">
                         <div class="col-6">
-                            <a type="button" href="{{ url('/detallePreIcfes/') }}{{'/'}}{{ $objPreIcfes->id }}" class="btn btn-primary" style="background:#04153B; border:none;">Más detalles</a>
+                            <a type="button" href="{{ url('/detallePreIcfes/') }}{{'/'}}{{ $consulta->id }}" class="btn btn-primary" style="background:#04153B; border:none;">Más detalles</a>
                         </div>
                         <div class="col-6 text-end">
-                            <a type="button" href="{{ url('/inscripcionPreIcfes/') }}{{'/'}}{{ $objPreIcfes->id }}" class="btn btn-primary" style="background:#004AAD; border:none;">Inscribirse</a>
+                            <a type="button" href="{{ url('/inscripcionPreIcfes/') }}{{'/'}}{{ $consulta->id }}" class="btn btn-primary" style="background:#004AAD; border:none;">Inscribirse</a>
                         </div>
                     </div>
                 </div>
