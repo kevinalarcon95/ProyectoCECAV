@@ -34,15 +34,9 @@
                 <div class=" card-body">
 
                     <h5 class="card-text" style="color: #800000;">{{$objPreIcfes->nombre}}</h5>                  
-                    <!-- nuevo -->  
-                    <p class=""><strong>Población Objetivo:</strong>                      
-                        <a class="link-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                          ver
-                        </a> </p>
-                    <div class="collapse" id="collapseExample">    
-                         {{$objPreIcfes->poblacion_objetivo}}
-                    </div>    
-                     <!-- fin nuevo -->   
+                    
+                    <p class=""><strong>Población Objetivo:</strong>    {{$objPreIcfes->poblacion_objetivo}} </p>
+                      
                     <p><strong>Costo: </strong>$ {{$objPreIcfes->valor}}</p>
                     <p><strong>Fecha de inicio:</strong> {{ \Carbon\Carbon::parse($objPreIcfes->fecha_inicio)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
                     <p><strong>Fecha de finalización:</strong> {{ \Carbon\Carbon::parse($objPreIcfes->fecha_fin)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>

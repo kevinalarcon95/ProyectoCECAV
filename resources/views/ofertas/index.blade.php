@@ -36,19 +36,11 @@
                 <div class=" card-body mb-2">
                     
                     <h5 class="card-text" style="color: #800000;">{{$objOferta->nombre}}</h5>
-
-                    <!-- nuevo -->  
-                    <p class=""><strong>Población Objetivo:</strong>                      
-                        <a class="link-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                          ver
-                        </a> </p>
-                    <div class="collapse" id="collapseExample">    
-                         {{$objOferta->poblacion_objetivo}}
-                    </div>    
-                     <!-- fin nuevo -->   
-
-                    <p><strong>Fecha de inicio:</strong> {{ \Carbon\Carbon::parse($objOferta->fecha_inicio)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
-                    <p><strong>Fecha de finalización:</strong> {{ \Carbon\Carbon::parse($objOferta->fecha_fin)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
+            
+                    <p class=""><strong>Población Objetivo:</strong><br>{{$objOferta->poblacion_objetivo}} </p>
+                      
+                    <p><strong>Fecha de inicio:</strong><br> {{ \Carbon\Carbon::parse($objOferta->fecha_inicio)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
+                    <p><strong>Fecha de finalización:</strong><br>{{ \Carbon\Carbon::parse($objOferta->fecha_fin)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
                     <div class="row">
                         <div class="col-6">
                             <a type="button" href="{{ url('/detalleOferta/') }}{{'/'}}{{ $objOferta->id }} " class="btn btn-primary" style="background:#04153B; border:none;">Más detalles</a>

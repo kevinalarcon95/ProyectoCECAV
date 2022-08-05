@@ -7,10 +7,6 @@
             </div>
             <div class="modal-body mx-3">
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label fw-bold">Descripción</label>
-                    {!!$varInscrito->descripcion!!}
-                </div>
-                <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label fw-bold">Dirección de residencia</label>
                     <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="{{$varInscrito->direccion_residencia}}">
                 </div>

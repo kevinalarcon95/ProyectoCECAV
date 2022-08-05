@@ -52,7 +52,7 @@
     <div class="row mt-2">
         <p>Incluye tres (3) simulacros tipo icfes.</p>
     </div>
-    <div class="col-12 text-center">
+    <div class="col-12 text-end">
         <a type="button" href="{{ url('/inscripcionPreIcfes/') }}{{'/'}}{{ $objPreIcfes->id }}" class="btn btn-primary" style="background:#004AAD; border:none;">Inscribirse</a>
     </div>
 

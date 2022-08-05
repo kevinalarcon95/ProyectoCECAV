@@ -12,6 +12,9 @@
         </div>
     </div>
     <hr>
+    <div class="row">
+
+    </div>
     <div class="row my-3">
         <div class="col-6">
             <div class="input-group text-center row">
@@ -73,7 +76,7 @@
                 <th scope="col" class="celda"> Apellido</th>
                 <th scope="col" class="celda"> Tipo identificación</th>
                 <th scope="col" class="celda"> Identificación</th>
-                <th scope="col" class="celda"> Referencia</th>
+                <th scope="col" class="celda"> Fecha de creación</th>
                 <th scope="col" class="celda"> Estado</th>
                 <th scope="col" class="celda"> Acciones</th>
             </tr>
@@ -87,7 +90,7 @@
                 <td class="celda">{{$varInscrito->apellido}}</td>
                 <td class="celda">{{$varInscrito->tipo_identificacion}}</td>
                 <td class="celda">{{$varInscrito->identificacion}}</td>
-                <td class="celda">{{$varInscrito->referencia}}</td>
+                <td class="celda">{{\Carbon\Carbon::parse($varInscrito->created_at)->format('Y-m-d')}}</td>
                 <td class="celda">{{$varInscrito->estado}}</td>
                 <td>
                     
@@ -117,6 +120,7 @@
     .dataTables_filter {
         margin-top: -30px;
         position: absolute;
+        z-index: 50;
     }
 
     .dataTables_wrapper>.dt-buttons {
@@ -128,16 +132,7 @@
         margin-left: 100%;
     }
 
-    .dt-buttons>.buttons-excel {
-        background-color: #FF914D !important;
-        border: #FF914D !important;
-        border-color: #f4e006 !important;
-        border-radius: 3px;
-        color: white;
-        z-index: 1000;
-        margin-top: -5%;
-        padding-bottom: 5%;
-    }
+    
 
     div.dataTables_wrapper div.dataTables_paginate ul.pagination{
         padding-left: 500px;

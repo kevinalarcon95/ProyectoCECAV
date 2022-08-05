@@ -74,7 +74,6 @@
                 </td>
                 @include('inscritos.modalVerPreicfes')
             </tr>
-
             @endforeach
         </tbody>
 
