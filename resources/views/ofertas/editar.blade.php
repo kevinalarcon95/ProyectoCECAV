@@ -38,7 +38,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Tipo de pago</label>
-                        <select class="form-select" name="tipoPagoOferta" value="{{old('tipoPagoOferta',$oferta->tipo_pago)}}" style="background-color: #ececec;" required onchange="if(this.value=='Pago') {document.getElementById('costoOferta').disabled = false; console.log(this.value)} else {document.getElementById('costoOferta').disabled = true}">
+                        <select class="form-select" name="tipoPagoOferta" id="tipoPagoOferta" value="{{old('tipoPagoOferta',$oferta->tipo_pago)}}" style="background-color: #ececec;" required onchange="if(this.value=='Pago') {document.getElementById('costoOferta').disabled = false; console.log(this.value)} else {document.getElementById('costoOferta').disabled = true}">
                             @if($oferta->tipo_pago == 'Pago')
                             <option selected>{{old('tipoPagoOferta',$oferta->tipo_pago)}}</option>
                             <option>Gratuito</option>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label fw-bold">Costo o inversión</label>
-                        <textarea type="text" class="form-control @error('costoOferta') is-invalid @enderror" name="costoOferta" id="costoOferta"" placeholder=" Valor de inversión" style="background-color: #ececec; font-size: 14px" disabled required>{{old('costoOferta',$oferta->costo)}}</textarea>
+                        <textarea type="text" class="form-control @error('costoOferta') is-invalid @enderror" name="costoOferta" id="costoOferta" placeholder=" Valor de inversión" style="background-color: #ececec; font-size: 14px" disabled required>{{old('costoOferta',$oferta->costo)}}</textarea>
                         @error('costoOferta')
                         <small class="invalid-feedback">*{{$message}}</small>
                         @enderror
@@ -118,7 +118,7 @@
                         <label class="form-label fw-bold">Categoría</label>
                         <select class="form-select @error('categoriaOferta') is-invalid @enderror" name="categoriaOferta" aria-label="Default select example" style="background-color: #ececec;">
                             @foreach($categoria as $key => $value)
-                            <option value="{{ $key }}">{{ $value }}</option>
+                            <option value="{{ $key }}" @if(($oferta->id_categoria==$key) or old('categoriaOferta')==$key) selected @endif />{{ $value }}</option>
                             @endforeach
                         </select>
                         @error('categoriaOferta')
@@ -182,6 +182,10 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
     $(document).ready(function(e) {
+        //Para editar el costo
+        const $tipoPago = $('#tipoPagoOferta');
+        if($tipoPago.val()=='Pago') { document.getElementById('costoOferta').disabled = false;}
+
         $('#imagen').change(function() {
             let reader = new FileReader();
             reader.onload = (e) => {
