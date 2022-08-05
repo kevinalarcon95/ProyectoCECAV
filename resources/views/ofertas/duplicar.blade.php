@@ -106,8 +106,8 @@
                         <select class="form-select @error('categoriaOferta') is-invalid @enderror" name="categoriaOferta" value="" style="background-color: #ececec;" required>
                             <option selected disabled value="">Elige</option>
                             @foreach($categoria as $key => $value)
-                            <option value="{{ $key }}" @if((isset($oferta->id_categoria)) and ($oferta->id_categoria==$key)) selected @endif />{{ $value }}</option>
-                            <p>$oferta->id_categoria</p>
+                            <option value="{{ $key }}" @if(old('categoriaOferta')==$key or ($oferta->id_categoria==$key)) selected @endif />{{ $value }}</option>
+                           
                             @endforeach
                         </select>
                         @error('categoriaOferta')

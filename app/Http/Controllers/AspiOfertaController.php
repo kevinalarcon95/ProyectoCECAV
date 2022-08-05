@@ -58,14 +58,11 @@ class AspiOfertaController extends Controller
                 'estudiante_oferta.referencia',
                 'estudiante_oferta.estado'
             )
-            ->join('estudiante_oferta', ' estudiante_oferta.id_user', '=', 'aspi_oferta.id_user')
-            ->join('oferta', 'aspi_oferta.id_oferta', '=', 'oferta.id')
-            
+            ->leftjoin('estudiante_oferta', 'aspi_oferta.id_oferta', '=', 'estudiante_oferta.id_oferta')   
+            ->join('oferta', 'oferta.id', '=', 'aspi_oferta.id_oferta')  
             ->get();
-
-        
-            dd($datos);
-
+            
+            //return $datos;
        /* $objEstudiante = Estudiante_oferta::join('aspi_oferta', 'aspi_oferta.id_oferta', '=', 'estudiante_oferta.id_oferta')
             //->where('estudiante_oferta.id_oferta', '=', Auth::user()->id)
             ->select(
@@ -76,7 +73,7 @@ class AspiOfertaController extends Controller
 
         $oferta = Oferta::pluck('nombre', 'id');*/
 
-        return view('inscritos.listInscritosCursos')->with('datos', $datos);
+        return view('inscritos.listInscritosCursos', $datos);
     }
 
     /**

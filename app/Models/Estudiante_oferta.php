@@ -14,7 +14,7 @@ class Estudiante_oferta extends Model
 
     protected $fillable = [
         'id_oferta',
-        'id_estudiante',
+        'id_user',
         'estado',
         'referencia'
     ];

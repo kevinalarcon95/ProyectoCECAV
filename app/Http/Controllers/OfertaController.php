@@ -56,7 +56,6 @@ class OfertaController extends Controller
             ->join('categoria', 'oferta.id_categoria', '=', 'categoria.id')
             ->where('oferta.fecha_inicio','>=',$fecha_pasada)
             ->get();
-        
             return view('ofertas.list', $datos);
     }
     /**
@@ -192,7 +191,7 @@ class OfertaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updateData = Oferta::findOrFail($id);
+        
 
         $request->validate([
             'nombreOferta' => 'required|string',
@@ -212,7 +211,7 @@ class OfertaController extends Controller
             'fechaCierreOferta' => 'required|date|before:fechaInicioOferta'
         ]);
 
-
+        $updateData = Oferta::findOrFail($id);
         //Obteniendo los datos de la vista
         $nombreOferta = $request->input('nombreOferta');
         $descripcionOferta = $request->input('descripcionOferta');
@@ -234,55 +233,41 @@ class OfertaController extends Controller
         if ($tipoPagoOferta == 'Gratuito' || $costoOferta == null) {
             $costoOferta = 0;
         } 
-        //dd($fechaInicioOferta);
-        $imagen = $request->input('imagenOferta');
-        $varId = OfertaController::idResolucionActualizada($resolucionOferta);
-        $resol = OfertaController::resolucion($id);
-        
-        try {            
-            $updateData->nombre = $nombreOferta;
-            $updateData->descripcion = $descripcionOferta;
-            $updateData->tipo_pago =  $tipoPagoOferta;
-            $updateData->unidad_academica = $unidadAcademicaOferta;
-            if ($request->hasFile('imagenOferta')) {
-                //$datosTemporal = Oferta::findOrFail($id);
-                $url = str_replace('storage', 'public', $updateData->imagen);
-                Storage::delete($url);
-                $updateData->imagen = Storage::url($request->file('imagenOferta')->store('public/ofertas'));
+        if (Oferta::where('resolucion',  $resolucionOferta)->exists()) {
+            Toastr::info('¡Ya existe una oferta con la resolución '. $resolucionOferta .'!', 'Información', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/editOferta/'.$id)->withInput();
+        } else {
+
+            try {            
+                $updateData->nombre = $nombreOferta;
+                $updateData->descripcion = $descripcionOferta;
+                $updateData->tipo_pago =  $tipoPagoOferta;
+                $updateData->unidad_academica = $unidadAcademicaOferta;
+                if ($request->hasFile('imagenOferta')) {
+                    //$datosTemporal = Oferta::findOrFail($id);
+                    $url = str_replace('storage', 'public', $updateData->imagen);
+                    Storage::delete($url);
+                    $updateData->imagen = Storage::url($request->file('imagenOferta')->store('public/ofertas'));
+                }
+                $updateData->poblacion_objetivo = $poblacionOferta;
+                $updateData->id_categoria = $categoriaOferta;
+                $updateData->costo = $costoOferta;
+                $updateData->fecha_inicio = $fechaInicioOferta;
+                $updateData->resolucion = $resolucionOferta;                      
+                $updateData->intensidad_horario = $intensidadHorarioOferta;
+                $updateData->limite_cupos = $cuposOferta;
+                $updateData->fecha_fin = $fechaFinOferta;
+                $updateData->tipo_curso = $tipoCursoOferta;
+                $updateData->fecha_cierre_inscripcion = $fechaCierreOferta;
+                $updateData->id_certificado = 1;
+                $updateData->save();
+                Toastr::success('¡Su registro fue editado exitosamente!', 'Exito', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/listOferta');
+            } catch (Throwable $e) {
+                dd($e);
+                Toastr::error('¡Error al editar su registro!', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/listOferta');
             }
-            $updateData->poblacion_objetivo = $poblacionOferta;
-            $updateData->id_categoria = $categoriaOferta;
-            $updateData->costo = $costoOferta;
-            $updateData->fecha_inicio = $fechaInicioOferta;
-            $updateData->resolucion = $resolucionOferta;                      
-            $updateData->intensidad_horario = $intensidadHorarioOferta;
-            $updateData->limite_cupos = $cuposOferta;
-            $updateData->fecha_fin = $fechaFinOferta;
-            $updateData->tipo_curso = $tipoCursoOferta;
-            $updateData->fecha_cierre_inscripcion = $fechaCierreOferta;
-            $updateData->id_certificado = 1;
-
-
-            /* if( $request->file('imagenOferta') == null){
-                
-                }else{
-                    $image_path = public_path().$updateData->imagen;
-                unlink($image_path);
-                
-                $imagen = $request->file('imagenOferta')->store('public/ofertas');
-                $url = Storage::url($imagen);
-                $imagen = $url;
-                $updateData ->imagen = $imagen;
-                }*/
-                //dd($imagen);
-                //dd($updateData);
-            $updateData->save();
-            Toastr::success('¡Su registro fue editado exitosamente!', 'Exito', ["positionClass" => "toast-top-right"]);
-            return redirect('/admin/listOferta');
-        } catch (Throwable $e) {
-            dd($e);
-            Toastr::error('¡Error al editar su registro!', 'Error', ["positionClass" => "toast-top-right"]);
-            return redirect('/admin/listOferta');
         }
         
     }
@@ -317,7 +302,7 @@ class OfertaController extends Controller
         ]);
 
         $updateData = Oferta::findOrFail($id);
-        $originData = $updateData;
+        $originData = Oferta::findOrFail($id);
         $imagen = $request->file('imagenOferta')->store('public/ofertas');
         $url = Storage::url($imagen);
         $updateData->imagen = $url;
@@ -344,7 +329,7 @@ class OfertaController extends Controller
         
         if (Oferta::where('resolucion',  $updateData->resolucion)->exists()) {
             Toastr::info('¡Ya existe una oferta con la resolución '. $updateData->resolucion .'!', 'Información', ["positionClass" => "toast-top-right"]);
-            return redirect('/admin/createOferta')->withInput();
+            return redirect('/admin/saveCopyOferta/'.$id)->withInput();
         } else{
             
             if(!($originData->fecha_inicio == $updateData->fecha_inicio) && !($originData->fecha_fin == $updateData->fecha_fin) && !($originData->fecha_cierre_inscripcion == $updateData->fecha_cierre_inscripcion)){

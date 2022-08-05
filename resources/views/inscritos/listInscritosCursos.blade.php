@@ -89,11 +89,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($datos as $varInscrito)
+            @foreach($aspiOferta as $varInscrito)
             <tr>
-                <td class="celda">{{$varInscrito->id_oferta}}</td>
-                <td class="celda">{{$varInscrito->nomOferta}}</td>
-                <td class="celda">{{$varInscrito->nombre}}</td>
+                <td class="celda">{{$varInscrito->id}}</td>
+                <td class="celda">{{$varInscrito->nombreOferta}}</td>
+                <td class="celda">{{$varInscrito->nombreEstudiante}}</td>
                 <td class="celda">{{$varInscrito->apellido}}</td>
                 <td class="celda">{{$varInscrito->tipo_identificacion}}</td>
                 <td class="celda">{{$varInscrito->identificacion}}</td>

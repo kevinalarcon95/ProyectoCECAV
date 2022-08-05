@@ -48,10 +48,10 @@
                     </div>
                 </td>
                 @include('preicfes.modalVer')
-                <td  class="celda">{{$varPreicfes->fecha_inicio}}</td>
-                <td  class="celda">{{$varPreicfes->fecha_fin}}</td>
                 <td  class="celda">{{$varPreicfes->fecha_inicio_inscripcion}}</td>
                 <td  class="celda">{{$varPreicfes->fecha_fin_inscripcion}}</td>
+                <td  class="celda">{{$varPreicfes->fecha_inicio}}</td>
+                <td  class="celda">{{$varPreicfes->fecha_fin}}</td>
                 <td  class="celda">{{$varPreicfes->horario}}</td>
                 <td  class="celda">{{$varPreicfes->duracion}}</td>
                 <td  class="celda">{{$varPreicfes->tipo_curso}}</td>
