@@ -3,7 +3,7 @@
 
 @section('content')
 <!--Inicia sección Agro oferta-->
-<section name="oferta" id="oferta" class="container-fluid" style="display: fluid !important;">
+<section name="oferta" id="oferta" class="container" style="display: fluid !important;">
 
     <div class="row text-center mt-5 mb-3">
         <h2 class="fw-bold">OFERTAS E INSCRIPCIONES</h2>
