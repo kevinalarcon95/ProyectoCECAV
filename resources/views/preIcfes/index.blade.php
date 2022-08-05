@@ -33,8 +33,16 @@
 
                 <div class=" card-body">
 
-                    <h5 class="card-text" style="color: #800000;">{{$objPreIcfes->nombre}}</h5>
-                    <p class=""><strong>Población objetivo:</strong> {{$objPreIcfes->poblacion_objetivo}}</p>
+                    <h5 class="card-text" style="color: #800000;">{{$objPreIcfes->nombre}}</h5>                  
+                    <!-- nuevo -->  
+                    <p class=""><strong>Población Objetivo:</strong>                      
+                        <a class="link-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                          ver
+                        </a> </p>
+                    <div class="collapse" id="collapseExample">    
+                         {{$objPreIcfes->poblacion_objetivo}}
+                    </div>    
+                     <!-- fin nuevo -->   
                     <p><strong>Costo: </strong>$ {{$objPreIcfes->valor}}</p>
                     <p><strong>Fecha de inicio:</strong> {{ \Carbon\Carbon::parse($objPreIcfes->fecha_inicio)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
                     <p><strong>Fecha de finalización:</strong> {{ \Carbon\Carbon::parse($objPreIcfes->fecha_fin)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
@@ -67,6 +75,56 @@
             height: 100%;
             object-fit: cover;
             object-position: center center;
+        }
+    }
+
+    /*200%*/ 
+    @media (min-width: 200px) and (max-width: 699px) { 
+         div.container-yo > img{
+            max-width: 506px !important;
+            max-height: 5000px!important;  
+        }
+    }
+    /*175%*/ 
+    @media (min-width: 700px) and (max-width: 799px) { 
+         div.container-yo > img{
+            max-width: 686px !important;
+            max-height: 5000px!important;  
+        }
+    }
+    /*150%*/ 
+    @media (min-width: 800px) and (max-width: 1060px) { 
+         div.container-yo > img{
+            max-width: 686px !important;
+            max-height: 5000px!important;  
+        }
+    }
+    /*125%*/ 
+    @media (min-width: 1061px) and (max-width: 1160px) { 
+         div.container-yo > img{
+            max-width: 286px !important;
+            max-height: 5000px!important;  
+        }
+    }
+    /*110%*/ 
+    @media (min-width: 1161px) and (max-width: 1326px) { 
+         div.container-yo > img{
+            max-width: 346px !important;
+            max-height: 5000px!important;  
+        }
+    }   
+    /*100%*/ 
+    @media (min-width: 1327px) and (max-width: 1426px) { 
+         div.container-yo > img{
+            max-width: 346px !important;
+            max-height: 5000px!important;  
+        }
+    }  
+    /*90%-25%*/
+    @media (min-width: 1427px) and (max-width: 20000px) { 
+         div.container-yo > img{
+            max-width: 406px !important;
+            max-height: 5000px!important;  
         }
     }
 </style>

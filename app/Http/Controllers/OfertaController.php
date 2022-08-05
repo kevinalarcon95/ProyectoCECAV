@@ -414,7 +414,6 @@ class OfertaController extends Controller
             return redirect()->route('/ofertasInscripciones');
         }else{
             $consulta = Oferta::where('nombre', 'like', "%$request->buscar%")->get();
-            //dd($consulta);
             return view('ofertas.index2', compact('consulta'));
         }
     }
