@@ -59,6 +59,7 @@ Route::get('/ofertas', [OfertaController::class, 'create'])->name('/ofertas');
 
 //Buscardor
 Route::get('/busqueda', [OfertaController::class, 'buscador'])->name('/busqueda');
+Route::get('/busquedaIcfes', [PreicfesController::class, 'buscador'])->name('/busquedaIcfes');
 
 //Rutas Google
 Route::get('/loginGoogle', [RegisterGoogleController::class, 'loginGoogle'])->name('/loginGoogle');

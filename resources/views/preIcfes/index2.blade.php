@@ -3,58 +3,55 @@
 
 @section('content')
 <!--Inicia sección Agro oferta-->
-<section name="oferta" id="oferta" class="container" style="display: fluid !important;">
+<section name="oferta" id="oferta" class="container-fluid" style="display: fluid !important;">
 
     <div class="row text-center mt-5 mb-3">
-        <h2 class="fw-bold">OFERTAS E INSCRIPCIONES</h2>
+        <h2 class="fw-bold">OFERTAS E INSCRIPCIONES PREICFES</h2>
     </div>
 
-    <!--Buscador-->
     <div class="row">
         <div class="col"></div>
         <div class="col">
-            
-            <form class="row g-3 needs-validation" method="get" action="{{ url('/busqueda')}}">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" name="buscar" placeholder="Buscar" aria-describedby="button-addon2" style="background:#ECECEC;">
-                <button type ="submit" class="btn btn-outline-secondary" type="button" id="button-addon2" style="background:#04153B;">Buscar </button>
-            </div>
+            <form class="row g-3 needs-validation" method="get" action="{{ url('/busquedaIcfes')}}">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="buscar" placeholder="Buscar" aria-describedby="button-addon2" style="background:#ECECEC;">
+                    <button type ="submit" class="btn btn-outline-secondary" type="button" id="button-addon2" style="background:#04153B;">Buscar </button>
+                </div>
             </form>
         </div>
         <div class="col"></div>
     </div>
-    <!--Fin Buscador-->   
+
     <!-- cards -->
     <div class="row ml-5 mr-5 mb-4">
-        @foreach ($objOferta as $objOferta)
+        @foreach ($consulta as $consulta)
         <div class="col-lg-4 col-sm-12 p-3">
             <div class="card">
-                <div class="col-md-4 container-yo">
-                    <img src="{{asset($objOferta->imagen) }}" class="imagen" alt="Responsive image">
+                <div class="box img">
+                    <img class="card-img-top" src="{{ asset($consulta->imagen) }}" alt="Card image cap"" >
                 </div>
 
-                <div class=" card-body mb-2">
-                    
-                    <h5 class="card-text" style="color: #800000;">{{$objOferta->nombre}}</h5>
+                <div class=" card-body">
 
+                    <h5 class="card-text" style="color: #800000;">{{$consulta->nombre}}</h5>                  
                     <!-- nuevo -->  
                     <p class=""><strong>Población Objetivo:</strong>                      
                         <a class="link-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                           ver
                         </a> </p>
                     <div class="collapse" id="collapseExample">    
-                         {{$objOferta->poblacion_objetivo}}
+                         {{$consulta->poblacion_objetivo}}
                     </div>    
                      <!-- fin nuevo -->   
-
-                    <p><strong>Fecha de inicio:</strong> {{ \Carbon\Carbon::parse($objOferta->fecha_inicio)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
-                    <p><strong>Fecha de finalización:</strong> {{ \Carbon\Carbon::parse($objOferta->fecha_fin)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
+                    <p><strong>Costo: </strong>$ {{$consulta->valor}}</p>
+                    <p><strong>Fecha de inicio:</strong> {{ \Carbon\Carbon::parse($consulta->fecha_inicio)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
+                    <p><strong>Fecha de finalización:</strong> {{ \Carbon\Carbon::parse($consulta->fecha_fin)->translatedFormat('l d \d\e F \d\e\l Y')}}</p>
                     <div class="row">
                         <div class="col-6">
-                            <a type="button" href="{{ url('/detalleOferta/') }}{{'/'}}{{ $objOferta->id }} " class="btn btn-primary" style="background:#04153B; border:none;">Más detalles</a>
+                            <a type="button" href="{{ url('/detallePreIcfes/') }}{{'/'}}{{ $consulta->id }}" class="btn btn-primary" style="background:#04153B; border:none;">Más detalles</a>
                         </div>
                         <div class="col-6 text-end">
-                            <a type="button" href="{{ url('/inscripcionOferta/') }}{{'/'}}{{ $objOferta->id }} " class="btn btn-primary" style="background:#004AAD; border:none;">Inscribirse</a>
+                            <a type="button" href="{{ url('/inscripcionPreIcfes/') }}{{'/'}}{{ $consulta->id }}" class="btn btn-primary" style="background:#004AAD; border:none;">Inscribirse</a>
                         </div>
                     </div>
                 </div>
@@ -131,7 +128,4 @@
             max-height: 5000px!important;  
         }
     }
-
-    
-
 </style>
