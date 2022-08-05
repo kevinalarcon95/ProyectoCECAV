@@ -4,7 +4,7 @@
         <div class="modal-content">
         
             <?php $num = App\Http\Controllers\OfertaController::existeInscritos($varOferta->id) ?>
-            <div class="modal-header" style="border: none;">
+            <div class="modal-header" id="modalHeader" style="border: none;">
                 <h5 class="modal-title" id="exampleModalLabel">
                     @if ($num == 0)
                     <i class="bi bi-trash3 me-1"></i>Eliminar Registro

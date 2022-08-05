@@ -17,22 +17,22 @@ class EstudiantesImport implements ToCollection, WithHeadingRow
 
         Validator::make($rows->toArray(), [
             '*.id_oferta' => 'required',
-            '*.id_estudiante' => 'required',
+            '*.id_user' => 'required',
             '*.referencia' => 'required',
             '*.estado' => 'required'
         ])->validate();
 
         foreach ($rows as $row) {
             Estudiante_Oferta::create([
-                'id_oferta' => $row['id_oferta'],
-                'id_estudiante' => $row['id_estudiante'],
-                'estado' => $row['estado'],
-                'referencia' => $row['referencia']
+                'id_oferta' => $row[0],
+                'id_user' => $row[1],
+                'estado' => $row[2],
+                'referencia' => $row[3]
             ]);
         }
     }
 
-     public function headingRow(): int
+    public function headingRow(): int
     {
         return 2;
     }

@@ -57,7 +57,7 @@
                     @endif
                 <div class="input-group">
                     <input type="file" class="form-control" name="student_file" accept=".xlsx,.xls" required id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                    <button class="btn btn-success"" type=" button" id="inputGroupFileAddon04"><i class="bi bi-download"></i> Importar</button>
+                    <button class="btn btn-success" type=" submit" id="inputGroupFileAddon04"><i class="bi bi-download"></i> Importar</button>
                 </div>
             </form>
         </div>

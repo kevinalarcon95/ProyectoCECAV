@@ -36,9 +36,9 @@ class AspiOfertaController extends Controller
 
     public function list()
     {
-        
+
         $datos['aspiOferta'] = DB::table('aspi_oferta')
-        ->select(
+            ->select(
                 'oferta.id',
                 'oferta.nombre as nombreOferta',
                 'aspi_oferta.nombre as nombreEstudiante',
@@ -58,12 +58,11 @@ class AspiOfertaController extends Controller
                 'estudiante_oferta.referencia',
                 'estudiante_oferta.estado'
             )
-            ->leftjoin('estudiante_oferta', 'aspi_oferta.id_oferta', '=', 'estudiante_oferta.id_oferta')   
-            ->join('oferta', 'oferta.id', '=', 'aspi_oferta.id_oferta')  
+            ->leftjoin('estudiante_oferta', 'aspi_oferta.id_oferta', '=', 'estudiante_oferta.id_oferta')
+            ->join('oferta', 'oferta.id', '=', 'aspi_oferta.id_oferta')
             ->get();
-            
-            //return $datos;
-       /* $objEstudiante = Estudiante_oferta::join('aspi_oferta', 'aspi_oferta.id_oferta', '=', 'estudiante_oferta.id_oferta')
+        //return $datos;
+        /* $objEstudiante = Estudiante_oferta::join('aspi_oferta', 'aspi_oferta.id_oferta', '=', 'estudiante_oferta.id_oferta')
             //->where('estudiante_oferta.id_oferta', '=', Auth::user()->id)
             ->select(
                 'estudiante_oferta.referencia',
@@ -223,10 +222,12 @@ class AspiOfertaController extends Controller
                 Toastr::info('archivo no existe ', 'Error', ["positionClass" => "toast-top-right"]);
                 return back();
             }
-            Excel::import(new EstudiantesImport, $req->file('student_file'));
+            dd(Excel::import(new EstudiantesImport, $req->file('student_file')));
+
             Toastr::success('Importación de estudiantes completada', 'Exito', ["positionClass" => "toast-top-right"]);
             return back();
         } catch (\Throwable $th) {
+            dd($th);
             Toastr::error('Error no se Importó los registros', 'Error', ["positionClass" => "toast-top-right"]);
             return back();
         }

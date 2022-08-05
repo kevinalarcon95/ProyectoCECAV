@@ -233,7 +233,7 @@ class OfertaController extends Controller
         if ($tipoPagoOferta == 'Gratuito' || $costoOferta == null) {
             $costoOferta = 0;
         } 
-        if (Oferta::where('resolucion',  $resolucionOferta)->exists()) {
+        if (Oferta::where('resolucion',  $resolucionOferta)->exists() && $updateData->resolucion != $resolucionOferta) {
             Toastr::info('¡Ya existe una oferta con la resolución '. $resolucionOferta .'!', 'Información', ["positionClass" => "toast-top-right"]);
             return redirect('/admin/editOferta/'.$id)->withInput();
         } else {
